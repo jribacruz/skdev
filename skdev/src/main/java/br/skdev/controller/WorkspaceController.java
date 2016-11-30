@@ -21,4 +21,10 @@ public class WorkspaceController {
 	public String select() {
 		return "workspace";
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "/setup")
+	public String setup() {
+		System.out.println("Setup");
+		return "redirect:projects";
+	}
 }
