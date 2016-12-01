@@ -3,6 +3,7 @@ package br.skdev.impl;
 import org.springframework.stereotype.Component;
 
 import br.skdev.context.WorkspaceContext;
+import br.skdev.model.Workspace;
 
 @Component
 public class WorkspaceContextImpl implements WorkspaceContext {
@@ -12,16 +13,16 @@ public class WorkspaceContextImpl implements WorkspaceContext {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String projectName;
+	private Workspace workspace;
 
 	@Override
-	public void setProject(String name) {
-		this.projectName = name;
+	public Workspace getWokspace() {
+		return this.workspace;
 	}
 
 	@Override
-	public String getProject() {
-		return this.projectName;
+	public void setWorkspace(Workspace workspace) {
+		this.workspace = workspace;
 	}
 
 }

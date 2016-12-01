@@ -31,7 +31,6 @@ public class WorkspaceController {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/setup")
 	public String setup(@ModelAttribute("path") String path) {
-		workspaceContext.setProject(path);
 		return "redirect:projects";
 	}
 }

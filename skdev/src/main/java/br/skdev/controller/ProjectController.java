@@ -19,7 +19,6 @@ public class ProjectController {
 
 	@RequestMapping("projects")
 	public String select() {
-		System.out.println("NAME: " + workspaceContext.getProject());
 		return "projects";
 	}
 }

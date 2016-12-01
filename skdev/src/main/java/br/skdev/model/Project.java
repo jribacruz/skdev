@@ -4,17 +4,35 @@ import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * Modelo dos projetos do workspace eclipse.
+ * 
+ * @author jcruz
+ *
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ProjectModel implements Serializable {
+public class Project implements Serializable, Comparable<Project> {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 
+	 */
 	private String name;
 
+	/**
+	 * 
+	 */
 	private String path;
+
+	public Project(String name, String path) {
+		super();
+		this.name = name;
+		this.path = path;
+	}
 
 	public String getName() {
 		return name;
@@ -49,7 +67,7 @@ public class ProjectModel implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ProjectModel other = (ProjectModel) obj;
+		Project other = (Project) obj;
 		if (name == null) {
 			if (other.name != null)
 				return false;
@@ -66,6 +84,11 @@ public class ProjectModel implements Serializable {
 	@Override
 	public String toString() {
 		return "ProjectModel [name=" + name + ", path=" + path + "]";
+	}
+
+	@Override
+	public int compareTo(Project o) {
+		return this.name.compareTo(o.getName());
 	}
 
 }
