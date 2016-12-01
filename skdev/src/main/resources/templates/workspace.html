@@ -13,13 +13,14 @@
 		<div flex="" style="width:500px">
 			<md-content layout-padding="">
 				<md-card>
-					<form action="/setup" >
+					<form method="POST" action="/setup" >
 						<!-- LOGO SKDEV -->
 						<div layout="column" layout-align="center center">
 							<img alt="skdev" src="/images/logo.png"/>
 						</div>
 						<md-input-container class="md-block" flex-gt-xs="">
-							<label>Digite o caminho do diretório do workspace Eclipse</label> <input ng-model="user.company" />
+							<label>Digite o caminho do diretório do workspace Eclipse</label> 
+							<input name="path" ng-model="user.company" />
 						</md-input-container>
 						<md-button type="submit" class="md-raised md-primary">Enviar</md-button>
 					</form>

@@ -1,6 +1,8 @@
 package br.skdev.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,10 +23,10 @@ public class WorkspaceController {
 	public String select() {
 		return "workspace";
 	}
-	
-	@RequestMapping(method = RequestMethod.GET, path = "/setup")
-	public String setup() {
-		System.out.println("Setup");
+
+	@RequestMapping(method = RequestMethod.POST, path = "/setup")
+	public String setup(@ModelAttribute("path") String path) {
+		System.out.println("Path: " + path);
 		return "redirect:projects";
 	}
 }
