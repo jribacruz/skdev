@@ -25,13 +25,18 @@ public class WorkspaceController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/")
-	public String select() {
+	public String index() {
 		return "workspace";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/workspace/setup")
 	public String setup(@ModelAttribute("path") String path) {
 		workspaceService.load(path);
-		return "redirect:/projects";
+		return "redirect:projects";
+	}
+
+	@RequestMapping("/workspace/projects")
+	public String projects() {
+		return "projects";
 	}
 }
