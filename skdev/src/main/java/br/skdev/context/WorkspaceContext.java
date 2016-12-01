@@ -2,6 +2,7 @@ package br.skdev.context;
 
 import java.io.Serializable;
 
+import br.skdev.model.Project;
 import br.skdev.model.Workspace;
 
 /**
@@ -22,4 +23,8 @@ public interface WorkspaceContext extends Serializable {
 	 * @param workspace
 	 */
 	void setWorkspace(Workspace workspace);
+
+	void setProject(Project project);
+
+	Project getProject();
 }
