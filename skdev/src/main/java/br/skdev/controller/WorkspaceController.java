@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import br.skdev.context.WorkspaceContext;
+import br.skdev.service.WorkspaceService;
 
 /**
  * 
@@ -17,7 +17,7 @@ import br.skdev.context.WorkspaceContext;
 public class WorkspaceController {
 
 	@Autowired
-	private WorkspaceContext workspaceContext;
+	private WorkspaceService workspaceService;
 
 	/**
 	 * Seleciona o diretório de workspace.
@@ -31,6 +31,7 @@ public class WorkspaceController {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/setup")
 	public String setup(@ModelAttribute("path") String path) {
+		workspaceService.load(path);
 		return "redirect:projects";
 	}
 }
