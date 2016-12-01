@@ -21,7 +21,8 @@ public class ProjectController {
 
 	@RequestMapping(method = RequestMethod.GET, path = "/project/{name}")
 	public String index(@PathVariable("name") String name) {
-		return "workspace";
+		System.out.println("NAME: " + name);
+		return "project";
 	}
 
 }
