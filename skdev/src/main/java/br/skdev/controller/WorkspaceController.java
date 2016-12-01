@@ -1,9 +1,12 @@
 package br.skdev.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import br.skdev.context.WorkspaceContext;
 
 /**
  * 
@@ -12,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class WorkspaceController {
+
+	@Autowired
+	private WorkspaceContext workspaceContext;
 
 	/**
 	 * Seleciona o diretório de workspace.
@@ -25,7 +31,7 @@ public class WorkspaceController {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/setup")
 	public String setup(@ModelAttribute("path") String path) {
-		System.out.println("Path: " + path);
+		workspaceContext.setProject(path);
 		return "redirect:projects";
 	}
 }

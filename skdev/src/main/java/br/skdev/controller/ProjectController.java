@@ -1,7 +1,10 @@
 package br.skdev.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import br.skdev.context.WorkspaceContext;
 
 /**
  * 
@@ -10,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class ProjectController {
-	
+
+	@Autowired
+	private WorkspaceContext workspaceContext;
+
 	@RequestMapping("projects")
 	public String select() {
+		System.out.println("NAME: " + workspaceContext.getProject());
 		return "projects";
 	}
 }
