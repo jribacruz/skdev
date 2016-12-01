@@ -17,7 +17,7 @@ public class ProjectController {
 	@Autowired
 	private WorkspaceContext workspaceContext;
 
-	@RequestMapping("projects")
+	@RequestMapping("/projects")
 	public String select() {
 		return "projects";
 	}
