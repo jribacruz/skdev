@@ -40,6 +40,9 @@ public class Workspace implements Serializable {
 	 */
 	private SortedSet<Project> projects;
 
+	/**
+	 * 
+	 */
 	@JsonIgnore
 	private Map<String, Project> projectMap;
 
