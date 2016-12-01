@@ -76,6 +76,13 @@
 			<version>5.57</version>
 		</dependency>
 	</dependencies>
+	
+	<repositories>
+		<repository>
+			<id>jcenter</id>
+			<url>https://bintray.com/bintray/jcenter</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<resources>
@@ -152,7 +159,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 
 </project>
