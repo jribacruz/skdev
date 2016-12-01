@@ -38,6 +38,7 @@ public class Workspace implements Serializable {
 	/**
 	 * 
 	 */
+	@JsonIgnore
 	private SortedSet<Project> projects;
 
 	/**
