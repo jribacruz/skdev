@@ -3,19 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <title>SKDEV</title>
-<script type="text/javascript"
-	src="/webjars/angularjs/1.5.8/angular.min.js"></script>
-<script type="text/javascript"
-	src="/webjars/angularjs/1.5.8/angular-resource.min.js"></script>
-<script type="text/javascript"
-	src="/webjars/angularjs/1.5.8/angular-animate.min.js"></script>
-<script type="text/javascript"
-	src="/webjars/angularjs/1.5.8/angular-aria.min.js"></script>
-<link rel="stylesheet"
-	href="/webjars/angular-material/1.1.1/angular-material.min.css" />
-<script type="text/javascript"
-	src="/webjars/angular-material/1.1.1/angular-material.min.js"></script>
-<script type="text/javascript" src="/js/app.module.js"></script>
+    <link
+	href="/css/global.css"
+	rel="stylesheet"
+	type="text/css"/>
 </head>
 <body ng-app="skdevMD">
 	<div layout="column" layout-align="center center">
@@ -23,6 +14,7 @@
 			<md-content layout-padding="">
 				<md-card>
 					<form action="/setup" >
+						<!-- LOGO SKDEV -->
 						<div layout="column" layout-align="center center">
 							<img alt="skdev" src="/images/logo.png"/>
 						</div>
@@ -35,5 +27,6 @@
 			</md-content>
 		</div>
 	</div>
+	<script src="/js/global.js"></script>
 </body>
 </html>
