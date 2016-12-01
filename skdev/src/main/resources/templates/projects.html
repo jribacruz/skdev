@@ -3,25 +3,32 @@
 <head>
 <meta charset="UTF-8" />
 <title>SKDEV</title>
-<script type="text/javascript"
-	src="/webjars/angularjs/1.5.8/angular.min.js"></script>
-<script type="text/javascript"
-	src="/webjars/angularjs/1.5.8/angular-resource.min.js"></script>
-<script type="text/javascript"
-	src="/webjars/angularjs/1.5.8/angular-animate.min.js"></script>
-<script type="text/javascript"
-	src="/webjars/angularjs/1.5.8/angular-aria.min.js"></script>
-<link rel="stylesheet"
-	href="/webjars/angular-material/1.1.1/angular-material.min.css" />
-<script type="text/javascript"
-	src="/webjars/angular-material/1.1.1/angular-material.min.js"></script>
-<script type="text/javascript" src="/js/app.module.js"></script>
+    <link
+	href="/skdev/css/global.css"
+	rel="stylesheet"
+	type="text/css"/>
 </head>
 <body ng-app="skdevMD">
-	<div layout="column" layout-align="center center">
+	<div layout="column" layout-align="center center" ng-controller="ProjectCT as projectCT">
 		<div flex="" style="width:500px">
-			Projects		
+			<md-card>
+				 <md-toolbar layout="row" class="md-hue-3">
+				      <div class="md-toolbar-tools">
+				        <span>Selecione um projeto</span>
+				      </div>
+			    </md-toolbar>
+				<md-content>
+			      <md-list flex="">
+			        <md-list-item class="md-3-line" ng-repeat="project in projectCT.projects" ng-click="null">
+			          <div class="md-list-item-text" layout="column">
+			            <h3>{{ project.name }}</h3>
+			          </div>
+			        </md-list-item>	
+			      </md-list>
+			    </md-content>
+			</md-card>
 		</div>
 	</div>
+	<script src="/skdev/js/global.js"></script>
 </body>
 </html>

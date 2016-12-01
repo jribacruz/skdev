@@ -1,6 +1,5 @@
 package br.skdev.model;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -51,16 +50,14 @@ public class Workspace implements Serializable {
 		this.path = path;
 	}
 
-	public SortedSet<Project> getProjects() throws IOException {
+	public SortedSet<Project> getProjects() {
 		if (this.projects == null) {
 			// @formatter:off
 			this.projects = new TreeSet<>();
 			Optional<Stream<Path>> directories = FS.listDirectories(this.path);
 			if (directories.isPresent()) {
-				this.projects = directories.get()
-									.filter(path -> FS.hasFile(path, "pom.xml"))
-									.map(Project::new)
-									.collect(Collectors.toCollection(TreeSet::new));
+				this.projects = directories.get().filter(path -> FS.hasFile(path, "pom.xml")).map(Project::new)
+						.collect(Collectors.toCollection(TreeSet::new));
 			}
 			// @formatter:on
 		}
