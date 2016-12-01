@@ -55,11 +55,12 @@ public class Workspace implements Serializable {
 		if (this.projects == null) {
 			// @formatter:off
 			this.projects = new TreeSet<>();
-			Optional<Stream<Path>> directories = FS.directories(this.path);
+			Optional<Stream<Path>> directories = FS.listDirectories(this.path);
 			if (directories.isPresent()) {
-				this.projects = directories.get().filter(path -> FS.hasFile(path, "pom.xml"))
-						.map(path -> new Project(path.toFile().getName(), path.toFile().getAbsolutePath()))
-						.collect(Collectors.toCollection(TreeSet::new));
+				this.projects = directories.get()
+									.filter(path -> FS.hasFile(path, "pom.xml"))
+									.map(Project::new)
+									.collect(Collectors.toCollection(TreeSet::new));
 			}
 			// @formatter:on
 		}

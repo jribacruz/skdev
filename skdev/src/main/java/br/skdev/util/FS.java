@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 public class FS {
 
-	public static Optional<Stream<Path>> directories(String path) {
+	public static Optional<Stream<Path>> listDirectories(String path) {
 		try {
 			return Optional.of(Files.list(Paths.get(path)).filter(Files::isDirectory));
 		} catch (IOException e) {

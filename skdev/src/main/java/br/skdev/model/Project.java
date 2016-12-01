@@ -1,6 +1,7 @@
 package br.skdev.model;
 
 import java.io.Serializable;
+import java.nio.file.Path;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -28,10 +29,10 @@ public class Project implements Serializable, Comparable<Project> {
 	 */
 	private String path;
 
-	public Project(String name, String path) {
+	public Project(Path path) {
 		super();
-		this.name = name;
-		this.path = path;
+		this.name = path.toFile().getName();
+		this.path = path.toFile().getAbsolutePath();
 	}
 
 	public String getName() {
