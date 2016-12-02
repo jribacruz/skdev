@@ -11,17 +11,33 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>	
 </head>
 <body ng-app="skdevMD">
-	 <md-toolbar class="md-primary">
-	 	<div class="md-toolbar-tools">
-	      <h2 >
-	        <span th:text="${project}"></span>
-	      </h2>
-	      <span flex=""></span>
-	      <md-button class="md-raised" aria-label="Ações">
-	        Executar Ação
-	      </md-button>
-	 	</div>
-    </md-toolbar>
+    <div flex="" style="height:100%" layout="column">
+		<md-toolbar class="md-primary">
+		 	<div class="md-toolbar-tools">
+		      <h2 >
+		        <span th:text="${project}"></span>
+		      </h2>
+		      <span flex=""></span>
+		      <md-button class="md-raised" aria-label="Ações">
+		        Executar Ação
+		      </md-button>
+		 	</div>
+	    </md-toolbar>
+	    <div flex="" layout="column" style="height:100%">
+		    <section layout="row" flex="" style="height:100%">
+				<md-sidenav class="md-sidenav-left"
+				      md-component-id="left"
+				      md-is-locked-open="$mdMedia('gt-md')"
+				      md-whiteframe="4"
+				      style="height:100%"
+					  flex="" >
+					<md-subheader class="md-primary">Entidades</md-subheader>
+					<md-content flex="">
+					</md-content>
+			   	</md-sidenav>
+			</section>
+		</div>
+	</div>
 	<script src="/skdev/js/global.js"></script>
 </body>
 </html>
