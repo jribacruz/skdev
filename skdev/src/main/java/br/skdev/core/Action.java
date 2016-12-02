@@ -14,14 +14,14 @@ public abstract class Action implements Serializable {
 	private Map<String, UIComponent> components = new HashMap<>();
 
 	/**
-	 * Retorna o componente pelo id.
 	 * 
 	 * @param id
-	 *            Id com componente.
+	 * @param componentClass
 	 * @return
 	 */
-	protected UIComponent findById(String id) {
-		return components.get(id);
+	@SuppressWarnings("unchecked")
+	protected <T extends UIComponent> T findById(String id, Class<T> componentClass) {
+		return (T) components.get(id);
 	}
 
 	/**
