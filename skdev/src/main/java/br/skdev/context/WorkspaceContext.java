@@ -2,8 +2,8 @@ package br.skdev.context;
 
 import java.io.Serializable;
 
-import br.skdev.model.Project;
-import br.skdev.model.Workspace;
+import br.skdev.model.EJavaProject;
+import br.skdev.model.EWorkspace;
 
 /**
  * 
@@ -16,15 +16,15 @@ public interface WorkspaceContext extends Serializable {
 	 * 
 	 * @return
 	 */
-	Workspace getWokspace();
+	EWorkspace getWokspace();
 
 	/**
 	 * 
 	 * @param workspace
 	 */
-	void setWorkspace(Workspace workspace);
+	void setWorkspace(EWorkspace workspace);
 
-	void setProject(Project project);
+	void setJavaProject(EJavaProject project);
 
-	Project getProject();
+	EJavaProject getJavaProject();
 }

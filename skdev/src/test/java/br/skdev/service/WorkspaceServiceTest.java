@@ -23,7 +23,7 @@ public class WorkspaceServiceTest {
 	@Test
 	public void loadTest() throws IOException {
 		workspaceService.load("/home/jcruz/workspace");
-		workspaceContext.getWokspace().getProjects()
+		workspaceContext.getWokspace().getJavaProjects()
 				.forEach(project -> System.out.println(project.getName() + " - " + project.getPath()));
 	}
 }

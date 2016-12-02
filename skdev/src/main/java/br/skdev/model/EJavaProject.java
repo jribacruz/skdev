@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Project implements Serializable, Comparable<Project> {
+public class EJavaProject implements Serializable, Comparable<EJavaProject> {
 
 	/**
 	 * 
@@ -28,8 +28,9 @@ public class Project implements Serializable, Comparable<Project> {
 	 * 
 	 */
 	private String path;
+	
 
-	public Project(Path path) {
+	public EJavaProject(Path path) {
 		super();
 		this.name = path.toFile().getName();
 		this.path = path.toFile().getAbsolutePath();
@@ -68,7 +69,7 @@ public class Project implements Serializable, Comparable<Project> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Project other = (Project) obj;
+		EJavaProject other = (EJavaProject) obj;
 		if (name == null) {
 			if (other.name != null)
 				return false;
@@ -88,7 +89,7 @@ public class Project implements Serializable, Comparable<Project> {
 	}
 
 	@Override
-	public int compareTo(Project o) {
+	public int compareTo(EJavaProject o) {
 		return this.name.compareTo(o.getName());
 	}
 

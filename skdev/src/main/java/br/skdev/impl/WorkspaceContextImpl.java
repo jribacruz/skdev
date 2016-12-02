@@ -3,8 +3,8 @@ package br.skdev.impl;
 import org.springframework.stereotype.Component;
 
 import br.skdev.context.WorkspaceContext;
-import br.skdev.model.Project;
-import br.skdev.model.Workspace;
+import br.skdev.model.EJavaProject;
+import br.skdev.model.EWorkspace;
 
 @Component
 public class WorkspaceContextImpl implements WorkspaceContext {
@@ -14,27 +14,27 @@ public class WorkspaceContextImpl implements WorkspaceContext {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Workspace workspace;
+	private EWorkspace workspace;
 
-	private Project project;
+	private EJavaProject project;
 
 	@Override
-	public Workspace getWokspace() {
+	public EWorkspace getWokspace() {
 		return this.workspace;
 	}
 
 	@Override
-	public void setWorkspace(Workspace workspace) {
+	public void setWorkspace(EWorkspace workspace) {
 		this.workspace = workspace;
 	}
 
 	@Override
-	public void setProject(Project project) {
+	public void setJavaProject(EJavaProject project) {
 		this.project = project;
 	}
 
 	@Override
-	public Project getProject() {
+	public EJavaProject getJavaProject() {
 		return this.project;
 	}
 

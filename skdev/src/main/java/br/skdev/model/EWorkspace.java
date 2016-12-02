@@ -23,7 +23,7 @@ import br.skdev.util.FS;
  *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Workspace implements Serializable {
+public class EWorkspace implements Serializable {
 
 	/**
 	 * 
@@ -39,15 +39,15 @@ public class Workspace implements Serializable {
 	 * 
 	 */
 	@JsonIgnore
-	private SortedSet<Project> projects;
+	private SortedSet<EJavaProject> javaProjects;
 
 	/**
 	 * 
 	 */
 	@JsonIgnore
-	private Map<String, Project> projectMap;
+	private Map<String, EJavaProject> projectMap;
 
-	public Workspace(String path) {
+	public EWorkspace(String path) {
 		super();
 		this.path = path;
 	}
@@ -60,30 +60,30 @@ public class Workspace implements Serializable {
 		this.path = path;
 	}
 
-	public SortedSet<Project> getProjects() {
-		if (this.projects == null) {
+	public SortedSet<EJavaProject> getJavaProjects() {
+		if (this.javaProjects == null) {
 			// @formatter:off
-			this.projects = new TreeSet<>();
+			this.javaProjects = new TreeSet<>();
 			Optional<Stream<Path>> directories = FS.listDirectories(this.path);
 			if (directories.isPresent()) {
-				this.projects = directories.get()
+				this.javaProjects = directories.get()
 						.filter(path -> FS.hasFile(path, "pom.xml"))
-						.map(Project::new)
+						.map(EJavaProject::new)
 						.collect(Collectors.toCollection(TreeSet::new));
 			}
 			// @formatter:on
 		}
-		return projects;
+		return javaProjects;
 	}
 
-	public void setProjects(SortedSet<Project> projects) {
-		this.projects = projects;
+	public void setJavaProjects(SortedSet<EJavaProject> projects) {
+		this.javaProjects = projects;
 	}
 
-	public Map<String, Project> getProjectMap() {
+	public Map<String, EJavaProject> getProjectMap() {
 		if (this.projectMap == null) {
 			this.projectMap = new HashMap<>();
-			this.projects.forEach(p -> projectMap.put(p.getName(), p));
+			this.javaProjects.forEach(p -> projectMap.put(p.getName(), p));
 		}
 		return projectMap;
 	}
@@ -104,7 +104,7 @@ public class Workspace implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Workspace other = (Workspace) obj;
+		EWorkspace other = (EWorkspace) obj;
 		if (path == null) {
 			if (other.path != null)
 				return false;

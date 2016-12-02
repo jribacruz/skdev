@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.skdev.context.WorkspaceContext;
-import br.skdev.model.Workspace;
+import br.skdev.model.EWorkspace;
 
 @Service
 public class WorkspaceService {
@@ -13,7 +13,7 @@ public class WorkspaceService {
 	private WorkspaceContext workspaceContext;
 
 	public void load(String path) {
-		Workspace workspace = new Workspace(path);
+		EWorkspace workspace = new EWorkspace(path);
 		workspaceContext.setWorkspace(workspace);
 	}
 }
