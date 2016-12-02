@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thoughtworks.qdox.model.JavaClass;
 
-public class EJavaClass implements Serializable {
+public class EJavaClass implements Serializable, Comparable<EJavaClass> {
 
 	/**
 	 * 
@@ -46,7 +46,10 @@ public class EJavaClass implements Serializable {
 	}
 
 	public String getName() {
-		return name;
+		if (this.name == null) {
+			this.name = this.qdoxJavaClass.getName();
+		}
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -54,6 +57,9 @@ public class EJavaClass implements Serializable {
 	}
 
 	public String getFullyQualifiedName() {
+		if (this.fullyQualifiedName == null) {
+			this.fullyQualifiedName = this.qdoxJavaClass.getFullyQualifiedName();
+		}
 		return fullyQualifiedName;
 	}
 
@@ -62,7 +68,7 @@ public class EJavaClass implements Serializable {
 	}
 
 	public String getSourceFolderName() {
-		return sourceFolderName;
+		return this.sourceFolderName;
 	}
 
 	public void setSourceFolderName(String sourceFolderName) {
@@ -129,6 +135,11 @@ public class EJavaClass implements Serializable {
 	@Override
 	public String toString() {
 		return "EJavaClass [fullyQualifiedName=" + fullyQualifiedName + "]";
+	}
+
+	@Override
+	public int compareTo(EJavaClass o) {
+		return this.getFullyQualifiedName().compareTo(o.getFullyQualifiedName());
 	}
 
 }

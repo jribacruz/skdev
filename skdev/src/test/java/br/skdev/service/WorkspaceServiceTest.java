@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import br.skdev.context.WorkspaceContext;
+import br.skdev.model.MavenFolder;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -25,5 +26,9 @@ public class WorkspaceServiceTest {
 		workspaceService.load("/home/jcruz/workspace");
 		workspaceContext.getWokspace().getJavaProjects()
 				.forEach(project -> System.out.println(project.getName() + " - " + project.getPath()));
+		workspaceContext.setJavaProject(workspaceContext.getWokspace().getJavaProjects().first());
+		workspaceContext.getJavaProject().getEJavaClasses(MavenFolder.SRC_MAIN_JAVA)
+			.forEach(eJavaClass -> System.out.println(eJavaClass.getName()));
+			
 	}
 }
