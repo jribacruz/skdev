@@ -14,21 +14,45 @@ public class EJavaClass implements Serializable, Comparable<EJavaClass> {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 
+	 */
 	@JsonIgnore
 	private EJavaProject project;
 
+	/**
+	 * 
+	 */
 	private String name;
 
+	/**
+	 * 
+	 */
 	private String fullyQualifiedName;
 
+	/**
+	 * 
+	 */
 	private String sourceFolderName;
 
+	/**
+	 * 
+	 */
 	private String path;
 
+	/**
+	 * 
+	 */
 	private String packageName;
 
+	/**
+	 * 
+	 */
 	private String parentPackageName;
-
+	
+	/**
+	 * 
+	 */
 	@JsonIgnore
 	private JavaClass qdoxJavaClass;
 
