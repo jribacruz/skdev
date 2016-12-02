@@ -1,9 +1,9 @@
-package br.skdev.context;
+package br.skdev.core.context;
 
 import java.io.Serializable;
 
-import br.skdev.model.EJavaProject;
-import br.skdev.model.EWorkspace;
+import br.skdev.core.model.EJavaProject;
+import br.skdev.core.model.EWorkspace;
 
 /**
  * 

@@ -1,10 +1,10 @@
-package br.skdev.impl;
+package br.skdev.core.impl;
 
 import org.springframework.stereotype.Component;
 
-import br.skdev.context.WorkspaceContext;
-import br.skdev.model.EJavaProject;
-import br.skdev.model.EWorkspace;
+import br.skdev.core.context.WorkspaceContext;
+import br.skdev.core.model.EJavaProject;
+import br.skdev.core.model.EWorkspace;
 
 @Component
 public class WorkspaceContextImpl implements WorkspaceContext {

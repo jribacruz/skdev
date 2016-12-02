@@ -1,4 +1,4 @@
-package br.skdev.model;
+package br.skdev.core.model;
 
 import java.io.Serializable;
 import java.nio.file.Path;
@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import br.skdev.util.FS;
+import br.skdev.core.util.FS;
 
 /**
  * 

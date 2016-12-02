@@ -1,4 +1,4 @@
-package br.skdev.rest;
+package br.skdev.core.rest;
 
 import java.util.SortedSet;
 
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.skdev.context.WorkspaceContext;
-import br.skdev.model.EJavaProject;
+import br.skdev.core.context.WorkspaceContext;
+import br.skdev.core.model.EJavaProject;
 
 @RestController
 public class ProjectRest {
