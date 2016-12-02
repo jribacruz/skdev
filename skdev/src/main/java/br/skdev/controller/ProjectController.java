@@ -2,6 +2,7 @@ package br.skdev.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +21,8 @@ public class ProjectController {
 	private WorkspaceContext workspaceContext;
 
 	@RequestMapping(method = RequestMethod.GET, path = "/project/{name}")
-	public String index(@PathVariable("name") String name) {
+	public String index(@PathVariable("name") String name, Model model) {
+		model.addAttribute("project", name);
 		workspaceContext.setProject(workspaceContext.getWokspace().getProjectMap().get(name));
 		return "project";
 	}

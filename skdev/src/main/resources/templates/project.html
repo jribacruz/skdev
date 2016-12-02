@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
-<title>SKDEV</title>
+<title th:text="'SKDEV - ' + ${project}"></title>
     <link
 	href="/skdev/css/global.css"
 	rel="stylesheet"
@@ -14,7 +14,7 @@
 	 <md-toolbar class="md-primary">
 	 	<div class="md-toolbar-tools">
 	      <h2 >
-	        <span>Projeto Selecionado</span>
+	        <span th:text="${project}"></span>
 	      </h2>
 	      <span flex=""></span>
 	      <md-button class="md-raised" aria-label="Ações">
