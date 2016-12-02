@@ -3,8 +3,10 @@ package br.skdev.model;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.thoughtworks.qdox.model.JavaClass;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EJavaClass implements Serializable, Comparable<EJavaClass> {
 
 	/**

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import org.apache.commons.io.FilenameUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.thoughtworks.qdox.model.JavaPackage;
 
@@ -14,6 +15,7 @@ public class EJavaPackage implements Serializable, Comparable<EJavaPackage> {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@JsonIgnore
 	private EJavaProject project;
 
 	private String name;
