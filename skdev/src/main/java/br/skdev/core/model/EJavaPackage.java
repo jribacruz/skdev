@@ -15,15 +15,30 @@ public class EJavaPackage implements Serializable, Comparable<EJavaPackage> {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 
+	 */
 	@JsonIgnore
 	private EJavaProject project;
 
+	/**
+	 * 
+	 */
 	private String name;
 
+	/**
+	 * 
+	 */
 	private String sourceFolderName;
 
+	/**
+	 * 
+	 */
 	private JavaPackage qdoxJavaPackage;
 
+	/**
+	 * 
+	 */
 	private String path;
 
 	public EJavaPackage(EJavaProject project, JavaPackage qdoxJavaPackage, String sourceFolderName) {
