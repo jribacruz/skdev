@@ -24,7 +24,15 @@ public interface WorkspaceContext extends Serializable {
 	 */
 	void setWorkspace(EWorkspace workspace);
 
+	/**
+	 * 
+	 * @param project
+	 */
 	void setJavaProject(EJavaProject project);
 
+	/**
+	 * 
+	 * @return
+	 */
 	EJavaProject getJavaProject();
 }
