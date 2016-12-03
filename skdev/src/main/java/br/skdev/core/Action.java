@@ -25,7 +25,7 @@ public abstract class Action implements Serializable {
 	protected <T extends UIComponent> T findById(String id, Class<T> componentClass) {
 		return (T) components.get(id);
 	}
-
+	
 	/**
 	 * 
 	 */
