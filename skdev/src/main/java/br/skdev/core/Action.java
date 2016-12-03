@@ -15,6 +15,8 @@ public abstract class Action implements Serializable {
 
 	/**
 	 * 
+	 * Retorna um componente pelo id.
+	 * 
 	 * @param id
 	 * @param componentClass
 	 * @return
