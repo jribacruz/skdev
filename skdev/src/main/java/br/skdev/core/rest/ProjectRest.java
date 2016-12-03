@@ -16,6 +16,11 @@ public class ProjectRest {
 	@Autowired
 	private WorkspaceContext workspaceContext;
 
+	/**
+	 * Lista de projetos do workspace.
+	 * 
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/api/projects")
 	public SortedSet<EJavaProject> getProjects() {
 		return workspaceContext.getWokspace().getJavaProjects();
