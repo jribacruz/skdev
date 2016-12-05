@@ -31,8 +31,9 @@ public class ProjectRest {
 	public SortedSet<EJavaProject> getProjects() {
 		return workspaceContext.getWokspace().getJavaProjects();
 	}
-	
+
 	/**
+	 * Retorna a lista de classes de dominio.
 	 * 
 	 * @return
 	 */
@@ -45,6 +46,6 @@ public class ProjectRest {
 					.collect(Collectors.toCollection(TreeSet::new));
 		// @formatter:on
 		return ResponseEntity.ok(entities);
-					
+
 	}
 }
