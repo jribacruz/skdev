@@ -1,6 +1,12 @@
 package br.skdev.core.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -49,7 +55,7 @@ public class EJavaClass implements Serializable, Comparable<EJavaClass> {
 	 * 
 	 */
 	private String parentPackageName;
-	
+
 	/**
 	 * 
 	 */
@@ -102,6 +108,10 @@ public class EJavaClass implements Serializable, Comparable<EJavaClass> {
 	}
 
 	public String getPath() {
+		if (this.path == null) {
+			String packageDir = this.qdoxJavaClass.getPackage().getName().replaceAll("\\.", "/");
+			this.path = FilenameUtils.normalize(project.getPath().concat(this.sourceFolderName).concat("/").concat(packageDir));
+		}
 		return path;
 	}
 
@@ -110,6 +120,9 @@ public class EJavaClass implements Serializable, Comparable<EJavaClass> {
 	}
 
 	public String getPackageName() {
+		if (this.packageName == null) {
+			this.packageName = this.qdoxJavaClass.getPackageName();
+		}
 		return packageName;
 	}
 
@@ -117,8 +130,12 @@ public class EJavaClass implements Serializable, Comparable<EJavaClass> {
 		this.packageName = packageName;
 	}
 
-	public String getParentPackageName() {
-		return parentPackageName;
+	public Optional<String> getParentPackageName() {
+		if (this.parentPackageName == null) {
+			List<String> packageTokens = Arrays.asList(getQdoxJavaClass().getPackageName().split("\\."));
+			this.parentPackageName = StringUtils.join(packageTokens.subList(0, packageTokens.size() - 1), ".");
+		}
+		return Optional.ofNullable(parentPackageName);
 	}
 
 	public void setParentPackageName(String parentPackageName) {
@@ -131,6 +148,19 @@ public class EJavaClass implements Serializable, Comparable<EJavaClass> {
 
 	public void setQdoxJavaClass(JavaClass qdoxJavaClass) {
 		this.qdoxJavaClass = qdoxJavaClass;
+	}
+
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public boolean hasAnnotationByName(String name) {
+		//@formatter:off
+		return Arrays.asList(qdoxJavaClass.getAnnotations())
+					.stream()
+					.anyMatch(p -> p.getType().getValue().endsWith(name));
+		//@formatter:on
 	}
 
 	@Override
