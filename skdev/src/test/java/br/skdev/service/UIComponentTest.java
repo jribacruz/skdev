@@ -9,7 +9,7 @@ public class UIComponentTest {
 		ActionDialog actionDialog = new ActionDialog("dialog1", "Action");
 		actionDialog.add(new SelectOneEJavaClass("selectJavaClass1", "Selecione a classe de domínio"));
 
-		System.out.println(actionDialog.templateFragment());
+		System.out.println(actionDialog.buildTemplateUIFragment());
 	}
 
 }

@@ -3,7 +3,7 @@ package br.skdev.core.component;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import br.skdev.core.TemplateFragment;
+import br.skdev.core.TemplateUIFragment;
 import br.skdev.core.UIComponent;
 import br.skdev.core.model.EJavaClass;
 
@@ -46,8 +46,8 @@ public class SelectOneEJavaClass extends UIComponent {
 	}
 
 	@Override
-	public String templateFragment() {
-		TemplateFragment fragment = new TemplateFragment();
+	public String buildTemplateUIFragment() {
+		TemplateUIFragment fragment = new TemplateUIFragment();
 		// @formatter:off
 		fragment
 			.add("	<md-input-container>")
