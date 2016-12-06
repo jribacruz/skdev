@@ -10,7 +10,7 @@ import org.jtwig.JtwigTemplate;
  * @author jcruz
  *
  */
-public class Template implements Serializable {
+public class TemplateFragment implements Serializable {
 
 	/**
 	 * 
@@ -19,7 +19,7 @@ public class Template implements Serializable {
 
 	private StringBuilder templateBuilder = new StringBuilder();
 
-	public Template add(String fragment) {
+	public TemplateFragment add(String fragment) {
 		templateBuilder.append(fragment);
 		templateBuilder.append("\n");
 		return this;

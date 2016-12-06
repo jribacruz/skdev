@@ -3,7 +3,7 @@ package br.skdev.core.component;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import br.skdev.core.Template;
+import br.skdev.core.TemplateFragment;
 import br.skdev.core.UIComponent;
 import br.skdev.core.model.EJavaClass;
 
@@ -46,10 +46,10 @@ public class SelectOneEJavaClass extends UIComponent {
 	}
 
 	@Override
-	public String buildTemplate() {
-		Template template = new Template();
+	public String templateFragment() {
+		TemplateFragment fragment = new TemplateFragment();
 		// @formatter:off
-		template
+		fragment
 			.add("	<md-input-container>")
 			.add("		<label>{{component.label}}</label>")
 			.add("		<md-select")
@@ -59,7 +59,7 @@ public class SelectOneEJavaClass extends UIComponent {
 			.add("		</md-select>")
 			.add("	</md-input-container>");
 		// @formatter:on
-		return template.merge(this);
+		return fragment.merge(this);
 	}
 
 }

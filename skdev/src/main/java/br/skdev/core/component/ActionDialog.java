@@ -3,7 +3,7 @@ package br.skdev.core.component;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.skdev.core.Template;
+import br.skdev.core.TemplateFragment;
 import br.skdev.core.UIComponent;
 
 /**
@@ -29,12 +29,12 @@ public class ActionDialog extends UIComponent {
 	}
 
 	@Override
-	public String buildTemplate() {
-		Template template = new Template();
-		template.add("<md-dialog>");
-		this.components.forEach(component -> template.add(component.buildTemplate()));
-		template.add("</md-dialog>");
-		return template.merge(this);
+	public String templateFragment() {
+		TemplateFragment fragment = new TemplateFragment();
+		fragment.add("<md-dialog>");
+		this.components.forEach(component -> fragment.add(component.templateFragment()));
+		fragment.add("</md-dialog>");
+		return fragment.merge(this);
 	}
 
 }
