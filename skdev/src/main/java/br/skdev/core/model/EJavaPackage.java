@@ -149,4 +149,9 @@ public class EJavaPackage implements Serializable, Comparable<EJavaPackage>, Sel
 		return this.getPackageName();
 	}
 
+	@Override
+	public String getLabel() {
+		return this.getPackageName();
+	}
+
 }

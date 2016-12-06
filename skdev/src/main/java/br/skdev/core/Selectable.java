@@ -5,5 +5,7 @@ import java.io.Serializable;
 public interface Selectable extends Serializable {
 
 	String getId();
+	
+	String getLabel();
 
 }

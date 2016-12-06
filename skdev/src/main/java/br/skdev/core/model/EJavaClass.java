@@ -206,4 +206,9 @@ public class EJavaClass implements Serializable, Comparable<EJavaClass>, Selecta
 		return this.getName();
 	}
 
+	@Override
+	public String getLabel() {
+		return this.getName();
+	}
+
 }
