@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.skdev.core.component.ActionDialog;
+import br.skdev.core.component.builder.ActionDialogBuilder;
 
 public abstract class Action implements Serializable {
 
@@ -35,8 +35,8 @@ public abstract class Action implements Serializable {
 
 	/**
 	 * 
-	 * @param actionDialog
+	 * @param builder
 	 */
-	public abstract void createActionDialog(ActionDialog actionDialog);
+	public abstract void createActionDialog(ActionDialogBuilder builder);
 
 }

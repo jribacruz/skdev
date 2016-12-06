@@ -2,7 +2,7 @@ package br.skdev.core;
 
 import java.io.Serializable;
 
-public class UIComponent implements Serializable {
+public abstract class UIComponent implements Serializable {
 
 	/**
 	 * 
@@ -12,6 +12,8 @@ public class UIComponent implements Serializable {
 	private String id;
 
 	private String label;
+	
+	public abstract String buildTemplate();
 
 	public UIComponent(String id, String label) {
 		super();

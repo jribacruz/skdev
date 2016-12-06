@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import br.skdev.core.Action;
 import br.skdev.core.MavenFolder;
-import br.skdev.core.component.ActionDialog;
+import br.skdev.core.component.builder.ActionDialogBuilder;
 import br.skdev.core.context.WorkspaceContext;
 
 public class TestAction extends Action {
@@ -19,11 +19,10 @@ public class TestAction extends Action {
 
 	@Override
 	public void execute() {
-
 	}
 
 	@Override
-	public void createActionDialog(ActionDialog actionDialog) {
+	public void createActionDialog(ActionDialogBuilder actionDialog) {
 		actionDialog
 			.selectOneEJavaClass("selectDomainClass", "Selecione a classe de domínio.")
 				.options(workspaceContext.getJavaProject().getEJavaClasses(MavenFolder.SRC_MAIN_JAVA))

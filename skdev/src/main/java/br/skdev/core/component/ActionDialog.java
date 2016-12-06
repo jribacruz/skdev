@@ -1,25 +1,40 @@
 package br.skdev.core.component;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.skdev.core.component.builder.SelectOneEJavaClassBuilder;
+import br.skdev.core.Template;
+import br.skdev.core.UIComponent;
 
 /**
  * 
  * @author jcruz
  *
  */
-public class ActionDialog implements Serializable {
+public class ActionDialog extends UIComponent {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public SelectOneEJavaClassBuilder selectOneEJavaClass(String id, String label) {
-		SelectOneEJavaClass selectOneEJavaClass = new SelectOneEJavaClass(id, label);
-		SelectOneEJavaClassBuilder builder = new SelectOneEJavaClassBuilder(this, selectOneEJavaClass);
-		return builder;
+	private List<UIComponent> components = new ArrayList<>();
+
+	public ActionDialog(String id, String label) {
+		super(id, label);
+	}
+
+	public void add(UIComponent component) {
+		this.components.add(component);
+	}
+
+	@Override
+	public String buildTemplate() {
+		Template template = new Template();
+		template.add("<md-dialog>");
+		this.components.forEach(component -> template.add(component.buildTemplate()));
+		template.add("</md-dialog>");
+		return template.merge(this);
 	}
 
 }
