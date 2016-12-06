@@ -1,20 +1,34 @@
 package br.skdev.core;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ActionConfig implements Serializable {
+public class ActionInfo implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private String id;
+
 	private String title;
 
 	private String description;
+
+	public ActionInfo() {
+		super();
+	}
+
+	public String getId() {
+		if (this.id == null) {
+			this.id = UUID.randomUUID().toString();
+		}
+		return id;
+	}
 
 	public String getTitle() {
 		return title;

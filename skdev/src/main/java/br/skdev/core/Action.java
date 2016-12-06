@@ -13,7 +13,7 @@ public abstract class Action implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private ActionConfig actionConfig;
+	private ActionInfo actionConfig;
 
 	private Map<String, UIComponent> components = new HashMap<>();
 
@@ -30,9 +30,9 @@ public abstract class Action implements Serializable {
 		return (T) components.get(id);
 	}
 
-	public ActionConfig getActionConfig() {
+	public ActionInfo getActionConfig() {
 		if (actionConfig == null) {
-			this.actionConfig = new ActionConfig();
+			this.actionConfig = new ActionInfo();
 			configure(this.actionConfig);
 		}
 		return actionConfig;
@@ -49,6 +49,6 @@ public abstract class Action implements Serializable {
 	 */
 	public abstract void createActionDialog(ActionDialogBuilder builder);
 
-	protected abstract void configure(ActionConfig actionConfig);
+	protected abstract void configure(ActionInfo actionConfig);
 
 }
