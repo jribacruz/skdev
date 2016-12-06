@@ -16,6 +16,8 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.thoughtworks.qdox.JavaDocBuilder;
 
+import br.skdev.core.MavenFolder;
+
 /**
  * Modelo dos projetos do workspace eclipse.
  * 

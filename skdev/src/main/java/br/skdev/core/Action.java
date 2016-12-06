@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import br.skdev.core.component.ActionDialog;
+
 public abstract class Action implements Serializable {
 
 	/**
@@ -25,10 +27,16 @@ public abstract class Action implements Serializable {
 	protected <T extends UIComponent> T findById(String id, Class<T> componentClass) {
 		return (T) components.get(id);
 	}
-	
+
 	/**
 	 * 
 	 */
 	public abstract void execute();
+
+	/**
+	 * 
+	 * @param actionDialog
+	 */
+	public abstract void createActionDialog(ActionDialog actionDialog);
 
 }

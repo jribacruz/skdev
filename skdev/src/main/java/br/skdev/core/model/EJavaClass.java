@@ -12,8 +12,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.thoughtworks.qdox.model.JavaClass;
 
+import br.skdev.core.Selectable;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EJavaClass implements Serializable, Comparable<EJavaClass> {
+public class EJavaClass implements Serializable, Comparable<EJavaClass>, Selectable {
 
 	/**
 	 * 
@@ -110,7 +112,8 @@ public class EJavaClass implements Serializable, Comparable<EJavaClass> {
 	public String getPath() {
 		if (this.path == null) {
 			String packageDir = this.qdoxJavaClass.getPackage().getName().replaceAll("\\.", "/");
-			this.path = FilenameUtils.normalize(project.getPath().concat(this.sourceFolderName).concat("/").concat(packageDir));
+			this.path = FilenameUtils
+					.normalize(project.getPath().concat(this.sourceFolderName).concat("/").concat(packageDir));
 		}
 		return path;
 	}
@@ -196,6 +199,11 @@ public class EJavaClass implements Serializable, Comparable<EJavaClass> {
 	@Override
 	public int compareTo(EJavaClass o) {
 		return this.getFullyQualifiedName().compareTo(o.getFullyQualifiedName());
+	}
+
+	@Override
+	public String getId() {
+		return this.getName();
 	}
 
 }

@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import br.skdev.core.MavenFolder;
 import br.skdev.core.context.WorkspaceContext;
-import br.skdev.core.model.MavenFolder;
 import br.skdev.core.service.WorkspaceService;
 
 @RunWith(SpringRunner.class)

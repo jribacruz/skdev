@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.skdev.core.MavenFolder;
 import br.skdev.core.context.WorkspaceContext;
 import br.skdev.core.model.EJavaClass;
 import br.skdev.core.model.EJavaProject;
-import br.skdev.core.model.MavenFolder;
 import br.skdev.core.predicate.DomainClassPredicate;
 
 @RestController

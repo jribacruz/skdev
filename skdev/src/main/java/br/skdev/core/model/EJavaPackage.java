@@ -8,8 +8,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.thoughtworks.qdox.model.JavaPackage;
 
+import br.skdev.core.Selectable;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EJavaPackage implements Serializable, Comparable<EJavaPackage> {
+public class EJavaPackage implements Serializable, Comparable<EJavaPackage>, Selectable {
 	/**
 	 * 
 	 */
@@ -140,6 +142,11 @@ public class EJavaPackage implements Serializable, Comparable<EJavaPackage> {
 	@Override
 	public int compareTo(EJavaPackage o) {
 		return this.getPackageName().compareTo(o.getPackageName());
+	}
+
+	@Override
+	public String getId() {
+		return this.getPackageName();
 	}
 
 }

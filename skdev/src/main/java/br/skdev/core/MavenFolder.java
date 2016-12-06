@@ -1,4 +1,4 @@
-package br.skdev.core.model;
+package br.skdev.core;
 
 public enum MavenFolder {
 	/**

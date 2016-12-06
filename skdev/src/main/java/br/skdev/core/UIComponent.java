@@ -11,13 +11,20 @@ public class UIComponent implements Serializable {
 
 	private String id;
 
-	public UIComponent(String id) {
+	private String label;
+
+	public UIComponent(String id, String label) {
 		super();
 		this.id = id;
+		this.label = label;
 	}
 
 	public String getId() {
 		return id;
+	}
+
+	public String getLabel() {
+		return label;
 	}
 
 	@Override
