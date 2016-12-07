@@ -1,4 +1,4 @@
-package br.skdev.core;
+package br.skdev.core.util;
 
 public class SkEndpoints {
 
