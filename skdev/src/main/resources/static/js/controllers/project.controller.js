@@ -28,7 +28,7 @@
 			$log.debug('[showActionListDialog] Listagem de Actions.')
 			$mdDialog.show({
 				parent: angular.element(document.body),
-				templateUrl: 'http://localhost:8080/skdev/partials/action.list.html',
+				templateUrl: '/skdev/partials/action.list.html',
 				clickOutsideToClose:true,
 				controller: 'ActionListCT',
 				controllerAs: 'actionListCT'
