@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('ProjectCT', ProjectCT);
 
-	ProjectCT.$inject = [ '$scope', '$log', 'ProjectSV', '$mdDialog' ];
+	ProjectCT.$inject = [ '$scope', '$log', 'ProjectSV', '$mdDialog', '$http' ];
 
 	/**
 	 * 
@@ -13,13 +13,30 @@
 	 * @param IndexSV
 	 * @returns
 	 */
-	function ProjectCT($scope, $log, ProjectSV, $mdDialog) {
+	function ProjectCT($scope, $log, ProjectSV, $mdDialog, $http) {
 		$log.debug('[ProjectCT] Inicializando...');
 		var self = this;
 
-		self.projects = ProjectSV.resource.query();
 		
+
+		self.domainClasses = [];
+
+		self.init = init;
+
 		self.showActionListDialog = showActionListDialog;
+
+		self.findAllDomainClasses = findAllDomainClasses;
+		
+		self.loaders = {
+				'domainClasses' : true
+		}
+
+		/**
+		 * 
+		 */
+		function init() {
+			self.findAllDomainClasses();
+		}
 
 		/**
 		 * Exibe o dialog com a listagem de actions.
@@ -27,12 +44,27 @@
 		function showActionListDialog() {
 			$log.debug('[showActionListDialog] Listagem de Actions.')
 			$mdDialog.show({
-				parent: angular.element(document.body),
-				templateUrl: '/skdev/partials/action.list.html',
-				clickOutsideToClose:true,
-				controller: 'ActionListCT',
-				controllerAs: 'actionListCT'
+				parent : angular.element(document.body),
+				templateUrl : '/skdev/partials/action.list.html',
+				clickOutsideToClose : true,
+				controller : 'ActionListCT',
+				controllerAs : 'actionListCT'
 			});
 		}
+
+		/**
+		 * 
+		 */
+		function findAllDomainClasses() {
+			$http.get('http://localhost:8080/skdev/api/project/domain/classes')
+					.success(function(response) {
+						self.domainClasses = response.data;
+						self.loaders['domainClasses'] = false;
+					})
+					.error(function(response) {
+						self.loaders['domainClasses'] = false;
+					});
+		}
+
 	}
 })();

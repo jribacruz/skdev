@@ -36,9 +36,11 @@ public class ProjectRest {
 	 * Retorna a lista de classes de dominio.
 	 * 
 	 * @return
+	 * @throws InterruptedException 
 	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/api/project/domain/classes")
-	public ResponseEntity<?> getDomainEJavaClasses() {
+	public ResponseEntity<?> findAllDomainEJavaClasses() throws InterruptedException {
+		Thread.sleep(5000);
 		// @formatter:off
 		SortedSet<EJavaClass> entities = workspaceContext.getJavaProject().getEJavaClasses(MavenFolder.SRC_MAIN_JAVA)
 					.stream()

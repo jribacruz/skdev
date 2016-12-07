@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>	
 </head>
 <body ng-app="skdevMD">
-    <div flex="" style="height:100%" layout="column" ng-controller="ProjectCT as projectCT">
+    <div flex="" style="height:100%" layout="column" ng-controller="ProjectCT as projectCT" ng-init="projectCT.init()">
 		<md-toolbar class="md-primary">
 		 	<div class="md-toolbar-tools">
 		      <h2 >
@@ -33,6 +33,17 @@
 					  flex="" >
 					<md-subheader class="md-primary">Entidades</md-subheader>
 					<md-content flex="">
+						 <md-progress-linear class="md-warn" md-mode="indeterminate" ng-show="projectCT.loaders['domainClasses']"></md-progress-linear>
+						 <md-list class="md-dense" flex="">
+					        <md-list-item class="md-3-line" ng-repeat="domainClass in projectCT.domainClasses">
+					          <!--  
+					          <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+					          -->
+					          <div class="md-list-item-text" layout="column">
+					            <h3>{{ domainClass.name }}</h3>
+					          </div>
+					        </md-list-item>
+					     </md-list>
 					</md-content>
 			   	</md-sidenav>
 			</section>
