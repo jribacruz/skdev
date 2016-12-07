@@ -30,9 +30,10 @@ public class TestAction extends Action {
 	@Override
 	public void createActionDialog(ActionDialogBuilder actionDialog) {
 		// @formatter:off
-		actionDialog.selectOneEJavaClass("selectDomainClass", "Selecione a classe de domínio.")
-				.options(workspaceContext.getJavaProject().getEJavaClasses(MavenFolder.SRC_MAIN_JAVA))
-				.required()
+		actionDialog
+				.selectOneEJavaClass("selectDomainClass", "Selecione a classe de domínio.")
+					.options(workspaceContext.getJavaProject().getEJavaClasses(MavenFolder.SRC_MAIN_JAVA))
+					.required()
 				.build();
 		// @formatter:on
 	}
