@@ -31,7 +31,8 @@ public class ActionRest {
 
 	@RequestMapping(method = RequestMethod.POST, path = "api/execute/action/{id}")
 	public ResponseEntity<?> executeAction(@PathVariable("id") String id) {
-		return null;
+		log.info("[executeAction] Iniciando ");
+		return ResponseEntity.ok().build();
 	}
 
 }

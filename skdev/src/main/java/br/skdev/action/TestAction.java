@@ -23,7 +23,7 @@ public class TestAction extends Action {
 	@Override
 	protected void configure(ActionInfo info) {
 		info.setTitle("Ação de Teste");
-		info.setDescription("Teste inicial de Actions");
+		info.setDescription(null);
 	}
 
 	@Override
