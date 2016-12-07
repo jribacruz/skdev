@@ -17,8 +17,6 @@
 		$log.debug('[ProjectCT] Inicializando...');
 		var self = this;
 
-		
-
 		self.domainClasses = [];
 
 		self.init = init;
@@ -28,7 +26,7 @@
 		self.findAllDomainClasses = findAllDomainClasses;
 		
 		self.loaders = {
-				'domainClasses' : true
+			'domainClasses' : true
 		}
 
 		/**
@@ -57,8 +55,8 @@
 		 */
 		function findAllDomainClasses() {
 			$http.get('http://localhost:8080/skdev/api/project/domain/classes')
-					.success(function(response) {
-						self.domainClasses = response.data;
+					.success(function(data) {
+						self.domainClasses = data;
 						self.loaders['domainClasses'] = false;
 					})
 					.error(function(response) {

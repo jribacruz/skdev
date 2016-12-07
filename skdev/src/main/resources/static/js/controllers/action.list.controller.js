@@ -19,8 +19,8 @@
 		self.actions = [];
 			
 		$http.get('http://localhost:8080/skdev/api/actions')
-			.then(function(response) {
-				self.actions = response.data
+			.success(function(data) {
+				self.actions = data
 			});
 
 	}
