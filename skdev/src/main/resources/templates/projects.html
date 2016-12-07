@@ -11,17 +11,17 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>	
 </head>
 <body ng-app="skdevMD">
-	<div layout="column" layout-align="center center" ng-controller="ProjectCT as projectCT">
+	<div layout="column" layout-align="center center" ng-controller="ProjectListCT as projectListCT">
 		<div flex="" style="width:500px">
 			<md-card>
-				 <md-toolbar layout="row" class="md-hue-3">
+				 <md-toolbar layout="row" class="md-primary">
 				      <div class="md-toolbar-tools">
 				        <span>Selecione um projeto</span>
 				      </div>
 			    </md-toolbar>
 				<md-content>
 			      <md-list flex="">
-			        <md-list-item class="md-3-line" ng-repeat="project in projectCT.projects" ng-href="/skdev/project/{{project.name}}">
+			        <md-list-item class="md-3-line" ng-repeat="project in projectListCT.projects" ng-href="/skdev/project/{{project.name}}">
 			          <md-icon md-font-icon="material-icons">folder_open</md-icon>	
 			          <div class="md-list-item-text" layout="column">
 			            <h3>{{ project.name }}</h3>

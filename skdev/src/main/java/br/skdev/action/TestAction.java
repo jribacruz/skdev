@@ -27,16 +27,17 @@ public class TestAction extends Action {
 	}
 
 	@Override
-	public void execute() {
+	public void createActionDialog(ActionDialogBuilder actionDialog) {
+		// @formatter:off
+		actionDialog.selectOneEJavaClass("selectDomainClass", "Selecione a classe de domínio.")
+				.options(workspaceContext.getJavaProject().getEJavaClasses(MavenFolder.SRC_MAIN_JAVA))
+				.required()
+				.build();
+		// @formatter:on
 	}
 
 	@Override
-	public void createActionDialog(ActionDialogBuilder actionDialog) {
-		actionDialog.selectOneEJavaClass("selectDomainClass", "Selecione a classe de domínio.")
-				.options(workspaceContext.getJavaProject().getEJavaClasses(MavenFolder.SRC_MAIN_JAVA))
-				.updateOnChange("selectDomainClassAttribues",
-						workspaceContext.getJavaProject().getEJavaClasses(MavenFolder.SRC_MAIN_JAVA))
-				.required().build();
+	public void execute() {
 	}
 
 }

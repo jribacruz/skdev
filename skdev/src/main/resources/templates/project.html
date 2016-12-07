@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>	
 </head>
 <body ng-app="skdevMD">
-    <div flex="" style="height:100%" layout="column" ng-controller="ProjectCT as projectCT">
+    <div flex="" style="height:100%" layout="column" ng-controller="ProjectCT as projectCT" ng-init="projectCT.init()">
 		<md-toolbar class="md-primary">
 		 	<div class="md-toolbar-tools">
 		      <h2 >
@@ -31,8 +31,15 @@
 				      md-whiteframe="4"
 				      style="height:100%"
 					  flex="" >
-					<md-subheader class="md-primary">Entidades</md-subheader>
+					<md-subheader class="md-primary">Classes de Domínio <span ng-show="projectCT.domainClasses.length > 0">({{projectCT.domainClasses.length}})</span></md-subheader>
 					<md-content flex="">
+						 <md-progress-linear class="md-warn" md-mode="indeterminate" ng-show="projectCT.loaders['domainClasses']"></md-progress-linear>
+						 <md-list flex="">
+					        <md-list-item  ng-repeat="domainClass in projectCT.domainClasses | orderBy: 'name'">
+					            <md-icon md-font-icon="material-icons">copyright</md-icon>
+					            <p>{{ domainClass.name }}</p>
+					        </md-list-item>
+					     </md-list>
 					</md-content>
 			   	</md-sidenav>
 			</section>

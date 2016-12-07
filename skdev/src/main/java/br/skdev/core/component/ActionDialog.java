@@ -32,8 +32,10 @@ public class ActionDialog extends UIComponent {
 	public String buildTemplateUIFragment() {
 		TemplateUIFragment fragment = new TemplateUIFragment();
 		fragment.add("<md-dialog>");
+		fragment.add("<md-dialog-content>");
 		this.components.forEach(component -> fragment.add(component.buildTemplateUIFragment()));
-		fragment.add("</md-dialog>");
+		fragment.add("</md-dialog-content>");
+		fragment.add("<md-dialog>");
 		return fragment.merge(this);
 	}
 

@@ -9,12 +9,15 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.FilenameUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.thoughtworks.qdox.JavaDocBuilder;
+import com.thoughtworks.qdox.parser.ParseException;
 
 import br.skdev.core.MavenFolder;
 
@@ -26,6 +29,8 @@ import br.skdev.core.MavenFolder;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EJavaProject implements Serializable, Comparable<EJavaProject> {
+
+	private Logger log = LoggerFactory.getLogger(EJavaProject.class);
 
 	/**
 	 * 
@@ -79,8 +84,7 @@ public class EJavaProject implements Serializable, Comparable<EJavaProject> {
 	public SortedSet<EJavaClass> getEJavaClasses(MavenFolder mf) {
 		if (!cacheEJavaClassesMMap.containsKey(mf)) {
 			// @formatter:off
-			SortedSet<EJavaClass> eJavaClasses = getEJavaPackages(mf)
-					.stream()
+			SortedSet<EJavaClass> eJavaClasses = getEJavaPackages(mf).stream()
 					.map(javaPackage -> javaPackage.getQdoxJavaPackage().getClasses())
 					.flatMap(qdoxJavaClasses -> Arrays.asList(qdoxJavaClasses).stream())
 					.map(qdoxJavaClass -> new EJavaClass(this, mf.getPath(), qdoxJavaClass))
@@ -95,18 +99,26 @@ public class EJavaProject implements Serializable, Comparable<EJavaProject> {
 
 	public SortedSet<EJavaPackage> getEJavaPackages(MavenFolder mf) {
 		if (!cacheEJavaPackagesMMap.containsKey(mf)) {
-			JavaDocBuilder builder = new JavaDocBuilder();
-			File javaDir = new File(FilenameUtils.normalize(getPath().concat(mf.getPath())));
-			builder.addSourceTree(javaDir);
+			JavaDocBuilder builder = createJavaDocBuilder(mf);
 			// @formatter:off
-			SortedSet<EJavaPackage> eJavaPackages = Arrays.asList(builder.getPackages())
-					.stream()
+			SortedSet<EJavaPackage> eJavaPackages = Arrays.asList(builder.getPackages()).stream()
 					.map(javaPackage -> new EJavaPackage(this, javaPackage, mf.getPath()))
 					.collect(Collectors.toCollection(TreeSet::new));
-			//@formatter:on
+			// @formatter:on
 			this.cacheEJavaPackagesMMap.putAll(mf, eJavaPackages);
 		}
 		return new TreeSet<>(this.cacheEJavaPackagesMMap.get(mf));
+	}
+
+	private JavaDocBuilder createJavaDocBuilder(MavenFolder mf) {
+		JavaDocBuilder builder = new JavaDocBuilder();
+		try {
+			File javaDir = new File(FilenameUtils.normalize(getPath().concat(mf.getPath())));
+			builder.addSourceTree(javaDir);
+		} catch (ParseException e) {
+			log.error("Erro ao realizar parser: {}", e.getMessage());
+		}
+		return builder;
 	}
 
 	@Override
