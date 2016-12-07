@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.skdev.core.Action;
-import br.skdev.core.ActionInfo;
 import br.skdev.core.MavenFolder;
 import br.skdev.core.component.builder.ActionDialogBuilder;
+import br.skdev.core.component.builder.ActionInfoBuilder;
 import br.skdev.core.context.WorkspaceContext;
 
 @Component
@@ -21,9 +21,10 @@ public class TestAction extends Action {
 	private WorkspaceContext workspaceContext;
 
 	@Override
-	protected void configure(ActionInfo info) {
-		info.setTitle("Ação de Teste");
-		info.setDescription(null);
+	protected void configure(ActionInfoBuilder info) {
+		info
+			.title("Ação de Teste")
+			.description("Descrição do Teste.");
 	}
 
 	@Override

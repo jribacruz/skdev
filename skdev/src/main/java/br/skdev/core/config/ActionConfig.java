@@ -17,6 +17,11 @@ public class ActionConfig {
 	@Inject
 	private List<Action> actions;
 
+	/**
+	 * Cria mapa com as ações por chave.
+	 * 
+	 * @return
+	 */
 	@Bean
 	public Map<String, Action> createActionMap() {
 		Map<String, Action> acMap = new HashMap<>();
