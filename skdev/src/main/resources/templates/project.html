@@ -11,14 +11,14 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>	
 </head>
 <body ng-app="skdevMD">
-    <div flex="" style="height:100%" layout="column">
+    <div flex="" style="height:100%" layout="column" ng-controller="ProjectCT as projectCT">
 		<md-toolbar class="md-primary">
 		 	<div class="md-toolbar-tools">
 		      <h2 >
 		        <span th:text="${project}"></span>
 		      </h2>
 		      <span flex=""></span>
-		      <md-button class="md-raised" aria-label="Ações">
+		      <md-button class="md-raised" aria-label="Ações" ng-click="projectCT.showActionListDialog()">
 		        Ações
 		      </md-button>
 		 	</div>
