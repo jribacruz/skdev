@@ -17,6 +17,11 @@
 		var self = this;
 
 		self.actions = [];
+			
+		$http.get('http://localhost:8080/skdev/api/actions')
+			.then(function(response) {
+				self.actions = response.data
+			});
 
 	}
 })();
