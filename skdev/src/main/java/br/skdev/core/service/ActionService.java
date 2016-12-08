@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import br.skdev.core.Action;
@@ -18,6 +19,7 @@ public class ActionService {
 	private Logger log = LoggerFactory.getLogger(ActionService.class);
 
 	@Autowired
+	@Qualifier("actionMap")
 	private Map<String, Action> actions;
 
 	public List<ActionInfo> findAllActions() {
@@ -26,9 +28,16 @@ public class ActionService {
 		return actions
 				.values()
 				.stream()
-				.map(action -> action.getActionConfig())
+				.map(action -> action.getActionInfo())
 				.collect(Collectors.toList());
 		// @formatter:on
 
+	}
+
+	public ActionInfo findAction(String id) {
+		System.out.println(actions);
+		Action action = actions.get(id);
+		action.prepareActionDialog();
+		return action.getActionInfo();
 	}
 }

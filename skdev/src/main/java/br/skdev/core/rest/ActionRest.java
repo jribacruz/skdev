@@ -24,9 +24,16 @@ public class ActionRest {
 
 	@RequestMapping(method = RequestMethod.GET, path = "api/actions")
 	public ResponseEntity<?> findAllActions() {
-		List<ActionInfo> actionConfigs = actionService.findAllActions();
-		log.info("[findAllActions] {} actions encontradas", actionConfigs.size());
-		return ResponseEntity.ok(actionConfigs);
+		List<ActionInfo> actionsInfo = actionService.findAllActions();
+		log.info("[findAllActions] {} actions encontradas", actionsInfo.size());
+		return ResponseEntity.ok(actionsInfo);
+	}
+	
+
+	@RequestMapping(method = RequestMethod.GET, path = "api/actions/{id}")
+	public ResponseEntity<?> findAction(@PathVariable("id") String id) {
+		ActionInfo actionInfo = actionService.findAction(id);
+		return ResponseEntity.ok(actionInfo);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "api/execute/action/{id}")

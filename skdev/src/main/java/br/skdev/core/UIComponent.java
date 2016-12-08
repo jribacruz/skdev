@@ -13,7 +13,7 @@ public abstract class UIComponent implements Serializable {
 
 	private String label;
 	
-	public abstract String buildTemplateUIFragment();
+	public abstract String buildUIComponentTemplateFragment();
 
 	public UIComponent(String id, String label) {
 		super();

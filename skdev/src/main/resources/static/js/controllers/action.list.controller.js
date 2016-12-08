@@ -16,12 +16,18 @@
 		$log.debug('[ActionListCT] Inicializando...');
 		var self = this;
 
+		/**
+		 * Lista de actions;
+		 */
 		self.actions = [];
-			
-		$http.get('http://localhost:8080/skdev/api/actions')
-			.success(function(data) {
-				self.actions = data
-			});
+
+		/**
+		 * Request das listagem de actions.
+		 */
+		$http.get('http://localhost:8080/skdev/api/actions').success(
+				function(data) {
+					self.actions = data
+				});
 
 	}
 })();

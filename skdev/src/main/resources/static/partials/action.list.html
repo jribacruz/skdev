@@ -9,8 +9,8 @@
 	        <md-list-item class="md-2-line" ng-repeat="action in actionListCT.actions" ng-click="null">
 	          <md-icon md-font-icon="material-icons">lightbulb_outline</md-icon>	
 	          <div class="md-list-item-text" layout="column">
-	            <h3>{{ action.title }}</h3>
-	            <p>{{ action.description }}</p>
+	            <h3>{{ action.header.title }}</h3>
+	            <p>{{ action.header.description }}</p>
 	          </div>
 	        </md-list-item>
         </md-list>

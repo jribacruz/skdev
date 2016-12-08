@@ -2,9 +2,15 @@ package br.skdev.core;
 
 import java.io.Serializable;
 
+import br.skdev.core.component.ActionDialog;
 import br.skdev.core.component.builder.ActionDialogBuilder;
-import br.skdev.core.component.builder.ActionInfoBuilder;
+import br.skdev.core.component.builder.ActionHeaderBuilder;
 
+/**
+ * 
+ * @author jcruz
+ *
+ */
 public abstract class Action implements Serializable {
 
 	/**
@@ -12,14 +18,24 @@ public abstract class Action implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private ActionInfo actionConfig;
+	private ActionInfo actionInfo = new ActionInfo();;
 
-	public ActionInfo getActionConfig() {
-		if (actionConfig == null) {
-			this.actionConfig = new ActionInfo();
-			configure(new ActionInfoBuilder(this.actionConfig));
+	public void prepareActionHeader() {
+		if (actionInfo.getHeader() == null) {
+			this.actionInfo.setHeader(new ActionHeader());
+			this.configureActionHeader(new ActionHeaderBuilder(this.actionInfo.getHeader()));
 		}
-		return actionConfig;
+	}
+
+	public void prepareActionDialog() {
+		this.prepareActionHeader();
+		this.actionInfo.setDialog(
+				new ActionDialog(this.actionInfo.getHeader().getId(), this.actionInfo.getHeader().getTitle()));
+		this.configureActionDialog(new ActionDialogBuilder(this.actionInfo.getDialog()));
+	}
+
+	public ActionInfo getActionInfo() {
+		return this.actionInfo;
 	}
 
 	/**
@@ -29,10 +45,14 @@ public abstract class Action implements Serializable {
 
 	/**
 	 * 
-	 * @param builder
+	 * @param actionDialog
 	 */
-	public abstract void createActionDialog(ActionDialogBuilder builder);
+	protected abstract void configureActionDialog(ActionDialogBuilder actionDialog);
 
-	protected abstract void configure(ActionInfoBuilder builder);
+	/**
+	 * 
+	 * @param actionHeader
+	 */
+	protected abstract void configureActionHeader(ActionHeaderBuilder actionHeader);
 
 }

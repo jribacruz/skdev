@@ -2,6 +2,7 @@ package br.skdev.core.component.builder;
 
 import java.io.Serializable;
 
+import br.skdev.core.component.ActionDialog;
 import br.skdev.core.component.SelectOneEJavaClass;
 
 /**
@@ -16,10 +17,15 @@ public class ActionDialogBuilder implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private ActionDialog actionDialog;
+
+	public ActionDialogBuilder(ActionDialog actionDialog) {
+		super();
+		this.actionDialog = actionDialog;
+	}
+
 	public SelectOneEJavaClassBuilder selectOneEJavaClass(String id, String label) {
-		SelectOneEJavaClass selectOneEJavaClass = new SelectOneEJavaClass(id, label);
-		SelectOneEJavaClassBuilder builder = new SelectOneEJavaClassBuilder(this, selectOneEJavaClass);
-		return builder;
+		return new SelectOneEJavaClassBuilder(this, actionDialog, new SelectOneEJavaClass(id, label));
 	}
 
 }

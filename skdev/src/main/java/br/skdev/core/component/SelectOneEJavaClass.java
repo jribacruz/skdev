@@ -46,7 +46,7 @@ public class SelectOneEJavaClass extends UIComponent {
 	}
 
 	@Override
-	public String buildTemplateUIFragment() {
+	public String buildUIComponentTemplateFragment() {
 		TemplateUIFragment fragment = new TemplateUIFragment();
 		// @formatter:off
 		fragment

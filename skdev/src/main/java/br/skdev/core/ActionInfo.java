@@ -1,12 +1,18 @@
 package br.skdev.core;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import br.skdev.core.component.ActionDialog;
+
+/**
+ * 
+ * @author jcruz
+ *
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class ActionInfo implements Serializable {
@@ -16,37 +22,24 @@ public class ActionInfo implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String id;
+	private ActionHeader header;
 
-	private String title;
+	private ActionDialog dialog;
 
-	private String description;
-
-	public ActionInfo() {
-		super();
+	public ActionHeader getHeader() {
+		return header;
 	}
 
-	public String getId() {
-		if (this.id == null) {
-			this.id = UUID.randomUUID().toString();
-		}
-		return id;
+	public void setHeader(ActionHeader header) {
+		this.header = header;
 	}
 
-	public String getTitle() {
-		return title;
+	public ActionDialog getDialog() {
+		return dialog;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDialog(ActionDialog dialog) {
+		this.dialog = dialog;
 	}
 
 }

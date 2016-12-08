@@ -6,9 +6,14 @@ import org.springframework.stereotype.Component;
 import br.skdev.core.Action;
 import br.skdev.core.MavenFolder;
 import br.skdev.core.component.builder.ActionDialogBuilder;
-import br.skdev.core.component.builder.ActionInfoBuilder;
+import br.skdev.core.component.builder.ActionHeaderBuilder;
 import br.skdev.core.context.WorkspaceContext;
 
+/**
+ * 
+ * @author jcruz
+ *
+ */
 @Component
 public class TestAction extends Action {
 
@@ -21,14 +26,16 @@ public class TestAction extends Action {
 	private WorkspaceContext workspaceContext;
 
 	@Override
-	protected void configure(ActionInfoBuilder info) {
-		info
+	protected void configureActionHeader(ActionHeaderBuilder actionInfo) {
+		// @formatter:off
+		actionInfo
 			.title("Ação de Teste")
 			.description("Descrição do Teste.");
+		// @formatter:on
 	}
 
 	@Override
-	public void createActionDialog(ActionDialogBuilder actionDialog) {
+	protected void configureActionDialog(ActionDialogBuilder actionDialog) {
 		// @formatter:off
 		actionDialog
 				.selectOneEJavaClass("selectDomainClass", "Selecione a classe de domínio.")

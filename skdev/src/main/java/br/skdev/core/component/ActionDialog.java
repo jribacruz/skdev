@@ -29,14 +29,18 @@ public class ActionDialog extends UIComponent {
 	}
 
 	@Override
-	public String buildTemplateUIFragment() {
+	public String buildUIComponentTemplateFragment() {
 		TemplateUIFragment fragment = new TemplateUIFragment();
 		fragment.add("<md-dialog>");
-		fragment.add("<md-dialog-content>");
-		this.components.forEach(component -> fragment.add(component.buildTemplateUIFragment()));
-		fragment.add("</md-dialog-content>");
+		fragment.add("	<md-dialog-content>");
+		this.buildUIComponentsTemplateFragments(fragment);
+		fragment.add("	</md-dialog-content>");
 		fragment.add("<md-dialog>");
 		return fragment.merge(this);
+	}
+
+	private void buildUIComponentsTemplateFragments(TemplateUIFragment fragment) {
+		this.components.forEach(component -> fragment.add(component.buildUIComponentTemplateFragment()));
 	}
 
 }

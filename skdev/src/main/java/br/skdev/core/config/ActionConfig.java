@@ -22,10 +22,15 @@ public class ActionConfig {
 	 * 
 	 * @return
 	 */
-	@Bean
+	@Bean(name="actionMap")
 	public Map<String, Action> createActionMap() {
+		System.out.println("==========================================================");
 		Map<String, Action> acMap = new HashMap<>();
-		actions.forEach(action -> acMap.put(action.getActionConfig().getId(), action));
+		actions.forEach(action -> {
+			action.prepareActionHeader();
+			acMap.put(action.getActionInfo().getHeader().getId(), action);
+		});
+		System.out.println(acMap);
 		return acMap;
 	}
 
