@@ -28,4 +28,8 @@ public class ActionDialogBuilder implements Serializable {
 		return new SelectOneEJavaClassBuilder(this, actionDialog, new SelectOneEJavaClass(id, label));
 	}
 
+	public void buildActionDialog() {
+		actionDialog.setTemplate(actionDialog.buildUIComponentTemplateFragment());
+	}
+
 }

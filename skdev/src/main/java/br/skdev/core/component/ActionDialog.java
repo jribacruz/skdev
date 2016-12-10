@@ -3,6 +3,8 @@ package br.skdev.core.component;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import br.skdev.core.TemplateUIFragment;
 import br.skdev.core.UIComponent;
 
@@ -11,6 +13,7 @@ import br.skdev.core.UIComponent;
  * @author jcruz
  *
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ActionDialog extends UIComponent {
 
 	/**
@@ -20,12 +23,22 @@ public class ActionDialog extends UIComponent {
 
 	private List<UIComponent> components = new ArrayList<>();
 
+	private String template;
+
 	public ActionDialog(String id, String label) {
 		super(id, label);
 	}
 
 	public void add(UIComponent component) {
 		this.components.add(component);
+	}
+
+	public String getTemplate() {
+		return template;
+	}
+
+	public void setTemplate(String template) {
+		this.template = template;
 	}
 
 	@Override

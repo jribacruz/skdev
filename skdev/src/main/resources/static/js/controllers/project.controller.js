@@ -6,7 +6,7 @@
 	ProjectCT.$inject = [ '$scope', '$log', 'ProjectSV', '$mdDialog', '$http' ];
 
 	/**
-	 * 
+	 *
 	 * @param $scope
 	 * @param $log
 	 * @param $timeout
@@ -24,13 +24,13 @@
 		self.showActionListDialog = showActionListDialog;
 
 		self.findAllDomainClasses = findAllDomainClasses;
-		
+
 		self.loaders = {
 			'domainClasses' : true
 		}
 
 		/**
-		 * 
+		 *
 		 */
 		function init() {
 			self.findAllDomainClasses();
@@ -51,7 +51,7 @@
 		}
 
 		/**
-		 * 
+		 *
 		 */
 		function findAllDomainClasses() {
 			$http.get('http://localhost:8080/skdev/api/project/domain/classes')

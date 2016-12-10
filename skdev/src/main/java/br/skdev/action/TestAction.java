@@ -41,7 +41,8 @@ public class TestAction extends Action {
 				.selectOneEJavaClass("selectDomainClass", "Selecione a classe de domínio.")
 					.options(workspaceContext.getJavaProject().getEJavaClasses(MavenFolder.SRC_MAIN_JAVA))
 					.required()
-				.build();
+				.build()
+		.buildActionDialog();
 		// @formatter:on
 	}
 
