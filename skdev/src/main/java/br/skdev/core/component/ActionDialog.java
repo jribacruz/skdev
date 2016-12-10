@@ -45,10 +45,20 @@ public class ActionDialog extends UIComponent {
 	public String buildUIComponentTemplateFragment() {
 		TemplateUIFragment fragment = new TemplateUIFragment();
 		fragment.add("<md-dialog>");
+		fragment.add("  <md-toolbar>");
+		fragment.add("  <div class='md-toolbar-tools'>");
+		fragment.add("  	<h2>{{component.label}}</h2>");
+		fragment.add("  </div>");
+		fragment.add("	</md-toolbar>");
 		fragment.add("	<md-dialog-content>");
 		this.buildUIComponentsTemplateFragments(fragment);
 		fragment.add("	</md-dialog-content>");
-		fragment.add("<md-dialog>");
+		fragment.add("<md-dialog-actions>");
+		fragment.add("	<md-button class='md-primary'>");
+		fragment.add("		Fechar");
+		fragment.add("  </md-button>");
+		fragment.add("</md-dialog-actions>");
+		fragment.add("</md-dialog>");
 		return fragment.merge(this);
 	}
 

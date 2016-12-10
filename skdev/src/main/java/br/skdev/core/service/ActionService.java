@@ -35,7 +35,6 @@ public class ActionService {
 	}
 
 	public ActionInfo findAction(String id) {
-		System.out.println(actions);
 		Action action = actions.get(id);
 		action.prepareActionDialog();
 		return action.getActionInfo();

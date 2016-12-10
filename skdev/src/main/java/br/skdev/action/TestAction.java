@@ -37,12 +37,7 @@ public class TestAction extends Action {
 	@Override
 	protected void configureActionDialog(ActionDialogBuilder actionDialog) {
 		// @formatter:off
-		actionDialog
-				.selectOneEJavaClass("selectDomainClass", "Selecione a classe de domínio.")
-					.options(workspaceContext.getJavaProject().getEJavaClasses(MavenFolder.SRC_MAIN_JAVA))
-					.required()
-				.build()
-		.buildActionDialog();
+		actionDialog.buildActionDialog();
 		// @formatter:on
 	}
 

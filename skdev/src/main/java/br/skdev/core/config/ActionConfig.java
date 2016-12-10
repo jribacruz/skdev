@@ -24,13 +24,11 @@ public class ActionConfig {
 	 */
 	@Bean(name="actionMap")
 	public Map<String, Action> createActionMap() {
-		System.out.println("==========================================================");
 		Map<String, Action> acMap = new HashMap<>();
 		actions.forEach(action -> {
 			action.prepareActionHeader();
 			acMap.put(action.getActionInfo().getHeader().getId(), action);
 		});
-		System.out.println(acMap);
 		return acMap;
 	}
 
