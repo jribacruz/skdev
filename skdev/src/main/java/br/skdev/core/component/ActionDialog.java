@@ -63,7 +63,7 @@ public class ActionDialog extends UIComponent {
 		this.buildUIComponentsTemplateFragments(fragment);
 		fragment.add("	</md-dialog-content>");
 		fragment.add("<md-dialog-actions>");
-		fragment.add("	<md-button class='md-primary' ng-disabled='actionForm.$invalid'>");
+		fragment.add("	<md-button class='md-primary' ng-disabled='actionForm.$invalid' ng-click='actionCT.execute()'>");
 		fragment.add("		Executar");
 		fragment.add("  </md-button>");
 		fragment.add("	<md-button ng-click='actionCT.hide()'>");
