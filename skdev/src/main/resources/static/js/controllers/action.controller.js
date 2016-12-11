@@ -17,6 +17,8 @@
 		var self = this;
 		
 		self.hide = hide;
+		
+		self.values = {};
 
 		function hide() {
 			$mdDialog.hide();

@@ -52,6 +52,9 @@ public class SelectOneEJavaClass extends UIComponent {
 		fragment
 			.add("		<md-input-container>")
 			.add("			<label>{{component.label}}</label>")
+			.add("			 <md-select ng-model=\"actionCT.values['{{component.id}}']\">")
+			.add("				 <md-option><em>None</em></md-option>")
+			.add("			 </md-select>")
 			.add("		</md-input-container>");
 		// @formatter:on
 		return fragment.merge(this);

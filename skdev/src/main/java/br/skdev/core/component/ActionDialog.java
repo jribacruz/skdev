@@ -58,11 +58,14 @@ public class ActionDialog extends UIComponent {
 		fragment.add("  	<h2>{{component.label}}</h2>");
 		fragment.add("  </div>");
 		fragment.add("	</md-toolbar>");
-		fragment.add("	<md-dialog-content flex=>");
+		fragment.add("	<md-dialog-content flex='' layout-padding>");
 		this.buildUIComponentsTemplateFragments(fragment);
 		fragment.add("	</md-dialog-content>");
 		fragment.add("<md-dialog-actions>");
-		fragment.add("	<md-button class='md-primary' ng-click='actionCT.hide()'>");
+		fragment.add("	<md-button class='md-primary'>");
+		fragment.add("		Executar");
+		fragment.add("  </md-button>");
+		fragment.add("	<md-button ng-click='actionCT.hide()'>");
 		fragment.add("		Fechar");
 		fragment.add("  </md-button>");
 		fragment.add("</md-dialog-actions>");
