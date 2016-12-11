@@ -53,6 +53,7 @@ public class ActionDialog extends UIComponent {
 	public String buildUIComponentTemplateFragment() {
 		TemplateUIFragment fragment = new TemplateUIFragment();
 		fragment.add("<md-dialog aria-label='${component.label}' style='min-width: 30%'>");
+		fragment.add("<form name='actionForm' novalidate>");
 		fragment.add("  <md-toolbar>");
 		fragment.add("  <div class='md-toolbar-tools'>");
 		fragment.add("  	<h2>${component.label}</h2>");
@@ -62,13 +63,14 @@ public class ActionDialog extends UIComponent {
 		this.buildUIComponentsTemplateFragments(fragment);
 		fragment.add("	</md-dialog-content>");
 		fragment.add("<md-dialog-actions>");
-		fragment.add("	<md-button class='md-primary'>");
+		fragment.add("	<md-button class='md-primary' ng-disabled='actionForm.$invalid'>");
 		fragment.add("		Executar");
 		fragment.add("  </md-button>");
 		fragment.add("	<md-button ng-click='actionCT.hide()'>");
 		fragment.add("		Fechar");
 		fragment.add("  </md-button>");
 		fragment.add("</md-dialog-actions>");
+		fragment.add("</form>");
 		fragment.add("</md-dialog>");
 		return fragment.merge(this);
 	}

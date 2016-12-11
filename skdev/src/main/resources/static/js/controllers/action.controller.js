@@ -21,7 +21,7 @@
 		self.components = actionPayload.dialog.components;
 		
 		self.updateOnChange = updateOnChange;
-
+		
 		function hide() {
 			$mdDialog.hide();
 		}
