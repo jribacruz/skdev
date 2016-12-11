@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.skdev.core.Action;
-import br.skdev.core.MavenFolder;
 import br.skdev.core.component.builder.ActionDialogBuilder;
 import br.skdev.core.component.builder.ActionHeaderBuilder;
 import br.skdev.core.context.WorkspaceContext;
@@ -37,7 +36,10 @@ public class TestAction extends Action {
 	@Override
 	protected void configureActionDialog(ActionDialogBuilder actionDialog) {
 		// @formatter:off
-		actionDialog.buildActionDialog();
+		actionDialog
+			.selectOneEJavaClass("selectJavaClass", "Selecione a classe java")
+			.build()
+		.buildActionDialog();
 		// @formatter:on
 	}
 

@@ -47,7 +47,7 @@ public class SelectOneEJavaClassBuilder implements Serializable {
 	}
 
 	public ActionDialogBuilder build() {
-		this.actionDialog.add(selectOneEJavaClass);
+		this.actionDialog.add(selectOneEJavaClass.getId(), selectOneEJavaClass);
 		return actionDialogBuilder;
 	}
 

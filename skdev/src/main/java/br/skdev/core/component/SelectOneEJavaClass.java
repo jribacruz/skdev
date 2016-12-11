@@ -50,14 +50,9 @@ public class SelectOneEJavaClass extends UIComponent {
 		TemplateUIFragment fragment = new TemplateUIFragment();
 		// @formatter:off
 		fragment
-			.add("	<md-input-container>")
-			.add("		<label>{{component.label}}</label>")
-			.add("		<md-select")
-			.add("		>")
-			.add("			<md-option>")
-			.add("			</md-option>")
-			.add("		</md-select>")
-			.add("	</md-input-container>");
+			.add("		<md-input-container>")
+			.add("			<label>{{component.label}}</label>")
+			.add("		</md-input-container>");
 		// @formatter:on
 		return fragment.merge(this);
 	}
