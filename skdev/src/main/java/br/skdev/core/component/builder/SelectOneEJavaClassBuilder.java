@@ -2,10 +2,12 @@ package br.skdev.core.component.builder;
 
 import java.io.Serializable;
 import java.util.Set;
+import java.util.SortedSet;
 
 import br.skdev.core.Selectable;
 import br.skdev.core.component.ActionDialog;
 import br.skdev.core.component.SelectOneEJavaClass;
+import br.skdev.core.util.SkEndpoint;
 
 /**
  * 
@@ -38,7 +40,12 @@ public class SelectOneEJavaClassBuilder implements Serializable {
 		return this;
 	}
 
-	public <S extends Selectable> SelectOneEJavaClassBuilder options(Set<S> selectables) {
+	public <S extends Selectable> SelectOneEJavaClassBuilder options(SortedSet<S> selectables) {
+		this.selectOneEJavaClass.setOptions(selectables);
+		return this;
+	}
+	
+	public SelectOneEJavaClassBuilder optionsUrl(SkEndpoint endpoint) {
 		return this;
 	}
 

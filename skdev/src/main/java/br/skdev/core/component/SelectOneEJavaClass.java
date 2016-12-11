@@ -5,9 +5,9 @@ import java.util.TreeSet;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import br.skdev.core.Selectable;
 import br.skdev.core.TemplateUIFragment;
 import br.skdev.core.UIComponent;
-import br.skdev.core.model.EJavaClass;
 
 /**
  * 
@@ -23,7 +23,7 @@ public class SelectOneEJavaClass extends UIComponent {
 
 	private boolean required;
 
-	private SortedSet<EJavaClass> options;
+	private SortedSet<? extends Selectable> options;
 
 	public SelectOneEJavaClass(String id, String label) {
 		super(id, label);
@@ -37,14 +37,14 @@ public class SelectOneEJavaClass extends UIComponent {
 		this.required = required;
 	}
 
-	public SortedSet<EJavaClass> getOptions() {
+	public SortedSet<? extends Selectable> getOptions() {
 		if (this.options == null) {
 			this.options = new TreeSet<>();
 		}
 		return options;
 	}
 
-	public void setOptions(SortedSet<EJavaClass> options) {
+	public void setOptions(SortedSet<? extends Selectable> options) {
 		this.options = options;
 	}
 
@@ -53,10 +53,13 @@ public class SelectOneEJavaClass extends UIComponent {
 		TemplateUIFragment fragment = new TemplateUIFragment();
 		// @formatter:off
 		fragment
-			.add("		<md-input-container>")
-			.add("			<label>{{component.label}}</label>")
-			.add("			 <md-select ng-model=\"actionCT.values['{{component.id}}']\">")
+			.add("		<md-input-container class='md-block'>")
+			.add("			<label>${component.label}</label>")
+			.add("			 <md-select ng-model=\"actionCT.values['${component.id}']\">")
 			.add("				 <md-option><em>None</em></md-option>")
+			.add("				 <md-option ng-repeat=\"option in actionCT.components['${component.id}'].options\" ng-value=\"options.id\" >")
+			.add(" 					{{option.label}}")		
+			.add("				 </md-option>")
 			.add("			 </md-select>")
 			.add("		</md-input-container>");
 		// @formatter:on

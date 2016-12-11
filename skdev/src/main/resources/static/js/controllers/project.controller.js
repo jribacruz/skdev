@@ -44,7 +44,7 @@
 			$mdDialog.show({
 				parent : angular.element(document.body),
 				templateUrl : '/skdev/partials/action.list.html',
-				clickOutsideToClose : true,
+				clickOutsideToClose : false,
 				controller : 'ActionListCT',
 				controllerAs : 'actionListCT'
 			});

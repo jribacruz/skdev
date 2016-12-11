@@ -52,13 +52,13 @@ public class ActionDialog extends UIComponent {
 	@Override
 	public String buildUIComponentTemplateFragment() {
 		TemplateUIFragment fragment = new TemplateUIFragment();
-		fragment.add("<md-dialog aria-label='{{component.label}}'>");
+		fragment.add("<md-dialog aria-label='${component.label}' style='min-width: 30%'>");
 		fragment.add("  <md-toolbar>");
 		fragment.add("  <div class='md-toolbar-tools'>");
-		fragment.add("  	<h2>{{component.label}}</h2>");
+		fragment.add("  	<h2>${component.label}</h2>");
 		fragment.add("  </div>");
 		fragment.add("	</md-toolbar>");
-		fragment.add("	<md-dialog-content flex='' layout-padding>");
+		fragment.add("	<md-dialog-content flex='' class='md-dialog-content'>");
 		this.buildUIComponentsTemplateFragments(fragment);
 		fragment.add("	</md-dialog-content>");
 		fragment.add("<md-dialog-actions>");

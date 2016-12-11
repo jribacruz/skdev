@@ -1,9 +1,17 @@
 package br.skdev.core;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.jtwig.JtwigModel;
-import org.jtwig.JtwigTemplate;
+import freemarker.template.Configuration;
+import freemarker.template.DefaultObjectWrapper;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 
 /**
  * 
@@ -26,9 +34,20 @@ public class TemplateUIFragment implements Serializable {
 	}
 
 	public <T extends UIComponent> String merge(T componentModel) {
-		JtwigTemplate jtwigTemplate = JtwigTemplate.inlineTemplate(templateBuilder.toString());
-		JtwigModel model = JtwigModel.newModel().with("component", componentModel);
-		return jtwigTemplate.render(model);
+		Map<String, T> model = new HashMap<>();
+		model.put("component", componentModel);
+		
+		Configuration cfg = new Configuration();
+		cfg.setObjectWrapper(new DefaultObjectWrapper());
+		try {
+			Template t = new Template("templateName", new StringReader(templateBuilder.toString()), cfg);
+			Writer out = new StringWriter();
+			t.process(model, out);
+			return out.toString();
+		} catch (IOException | TemplateException e) {
+			e.printStackTrace();
+		}
+		return "";
 	}
 
 }

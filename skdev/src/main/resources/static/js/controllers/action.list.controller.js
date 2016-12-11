@@ -20,6 +20,7 @@
 		 * Lista de actions;
 		 */
 		self.actions = [];
+		
 		/**
 		 * 
 		 */
@@ -40,9 +41,12 @@
 				$mdDialog.show({
 					parent : angular.element(document.body),
 					template : data.dialog.template,
-					clickOutsideToClose : true,
+					clickOutsideToClose : false,
 					controller : 'ActionCT',
-					controllerAs : 'actionCT'
+					controllerAs : 'actionCT',
+					locals: {
+						actionPayload: data
+					}
 				});
 			});
 		}

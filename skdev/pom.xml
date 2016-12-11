@@ -70,35 +70,30 @@
 			<artifactId>roaster-jdt</artifactId>
 			<version>2.19.0.Final</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 		<dependency>
-			<groupId>org.jtwig</groupId>
-			<artifactId>jtwig-core</artifactId>
-			<version>5.57</version>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.5</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.5</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.webjars.npm/string-template -->
-		<!-- 
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<dependency>
-			<groupId>org.webjars.npm</groupId>
-			<artifactId>string-template</artifactId>
-			<version>1.0.0</version>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>20.0</version>
 		</dependency>
-		 -->
+		<!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.20</version>
+		</dependency>
 	</dependencies>
-	
-	<!-- 
-	 -->
-	<repositories>
-		<repository>
-			<id>jcenter</id>
-			<url>https://bintray.com/bintray/jcenter</url>
-		</repository>
-	</repositories>
 
 	<build>
 		<resources>
