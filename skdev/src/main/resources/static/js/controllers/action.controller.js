@@ -18,8 +18,6 @@
 
 		self.hide = hide;
 
-		self.values = {};
-
 		self.components = actionPayload.dialog.components;
 		
 		self.updateOnChange = updateOnChange;

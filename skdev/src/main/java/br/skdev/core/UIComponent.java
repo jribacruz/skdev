@@ -2,6 +2,8 @@ package br.skdev.core;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public abstract class UIComponent implements Serializable {
 
 	/**
@@ -9,8 +11,10 @@ public abstract class UIComponent implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@JsonIgnore
 	private String id;
-
+	
+	@JsonIgnore
 	private String label;
 	
 	public abstract String buildUIComponentTemplateFragment();

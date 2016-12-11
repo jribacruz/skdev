@@ -3,6 +3,7 @@ package br.skdev.core.component;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.skdev.core.Selectable;
@@ -21,9 +22,12 @@ public class SelectOneEJavaClass extends UIComponent {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@JsonIgnore
 	private boolean required;
 
 	private SortedSet<? extends Selectable> options;
+
+	private Selectable value;
 
 	public SelectOneEJavaClass(String id, String label) {
 		super(id, label);
@@ -48,6 +52,14 @@ public class SelectOneEJavaClass extends UIComponent {
 		this.options = options;
 	}
 
+	public Selectable getValue() {
+		return value;
+	}
+
+	public void setValue(Selectable value) {
+		this.value = value;
+	}
+
 	@Override
 	public String buildUIComponentTemplateFragment() {
 		TemplateUIFragment fragment = new TemplateUIFragment();
@@ -55,9 +67,9 @@ public class SelectOneEJavaClass extends UIComponent {
 		fragment
 			.add("		<md-input-container class='md-block'>")
 			.add("			<label>${component.label}</label>")
-			.add("			 <md-select ng-model=\"actionCT.values['${component.id}']\">")
+			.add("			 <md-select ng-model=\"actionCT.components['${component.id}'].value\">")
 			.add("				 <md-option><em>None</em></md-option>")
-			.add("				 <md-option ng-repeat=\"option in actionCT.components['${component.id}'].options\" ng-value=\"options.id\" >")
+			.add("				 <md-option ng-repeat=\"option in actionCT.components['${component.id}'].options\" ng-value=\"option.id\" >")
 			.add(" 					{{option.label}}")		
 			.add("				 </md-option>")
 			.add("			 </md-select>")
