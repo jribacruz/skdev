@@ -81,9 +81,18 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.5</version>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/org.webjars.npm/string-template -->
+		<!-- 
+		<dependency>
+			<groupId>org.webjars.npm</groupId>
+			<artifactId>string-template</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		 -->
 	</dependencies>
-
+	
+	<!-- 
+	 -->
 	<repositories>
 		<repository>
 			<id>jcenter</id>

@@ -3,6 +3,8 @@ package br.skdev.core.component;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import br.skdev.core.TemplateUIFragment;
 import br.skdev.core.UIComponent;
 import br.skdev.core.model.EJavaClass;
@@ -12,6 +14,7 @@ import br.skdev.core.model.EJavaClass;
  * @author jcruz
  *
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SelectOneEJavaClass extends UIComponent {
 	/**
 	 * 
