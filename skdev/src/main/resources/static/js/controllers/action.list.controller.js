@@ -45,7 +45,7 @@
 					controller : 'ActionCT',
 					controllerAs : 'actionCT',
 					locals: {
-						actionPayload: data
+						actionDialog: data.dialog
 					}
 				});
 			});

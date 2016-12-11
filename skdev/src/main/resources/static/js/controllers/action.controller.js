@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('ActionCT', ActionCT);
 
-	ActionCT.$inject = [ '$scope', '$log', '$http', '$mdDialog', 'actionPayload' ];
+	ActionCT.$inject = [ '$scope', '$log', '$http', '$mdDialog', 'actionDialog' ];
 
 	/**
 	 * 
@@ -12,15 +12,17 @@
 	 * @param $http
 	 * @returns
 	 */
-	function ActionCT($scope, $log, $http, $mdDialog, actionPayload) {
+	function ActionCT($scope, $log, $http, $mdDialog, actionDialog) {
 		$log.debug('[ActionCT] Inicializando...');
 		var self = this;
 
 		self.hide = hide;
 
-		self.components = actionPayload.dialog.components;
+		self.components = actionDialog.components;
 		
 		self.updateOnChange = updateOnChange;
+		
+		self.execute = execute;
 		
 		function hide() {
 			$mdDialog.hide();
@@ -28,6 +30,10 @@
 
 		function updateOnChange(targetId) {
 
+		}
+		
+		function execute() {
+			
 		}
 
 	}
