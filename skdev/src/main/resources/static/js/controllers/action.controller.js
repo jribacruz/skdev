@@ -37,7 +37,6 @@
 			angular.forEach(self.components, function(componentValue,id) {
 				values[id] = componentValue.value;
 			});
-			console.log(values);
 		}
 
 	}
