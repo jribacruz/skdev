@@ -38,7 +38,7 @@ public class FS {
 		return false;
 	}
 	
-	public static boolean hasDirecotory(Path path, String dirName) {
+	public static boolean hasDirectory(Path path, String dirName) {
 		try {
 			return Files.list(path).filter(Files::isDirectory)
 					.anyMatch(path1 -> path1.toFile().getName().equals(dirName));
