@@ -1,10 +1,11 @@
 package br.skdev.core.impl;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 
 import br.skdev.core.component.SelectOneEJavaClass;
 import br.skdev.core.context.UIComponentContext;
 import br.skdev.core.model.EJavaClass;
+import br.skdev.core.model.EJavaProject;
 
 public class UIComponentContextImpl implements UIComponentContext {
 
@@ -13,9 +14,11 @@ public class UIComponentContextImpl implements UIComponentContext {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private EJavaProject eJavaProject;
+
 	@Override
 	public Optional<EJavaClass> getValue(String id, Class<SelectOneEJavaClass> componentClass) {
-		return null;
+		return Optional.empty();
 	}
 
 }

@@ -88,4 +88,5 @@ public class ActionDialog extends UIComponent {
 		this.components.forEach((id, component) -> fragment.add(component.buildUIComponentTemplateFragment()));
 	}
 
+
 }
