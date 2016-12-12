@@ -26,6 +26,9 @@ public class TestAction extends Action {
 	@Autowired
 	private WorkspaceContext workspaceContext;
 
+	/**
+	 * 
+	 */
 	@Override
 	public void configureActionHeader(ActionHeaderBuilder actionHeader) {
 		// @formatter:off
@@ -34,6 +37,9 @@ public class TestAction extends Action {
 		// @formatter:on
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void configureActionDialog(ActionDialogBuilder actionDialog) {
 		// @formatter:off
@@ -45,6 +51,9 @@ public class TestAction extends Action {
 		// @formatter:on
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void execute(UIComponentContext ctx) {
 	}
