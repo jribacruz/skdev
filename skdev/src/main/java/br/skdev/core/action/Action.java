@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import br.skdev.core.component.builder.ActionDialogBuilder;
 import br.skdev.core.component.builder.ActionHeaderBuilder;
+import br.skdev.core.context.UIComponentContext;
 
 /**
  * 
@@ -20,7 +21,7 @@ public abstract class Action implements Serializable {
 	/**
 	 * 
 	 */
-	public abstract void execute();
+	public abstract void execute(UIComponentContext ctx);
 
 	/**
 	 * 

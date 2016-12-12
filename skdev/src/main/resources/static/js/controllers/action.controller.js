@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('ActionCT', ActionCT);
 
-	ActionCT.$inject = [ '$scope', '$log', '$http', '$mdDialog', 'actionDialog' ];
+	ActionCT.$inject = [ '$scope', '$log', '$http', '$mdDialog', 'actionDialog', 'actionId' ];
 
 	/**
 	 * 
@@ -12,7 +12,7 @@
 	 * @param $http
 	 * @returns
 	 */
-	function ActionCT($scope, $log, $http, $mdDialog, actionDialog) {
+	function ActionCT($scope, $log, $http, $mdDialog, actionDialog, actionId) {
 		$log.debug('[ActionCT] Inicializando...');
 		var self = this;
 
@@ -38,6 +38,7 @@
 				values[id] = componentValue.value;
 			});
 			console.log(values);
+			$http.post('http://localhost:8080/skdev/api/execute/action/' + actionId, values);
 		}
 
 	}
