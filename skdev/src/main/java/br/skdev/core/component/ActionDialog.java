@@ -6,7 +6,6 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.skdev.core.TemplateUIFragment;
-import br.skdev.core.UIComponent;
 
 /**
  * 
@@ -87,6 +86,5 @@ public class ActionDialog extends UIComponent {
 	private void buildUIComponentsTemplateFragments(TemplateUIFragment fragment) {
 		this.components.forEach((id, component) -> fragment.add(component.buildUIComponentTemplateFragment()));
 	}
-
 
 }

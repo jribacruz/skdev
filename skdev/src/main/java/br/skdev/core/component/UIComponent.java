@@ -1,4 +1,4 @@
-package br.skdev.core;
+package br.skdev.core.component;
 
 import java.io.Serializable;
 

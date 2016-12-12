@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.skdev.core.Selectable;
 import br.skdev.core.TemplateUIFragment;
-import br.skdev.core.UIComponent;
 
 /**
  * 
