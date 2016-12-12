@@ -40,12 +40,12 @@
 			$http.get('http://localhost:8080/skdev/api/actions/' + id).success(function(data) {
 				$mdDialog.show({
 					parent : angular.element(document.body),
-					template : data.dialog.template,
+					template : data.template,
 					clickOutsideToClose : false,
 					controller : 'ActionCT',
 					controllerAs : 'actionCT',
 					locals: {
-						actionDialog: data.dialog
+						actionDialog: data
 					}
 				});
 			});

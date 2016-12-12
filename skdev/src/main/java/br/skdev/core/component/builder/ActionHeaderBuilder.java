@@ -1,8 +1,7 @@
 package br.skdev.core.component.builder;
 
 import java.io.Serializable;
-
-import br.skdev.core.ActionHeader;
+import java.util.Map;
 
 /**
  * 
@@ -16,20 +15,16 @@ public class ActionHeaderBuilder implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private ActionHeader actionHeader;
+	private Map<String, String> actionHeader;
 
-	public ActionHeaderBuilder(ActionHeader actionHeader) {
+	public ActionHeaderBuilder(Map<String, String> actionHeader, String id) {
 		super();
 		this.actionHeader = actionHeader;
+		this.actionHeader.put("id", id);
 	}
 
-	public ActionHeaderBuilder title(String text) {
-		this.actionHeader.setTitle(text);
-		return this;
-	}
-
-	public ActionHeaderBuilder description(String text) {
-		this.actionHeader.setDescription(text);
+	public ActionHeaderBuilder title(String value) {
+		this.actionHeader.put("title", value);
 		return this;
 	}
 

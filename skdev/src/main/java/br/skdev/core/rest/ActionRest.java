@@ -1,6 +1,7 @@
 package br.skdev.core.rest;
 
-import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.skdev.core.ActionInfo;
+import br.skdev.core.component.ActionDialog;
 import br.skdev.core.service.ActionService;
 
 @RestController
@@ -23,17 +24,16 @@ public class ActionRest {
 	private ActionService actionService;
 
 	@RequestMapping(method = RequestMethod.GET, path = "api/actions")
-	public ResponseEntity<?> findAllActions() {
-		List<ActionInfo> actionsInfo = actionService.findAllActions();
-		log.info("[findAllActions] {} actions encontradas", actionsInfo.size());
-		return ResponseEntity.ok(actionsInfo);
+	public ResponseEntity<?> findAllActionsHeaders() {
+		Set<Map<String, String>> actionsHeaders = actionService.findAllActionsHeaders();
+		log.info("[findAllActions] {} actions encontradas", actionsHeaders.size());
+		return ResponseEntity.ok(actionsHeaders);
 	}
-	
 
 	@RequestMapping(method = RequestMethod.GET, path = "api/actions/{id}")
-	public ResponseEntity<?> findAction(@PathVariable("id") String id) {
-		ActionInfo actionInfo = actionService.findAction(id);
-		return ResponseEntity.ok(actionInfo);
+	public ResponseEntity<?> findActionDialog(@PathVariable("id") String id) {
+		ActionDialog actionDialog = actionService.findActionDialog(id);
+		return ResponseEntity.ok(actionDialog);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "api/execute/action/{id}")

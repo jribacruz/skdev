@@ -29,6 +29,10 @@ public class ActionDialog extends UIComponent {
 		super(id, label);
 	}
 
+	public ActionDialog(String id) {
+		super(id);
+	}
+
 	public void add(String id, UIComponent component) {
 		this.components.put(id, component);
 	}
@@ -49,6 +53,10 @@ public class ActionDialog extends UIComponent {
 		this.components = components;
 	}
 
+	public void setTitle(String title) {
+		this.label = title;
+	}
+
 	@Override
 	public String buildUIComponentTemplateFragment() {
 		TemplateUIFragment fragment = new TemplateUIFragment();
@@ -63,7 +71,8 @@ public class ActionDialog extends UIComponent {
 		this.buildUIComponentsTemplateFragments(fragment);
 		fragment.add("	</md-dialog-content>");
 		fragment.add("<md-dialog-actions>");
-		fragment.add("	<md-button class='md-primary' ng-disabled='actionForm.$invalid' ng-click='actionCT.execute()'>");
+		fragment.add(
+				"	<md-button class='md-primary' ng-disabled='actionForm.$invalid' ng-click='actionCT.execute()'>");
 		fragment.add("		Executar");
 		fragment.add("  </md-button>");
 		fragment.add("	<md-button ng-click='actionCT.hide()'>");

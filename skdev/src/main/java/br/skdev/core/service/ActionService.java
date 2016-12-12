@@ -1,17 +1,15 @@
 package br.skdev.core.service;
 
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import br.skdev.core.Action;
-import br.skdev.core.ActionInfo;
+import br.skdev.core.action.ActionRegistry;
+import br.skdev.core.component.ActionDialog;
 
 @Service
 public class ActionService {
@@ -19,24 +17,15 @@ public class ActionService {
 	private Logger log = LoggerFactory.getLogger(ActionService.class);
 
 	@Autowired
-	@Qualifier("actionMap")
-	private Map<String, Action> actions;
+	private ActionRegistry actionRegistry;
 
-	public List<ActionInfo> findAllActions() {
+	public Set<Map<String, String>> findAllActionsHeaders() {
 		log.info("[findAllActions] Buscando actions do sistema");
-		// @formatter:off
-		return actions
-				.values()
-				.stream()
-				.map(action -> action.getActionInfo())
-				.collect(Collectors.toList());
-		// @formatter:on
+		return actionRegistry.findAllActionHeaders();
 
 	}
 
-	public ActionInfo findAction(String id) {
-		Action action = actions.get(id);
-		action.prepareActionDialog();
-		return action.getActionInfo();
+	public ActionDialog findActionDialog(String id) {
+		return this.actionRegistry.findActionDialogById(id);
 	}
 }

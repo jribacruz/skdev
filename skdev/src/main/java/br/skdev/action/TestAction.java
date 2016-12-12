@@ -3,8 +3,8 @@ package br.skdev.action;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.skdev.core.Action;
 import br.skdev.core.MavenFolder;
+import br.skdev.core.action.Action;
 import br.skdev.core.component.builder.ActionDialogBuilder;
 import br.skdev.core.component.builder.ActionHeaderBuilder;
 import br.skdev.core.context.WorkspaceContext;
@@ -26,18 +26,17 @@ public class TestAction extends Action {
 	private WorkspaceContext workspaceContext;
 
 	@Override
-	protected void configureActionHeader(ActionHeaderBuilder actionInfo) {
+	public void configureActionHeader(ActionHeaderBuilder actionHeader) {
 		// @formatter:off
-		actionInfo
-			.title("Ação de Teste")
-			.description("Descrição do Teste.");
+		actionHeader
+			.title("Ação de Teste");
 		// @formatter:on
 	}
 
 	@Override
-	protected void configureActionDialog(ActionDialogBuilder actionDialog) {
+	public void configureActionDialog(ActionDialogBuilder actionDialog) {
 		// @formatter:off
-		actionDialog
+		actionDialog.title("Geração de Teste")
 			.selectOneEJavaClass("selectJavaClass", "Selecione a classe java")
 				.options(workspaceContext.getJavaProject().getEJavaClasses(MavenFolder.SRC_MAIN_JAVA))
 			.build()

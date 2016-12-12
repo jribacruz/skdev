@@ -24,6 +24,11 @@ public class ActionDialogBuilder implements Serializable {
 		this.actionDialog = actionDialog;
 	}
 
+	public ActionDialogBuilder title(String title) {
+		this.actionDialog.setTitle(title);
+		return this;
+	}
+
 	public SelectOneEJavaClassBuilder selectOneEJavaClass(String id, String label) {
 		return new SelectOneEJavaClassBuilder(this, actionDialog, new SelectOneEJavaClass(id, label));
 	}

@@ -15,7 +15,7 @@ public abstract class UIComponent implements Serializable {
 	private String id;
 
 	@JsonIgnore
-	private String label;
+	protected String label;
 
 	public abstract String buildUIComponentTemplateFragment();
 
@@ -23,6 +23,11 @@ public abstract class UIComponent implements Serializable {
 		super();
 		this.id = id;
 		this.label = label;
+	}
+
+	public UIComponent(String id) {
+		super();
+		this.id = id;
 	}
 
 	public String getId() {

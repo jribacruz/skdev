@@ -6,11 +6,10 @@
 	</md-toolbar>
 	<md-dialog-content>
 		<md-list flex>
-	        <md-list-item class="md-2-line" ng-repeat="action in actionListCT.actions" ng-click="actionListCT.selectAction(action.header.id)">
+	        <md-list-item class="md-2-line" ng-repeat="action in actionListCT.actions" ng-click="actionListCT.selectAction(action.id)">
 	          <md-icon md-font-icon="material-icons">lightbulb_outline</md-icon>	
 	          <div class="md-list-item-text" layout="column">
-	            <h3>{{ action.header.title }}</h3>
-	            <p>{{ action.header.description }}</p>
+	            <h3>{{ action.title }}</h3>
 	          </div>
 	        </md-list-item>
         </md-list>
