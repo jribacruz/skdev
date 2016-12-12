@@ -57,7 +57,7 @@ public class SelectOneEJavaClass extends UIComponent {
 		fragment
 			.add("		<md-input-container class='md-block'>")
 			.add("			<label>${component.label}</label>")
-			.add("			 <md-select ng-model=\"actionCT.components['${component.id}'].value[0]\">")
+			.add("			 <md-select ng-model=\"actionCT.components['${component.id}'].value\">")
 			.add("				 <md-option ng-repeat=\"option in actionCT.components['${component.id}'].options | orderBy:'label' \" ng-value=\"option.id\" >")
 			.add(" 					{{option.label}}")		
 			.add("				 </md-option>")
@@ -66,5 +66,6 @@ public class SelectOneEJavaClass extends UIComponent {
 		// @formatter:on
 		return fragment.merge(this);
 	}
+	
 
 }

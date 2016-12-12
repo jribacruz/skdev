@@ -1,8 +1,6 @@
 package br.skdev.core;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,7 +17,7 @@ public abstract class UIComponent implements Serializable {
 	@JsonIgnore
 	private String label;
 
-	private List<? extends Selectable> values;
+	private Object value;
 
 	public abstract String buildUIComponentTemplateFragment();
 
@@ -37,15 +35,12 @@ public abstract class UIComponent implements Serializable {
 		return label;
 	}
 
-	public List<? extends Selectable> getValues() {
-		if (this.values == null) {
-			this.values = new ArrayList<>();
-		}
-		return values;
+	public Object getValue() {
+		return value;
 	}
 
-	public void setValues(List<? extends Selectable> values) {
-		this.values = values;
+	public void setValue(Object value) {
+		this.value = value;
 	}
 
 	@Override
