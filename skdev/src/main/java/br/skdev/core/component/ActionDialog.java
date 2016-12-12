@@ -3,6 +3,7 @@ package br.skdev.core.component;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.skdev.core.TemplateUIFragment;
+import br.skdev.core.component.base.UIComponentContainer;
 
 /**
  * 

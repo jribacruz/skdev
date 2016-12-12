@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import br.skdev.core.component.SelectOneEJavaClass;
-import br.skdev.core.component.UIComponent;
+import br.skdev.core.component.base.UIComponent;
 import br.skdev.core.context.UIComponentContext;
 import br.skdev.core.model.EJavaClass;
 import br.skdev.core.model.EJavaProject;

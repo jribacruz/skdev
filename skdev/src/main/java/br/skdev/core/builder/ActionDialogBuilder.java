@@ -3,6 +3,7 @@ package br.skdev.core.builder;
 import java.io.Serializable;
 
 import br.skdev.core.component.ActionDialog;
+import br.skdev.core.component.InputText;
 import br.skdev.core.component.SelectOneEJavaClass;
 
 /**
@@ -31,6 +32,10 @@ public class ActionDialogBuilder implements Serializable {
 
 	public SelectOneEJavaClassBuilder selectOneEJavaClass(String id, String label) {
 		return new SelectOneEJavaClassBuilder(this, actionDialog, new SelectOneEJavaClass(id, label));
+	}
+
+	public InputTextBuilder inputText(String id, String label) {
+		return new InputTextBuilder(this, actionDialog, new InputText(id, label));
 	}
 
 	public void buildActionDialog() {

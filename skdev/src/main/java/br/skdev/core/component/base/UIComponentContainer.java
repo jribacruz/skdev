@@ -1,4 +1,4 @@
-package br.skdev.core.component;
+package br.skdev.core.component.base;
 
 import java.util.HashMap;
 import java.util.Map;

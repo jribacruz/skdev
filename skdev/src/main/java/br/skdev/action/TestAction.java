@@ -52,6 +52,8 @@ public class TestAction extends Action {
 				.options(workspaceContext.getJavaProject().getEJavaClasses(MavenFolder.SRC_MAIN_JAVA))
 				.required()
 			.build()
+			.inputText("daoName", "Nome do DAO")
+			.build()
 		.buildActionDialog();
 		// @formatter:on
 	}
