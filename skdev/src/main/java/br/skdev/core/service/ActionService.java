@@ -28,4 +28,7 @@ public class ActionService {
 	public ActionDialog findActionDialog(String id) {
 		return this.actionRegistry.findActionDialogById(id);
 	}
+	
+	public void executeAction(String id, Map<String, Object> data) {
+	}
 }

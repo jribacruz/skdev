@@ -47,7 +47,6 @@ public class TestAction extends Action {
 
 	@Override
 	public void execute(UIComponentContext ctx) {
-
 	}
 
 }
