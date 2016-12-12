@@ -34,10 +34,17 @@ public class TemplateUIFragment implements Serializable {
 		return this;
 	}
 
+	public TemplateUIFragment add(String fragment, boolean addFlag) {
+		if (addFlag) {
+			templateBuilder.append(fragment);
+		}
+		return this;
+	}
+
 	public <T extends UIComponent> String merge(T componentModel) {
 		Map<String, T> model = new HashMap<>();
 		model.put("component", componentModel);
-		
+
 		Configuration cfg = new Configuration();
 		cfg.setObjectWrapper(new DefaultObjectWrapper());
 		try {

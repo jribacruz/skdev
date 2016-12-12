@@ -50,6 +50,7 @@ public class TestAction extends Action {
 		actionDialog.title("Geração de Teste")
 			.selectOneEJavaClass("selectJavaClass", "Selecione a classe java")
 				.options(workspaceContext.getJavaProject().getEJavaClasses(MavenFolder.SRC_MAIN_JAVA))
+				.required()
 			.build()
 		.buildActionDialog();
 		// @formatter:on
