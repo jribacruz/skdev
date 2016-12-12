@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 
 import br.skdev.core.MavenFolder;
 import br.skdev.core.action.Action;
-import br.skdev.core.component.builder.ActionDialogBuilder;
-import br.skdev.core.component.builder.ActionHeaderBuilder;
+import br.skdev.core.builder.ActionDialogBuilder;
+import br.skdev.core.builder.ActionHeaderBuilder;
 import br.skdev.core.context.UIComponentContext;
 import br.skdev.core.context.WorkspaceContext;
 

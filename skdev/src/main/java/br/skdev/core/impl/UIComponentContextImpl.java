@@ -1,7 +1,5 @@
 package br.skdev.core.impl;
 
-import java.util.Map;
-
 import com.google.common.base.Optional;
 
 import br.skdev.core.component.SelectOneEJavaClass;
@@ -14,8 +12,6 @@ public class UIComponentContextImpl implements UIComponentContext {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private Map<String, Object> componentValues;
 
 	@Override
 	public Optional<EJavaClass> getValue(String id, Class<SelectOneEJavaClass> componentClass) {

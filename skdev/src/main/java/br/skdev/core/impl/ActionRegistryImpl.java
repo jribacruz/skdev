@@ -9,9 +9,9 @@ import java.util.UUID;
 
 import br.skdev.core.action.Action;
 import br.skdev.core.action.ActionRegistry;
+import br.skdev.core.builder.ActionDialogBuilder;
+import br.skdev.core.builder.ActionHeaderBuilder;
 import br.skdev.core.component.ActionDialog;
-import br.skdev.core.component.builder.ActionDialogBuilder;
-import br.skdev.core.component.builder.ActionHeaderBuilder;
 
 /**
  * 

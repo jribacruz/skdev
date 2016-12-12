@@ -1,4 +1,4 @@
-package br.skdev.core.component.builder;
+package br.skdev.core.builder;
 
 import java.io.Serializable;
 import java.util.Map;

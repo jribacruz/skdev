@@ -2,8 +2,8 @@ package br.skdev.core.action;
 
 import java.io.Serializable;
 
-import br.skdev.core.component.builder.ActionDialogBuilder;
-import br.skdev.core.component.builder.ActionHeaderBuilder;
+import br.skdev.core.builder.ActionDialogBuilder;
+import br.skdev.core.builder.ActionHeaderBuilder;
 import br.skdev.core.context.UIComponentContext;
 
 /**
