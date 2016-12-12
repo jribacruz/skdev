@@ -9,6 +9,7 @@ import br.skdev.core.MavenFolder;
 import br.skdev.core.action.Action;
 import br.skdev.core.builder.ActionDialogBuilder;
 import br.skdev.core.builder.ActionHeaderBuilder;
+import br.skdev.core.component.InputText;
 import br.skdev.core.component.SelectOneEJavaClass;
 import br.skdev.core.context.UIComponentContext;
 import br.skdev.core.context.WorkspaceContext;
@@ -54,6 +55,9 @@ public class TestAction extends Action {
 			.build()
 			.inputText("daoName", "Nome do DAO")
 			.build()
+			.selectManyEJavaClass("selectJavaClases", "Selecione as entidades")
+				.options(workspaceContext.getJavaProject().getEJavaClasses(MavenFolder.SRC_MAIN_JAVA))
+			.build()
 		.buildActionDialog();
 		// @formatter:on
 	}
@@ -67,6 +71,7 @@ public class TestAction extends Action {
 		if (eJavaClass.isPresent()) {
 			System.out.println("JavaClass: " + eJavaClass.get().getFullyQualifiedName());
 		}
+		
 	}
 
 }
