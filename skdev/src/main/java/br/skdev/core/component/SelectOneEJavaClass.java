@@ -1,13 +1,17 @@
 package br.skdev.core.component;
 
+import java.util.Optional;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import br.skdev.core.MavenFolder;
 import br.skdev.core.Selectable;
 import br.skdev.core.TemplateUIFragment;
+import br.skdev.core.model.EJavaClass;
+import br.skdev.core.model.EJavaProject;
 
 /**
  * 
@@ -15,7 +19,7 @@ import br.skdev.core.TemplateUIFragment;
  *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SelectOneEJavaClass extends UIComponentData {
+public class SelectOneEJavaClass extends UIComponentData<Optional<EJavaClass>> {
 	/**
 	 * 
 	 */
@@ -64,6 +68,17 @@ public class SelectOneEJavaClass extends UIComponentData {
 			.add("		</md-input-container>");
 		// @formatter:on
 		return fragment.merge(this);
+	}
+
+	@Override
+	public Optional<EJavaClass> getValue(EJavaProject eJavaProject, Object data) {
+		String className = (String) data;
+		if (eJavaProject.getEJavaClasses(MavenFolder.SRC_MAIN_JAVA).stream()
+				.anyMatch(eJavaClass -> eJavaClass.getName().equals(className))) {
+			return eJavaProject.getEJavaClasses(MavenFolder.SRC_MAIN_JAVA).stream()
+					.filter(eJavaClass -> eJavaClass.getName().equals(className)).findFirst();
+		}
+		return Optional.empty();
 	}
 
 }

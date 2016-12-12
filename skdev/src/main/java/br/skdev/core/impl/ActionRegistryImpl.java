@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.UUID;
 
 import br.skdev.core.action.Action;
@@ -64,6 +63,11 @@ public class ActionRegistryImpl implements ActionRegistry {
 
 	public String getActionId(String actionName) {
 		return UUID.nameUUIDFromBytes(actionName.getBytes()).toString();
+	}
+
+	@Override
+	public Action findActionById(String id) {
+		return this.actionMap.get(id);
 	}
 
 }

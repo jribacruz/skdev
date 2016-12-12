@@ -1,5 +1,7 @@
 package br.skdev.action;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -7,8 +9,10 @@ import br.skdev.core.MavenFolder;
 import br.skdev.core.action.Action;
 import br.skdev.core.builder.ActionDialogBuilder;
 import br.skdev.core.builder.ActionHeaderBuilder;
+import br.skdev.core.component.SelectOneEJavaClass;
 import br.skdev.core.context.UIComponentContext;
 import br.skdev.core.context.WorkspaceContext;
+import br.skdev.core.model.EJavaClass;
 
 /**
  * 
@@ -56,6 +60,10 @@ public class TestAction extends Action {
 	 */
 	@Override
 	public void execute(UIComponentContext ctx) {
+		Optional<EJavaClass> eJavaClass = ctx.getValue("selectJavaClass", SelectOneEJavaClass.class);
+		if (eJavaClass.isPresent()) {
+			System.out.println("JavaClass: " + eJavaClass.get().getFullyQualifiedName());
+		}
 	}
 
 }
