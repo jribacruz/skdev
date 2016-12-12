@@ -27,8 +27,6 @@ public class SelectOneEJavaClass extends UIComponent {
 
 	private SortedSet<? extends Selectable> options;
 
-	private Selectable value;
-
 	public SelectOneEJavaClass(String id, String label) {
 		super(id, label);
 	}
@@ -52,14 +50,6 @@ public class SelectOneEJavaClass extends UIComponent {
 		this.options = options;
 	}
 
-	public Selectable getValue() {
-		return value;
-	}
-
-	public void setValue(Selectable value) {
-		this.value = value;
-	}
-
 	@Override
 	public String buildUIComponentTemplateFragment() {
 		TemplateUIFragment fragment = new TemplateUIFragment();
@@ -67,7 +57,7 @@ public class SelectOneEJavaClass extends UIComponent {
 		fragment
 			.add("		<md-input-container class='md-block'>")
 			.add("			<label>${component.label}</label>")
-			.add("			 <md-select ng-model=\"actionCT.components['${component.id}'].value\">")
+			.add("			 <md-select ng-model=\"actionCT.components['${component.id}'].value[0]\">")
 			.add("				 <md-option ng-repeat=\"option in actionCT.components['${component.id}'].options | orderBy:'label' \" ng-value=\"option.id\" >")
 			.add(" 					{{option.label}}")		
 			.add("				 </md-option>")
