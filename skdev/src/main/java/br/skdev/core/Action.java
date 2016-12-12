@@ -18,7 +18,7 @@ public abstract class Action implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private ActionInfo actionInfo = new ActionInfo();;
+	private ActionInfo actionInfo = new ActionInfo();
 
 	public void prepareActionHeader() {
 		if (actionInfo.getHeader() == null) {

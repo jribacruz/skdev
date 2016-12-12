@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import br.skdev.core.Selectable;
 import br.skdev.core.TemplateUIFragment;
 import br.skdev.core.UIComponent;
+import br.skdev.core.model.EJavaClass;
 
 /**
  * 
@@ -26,6 +27,8 @@ public class SelectOneEJavaClass extends UIComponent {
 	private boolean required;
 
 	private SortedSet<? extends Selectable> options;
+
+	private EJavaClass value;
 
 	public SelectOneEJavaClass(String id, String label) {
 		super(id, label);
@@ -50,6 +53,14 @@ public class SelectOneEJavaClass extends UIComponent {
 		this.options = options;
 	}
 
+	public EJavaClass getValue() {
+		return value;
+	}
+
+	public void setValue(EJavaClass value) {
+		this.value = value;
+	}
+
 	@Override
 	public String buildUIComponentTemplateFragment() {
 		TemplateUIFragment fragment = new TemplateUIFragment();
@@ -66,6 +77,5 @@ public class SelectOneEJavaClass extends UIComponent {
 		// @formatter:on
 		return fragment.merge(this);
 	}
-	
 
 }

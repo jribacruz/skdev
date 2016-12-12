@@ -17,8 +17,6 @@ public abstract class UIComponent implements Serializable {
 	@JsonIgnore
 	private String label;
 
-	private Object value;
-
 	public abstract String buildUIComponentTemplateFragment();
 
 	public UIComponent(String id, String label) {
@@ -33,14 +31,6 @@ public abstract class UIComponent implements Serializable {
 
 	public String getLabel() {
 		return label;
-	}
-
-	public Object getValue() {
-		return value;
-	}
-
-	public void setValue(Object value) {
-		this.value = value;
 	}
 
 	@Override
