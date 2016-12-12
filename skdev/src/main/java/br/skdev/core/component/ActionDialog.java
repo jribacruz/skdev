@@ -1,8 +1,5 @@
 package br.skdev.core.component;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.skdev.core.TemplateUIFragment;
@@ -13,27 +10,17 @@ import br.skdev.core.TemplateUIFragment;
  *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ActionDialog extends UIComponent {
+public class ActionDialog extends UIComponentContainer {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Map<String, UIComponent> components = new HashMap<>();
-
 	private String template;
-
-	public ActionDialog(String id, String label) {
-		super(id, label);
-	}
 
 	public ActionDialog(String id) {
 		super(id);
-	}
-
-	public void add(String id, UIComponent component) {
-		this.components.put(id, component);
 	}
 
 	public String getTemplate() {
@@ -42,14 +29,6 @@ public class ActionDialog extends UIComponent {
 
 	public void setTemplate(String template) {
 		this.template = template;
-	}
-
-	public Map<String, UIComponent> getComponents() {
-		return components;
-	}
-
-	public void setComponents(Map<String, UIComponent> components) {
-		this.components = components;
 	}
 
 	public void setTitle(String title) {
@@ -84,7 +63,7 @@ public class ActionDialog extends UIComponent {
 	}
 
 	private void buildUIComponentsTemplateFragments(TemplateUIFragment fragment) {
-		this.components.forEach((id, component) -> fragment.add(component.buildUIComponentTemplateFragment()));
+		this.getComponents().forEach((id, component) -> fragment.add(component.buildUIComponentTemplateFragment()));
 	}
 
 }

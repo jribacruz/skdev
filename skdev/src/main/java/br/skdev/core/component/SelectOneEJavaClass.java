@@ -15,7 +15,7 @@ import br.skdev.core.TemplateUIFragment;
  *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SelectOneEJavaClass extends UIComponent {
+public class SelectOneEJavaClass extends UIComponentData {
 	/**
 	 * 
 	 */
