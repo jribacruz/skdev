@@ -13,6 +13,7 @@ import br.skdev.core.component.SelectOneEJavaClass;
 import br.skdev.core.context.UIComponentContext;
 import br.skdev.core.context.WorkspaceContext;
 import br.skdev.core.model.EJavaClass;
+import br.skdev.core.util.OptionsEndpoint;
 
 /**
  * 

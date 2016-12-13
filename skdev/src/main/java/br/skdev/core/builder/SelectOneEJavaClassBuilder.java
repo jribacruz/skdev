@@ -7,7 +7,7 @@ import java.util.SortedSet;
 import br.skdev.core.Selectable;
 import br.skdev.core.component.ActionDialog;
 import br.skdev.core.component.SelectOneEJavaClass;
-import br.skdev.core.util.SkEndpoint;
+import br.skdev.core.util.OptionsEndpoint;
 
 /**
  * 
@@ -44,8 +44,8 @@ public class SelectOneEJavaClassBuilder implements Serializable {
 		this.selectOneEJavaClass.setOptions(selectables);
 		return this;
 	}
-	
-	public SelectOneEJavaClassBuilder optionsUrl(SkEndpoint endpoint) {
+
+	public SelectOneEJavaClassBuilder options(OptionsEndpoint endpoint) {
 		return this;
 	}
 

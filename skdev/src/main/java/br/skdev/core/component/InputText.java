@@ -36,7 +36,7 @@ public class InputText extends UIComponentData<Optional<String>> {
 		fragment
 			.add("		<md-input-container class='md-block'>")
 			.add("			<label>${component.label}</label>")
-			.add("			<input ng-model=\"actionCT.components['${component.id}'].value\">")
+			.add("			<input ng-model=\"actionCT.values['${component.id}']\">")
 			.add("		</md-input-container>");
 		// @formatter:on
 		return fragment.merge(this);

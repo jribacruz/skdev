@@ -24,21 +24,19 @@
 		
 		self.execute = execute;
 		
+		self.values = {};
+		
 		function hide() {
 			$mdDialog.hide();
 		}
 
-		function updateOnChange(targetId) {
+		function updateOnChange(targetId, optionEndpoint) {
 
 		}
 		
 		function execute() {
-			var values = {};
-			angular.forEach(self.components, function(componentValue,id) {
-				values[id] = componentValue.value;
-			});
-			console.log(values);
-			$http.post('http://localhost:8080/skdev/api/execute/action/' + actionId, values);
+			console.log(self.values);
+			$http.post('http://localhost:8080/skdev/api/execute/action/' + actionId, self.values);
 		}
 
 	}

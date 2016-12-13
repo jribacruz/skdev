@@ -31,6 +31,8 @@ public class SelectOneEJavaClass extends UIComponentData<Optional<EJavaClass>> {
 
 	private SortedSet<? extends Selectable> options;
 
+	private String optionEndpoint;
+
 	public SelectOneEJavaClass(String id, String label) {
 		super(id, label);
 	}
@@ -54,6 +56,14 @@ public class SelectOneEJavaClass extends UIComponentData<Optional<EJavaClass>> {
 		this.options = options;
 	}
 
+	public String getOptionEndpoint() {
+		return optionEndpoint;
+	}
+
+	public void setOptionEndpoint(String optionEndpoint) {
+		this.optionEndpoint = optionEndpoint;
+	}
+
 	@Override
 	public String buildUIComponentTemplateFragment() {
 		TemplateUIFragment fragment = new TemplateUIFragment();
@@ -61,7 +71,7 @@ public class SelectOneEJavaClass extends UIComponentData<Optional<EJavaClass>> {
 		fragment
 			.add("		<md-input-container class='md-block'>")
 			.add("			<label>${component.label}</label>")
-			.add("			 <md-select ng-model=\"actionCT.components['${component.id}'].value\"")
+			.add("			 <md-select ng-model=\"actionCT.values['${component.id}']\"")
 			.add("				required=''", this.required)
 			.add("				>")
 			.add("				 <md-option ng-repeat=\"option in actionCT.components['${component.id}'].options | orderBy:'label' \" ng-value=\"option.id\" >")
