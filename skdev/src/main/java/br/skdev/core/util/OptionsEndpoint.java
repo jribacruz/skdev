@@ -18,7 +18,7 @@ public class OptionsEndpoint {
 	}
 
 	public static OptionsEndpoint findAllDomainClasses() {
-		return new OptionsEndpoint("/api/project/domain/classes");
+		return new OptionsEndpoint("/skdev/api/project/domain/classes");
 	}
 
 }

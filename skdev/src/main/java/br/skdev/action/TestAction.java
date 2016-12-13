@@ -50,7 +50,7 @@ public class TestAction extends Action {
 		// @formatter:off
 		actionDialog.title("Geração de Teste")
 			.selectOneEJavaClass("selectJavaClass", "Selecione a classe java")
-				.options(workspaceContext.getJavaProject().getEJavaClasses(MavenFolder.SRC_MAIN_JAVA))
+				.options(OptionsEndpoint.findAllDomainClasses())
 				.required()
 				.build()
 			.inputText("daoName", "Nome do DAO")

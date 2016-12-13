@@ -32,7 +32,7 @@ public class SelectOneEJavaClass extends UIComponentData<Optional<EJavaClass>> {
 
 	private SortedSet<? extends Selectable> options;
 
-	private String optionEndpoint;
+	private String optionsEndpoint;
 
 	public SelectOneEJavaClass(String id, String label) {
 		super(id, label);
@@ -54,12 +54,12 @@ public class SelectOneEJavaClass extends UIComponentData<Optional<EJavaClass>> {
 		this.options = options;
 	}
 
-	public String getOptionEndpoint() {
-		return optionEndpoint;
+	public String getOptionsEndpoint() {
+		return optionsEndpoint;
 	}
 
-	public void setOptionEndpoint(String optionEndpoint) {
-		this.optionEndpoint = optionEndpoint;
+	public void setOptionsEndpoint(String optionsEndpoint) {
+		this.optionsEndpoint = optionsEndpoint;
 	}
 
 	@Override

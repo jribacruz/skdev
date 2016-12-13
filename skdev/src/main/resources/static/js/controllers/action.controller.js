@@ -33,6 +33,10 @@
 			angular.forEach(self.components, function(component, id) {
 				if (!angular.isUndefined(component.options)) {
 					self.options[id] = component.options;
+				} else if (!angular.isUndefined(component.optionsEndpoint)) {
+					$http.get(component.optionsEndpoint).success(function(data) {
+						self.options[id] = data;
+					});
 				}
 			});
 		}

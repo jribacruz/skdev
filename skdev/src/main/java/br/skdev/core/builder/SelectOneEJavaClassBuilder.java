@@ -1,5 +1,7 @@
 package br.skdev.core.builder;
 
+import static org.mockito.Matchers.endsWith;
+
 import java.io.Serializable;
 import java.util.Set;
 import java.util.SortedSet;
@@ -46,6 +48,7 @@ public class SelectOneEJavaClassBuilder implements Serializable {
 	}
 
 	public SelectOneEJavaClassBuilder options(OptionsEndpoint endpoint) {
+		this.selectOneEJavaClass.setOptionsEndpoint(endpoint.getUrl());
 		return this;
 	}
 
