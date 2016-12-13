@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('ActionCT', ActionCT);
 
-	ActionCT.$inject = [ '$scope', '$log', '$http', '$mdDialog', 'actionDialog', 'actionId' ];
+	ActionCT.$inject = [ '$scope', '$log', '$http', '$mdDialog', 'actionDialog', 'actionId', '$mdToast' ];
 
 	/**
 	 * 
@@ -12,7 +12,7 @@
 	 * @param $http
 	 * @returns
 	 */
-	function ActionCT($scope, $log, $http, $mdDialog, actionDialog, actionId) {
+	function ActionCT($scope, $log, $http, $mdDialog, actionDialog, actionId, $mdToast) {
 		$log.debug('[ActionCT] Inicializando...');
 		var self = this;
 
@@ -47,7 +47,12 @@
 
 		function execute() {
 			console.log(self.values);
-			$http.post('http://localhost:8080/skdev/api/execute/action/' + actionId, self.values);
+			$http.post('http://localhost:8080/skdev/api/execute/action/' + actionId, self.values).success(
+					function(data) {
+						$mdDialog.hide();
+						$mdToast.show($mdToast.simple().parent(angular.element(document.getElementById("#toolbar"))).textContent(
+								'Ação executada com sucesso!').position("bottom right").hideDelay(3000));
+					});
 		}
 
 	}
