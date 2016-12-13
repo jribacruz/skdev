@@ -19,21 +19,28 @@
 		self.hide = hide;
 
 		self.components = actionDialog.componentMap;
-		
-		self.updateOnChange = updateOnChange;
-		
+
 		self.execute = execute;
-		
+
 		self.values = {};
-		
+
+		self.options = {};
+
+		initOptions();
+
+		function initOptions() {
+			$log.debug('[ActionCT] Inicializado options...');
+			angular.forEach(self.components, function(component, id) {
+				if (!angular.isUndefined(component.options)) {
+					self.options[id] = component.options;
+				}
+			});
+		}
+
 		function hide() {
 			$mdDialog.hide();
 		}
 
-		function updateOnChange(targetId, optionEndpoint) {
-
-		}
-		
 		function execute() {
 			console.log(self.values);
 			$http.post('http://localhost:8080/skdev/api/execute/action/' + actionId, self.values);

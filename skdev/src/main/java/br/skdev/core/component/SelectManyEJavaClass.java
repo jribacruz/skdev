@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.SortedSet;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import br.skdev.core.MavenFolder;
 import br.skdev.core.Selectable;
@@ -23,6 +23,7 @@ import br.skdev.core.model.EJavaProject;
  *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SelectManyEJavaClass extends UIComponentData<Set<EJavaClass>> {
 	/**
 	 * 
@@ -47,9 +48,6 @@ public class SelectManyEJavaClass extends UIComponentData<Set<EJavaClass>> {
 	}
 
 	public SortedSet<? extends Selectable> getOptions() {
-		if (this.options == null) {
-			this.options = new TreeSet<>();
-		}
 		return options;
 	}
 
@@ -67,7 +65,7 @@ public class SelectManyEJavaClass extends UIComponentData<Set<EJavaClass>> {
 			.add("			 <md-select ng-model=\"actionCT.values['${component.id}']\"")
 			.add("				required=''", this.required)
 			.add("				multiple>")
-			.add("				 <md-option ng-repeat=\"option in actionCT.components['${component.id}'].options | orderBy:'label' \" ng-value=\"option.id\" >")
+			.add("				 <md-option ng-repeat=\"option in actionCT.options['${component.id}'] | orderBy:'label' \" ng-value=\"option.id\" >")
 			.add(" 					{{option.label}}")		
 			.add("				 </md-option>")
 			.add("			 </md-select>")

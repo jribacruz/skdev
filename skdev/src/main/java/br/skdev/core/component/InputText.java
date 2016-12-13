@@ -3,12 +3,14 @@ package br.skdev.core.component;
 import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import br.skdev.core.TemplateUIFragment;
 import br.skdev.core.component.base.UIComponentData;
 import br.skdev.core.model.EJavaProject;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class InputText extends UIComponentData<Optional<String>> {
 
 	/**

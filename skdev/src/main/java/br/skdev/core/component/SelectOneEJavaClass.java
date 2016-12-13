@@ -2,10 +2,10 @@ package br.skdev.core.component;
 
 import java.util.Optional;
 import java.util.SortedSet;
-import java.util.TreeSet;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import br.skdev.core.MavenFolder;
 import br.skdev.core.Selectable;
@@ -20,6 +20,7 @@ import br.skdev.core.model.EJavaProject;
  *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SelectOneEJavaClass extends UIComponentData<Optional<EJavaClass>> {
 	/**
 	 * 
@@ -46,9 +47,6 @@ public class SelectOneEJavaClass extends UIComponentData<Optional<EJavaClass>> {
 	}
 
 	public SortedSet<? extends Selectable> getOptions() {
-		if (this.options == null) {
-			this.options = new TreeSet<>();
-		}
 		return options;
 	}
 
@@ -74,7 +72,7 @@ public class SelectOneEJavaClass extends UIComponentData<Optional<EJavaClass>> {
 			.add("			 <md-select ng-model=\"actionCT.values['${component.id}']\"")
 			.add("				required=''", this.required)
 			.add("				>")
-			.add("				 <md-option ng-repeat=\"option in actionCT.components['${component.id}'].options | orderBy:'label' \" ng-value=\"option.id\" >")
+			.add("				 <md-option ng-repeat=\"option in actionCT.options['${component.id}'] | orderBy:'label' \" ng-value=\"option.id\" >")
 			.add(" 					{{option.label}}")		
 			.add("				 </md-option>")
 			.add("			 </md-select>")
