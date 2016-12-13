@@ -1,6 +1,7 @@
 package br.skdev.proxy;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import com.thoughtworks.qdox.JavaDocBuilder;
@@ -20,20 +21,16 @@ public class EClassProxy extends EClass {
 
 	private JavaClass javaClass;
 
-	public EClassProxy(String absolutePath) {
+	public EClassProxy(String absolutePath) throws FileNotFoundException, IOException {
 		super();
 		this.absolutePath = absolutePath;
 		init();
 	}
 
-	private void init() {
+	private void init() throws FileNotFoundException, IOException {
 		JavaDocBuilder doc = new JavaDocBuilder();
-		try {
-			JavaSource source = doc.addSource(new File(this.absolutePath));
-			this.javaClass = source.getClasses()[0];
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		JavaSource source = doc.addSource(new File(this.absolutePath));
+		this.javaClass = source.getClasses()[0];
 	}
 
 	@Override

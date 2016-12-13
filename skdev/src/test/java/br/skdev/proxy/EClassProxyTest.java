@@ -1,5 +1,8 @@
 package br.skdev.proxy;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +16,7 @@ import br.skdev.model.EClass;
 public class EClassProxyTest {
 
 	@Test
-	public void test_getName_EClass() {
+	public void test_getName_EClass() throws FileNotFoundException, IOException {
 		EClass eClass = new EClassProxy("src/test/java/br/skdev/model/Foo.java");
 		Assert.assertTrue(eClass.getName().equals("Foo"));
 	}
