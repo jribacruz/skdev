@@ -10,6 +10,12 @@ import com.thoughtworks.qdox.model.JavaField;
 
 import br.skdev.model.EAttribute;
 
+/**
+ * Classe de proxy de EAttribute
+ * 
+ * @author jcruz
+ *
+ */
 public class EAttributeProxy extends EAttribute {
 
 	/**

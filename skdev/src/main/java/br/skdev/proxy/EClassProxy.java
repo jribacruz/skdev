@@ -11,6 +11,12 @@ import com.thoughtworks.qdox.model.JavaClass;
 import br.skdev.model.EAttribute;
 import br.skdev.model.EClass;
 
+/**
+ * Classe de proxy de EClass
+ * 
+ * @author jcruz
+ *
+ */
 public class EClassProxy extends EClass {
 
 	/**
