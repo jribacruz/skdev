@@ -29,11 +29,22 @@ public class EAttributeProxyTest {
 		JavaSource source = doc.addSource(new File("src/test/java/br/skdev/model/Foo.java"));
 		this.javaClass = source.getClasses()[0];
 	}
-	
+
 	@Test
 	public void test_hasNameBars() throws FileNotFoundException, IOException {
 		EClass eClass = new EClassProxy(this.javaClass);
 		Assert.assertTrue(eClass.getAttributes().stream().anyMatch(eAttribute -> eAttribute.getName().equals("bars")));
+	}
+
+	@Test
+	public void test_hasTypeList() throws FileNotFoundException, IOException {
+		EClass eClass = new EClassProxy(this.javaClass);
+		//// @formatter:off
+		Assert.assertTrue(eClass.getAttributes()
+					.stream()
+					.filter(eJavaAttribue -> eJavaAttribue.getName().equals("bars"))
+					.allMatch(eJavaAttribue -> eJavaAttribue.getType().equals("java.util.Set")));
+		// @formatter:on
 	}
 
 }

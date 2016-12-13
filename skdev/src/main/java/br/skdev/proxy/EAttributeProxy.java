@@ -23,4 +23,9 @@ public class EAttributeProxy extends EAttribute {
 		return this.javaField.getName();
 	}
 
+	@Override
+	public String getType() {
+		return this.javaField.getType().getFullyQualifiedName();
+	}
+
 }
