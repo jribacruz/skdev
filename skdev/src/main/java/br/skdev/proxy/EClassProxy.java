@@ -10,6 +10,7 @@ import com.thoughtworks.qdox.model.JavaClass;
 
 import br.skdev.model.EAttribute;
 import br.skdev.model.EClass;
+import br.skdev.model.EMethod;
 
 /**
  * Classe de proxy de EClass
@@ -67,6 +68,20 @@ public class EClassProxy extends EClass {
 		}
 		return this.attributes;
 
+	}
+
+	@Override
+	public Set<EMethod> getMethods() {
+		if (this.methods == null) {
+			// @formatter:off
+			this.methods = Arrays.asList(javaClass.getMethods())
+					.stream()
+					.map(EMethodProxy::new)
+					.collect(Collectors.toSet());
+			// @formatter:on
+
+		}
+		return this.methods;
 	}
 
 }
