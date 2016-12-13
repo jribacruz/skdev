@@ -3,7 +3,7 @@ package br.skdev.core.impl;
 import org.springframework.stereotype.Component;
 
 import br.skdev.core.context.WorkspaceContext;
-import br.skdev.core.model.EJavaProject;
+import br.skdev.core.model.EMavenProject;
 import br.skdev.core.model.EWorkspace;
 
 @Component
@@ -16,7 +16,7 @@ public class WorkspaceContextImpl implements WorkspaceContext {
 
 	private EWorkspace workspace;
 
-	private EJavaProject project;
+	private EMavenProject project;
 
 	@Override
 	public EWorkspace getWokspace() {
@@ -29,12 +29,12 @@ public class WorkspaceContextImpl implements WorkspaceContext {
 	}
 
 	@Override
-	public void setJavaProject(EJavaProject project) {
+	public void setJavaProject(EMavenProject project) {
 		this.project = project;
 	}
 
 	@Override
-	public EJavaProject getJavaProject() {
+	public EMavenProject getJavaProject() {
 		return this.project;
 	}
 

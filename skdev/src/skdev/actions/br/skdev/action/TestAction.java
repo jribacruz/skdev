@@ -18,7 +18,7 @@ import br.skdev.core.builder.ActionHeaderBuilder;
 import br.skdev.core.component.SelectOneEJavaClass;
 import br.skdev.core.context.UIComponentContext;
 import br.skdev.core.context.WorkspaceContext;
-import br.skdev.core.model.EJavaClass;
+import br.skdev.core.model.EClass;
 import br.skdev.core.util.OptionsEndpoint;
 
 /**
@@ -87,7 +87,7 @@ public class TestAction extends Action {
 		}
 		
 		
-		Optional<EJavaClass> eJavaClass = ctx.getValue("selectJavaClass", SelectOneEJavaClass.class);
+		Optional<EClass> eJavaClass = ctx.getValue("selectJavaClass", SelectOneEJavaClass.class);
 		if (eJavaClass.isPresent()) {
 			System.out.println("JavaClass: " + eJavaClass.get().getFullyQualifiedName());
 		}

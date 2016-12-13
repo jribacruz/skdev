@@ -6,8 +6,8 @@ import java.util.Optional;
 import br.skdev.core.component.SelectOneEJavaClass;
 import br.skdev.core.component.base.UIComponent;
 import br.skdev.core.context.UIComponentContext;
-import br.skdev.core.model.EJavaClass;
-import br.skdev.core.model.EJavaProject;
+import br.skdev.core.model.EClass;
+import br.skdev.core.model.EMavenProject;
 
 public class UIComponentContextImpl implements UIComponentContext {
 
@@ -16,13 +16,13 @@ public class UIComponentContextImpl implements UIComponentContext {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private EJavaProject eJavaProject;
+	private EMavenProject eJavaProject;
 
 	private Map<String, UIComponent> components;
 
 	private Map<String, Object> data;
 
-	public UIComponentContextImpl(EJavaProject eJavaProject, Map<String, UIComponent> components,
+	public UIComponentContextImpl(EMavenProject eJavaProject, Map<String, UIComponent> components,
 			Map<String, Object> data) {
 		super();
 		this.eJavaProject = eJavaProject;
@@ -31,7 +31,7 @@ public class UIComponentContextImpl implements UIComponentContext {
 	}
 
 	@Override
-	public Optional<EJavaClass> getValue(String id, Class<SelectOneEJavaClass> componentClass) {
+	public Optional<EClass> getValue(String id, Class<SelectOneEJavaClass> componentClass) {
 		UIComponent component = components.get(id);
 		if (component instanceof SelectOneEJavaClass) {
 			SelectOneEJavaClass selectOneEJavaClass = (SelectOneEJavaClass) component;

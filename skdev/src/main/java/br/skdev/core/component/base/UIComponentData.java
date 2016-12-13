@@ -1,6 +1,6 @@
 package br.skdev.core.component.base;
 
-import br.skdev.core.model.EJavaProject;
+import br.skdev.core.model.EMavenProject;
 
 public abstract class UIComponentData<R> extends UIComponent {
 
@@ -17,6 +17,6 @@ public abstract class UIComponentData<R> extends UIComponent {
 		super(id, label);
 	}
 
-	public abstract R getValue(EJavaProject eJavaProject, Object data);
+	public abstract R getValue(EMavenProject eJavaProject, Object data);
 
 }

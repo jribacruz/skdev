@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.skdev.core.MavenFolder;
 import br.skdev.core.context.WorkspaceContext;
-import br.skdev.core.model.EJavaClass;
+import br.skdev.core.model.EClass;
 import br.skdev.core.predicate.DomainClassPredicate;
 
 /**
@@ -27,7 +27,7 @@ public class ProjectService {
 	 * 
 	 * @return
 	 */
-	public SortedSet<EJavaClass> findAllDomainEJavaClasses() {
+	public SortedSet<EClass> findAllDomainEJavaClasses() {
 		// @formatter:off
 		return workspaceContext.getJavaProject().getEJavaClasses(MavenFolder.SRC_MAIN_JAVA)
 				.stream()

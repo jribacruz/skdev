@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.skdev.core.context.WorkspaceContext;
-import br.skdev.core.model.EJavaClass;
-import br.skdev.core.model.EJavaProject;
+import br.skdev.core.model.EClass;
+import br.skdev.core.model.EMavenProject;
 import br.skdev.core.service.ProjectService;
 
 @RestController
@@ -28,7 +28,7 @@ public class ProjectRest {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/api/projects")
-	public SortedSet<EJavaProject> getProjects() {
+	public SortedSet<EMavenProject> getProjects() {
 		return workspaceContext.getWokspace().getJavaProjects();
 	}
 
@@ -40,7 +40,7 @@ public class ProjectRest {
 	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/api/project/domain/classes")
 	public ResponseEntity<?> findAllDomainEJavaClasses() {
-		SortedSet<EJavaClass> entities = projectService.findAllDomainEJavaClasses();
+		SortedSet<EClass> entities = projectService.findAllDomainEJavaClasses();
 		return ResponseEntity.ok(entities);
 
 	}

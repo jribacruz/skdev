@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import br.skdev.core.TemplateUIFragment;
 import br.skdev.core.component.base.UIComponentData;
-import br.skdev.core.model.EJavaProject;
+import br.skdev.core.model.EMavenProject;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -23,7 +23,7 @@ public class InputText extends UIComponentData<Optional<String>> {
 	}
 
 	@Override
-	public Optional<String> getValue(EJavaProject eJavaProject, Object data) {
+	public Optional<String> getValue(EMavenProject eJavaProject, Object data) {
 		String value = (String) data;
 		if (!value.isEmpty()) {
 			return Optional.of(value);

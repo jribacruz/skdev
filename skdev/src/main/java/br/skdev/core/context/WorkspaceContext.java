@@ -2,7 +2,7 @@ package br.skdev.core.context;
 
 import java.io.Serializable;
 
-import br.skdev.core.model.EJavaProject;
+import br.skdev.core.model.EMavenProject;
 import br.skdev.core.model.EWorkspace;
 
 /**
@@ -28,11 +28,11 @@ public interface WorkspaceContext extends Serializable {
 	 * 
 	 * @param project
 	 */
-	void setJavaProject(EJavaProject project);
+	void setJavaProject(EMavenProject project);
 
 	/**
 	 * 
 	 * @return
 	 */
-	EJavaProject getJavaProject();
+	EMavenProject getJavaProject();
 }

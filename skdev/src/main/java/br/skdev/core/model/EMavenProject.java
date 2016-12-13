@@ -28,9 +28,9 @@ import br.skdev.core.MavenFolder;
  *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EJavaProject implements Serializable, Comparable<EJavaProject> {
+public class EMavenProject implements Serializable, Comparable<EMavenProject> {
 
-	private Logger log = LoggerFactory.getLogger(EJavaProject.class);
+	private Logger log = LoggerFactory.getLogger(EMavenProject.class);
 
 	/**
 	 * 
@@ -51,15 +51,15 @@ public class EJavaProject implements Serializable, Comparable<EJavaProject> {
 	 * 
 	 */
 	@JsonIgnore
-	private Multimap<MavenFolder, EJavaClass> cacheEJavaClassesMMap = HashMultimap.create();
+	private Multimap<MavenFolder, EClass> cacheEJavaClassesMMap = HashMultimap.create();
 
 	/**
 	 * 
 	 */
 	@JsonIgnore
-	private Multimap<MavenFolder, EJavaPackage> cacheEJavaPackagesMMap = HashMultimap.create();
+	private Multimap<MavenFolder, EPackage> cacheEJavaPackagesMMap = HashMultimap.create();
 
-	public EJavaProject(Path path) {
+	public EMavenProject(Path path) {
 		super();
 		this.name = path.toFile().getName();
 		this.path = path.toFile().getAbsolutePath();
@@ -81,13 +81,13 @@ public class EJavaProject implements Serializable, Comparable<EJavaProject> {
 		this.path = path;
 	}
 
-	public SortedSet<EJavaClass> getEJavaClasses(MavenFolder mf) {
+	public SortedSet<EClass> getEJavaClasses(MavenFolder mf) {
 		if (!cacheEJavaClassesMMap.containsKey(mf)) {
 			// @formatter:off
-			SortedSet<EJavaClass> eJavaClasses = getEJavaPackages(mf).stream()
+			SortedSet<EClass> eJavaClasses = getEJavaPackages(mf).stream()
 					.map(javaPackage -> javaPackage.getQdoxJavaPackage().getClasses())
 					.flatMap(qdoxJavaClasses -> Arrays.asList(qdoxJavaClasses).stream())
-					.map(qdoxJavaClass -> new EJavaClass(this, mf.getPath(), qdoxJavaClass))
+					.map(qdoxJavaClass -> new EClass(this, mf.getPath(), qdoxJavaClass))
 					.filter(javaClass -> !javaClass.getQdoxJavaClass().isInterface()
 							&& !javaClass.getQdoxJavaClass().isEnum())
 					.collect(Collectors.toCollection(TreeSet::new));
@@ -97,12 +97,12 @@ public class EJavaProject implements Serializable, Comparable<EJavaProject> {
 		return new TreeSet<>(this.cacheEJavaClassesMMap.get(mf));
 	}
 
-	public SortedSet<EJavaPackage> getEJavaPackages(MavenFolder mf) {
+	public SortedSet<EPackage> getEJavaPackages(MavenFolder mf) {
 		if (!cacheEJavaPackagesMMap.containsKey(mf)) {
 			JavaDocBuilder builder = createJavaDocBuilder(mf);
 			// @formatter:off
-			SortedSet<EJavaPackage> eJavaPackages = Arrays.asList(builder.getPackages()).stream()
-					.map(javaPackage -> new EJavaPackage(this, javaPackage, mf.getPath()))
+			SortedSet<EPackage> eJavaPackages = Arrays.asList(builder.getPackages()).stream()
+					.map(javaPackage -> new EPackage(this, javaPackage, mf.getPath()))
 					.collect(Collectors.toCollection(TreeSet::new));
 			// @formatter:on
 			this.cacheEJavaPackagesMMap.putAll(mf, eJavaPackages);
@@ -138,7 +138,7 @@ public class EJavaProject implements Serializable, Comparable<EJavaProject> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EJavaProject other = (EJavaProject) obj;
+		EMavenProject other = (EMavenProject) obj;
 		if (name == null) {
 			if (other.name != null)
 				return false;
@@ -158,7 +158,7 @@ public class EJavaProject implements Serializable, Comparable<EJavaProject> {
 	}
 
 	@Override
-	public int compareTo(EJavaProject o) {
+	public int compareTo(EMavenProject o) {
 		return this.name.compareTo(o.getName());
 	}
 

@@ -39,13 +39,13 @@ public class EWorkspace implements Serializable {
 	 * 
 	 */
 	@JsonIgnore
-	private SortedSet<EJavaProject> javaProjects;
+	private SortedSet<EMavenProject> javaProjects;
 
 	/**
 	 * 
 	 */
 	@JsonIgnore
-	private Map<String, EJavaProject> projectMap;
+	private Map<String, EMavenProject> projectMap;
 
 	public EWorkspace(String path) {
 		super();
@@ -60,7 +60,7 @@ public class EWorkspace implements Serializable {
 		this.path = path;
 	}
 
-	public SortedSet<EJavaProject> getJavaProjects() {
+	public SortedSet<EMavenProject> getJavaProjects() {
 		if (this.javaProjects == null) {
 			// @formatter:off
 			this.javaProjects = new TreeSet<>();
@@ -68,7 +68,7 @@ public class EWorkspace implements Serializable {
 			if (directories.isPresent()) {
 				this.javaProjects = directories.get()
 						.filter(path -> FS.hasFile(path, "pom.xml"))
-						.map(EJavaProject::new)
+						.map(EMavenProject::new)
 						.collect(Collectors.toCollection(TreeSet::new));
 			}
 			// @formatter:on
@@ -76,11 +76,11 @@ public class EWorkspace implements Serializable {
 		return javaProjects;
 	}
 
-	public void setJavaProjects(SortedSet<EJavaProject> projects) {
+	public void setJavaProjects(SortedSet<EMavenProject> projects) {
 		this.javaProjects = projects;
 	}
 
-	public Map<String, EJavaProject> getProjectMap() {
+	public Map<String, EMavenProject> getProjectMap() {
 		if (this.projectMap == null) {
 			this.projectMap = new HashMap<>();
 			this.javaProjects.forEach(p -> projectMap.put(p.getName(), p));

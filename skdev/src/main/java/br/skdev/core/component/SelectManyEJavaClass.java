@@ -14,8 +14,8 @@ import br.skdev.core.MavenFolder;
 import br.skdev.core.Selectable;
 import br.skdev.core.TemplateUIFragment;
 import br.skdev.core.component.base.UIComponentData;
-import br.skdev.core.model.EJavaClass;
-import br.skdev.core.model.EJavaProject;
+import br.skdev.core.model.EClass;
+import br.skdev.core.model.EMavenProject;
 
 /**
  * 
@@ -24,7 +24,7 @@ import br.skdev.core.model.EJavaProject;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SelectManyEJavaClass extends UIComponentData<Set<EJavaClass>> {
+public class SelectManyEJavaClass extends UIComponentData<Set<EClass>> {
 	/**
 	 * 
 	 */
@@ -75,7 +75,7 @@ public class SelectManyEJavaClass extends UIComponentData<Set<EJavaClass>> {
 	}
 
 	@Override
-	public Set<EJavaClass> getValue(EJavaProject eJavaProject, Object data) {
+	public Set<EClass> getValue(EMavenProject eJavaProject, Object data) {
 		String[] classNames = (String[]) data;
 		return eJavaProject.getEJavaClasses(MavenFolder.SRC_MAIN_JAVA).stream()
 				.filter(eJavaClass -> Arrays.asList(classNames).contains(eJavaClass.getName()))

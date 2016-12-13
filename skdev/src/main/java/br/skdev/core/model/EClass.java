@@ -15,7 +15,7 @@ import com.thoughtworks.qdox.model.JavaClass;
 import br.skdev.core.Selectable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EJavaClass implements Serializable, Comparable<EJavaClass>, Selectable {
+public class EClass implements Serializable, Comparable<EClass>, Selectable {
 
 	/**
 	 * 
@@ -26,7 +26,7 @@ public class EJavaClass implements Serializable, Comparable<EJavaClass>, Selecta
 	 * 
 	 */
 	@JsonIgnore
-	private EJavaProject project;
+	private EMavenProject project;
 
 	/**
 	 * 
@@ -64,18 +64,18 @@ public class EJavaClass implements Serializable, Comparable<EJavaClass>, Selecta
 	@JsonIgnore
 	private JavaClass qdoxJavaClass;
 
-	public EJavaClass(EJavaProject project, String sourceFolder, JavaClass qdoxJavaClass) {
+	public EClass(EMavenProject project, String sourceFolder, JavaClass qdoxJavaClass) {
 		super();
 		this.project = project;
 		this.sourceFolderName = sourceFolder;
 		this.qdoxJavaClass = qdoxJavaClass;
 	}
 
-	public EJavaProject getProject() {
+	public EMavenProject getProject() {
 		return project;
 	}
 
-	public void setProject(EJavaProject project) {
+	public void setProject(EMavenProject project) {
 		this.project = project;
 	}
 
@@ -182,7 +182,7 @@ public class EJavaClass implements Serializable, Comparable<EJavaClass>, Selecta
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EJavaClass other = (EJavaClass) obj;
+		EClass other = (EClass) obj;
 		if (fullyQualifiedName == null) {
 			if (other.fullyQualifiedName != null)
 				return false;
@@ -197,7 +197,7 @@ public class EJavaClass implements Serializable, Comparable<EJavaClass>, Selecta
 	}
 
 	@Override
-	public int compareTo(EJavaClass o) {
+	public int compareTo(EClass o) {
 		return this.getFullyQualifiedName().compareTo(o.getFullyQualifiedName());
 	}
 

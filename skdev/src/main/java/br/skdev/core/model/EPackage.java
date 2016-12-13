@@ -11,7 +11,7 @@ import com.thoughtworks.qdox.model.JavaPackage;
 import br.skdev.core.Selectable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EJavaPackage implements Serializable, Comparable<EJavaPackage>, Selectable {
+public class EPackage implements Serializable, Comparable<EPackage>, Selectable {
 	/**
 	 * 
 	 */
@@ -21,7 +21,7 @@ public class EJavaPackage implements Serializable, Comparable<EJavaPackage>, Sel
 	 * 
 	 */
 	@JsonIgnore
-	private EJavaProject project;
+	private EMavenProject project;
 
 	/**
 	 * 
@@ -43,7 +43,7 @@ public class EJavaPackage implements Serializable, Comparable<EJavaPackage>, Sel
 	 */
 	private String path;
 
-	public EJavaPackage(EJavaProject project, JavaPackage qdoxJavaPackage, String sourceFolderName) {
+	public EPackage(EMavenProject project, JavaPackage qdoxJavaPackage, String sourceFolderName) {
 		super();
 		this.project = project;
 		this.qdoxJavaPackage = qdoxJavaPackage;
@@ -85,7 +85,7 @@ public class EJavaPackage implements Serializable, Comparable<EJavaPackage>, Sel
 	 * 
 	 * @see sk4j.model.EJavaPackage#getProject()
 	 */
-	public EJavaProject getEJavaProject() {
+	public EMavenProject getEJavaProject() {
 		return this.project;
 	}
 
@@ -120,7 +120,7 @@ public class EJavaPackage implements Serializable, Comparable<EJavaPackage>, Sel
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EJavaPackage other = (EJavaPackage) obj;
+		EPackage other = (EPackage) obj;
 		if (name == null) {
 			if (other.name != null)
 				return false;
@@ -140,7 +140,7 @@ public class EJavaPackage implements Serializable, Comparable<EJavaPackage>, Sel
 	}
 
 	@Override
-	public int compareTo(EJavaPackage o) {
+	public int compareTo(EPackage o) {
 		return this.getPackageName().compareTo(o.getPackageName());
 	}
 
