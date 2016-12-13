@@ -19,7 +19,7 @@ import br.skdev.model.EClass;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class EClassProxyTest {
+public class EAttributeProxyTest {
 
 	private JavaClass javaClass;
 
@@ -29,29 +29,11 @@ public class EClassProxyTest {
 		JavaSource source = doc.addSource(new File("src/test/java/br/skdev/model/Foo.java"));
 		this.javaClass = source.getClasses()[0];
 	}
-
+	
 	@Test
-	public void test_getName_EClass() throws FileNotFoundException, IOException {
+	public void test_hasNameBars() throws FileNotFoundException, IOException {
 		EClass eClass = new EClassProxy(this.javaClass);
-		Assert.assertTrue(eClass.getName().equals("Foo"));
-	}
-
-	@Test
-	public void test_getFullyQualifiedName_EClass() throws FileNotFoundException, IOException {
-		EClass eClass = new EClassProxy(this.javaClass);
-		Assert.assertTrue(eClass.getFullyQualifiedName().equals("br.skdev.model.Foo"));
-	}
-
-	@Test
-	public void test_getPackageName_EClass() throws FileNotFoundException, IOException {
-		EClass eClass = new EClassProxy(this.javaClass);
-		Assert.assertTrue(eClass.getPackageName().equals("br.skdev.model"));
-	}
-
-	@Test
-	public void test_getAttributes_EClass() throws FileNotFoundException, IOException {
-		EClass eClass = new EClassProxy(this.javaClass);
-		Assert.assertTrue(eClass.getAttributes().size() == 3);
+		Assert.assertTrue(eClass.getAttributes().stream().anyMatch(eAttribute -> eAttribute.getName().equals("bars")));
 	}
 
 }

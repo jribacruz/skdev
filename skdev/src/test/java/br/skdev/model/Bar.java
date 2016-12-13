@@ -1,9 +1,9 @@
 package br.skdev.model;
 
 import java.io.Serializable;
-import java.util.Set;
 
-public class Foo implements Serializable {
+public class Bar implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -11,22 +11,12 @@ public class Foo implements Serializable {
 
 	private String name;
 
-	private Set<Bar> bars;
-
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Set<Bar> getBars() {
-		return bars;
-	}
-
-	public void setBars(Set<Bar> bars) {
-		this.bars = bars;
 	}
 
 }
