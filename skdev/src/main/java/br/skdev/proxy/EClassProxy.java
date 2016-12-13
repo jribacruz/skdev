@@ -17,19 +17,19 @@ public class EClassProxy extends EClass {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String absolutePath;
+	private File javaFile;
 
 	private JavaClass javaClass;
 
-	public EClassProxy(String absolutePath) throws FileNotFoundException, IOException {
+	public EClassProxy(File javaFile) throws FileNotFoundException, IOException {
 		super();
-		this.absolutePath = absolutePath;
+		this.javaFile = javaFile;
 		init();
 	}
 
 	private void init() throws FileNotFoundException, IOException {
 		JavaDocBuilder doc = new JavaDocBuilder();
-		JavaSource source = doc.addSource(new File(this.absolutePath));
+		JavaSource source = doc.addSource(this.javaFile);
 		this.javaClass = source.getClasses()[0];
 	}
 
