@@ -8,6 +8,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -20,6 +22,8 @@ import br.skdev.model.EClass;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class EAttributeProxyTest {
+
+	private Logger log = LoggerFactory.getLogger(EAttributeProxyTest.class);
 
 	private JavaClass javaClass;
 
@@ -40,13 +44,16 @@ public class EAttributeProxyTest {
 	public void test_hasTypeList() throws FileNotFoundException, IOException {
 		EClass eClass = new EClassProxy(this.javaClass);
 		//// @formatter:off
+		eClass.getAttributes()
+				.stream()
+				.forEach(eAttribute -> log.info("[test_hasTypeList] Name: {}  GenericTypes {}", eAttribute.getName(), eAttribute.getGenericTypes()));
 		Assert.assertTrue(eClass.getAttributes()
 					.stream()
 					.filter(eJavaAttribue -> eJavaAttribue.getName().equals("bars"))
 					.allMatch(eJavaAttribue -> eJavaAttribue.getType().equals("java.util.Set")));
 		// @formatter:on
 	}
-	
+
 	@Test
 	public void test_hasModifierPublic() throws FileNotFoundException, IOException {
 		EClass eClass = new EClassProxy(this.javaClass);
@@ -55,6 +62,20 @@ public class EAttributeProxyTest {
 					.stream()
 					.filter(eJavaAttribue -> eJavaAttribue.getName().equals("bars"))
 					.allMatch(eJavaAttribue -> eJavaAttribue.getModifiers().contains("private")));
+		// @formatter:on
+	}
+
+	@Test
+	public void test_hasStringGenericType() throws FileNotFoundException, IOException {
+		EClass eClass = new EClassProxy(this.javaClass);
+		eClass.getAttributes().stream()
+				.forEach(eAttribute -> log.info("[test_hasStringGenericType] Name: {}  GenericTypes {}",
+						eAttribute.getName(), eAttribute.getGenericTypes()));
+		//// @formatter:off
+		Assert.assertTrue(eClass.getAttributes()
+					.stream()
+					.filter(eJavaAttribue -> eJavaAttribue.getName().equals("bars"))
+					.allMatch(eJavaAttribue -> eJavaAttribue.getGenericTypes().get(0).equals("br.skdev.model.Bar")));
 		// @formatter:on
 	}
 

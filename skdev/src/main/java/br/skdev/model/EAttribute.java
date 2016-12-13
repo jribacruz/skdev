@@ -1,11 +1,15 @@
 package br.skdev.model;
 
 import java.io.Serializable;
+import java.util.Map;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.EqualsAndHashCode;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
+@EqualsAndHashCode(of = "name")
 public class EAttribute implements Serializable, Comparable<EAttribute> {
 
 	/**
@@ -13,11 +17,13 @@ public class EAttribute implements Serializable, Comparable<EAttribute> {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String name;
+	protected String name;
 
-	private String type;
+	protected String type;
 
-	private Set<String> modifiers;
+	protected Set<String> modifiers;
+
+	protected Map<Integer, String> genericTypes;
 
 	public EAttribute() {
 		super();
@@ -45,6 +51,14 @@ public class EAttribute implements Serializable, Comparable<EAttribute> {
 
 	public void setModifiers(Set<String> modifiers) {
 		this.modifiers = modifiers;
+	}
+
+	public Map<Integer, String> getGenericTypes() {
+		return genericTypes;
+	}
+
+	public void setGenericTypes(Map<Integer, String> genericTypes) {
+		this.genericTypes = genericTypes;
 	}
 
 	@Override

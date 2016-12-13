@@ -1,7 +1,9 @@
 package br.skdev.proxy;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import com.thoughtworks.qdox.model.JavaField;
@@ -24,17 +26,40 @@ public class EAttributeProxy extends EAttribute {
 
 	@Override
 	public String getName() {
-		return this.javaField.getName();
+		if (this.name == null) {
+			this.name = this.javaField.getName();
+		}
+		return this.name;
 	}
 
 	@Override
 	public String getType() {
-		return this.javaField.getType().getFullyQualifiedName();
+		if (this.type == null) {
+			this.type = this.javaField.getType().getFullyQualifiedName();
+		}
+		return this.type;
 	}
 
 	@Override
 	public Set<String> getModifiers() {
-		return new HashSet<>(Arrays.asList(this.javaField.getModifiers()));
+		if (this.modifiers == null) {
+			this.modifiers = new HashSet<>(Arrays.asList(this.javaField.getModifiers()));
+		}
+		return this.modifiers;
+	}
+
+	@Override
+	public Map<Integer, String> getGenericTypes() {
+		if (this.genericTypes == null) {
+			this.genericTypes = new HashMap<>();
+			if (this.javaField.getType().getActualTypeArguments() != null
+					&& this.javaField.getType().getActualTypeArguments().length > 0) {
+				for (int i = 0; i < this.javaField.getType().getActualTypeArguments().length; i++) {
+					this.genericTypes.put(i, this.javaField.getType().getActualTypeArguments()[i].getValue());
+				}
+			}
+		}
+		return this.genericTypes;
 	}
 
 }

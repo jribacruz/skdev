@@ -5,6 +5,8 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.EqualsAndHashCode;
+
 /**
  * Modelo de uma classe Java.
  * 
@@ -12,37 +14,38 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
+@EqualsAndHashCode(of = "fullyQualifiedName")
 public class EClass implements Serializable, Comparable<EClass> {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	protected static final long serialVersionUID = 1L;
 
 	/**
 	 * 
 	 */
-	private String name;
+	protected String name;
 
 	/**
 	 * 
 	 */
-	private String fullyQualifiedName;
+	protected String fullyQualifiedName;
 
 	/**
 	 * 
 	 */
-	private String packageName;
+	protected String packageName;
 
 	/**
 	 * 
 	 */
-	private Set<EAttribute> attributes;
+	protected Set<EAttribute> attributes;
 
 	/**
 	 * 
 	 */
-	private Set<EMethod> methods;
+	protected Set<EMethod> methods;
 
 	public EClass() {
 		super();
@@ -89,33 +92,8 @@ public class EClass implements Serializable, Comparable<EClass> {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((fullyQualifiedName == null) ? 0 : fullyQualifiedName.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		EClass other = (EClass) obj;
-		if (fullyQualifiedName == null) {
-			if (other.fullyQualifiedName != null)
-				return false;
-		} else if (!fullyQualifiedName.equals(other.fullyQualifiedName))
-			return false;
-		return true;
-	}
-
-	@Override
 	public int compareTo(EClass o) {
-		return this.getFullyQualifiedName().compareTo(o.getFullyQualifiedName());
+		return this.fullyQualifiedName.compareTo(o.fullyQualifiedName);
 	}
 
 }

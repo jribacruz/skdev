@@ -27,27 +27,39 @@ public class EClassProxy extends EClass {
 
 	@Override
 	public String getName() {
-		return this.javaClass.getName();
+		if (this.name == null) {
+			this.name = this.javaClass.getName();
+		}
+		return this.name;
 	}
 
 	@Override
 	public String getFullyQualifiedName() {
-		return this.javaClass.getFullyQualifiedName();
+		if (this.fullyQualifiedName == null) {
+			this.fullyQualifiedName = this.javaClass.getFullyQualifiedName();
+		}
+		return this.fullyQualifiedName;
 	}
 
 	@Override
 	public String getPackageName() {
-		return this.javaClass.getPackageName();
+		if (this.packageName == null) {
+			this.packageName = this.javaClass.getPackageName();
+		}
+		return this.packageName;
 	}
 
 	@Override
 	public Set<EAttribute> getAttributes() {
-		// @formatter:off
-		return Arrays.asList(javaClass.getFields())
+		if (this.attributes == null) {
+			// @formatter:off
+			this.attributes = Arrays.asList(javaClass.getFields())
 				.stream()	
 				.map(EAttributeProxy::new)
 				.collect(Collectors.toSet());
-		// @formatter:on
+			// @formatter:on
+		}
+		return this.attributes;
 
 	}
 
