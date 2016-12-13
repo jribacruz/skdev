@@ -17,12 +17,24 @@ public class EAttribute implements Serializable, Comparable<EAttribute> {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 
+	 */
 	protected String name;
 
+	/**
+	 * 
+	 */
 	protected String type;
 
+	/**
+	 * 
+	 */
 	protected Set<String> modifiers;
 
+	/**
+	 * 
+	 */
 	protected Map<Integer, String> genericTypes;
 
 	public EAttribute() {
