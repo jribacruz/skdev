@@ -32,6 +32,11 @@ public class EClass implements Serializable {
 	/**
 	 * 
 	 */
+	private String packageName;
+
+	/**
+	 * 
+	 */
 	private Set<EAttribute> attributes;
 
 	/**
@@ -59,6 +64,14 @@ public class EClass implements Serializable {
 		this.fullyQualifiedName = fullyQualifiedName;
 	}
 
+	public String getPackageName() {
+		return packageName;
+	}
+
+	public void setPackageName(String packageName) {
+		this.packageName = packageName;
+	}
+
 	public Set<EAttribute> getAttributes() {
 		return attributes;
 	}
@@ -73,6 +86,31 @@ public class EClass implements Serializable {
 
 	public void setMethods(Set<EMethod> methods) {
 		this.methods = methods;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((fullyQualifiedName == null) ? 0 : fullyQualifiedName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EClass other = (EClass) obj;
+		if (fullyQualifiedName == null) {
+			if (other.fullyQualifiedName != null)
+				return false;
+		} else if (!fullyQualifiedName.equals(other.fullyQualifiedName))
+			return false;
+		return true;
 	}
 
 }

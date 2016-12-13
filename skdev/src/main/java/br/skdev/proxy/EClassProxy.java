@@ -38,4 +38,14 @@ public class EClassProxy extends EClass {
 		return this.javaClass.getName();
 	}
 
+	@Override
+	public String getFullyQualifiedName() {
+		return this.javaClass.getFullyQualifiedName();
+	}
+
+	@Override
+	public String getPackageName() {
+		return this.javaClass.getPackageName();
+	}
+
 }
