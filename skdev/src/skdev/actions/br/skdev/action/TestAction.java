@@ -1,8 +1,14 @@
 package br.skdev.action;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import br.skdev.core.MavenFolder;
@@ -67,6 +73,20 @@ public class TestAction extends Action {
 	 */
 	@Override
 	public void execute(UIComponentContext ctx) {
+		
+		ClassPathResource classPathResource = new ClassPathResource("file.fm");
+		
+		try {
+			File file = classPathResource.getFile();
+			FileReader fileReader = new FileReader(file);
+			BufferedReader in = new BufferedReader(fileReader);
+			System.out.println(in.readLine());
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 		Optional<EJavaClass> eJavaClass = ctx.getValue("selectJavaClass", SelectOneEJavaClass.class);
 		if (eJavaClass.isPresent()) {
 			System.out.println("JavaClass: " + eJavaClass.get().getFullyQualifiedName());
