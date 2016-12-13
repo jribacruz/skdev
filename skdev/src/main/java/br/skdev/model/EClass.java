@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EClass implements Serializable {
+public class EClass implements Serializable, Comparable<EClass> {
 
 	/**
 	 * 
@@ -111,6 +111,11 @@ public class EClass implements Serializable {
 		} else if (!fullyQualifiedName.equals(other.fullyQualifiedName))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(EClass o) {
+		return this.getFullyQualifiedName().compareTo(o.getFullyQualifiedName());
 	}
 
 }

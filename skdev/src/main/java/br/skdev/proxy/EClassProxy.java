@@ -2,9 +2,13 @@ package br.skdev.proxy;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.thoughtworks.qdox.model.JavaClass;
 
+import br.skdev.model.EAttribute;
 import br.skdev.model.EClass;
 
 public class EClassProxy extends EClass {
@@ -34,6 +38,17 @@ public class EClassProxy extends EClass {
 	@Override
 	public String getPackageName() {
 		return this.javaClass.getPackageName();
+	}
+
+	@Override
+	public Set<EAttribute> getAttributes() {
+		// @formatter:off
+		return Arrays.asList(javaClass.getFields())
+				.stream()	
+				.map(EAttributeProxy::new)
+				.collect(Collectors.toSet());
+		// @formatter:on
+
 	}
 
 }

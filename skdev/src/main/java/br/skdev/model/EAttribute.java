@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EAttribute implements Serializable {
+public class EAttribute implements Serializable, Comparable<EAttribute> {
 
 	/**
 	 * 
@@ -24,6 +24,11 @@ public class EAttribute implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public int compareTo(EAttribute o) {
+		return this.getName().compareTo(o.getName());
 	}
 
 }

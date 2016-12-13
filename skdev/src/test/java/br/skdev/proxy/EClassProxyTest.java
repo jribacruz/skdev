@@ -47,4 +47,10 @@ public class EClassProxyTest {
 		EClass eClass = new EClassProxy(this.javaClass);
 		Assert.assertTrue(eClass.getPackageName().equals("br.skdev.model"));
 	}
+
+	@Test
+	public void test_getAttributes_EClass() throws FileNotFoundException, IOException {
+		EClass eClass = new EClassProxy(this.javaClass);
+		Assert.assertTrue(eClass.getAttributes().size() == 1);
+	}
 }
