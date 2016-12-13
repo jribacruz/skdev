@@ -39,7 +39,7 @@ public class ActionService {
 	public void executeAction(String id, Map<String, Object> data) {
 		Action action = actionRegistry.findActionById(id);
 		UIComponentContext ctx = new UIComponentContextImpl(workspaceContext.getJavaProject(),
-				actionRegistry.findActionDialogById(id).getComponents(), data);
+				actionRegistry.findActionDialogById(id).getComponentMap(), data);
 		action.execute(ctx);
 	}
 }

@@ -64,7 +64,7 @@ public class ActionDialog extends UIComponentContainer {
 	}
 
 	private void buildUIComponentsTemplateFragments(TemplateUIFragment fragment) {
-		this.getComponents().forEach((id, component) -> fragment.add(component.buildUIComponentTemplateFragment()));
+		this.getComponents().forEach(component -> fragment.add(component.buildUIComponentTemplateFragment()));
 	}
 
 }
