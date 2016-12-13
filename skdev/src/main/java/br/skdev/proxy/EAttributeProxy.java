@@ -1,5 +1,9 @@
 package br.skdev.proxy;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import com.thoughtworks.qdox.model.JavaField;
 
 import br.skdev.model.EAttribute;
@@ -26,6 +30,11 @@ public class EAttributeProxy extends EAttribute {
 	@Override
 	public String getType() {
 		return this.javaField.getType().getFullyQualifiedName();
+	}
+
+	@Override
+	public Set<String> getModifiers() {
+		return new HashSet<>(Arrays.asList(this.javaField.getModifiers()));
 	}
 
 }

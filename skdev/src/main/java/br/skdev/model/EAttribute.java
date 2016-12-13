@@ -1,6 +1,7 @@
 package br.skdev.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -15,6 +16,8 @@ public class EAttribute implements Serializable, Comparable<EAttribute> {
 	private String name;
 
 	private String type;
+
+	private Set<String> modifiers;
 
 	public EAttribute() {
 		super();
@@ -34,6 +37,14 @@ public class EAttribute implements Serializable, Comparable<EAttribute> {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public Set<String> getModifiers() {
+		return modifiers;
+	}
+
+	public void setModifiers(Set<String> modifiers) {
+		this.modifiers = modifiers;
 	}
 
 	@Override

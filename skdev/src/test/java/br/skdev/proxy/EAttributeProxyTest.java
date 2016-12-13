@@ -46,5 +46,16 @@ public class EAttributeProxyTest {
 					.allMatch(eJavaAttribue -> eJavaAttribue.getType().equals("java.util.Set")));
 		// @formatter:on
 	}
+	
+	@Test
+	public void test_hasModifierPublic() throws FileNotFoundException, IOException {
+		EClass eClass = new EClassProxy(this.javaClass);
+		//// @formatter:off
+		Assert.assertTrue(eClass.getAttributes()
+					.stream()
+					.filter(eJavaAttribue -> eJavaAttribue.getName().equals("bars"))
+					.allMatch(eJavaAttribue -> eJavaAttribue.getModifiers().contains("private")));
+		// @formatter:on
+	}
 
 }
