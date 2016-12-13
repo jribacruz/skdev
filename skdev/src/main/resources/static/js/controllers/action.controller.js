@@ -18,7 +18,7 @@
 
 		self.hide = hide;
 
-		self.components = actionDialog.components;
+		self.components = actionDialog.componentMap;
 		
 		self.updateOnChange = updateOnChange;
 		
