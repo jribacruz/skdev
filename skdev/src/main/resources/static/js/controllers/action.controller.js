@@ -50,8 +50,8 @@
 			$http.post('http://localhost:8080/skdev/api/execute/action/' + actionId, self.values).success(
 					function(data) {
 						$mdDialog.hide();
-						$mdToast.show($mdToast.simple().parent(angular.element(document.getElementById("#toolbar"))).textContent(
-								'Ação executada com sucesso!').position("bottom right").hideDelay(3000));
+						$mdToast.show($mdToast.simple().textContent(
+								'Ação executada com sucesso!').position("top right").hideDelay(3000));
 					});
 		}
 
