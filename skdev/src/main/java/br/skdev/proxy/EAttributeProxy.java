@@ -5,9 +5,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.thoughtworks.qdox.model.JavaField;
 
+import br.skdev.model.EAnnotation;
 import br.skdev.model.EAttribute;
 
 /**
@@ -66,6 +68,19 @@ public class EAttributeProxy extends EAttribute {
 			}
 		}
 		return this.genericTypes;
+	}
+	
+	@Override
+	public Set<EAnnotation> getAnnotations() {
+		if (this.annotations == null) {
+			//// @formatter:off
+			this.annotations = Arrays.asList(javaField.getAnnotations())
+					.stream()
+					.map(EAnnotationProxy::new)
+					.collect(Collectors.toSet());
+			// @formatter:on
+		}
+		return this.annotations;
 	}
 
 }

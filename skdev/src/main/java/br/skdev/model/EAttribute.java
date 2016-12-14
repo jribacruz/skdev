@@ -37,6 +37,11 @@ public class EAttribute implements Serializable, Comparable<EAttribute> {
 	 */
 	protected Map<Integer, String> genericTypes;
 
+	/**
+	 * 
+	 */
+	protected Set<EAnnotation> annotations;
+
 	public EAttribute() {
 		super();
 	}
@@ -71,6 +76,14 @@ public class EAttribute implements Serializable, Comparable<EAttribute> {
 
 	public void setGenericTypes(Map<Integer, String> genericTypes) {
 		this.genericTypes = genericTypes;
+	}
+
+	public Set<EAnnotation> getAnnotations() {
+		return annotations;
+	}
+
+	public void setAnnotations(Set<EAnnotation> annotations) {
+		this.annotations = annotations;
 	}
 
 	@Override

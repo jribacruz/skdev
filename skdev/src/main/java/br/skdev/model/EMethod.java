@@ -2,6 +2,7 @@ package br.skdev.model;
 
 import java.io.Serializable;
 import java.util.Map;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -33,6 +34,11 @@ public class EMethod implements Serializable {
 	 */
 	protected Map<Integer, EMethodParameter> parameters;
 
+	/**
+	 * 
+	 */
+	protected Set<EAnnotation> annotations;
+
 	public EMethod() {
 		super();
 	}
@@ -59,6 +65,14 @@ public class EMethod implements Serializable {
 
 	public void setParameters(Map<Integer, EMethodParameter> parameters) {
 		this.parameters = parameters;
+	}
+
+	public Set<EAnnotation> getAnnotations() {
+		return annotations;
+	}
+
+	public void setAnnotations(Set<EAnnotation> annotations) {
+		this.annotations = annotations;
 	}
 
 }
