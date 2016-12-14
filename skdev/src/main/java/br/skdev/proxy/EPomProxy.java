@@ -43,8 +43,6 @@ public class EPomProxy extends EPom {
 					if (!childNode.getNodeName().equals("#text")) {
 						String nodeName = childNode.getNodeName();
 						String nodeContent = childNode.getTextContent();
-						System.out.println("Index: " + i + " Item: " + nodeName + " Text: " + nodeContent);
-						System.out.println("=================================================================\n");
 						if (nodeName.equals("groupId")) {
 							pomDependency.setGroupId(nodeContent);
 						} else if (nodeName.equals("artifactId")) {
