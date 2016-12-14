@@ -27,6 +27,10 @@ public class EMethodParameter implements Serializable {
 	 */
 	protected String type;
 
+	public EMethodParameter() {
+		super();
+	}
+
 	public String getName() {
 		return name;
 	}

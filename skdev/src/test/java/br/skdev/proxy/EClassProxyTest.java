@@ -8,6 +8,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -20,6 +22,8 @@ import br.skdev.model.EClass;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class EClassProxyTest {
+
+	private Logger log = LoggerFactory.getLogger(EClassProxyTest.class);
 
 	private JavaClass javaClass;
 
@@ -59,6 +63,28 @@ public class EClassProxyTest {
 		EClass eClass = new EClassProxy(this.javaClass);
 		Assert.assertTrue(eClass.getAnnotations().stream().anyMatch(
 				eAnnotation -> eAnnotation.getName().equals("com.fasterxml.jackson.annotation.JsonIgnoreProperties")));
+	}
+
+	@Test
+	public void test_hasParameterIgnoreUnknown_AnnotationJsonIgnoreProperties() {
+		EClass eClass = new EClassProxy(this.javaClass);
+		Assert.assertTrue(eClass.getAnnotations().stream().filter(
+				eAnnotation -> eAnnotation.getName().equals("com.fasterxml.jackson.annotation.JsonIgnoreProperties"))
+				.anyMatch(eAnnotation -> eAnnotation.getParameters().keySet().contains("ignoreUnknown")));
+	}
+
+	@Test
+	public void test_hasParameterIgnoreUnknownTrue_AnnotationJsonIgnoreProperties() {
+		EClass eClass = new EClassProxy(this.javaClass);
+
+		eClass.getAnnotations().stream()
+				.forEach(eAnnotation -> log.info(
+						"[test_hasParameterIgnoreUnknownTrue_AnnotationJsonIgnoreProperties] Name {} Paramers: {}",
+						eAnnotation.getName(), eAnnotation.getParameters().get("ignoreUnknown").getClass()));
+
+		Assert.assertTrue(eClass.getAnnotations().stream().filter(
+				eAnnotation -> eAnnotation.getName().equals("com.fasterxml.jackson.annotation.JsonIgnoreProperties"))
+				.anyMatch(eAnnotation -> Boolean.valueOf(eAnnotation.getParameters().get("ignoreUnknown"))));
 	}
 
 }

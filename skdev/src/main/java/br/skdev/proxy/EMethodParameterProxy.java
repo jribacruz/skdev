@@ -3,7 +3,9 @@ package br.skdev.proxy;
 import com.thoughtworks.qdox.model.JavaParameter;
 
 import br.skdev.model.EMethodParameter;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class EMethodParameterProxy extends EMethodParameter {
 
 	/**

@@ -1,9 +1,15 @@
 package br.skdev.proxy;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 import com.thoughtworks.qdox.model.Annotation;
 
 import br.skdev.model.EAnnotation;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class EAnnotationProxy extends EAnnotation {
 
 	/**
@@ -24,6 +30,22 @@ public class EAnnotationProxy extends EAnnotation {
 			this.name = annotation.getType().getValue();
 		}
 		return this.name;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public Map<String, String> getParameters() {
+		if (this.parameters == null) {
+			this.parameters = new HashMap<>();
+			if (this.annotation.getNamedParameterMap() != null) {
+				Iterator<String> keys = annotation.getNamedParameterMap().keySet().iterator();
+				while (keys.hasNext()) {
+					String key = keys.next();
+					this.parameters.put(key, String.valueOf(this.annotation.getNamedParameter(key)));
+				}
+			}
+		}
+		return this.parameters;
 	}
 
 }
