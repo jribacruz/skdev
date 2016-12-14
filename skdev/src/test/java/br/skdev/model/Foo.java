@@ -3,6 +3,7 @@ package br.skdev.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -24,6 +25,7 @@ public class Foo implements Serializable {
 		this.name = name;
 	}
 
+	@JsonIgnore
 	public Set<Bar> getBars() {
 		return bars;
 	}

@@ -60,4 +60,15 @@ public class EMethodProxyTest {
 		// @formatter:on
 	}
 
+	@Test
+	public void test_hasAnnotationJsonIgnore() {
+		EClass eClass = new EClassProxy(this.javaClass);
+		//// @formatter:off
+		Assert.assertTrue(eClass.getMethods()
+				.stream()
+				.filter(eMethod -> eMethod.getName().equals("getBars"))
+				.anyMatch(eMethod -> eMethod.getAnnotations().stream().anyMatch(eAnnotation -> eAnnotation.getName().equals("com.fasterxml.jackson.annotation.JsonIgnore"))));
+		// @formatter:on
+	}
+
 }
