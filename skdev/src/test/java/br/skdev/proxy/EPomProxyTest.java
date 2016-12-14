@@ -36,4 +36,9 @@ public class EPomProxyTest {
 				new Object[] { dependency.getGroupId(), dependency.getArtifactId(), dependency.getVersion() }));
 		System.out.println("Total Dependencies: " + pom.getDependecies().size());
 	}
+	
+	@Test
+	public void testPomParent() {
+		System.out.println(pom.getParent());
+	}
 }

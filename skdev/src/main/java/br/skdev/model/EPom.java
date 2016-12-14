@@ -13,10 +13,20 @@ public class EPom implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	protected EPomParent parent;
+
 	protected Set<EPomDependency> dependecies;
 
 	public EPom() {
 		super();
+	}
+
+	public EPomParent getParent() {
+		return parent;
+	}
+
+	public void setParent(EPomParent parent) {
+		this.parent = parent;
 	}
 
 	public Set<EPomDependency> getDependecies() {

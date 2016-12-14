@@ -14,6 +14,7 @@ import org.xml.sax.SAXException;
 
 import br.skdev.model.EPom;
 import br.skdev.model.EPomDependency;
+import br.skdev.model.EPomParent;
 import br.skdev.parser.XMLParser;
 
 public class EPomProxy extends EPom {
@@ -28,6 +29,32 @@ public class EPomProxy extends EPom {
 	public EPomProxy(File file) throws SAXException, IOException, ParserConfigurationException {
 		super();
 		this.xmlParser = new XMLParser(file, false);
+	}
+
+	@Override
+	public EPomParent getParent() {
+		if (this.parent == null) {
+			this.parent = new EPomParent();
+			List<Node> dependecyNodes = xmlParser.getNodesByXPathExpression("/project/parent");
+			for (Node dependencyNode : dependecyNodes) {
+				NodeList nodeList = dependencyNode.getChildNodes();
+				for (int i = 0; i < nodeList.getLength(); i++) {
+					Node childNode = nodeList.item(i);
+					if (!childNode.getNodeName().equals("#text")) {
+						String nodeName = childNode.getNodeName();
+						String nodeContent = childNode.getTextContent();
+						if (nodeName.equals("groupId")) {
+							this.parent.setGroupId(nodeContent);
+						} else if (nodeName.equals("artifactId")) {
+							this.parent.setArtifactId(nodeContent);
+						} else if (nodeName.equals("version")) {
+							this.parent.setVersion(nodeContent);
+						}
+					}
+				}
+			}
+		}
+		return this.parent;
 	}
 
 	@Override
