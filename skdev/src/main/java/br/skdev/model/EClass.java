@@ -35,7 +35,7 @@ public class EClass implements Serializable, Comparable<EClass> {
 	/**
 	 * 
 	 */
-	protected String packageName;
+	protected EPackage classPackage;
 
 	/**
 	 * 
@@ -72,12 +72,12 @@ public class EClass implements Serializable, Comparable<EClass> {
 		this.fullyQualifiedName = fullyQualifiedName;
 	}
 
-	public String getPackageName() {
-		return packageName;
+	public EPackage getClassPackage() {
+		return classPackage;
 	}
 
-	public void setPackageName(String packageName) {
-		this.packageName = packageName;
+	public void setClassPackage(EPackage classPackage) {
+		this.classPackage = classPackage;
 	}
 
 	public Set<EAttribute> getAttributes() {

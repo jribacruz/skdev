@@ -49,7 +49,7 @@ public class EClassProxyTest {
 	@Test
 	public void test_getPackageName_EClass() {
 		EClass eClass = new EClassProxy(this.javaClass);
-		Assert.assertTrue(eClass.getPackageName().equals("br.skdev.model"));
+		Assert.assertTrue(eClass.getClassPackage().getName().equals("br.skdev.model"));
 	}
 
 	@Test

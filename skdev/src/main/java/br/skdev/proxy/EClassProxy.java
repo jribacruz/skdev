@@ -10,6 +10,7 @@ import br.skdev.model.EAnnotation;
 import br.skdev.model.EAttribute;
 import br.skdev.model.EClass;
 import br.skdev.model.EMethod;
+import br.skdev.model.EPackage;
 
 /**
  * Classe de proxy de EClass
@@ -48,11 +49,11 @@ public class EClassProxy extends EClass {
 	}
 
 	@Override
-	public String getPackageName() {
-		if (this.packageName == null) {
-			this.packageName = this.javaClass.getPackageName();
+	public EPackage getClassPackage() {
+		if (this.classPackage == null) {
+			this.classPackage = new EPackageProxy(javaClass.getPackage());
 		}
-		return this.packageName;
+		return this.classPackage;
 	}
 
 	@Override
