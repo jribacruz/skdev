@@ -1,7 +1,12 @@
 package br.skdev.proxy;
 
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.thoughtworks.qdox.model.JavaParameter;
 
+import br.skdev.model.EAnnotation;
 import br.skdev.model.EMethodParameter;
 import lombok.ToString;
 
@@ -34,6 +39,19 @@ public class EMethodParameterProxy extends EMethodParameter {
 			this.type = javaParameter.getType().getValue();
 		}
 		return this.type;
+	}
+
+	@Override
+	public Set<EAnnotation> getAnnotations() {
+		if (this.annotations == null) {
+			//// @formatter:off
+			this.annotations = Arrays.asList(javaParameter.getAnnotations())
+					.stream()
+					.map(EAnnotationProxy::new)
+					.collect(Collectors.toSet());
+			// @formatter:on
+		}
+		return this.annotations;
 	}
 
 }

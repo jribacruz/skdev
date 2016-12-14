@@ -1,6 +1,7 @@
 package br.skdev.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -27,6 +28,11 @@ public class EMethodParameter implements Serializable {
 	 */
 	protected String type;
 
+	/**
+	 * 
+	 */
+	protected Set<EAnnotation> annotations;
+
 	public EMethodParameter() {
 		super();
 	}
@@ -45,6 +51,14 @@ public class EMethodParameter implements Serializable {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public Set<EAnnotation> getAnnotations() {
+		return annotations;
+	}
+
+	public void setAnnotations(Set<EAnnotation> annotations) {
+		this.annotations = annotations;
 	}
 
 }

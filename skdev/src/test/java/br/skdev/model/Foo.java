@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonAppend.Attr;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Foo implements Serializable {
@@ -21,7 +22,7 @@ public class Foo implements Serializable {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(@Attr("name1") String name) {
 		this.name = name;
 	}
 
