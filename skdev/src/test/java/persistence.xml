@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+	<!-- If you are using JBoss AS7 with non JTA transaction then use this persistence-unit !-->
+	 
+	 
+	<persistence-unit name="sduDS" transaction-type="RESOURCE_LOCAL">
+		<non-jta-data-source>java:jboss/datasources/sduDS</non-jta-data-source>
+		<class>br.jus.tre_pa.sdu.domain.EmpresaTransportadora</class>
+		<class>br.jus.tre_pa.sdu.domain.Movimentacao</class>
+		<class>br.jus.tre_pa.sdu.domain.Evento</class>
+		<class>br.jus.tre_pa.sdu.domain.Guia</class>
+		<class>br.jus.tre_pa.sdu.domain.ItemMovimentacao</class>
+		<class>br.jus.tre_pa.sdu.domain.Lacre</class>
+		<class>br.jus.tre_pa.sdu.domain.Local</class>
+		<class>br.jus.tre_pa.sdu.domain.Material</class>
+		<class>br.jus.tre_pa.sdu.domain.ResponsavelLocal</class>
+		<class>br.jus.tre_pa.sdu.domain.Pendencia</class>
+		<class>br.jus.tre_pa.sdu.domain.views.VwEstoque</class>
+		<!-- <class>br.jus.tre_pa.sdu.domain.Urna</class> -->
+		
+		<!-- 
+		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+		 -->
+		<properties>
+			<property name="hibernate.format_sql" value="true" />
+			 
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			
+		
+			<!-- PROPRIEDADES DO CACHE DE 2 NIVEL (INFINISPAN) 
+			<property name="hibernate.cache.use_second_level_cache" value="true" />
+			<property name="hibernate.cache.use_query_cache" value="true" />
+			<property name="hibernate.cache.region.factory_class" value="org.jboss.as.jpa.hibernate4.infinispan.InfinispanRegionFactory"/>
+			<property name="hibernate.cache.infinispan.cachemanager" value="java:jboss/infinispan/container/hibernate" />
+			<property name="hibernate.cache.infinispan.statistics" value="true"/>
+			
+			-->
+		</properties>
+		
+		
+		 
+  </persistence-unit>
+	
+ 
+
+</persistence>
