@@ -31,27 +31,34 @@ public class EClassProxyTest {
 	}
 
 	@Test
-	public void test_getName_EClass() throws FileNotFoundException, IOException {
+	public void test_getName_EClass() {
 		EClass eClass = new EClassProxy(this.javaClass);
 		Assert.assertTrue(eClass.getName().equals("Foo"));
 	}
 
 	@Test
-	public void test_getFullyQualifiedName_EClass() throws FileNotFoundException, IOException {
+	public void test_getFullyQualifiedName_EClass() {
 		EClass eClass = new EClassProxy(this.javaClass);
 		Assert.assertTrue(eClass.getFullyQualifiedName().equals("br.skdev.model.Foo"));
 	}
 
 	@Test
-	public void test_getPackageName_EClass() throws FileNotFoundException, IOException {
+	public void test_getPackageName_EClass() {
 		EClass eClass = new EClassProxy(this.javaClass);
 		Assert.assertTrue(eClass.getPackageName().equals("br.skdev.model"));
 	}
 
 	@Test
-	public void test_getAttributes_EClass() throws FileNotFoundException, IOException {
+	public void test_getAttributes_EClass() {
 		EClass eClass = new EClassProxy(this.javaClass);
 		Assert.assertTrue(eClass.getAttributes().size() == 3);
+	}
+
+	@Test
+	public void test_hasAnnotationJsonIgnoreProperties() {
+		EClass eClass = new EClassProxy(this.javaClass);
+		Assert.assertTrue(eClass.getAnnotations().stream().anyMatch(
+				eAnnotation -> eAnnotation.getName().equals("com.fasterxml.jackson.annotation.JsonIgnoreProperties")));
 	}
 
 }

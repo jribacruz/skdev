@@ -3,6 +3,9 @@ package br.skdev.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties
 public class Foo implements Serializable {
 	/**
 	 * 

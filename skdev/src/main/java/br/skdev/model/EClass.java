@@ -47,6 +47,11 @@ public class EClass implements Serializable, Comparable<EClass> {
 	 */
 	protected Set<EMethod> methods;
 
+	/**
+	 * 
+	 */
+	protected Set<EAnnotation> annotations;
+
 	public EClass() {
 		super();
 	}
@@ -89,6 +94,14 @@ public class EClass implements Serializable, Comparable<EClass> {
 
 	public void setMethods(Set<EMethod> methods) {
 		this.methods = methods;
+	}
+
+	public Set<EAnnotation> getAnnotations() {
+		return annotations;
+	}
+
+	public void setAnnotations(Set<EAnnotation> annotations) {
+		this.annotations = annotations;
 	}
 
 	@Override

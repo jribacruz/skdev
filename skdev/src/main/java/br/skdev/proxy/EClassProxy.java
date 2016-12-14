@@ -1,13 +1,12 @@
 package br.skdev.proxy;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.thoughtworks.qdox.model.JavaClass;
 
+import br.skdev.model.EAnnotation;
 import br.skdev.model.EAttribute;
 import br.skdev.model.EClass;
 import br.skdev.model.EMethod;
@@ -27,7 +26,7 @@ public class EClassProxy extends EClass {
 
 	private JavaClass javaClass;
 
-	public EClassProxy(JavaClass javaClass) throws FileNotFoundException, IOException {
+	public EClassProxy(JavaClass javaClass) {
 		super();
 		this.javaClass = javaClass;
 	}
@@ -82,6 +81,19 @@ public class EClassProxy extends EClass {
 
 		}
 		return this.methods;
+	}
+
+	@Override
+	public Set<EAnnotation> getAnnotations() {
+		if (this.annotations == null) {
+			//// @formatter:off
+			this.annotations = Arrays.asList(javaClass.getAnnotations())
+					.stream()
+					.map(EAnnotationProxy::new)
+					.collect(Collectors.toSet());
+			// @formatter:on
+		}
+		return this.annotations;
 	}
 
 }
