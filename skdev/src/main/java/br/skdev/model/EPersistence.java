@@ -1,6 +1,7 @@
 package br.skdev.model;
 
 import java.io.Serializable;
+import java.util.Map;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -15,12 +16,22 @@ public class EPersistence implements Serializable {
 
 	protected Set<String> classes;
 
+	protected Map<String, String> properties;
+
 	public Set<String> getClasses() {
 		return classes;
 	}
 
 	public void setClasses(Set<String> classes) {
 		this.classes = classes;
+	}
+
+	public Map<String, String> getProperties() {
+		return properties;
+	}
+
+	public void setProperties(Map<String, String> properties) {
+		this.properties = properties;
 	}
 
 }

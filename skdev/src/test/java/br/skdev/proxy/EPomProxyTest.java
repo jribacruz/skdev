@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,10 +36,12 @@ public class EPomProxyTest {
 		pom.getDependecies().forEach(dependency -> log.info("groupId: {}, artifiactId: {}, version: {}",
 				new Object[] { dependency.getGroupId(), dependency.getArtifactId(), dependency.getVersion() }));
 		System.out.println("Total Dependencies: " + pom.getDependecies().size());
+		Assert.assertFalse(pom.getDependecies().isEmpty());
 	}
-	
+
 	@Test
 	public void testPomParent() {
 		System.out.println(pom.getParent());
+		Assert.assertTrue(pom.getParent().getArtifactId().equals("spring-boot-starter-parent"));
 	}
 }

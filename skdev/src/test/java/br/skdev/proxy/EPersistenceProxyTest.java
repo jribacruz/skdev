@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,6 +35,13 @@ public class EPersistenceProxyTest {
 	public void testPersistenceClasses() {
 		persistence.getClasses().forEach(klass -> log.info("Class: {}", klass));
 		System.out.println("Total Dependencies: " + persistence.getClasses().size());
+		Assert.assertFalse(persistence.getClasses().isEmpty());
+	}
+
+	@Test
+	public void testPersistenceProperties() {
+		persistence.getProperties().forEach((k, v) -> log.info("[testPersistenceProperties] key: {}, value: {}", k, v));
+		Assert.assertFalse(persistence.getProperties().isEmpty());
 	}
 
 }

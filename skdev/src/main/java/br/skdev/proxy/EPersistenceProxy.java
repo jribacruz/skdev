@@ -2,6 +2,7 @@ package br.skdev.proxy;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,7 +19,7 @@ public class EPersistenceProxy extends EPersistence {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private XMLParser xmlParser;
 
 	public EPersistenceProxy(File file) throws SAXException, IOException, ParserConfigurationException {
@@ -37,6 +38,23 @@ public class EPersistenceProxy extends EPersistence {
 			// @formatter:on
 		}
 		return this.classes;
+	}
+
+	@Override
+	public Map<String, String> getProperties() {
+		if(this.properties == null) {
+			//// @formatter:off
+			this.properties =  xmlParser.getNodesByXPathExpression("//property")
+					.stream()
+					.collect(
+							Collectors.toMap(
+									node -> node.getAttributes().getNamedItem("name").getNodeValue(), 
+									node -> node.getAttributes().getNamedItem("value").getNodeValue()
+									)
+							);
+			// @formatter:on
+		}
+		return this.properties;
 	}
 
 }
