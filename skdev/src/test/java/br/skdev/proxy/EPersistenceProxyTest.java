@@ -34,7 +34,7 @@ public class EPersistenceProxyTest {
 	@Test
 	public void testPersistenceClasses() {
 		persistence.getClasses().forEach(klass -> log.info("Class: {}", klass));
-		System.out.println("Total Dependencies: " + persistence.getClasses().size());
+		System.out.println("Total Classes: " + persistence.getClasses().size());
 		Assert.assertFalse(persistence.getClasses().isEmpty());
 	}
 
@@ -42,6 +42,16 @@ public class EPersistenceProxyTest {
 	public void testPersistenceProperties() {
 		persistence.getProperties().forEach((k, v) -> log.info("[testPersistenceProperties] key: {}, value: {}", k, v));
 		Assert.assertFalse(persistence.getProperties().isEmpty());
+	}
+	
+	@Test
+	public void testPersistenceUnitName() {
+		Assert.assertTrue(persistence.getPersistenceUnitName().equals("sduDS"));
+	}
+	
+	@Test
+	public void testPersistenceUnitTransactionType() {
+		Assert.assertTrue(persistence.getPersistenceUnitTransactionType().equals("RESOURCE_LOCAL"));
 	}
 
 }
