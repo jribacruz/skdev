@@ -1,19 +1,15 @@
 package br.skdev.core.service;
 
 import java.util.Map;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.skdev.core.action.Action;
-import br.skdev.core.action.ActionRegistry;
-import br.skdev.core.component.ActionDialog;
-import br.skdev.core.context.UIComponentContext;
-import br.skdev.core.context.WorkspaceContext;
-import br.skdev.core.impl.UIComponentContextImpl;
+import br.skdev.core.annotation.Action;
+import br.skdev.repository.ActionRepository;
 
 @Service
 public class ActionService {
@@ -21,25 +17,15 @@ public class ActionService {
 	private Logger log = LoggerFactory.getLogger(ActionService.class);
 
 	@Autowired
-	private ActionRegistry actionRegistry;
+	private ActionRepository actionRepository;
 
-	@Autowired
-	private WorkspaceContext workspaceContext;
-
-	public Set<Map<String, String>> findAllActionsHeaders() {
-		log.info("[findAllActions] Buscando actions do sistema");
-		return actionRegistry.findAllActionHeaders();
-
-	}
-
-	public ActionDialog findActionDialog(String id) {
-		return this.actionRegistry.findActionDialogById(id);
-	}
-
-	public void executeAction(String id, Map<String, Object> data) {
-		Action action = actionRegistry.findActionById(id);
-		UIComponentContext ctx = new UIComponentContextImpl(workspaceContext.getJavaProject(),
-				actionRegistry.findActionDialogById(id).getComponentMap(), data);
-		action.execute(ctx);
+	public Map<String, String> findAllActionDescription() {
+		//// @formatter:off
+		return this.actionRepository.findAll()
+					.stream()
+					.collect(Collectors.toMap(
+							action -> action.getClass().getSimpleName(), 
+							action -> action.getClass().getAnnotation(Action.class).description()));
+		// @formatter:on
 	}
 }

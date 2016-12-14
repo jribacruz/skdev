@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import br.skdev.core.action.Action;
+import br.skdev.core.action.ActionHandler;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -20,7 +20,7 @@ public class ActionRepositoyTest {
 
 	@Test
 	public void testFindByName() {
-		Optional<Action> action = actionRepository.findByClassName("TestAction");
+		Optional<ActionHandler> action = actionRepository.findByClassName("TestAction");
 		Assert.assertTrue(action.isPresent());
 	}
 

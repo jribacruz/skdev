@@ -3,6 +3,7 @@ package br.skdev.repository;
 import java.io.Serializable;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -10,7 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import br.skdev.core.action.Action;
+import br.skdev.core.action.ActionHandler;
+import br.skdev.core.annotation.Action;
 
 @Repository
 public class ActionRepository implements Serializable {
@@ -26,7 +28,7 @@ public class ActionRepository implements Serializable {
 	 * Conjunto de todas as ações do sistema.
 	 */
 	@Inject
-	private Set<Action> actions;
+	private Set<ActionHandler> actions;
 
 	/**
 	 * Retorna uma action pelo nome.
@@ -35,13 +37,28 @@ public class ActionRepository implements Serializable {
 	 *            Name da action.
 	 * @return
 	 */
-	public Optional<Action> findByClassName(String name) {
+	public Optional<ActionHandler> findByClassName(String name) {
 		log.info("[findByClassName] name={}", name);
 		//// @formatter:off
 		return actions
 				.stream()
+				.filter(action -> action.getClass().isAnnotationPresent(Action.class))
 				.filter(action -> action.getClass().getSimpleName().equals(name))
 				.findFirst();
+		// @formatter:on
+	}
+
+	/**
+	 * Retorna todas as actions do sistema.
+	 * 
+	 * @return
+	 */
+	public Set<ActionHandler> findAll() {
+		//// @formatter:off
+		return this.actions
+				.stream()
+				.filter(action -> action.getClass().isAnnotationPresent(Action.class))
+				.collect(Collectors.toSet());
 		// @formatter:on
 	}
 }

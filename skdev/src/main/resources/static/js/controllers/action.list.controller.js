@@ -19,7 +19,7 @@
 		/**
 		 * Lista de actions;
 		 */
-		self.actions = [];
+		self.actions = {};
 		
 		/**
 		 * 

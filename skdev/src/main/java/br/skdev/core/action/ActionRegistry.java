@@ -19,6 +19,6 @@ public interface ActionRegistry extends Serializable {
 
 	public ActionDialog findActionDialogById(String id);
 
-	public Action findActionById(String id);
+	public ActionHandler findActionById(String id);
 
 }
