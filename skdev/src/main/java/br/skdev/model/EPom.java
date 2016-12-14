@@ -13,7 +13,7 @@ public class EPom implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Set<EPomDependency> dependecies;
+	protected Set<EPomDependency> dependecies;
 
 	public EPom() {
 		super();
