@@ -15,7 +15,7 @@
 	function HttpSV($log, $http, $location) {
 		$log.debug('[HttpSV] Inicializando... ');
 		
-		var context = 'http://' + $location.host() + ':' + $location.port() + '/skdev/api';
+		var context = format('http://{}:{}/skdev/api',$location.host(),$location.port());
 
 		var dataHandlers = {};
 
@@ -56,9 +56,10 @@
 		
 		function buildUrlRequest(id,options) {
 			var pathParams = options['pathParams'] || {};
-			//console.log(dataHandlers[id].url);
-			//console.log(pathParams);
-			//console.log(format('http://localhost:8080/skdev/api/project/domain/classes/{id}', pathParams));
+			// console.log(dataHandlers[id].url);
+			// console.log(pathParams);
+			// console.log(format('http://localhost:8080/skdev/api/project/domain/classes/{id}',
+			// pathParams));
 			var url = format(dataHandlers[id].url,pathParams);
 			return url;
 		}
