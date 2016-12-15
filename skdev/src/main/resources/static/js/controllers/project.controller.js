@@ -27,12 +27,12 @@
 
 		self.loaders = HttpSV.registerLoaders(["domainClasses:/project/domain/classes:true"]);
 		
+		/*
 		var queryParams = {
-			id: '123'
 		}
 		
 		console.log('Hello, {id}!'.format(queryParams));
-		
+		*/
 		/**
 		 * 
 		 */
