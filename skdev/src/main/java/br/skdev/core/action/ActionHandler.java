@@ -3,7 +3,6 @@ package br.skdev.core.action;
 import java.io.Serializable;
 
 import br.skdev.core.annotation.Action;
-import br.skdev.core.context.UIComponentContext;
 import strman.Strman;
 
 /**
@@ -16,7 +15,7 @@ public interface ActionHandler extends Serializable {
 	/**
 	 * 
 	 */
-	public abstract void execute(UIComponentContext ctx);
+	public abstract void execute();
 
 	public default String getId() {
 		if (this.getClass().isAnnotationPresent(Action.class)) {
