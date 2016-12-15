@@ -1,7 +1,14 @@
 package br.skdev.core.action;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
+
+import org.commonmark.node.Node;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
+import org.springframework.core.io.ClassPathResource;
 
 import br.skdev.core.annotation.Action;
 import strman.Strman;
@@ -33,6 +40,16 @@ public interface ActionHandler extends Serializable {
 
 	public default String getComponent() throws IOException {
 		return String.format("/actions/%s/component.html", getId());
+	}
+	
+	public default String getSuccess() throws IOException {
+		ClassPathResource classPathResource = new ClassPathResource(String.format("/static/actions/%s/success.md", getId()));
+		File file = classPathResource.getFile();
+		FileReader fileReader = new FileReader(file);
+		Parser parser = Parser.builder().build();
+		Node document = parser.parseReader(fileReader);
+		HtmlRenderer renderer = HtmlRenderer.builder().build();
+		return renderer.render(document);
 	}
 
 }
