@@ -28,4 +28,10 @@ public @interface Action {
 	 * @return
 	 */
 	String group() default "";
+
+	/**
+	 * 
+	 * @return
+	 */
+	String id() default "";
 }

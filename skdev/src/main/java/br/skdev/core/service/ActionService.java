@@ -24,7 +24,7 @@ public class ActionService {
 		return this.actionRepository.findAll()
 					.stream()
 					.collect(Collectors.toMap(
-							action -> action.getClass().getSimpleName(), 
+							action -> action.getId(), 
 							action -> action.getClass().getAnnotation(Action.class).description()));
 		// @formatter:on
 	}
