@@ -9,6 +9,8 @@ import org.springframework.core.io.ClassPathResource;
 
 import br.skdev.core.action.ActionHandler;
 import br.skdev.core.annotation.Action;
+import br.skdev.core.component.ComponentType;
+import br.skdev.core.context.ComponentContext;
 
 /**
  * 
@@ -42,6 +44,10 @@ public class TestAction implements ActionHandler {
 		} finally {
 
 		}
+
+		ComponentContext ctx = null;
+
+		ctx.value("selectOneClass", ComponentType.SelectOneEClass);
 
 	}
 

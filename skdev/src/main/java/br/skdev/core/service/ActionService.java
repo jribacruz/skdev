@@ -1,6 +1,7 @@
 package br.skdev.core.service;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.skdev.core.action.ActionHandler;
 import br.skdev.core.annotation.Action;
 import br.skdev.repository.ActionRepository;
 
@@ -27,5 +29,9 @@ public class ActionService {
 							action -> action.getId(), 
 							action -> action.getClass().getAnnotation(Action.class).description()));
 		// @formatter:on
+	}
+
+	public Optional<ActionHandler> findById(String id) {
+		return this.actionRepository.findById(id);
 	}
 }

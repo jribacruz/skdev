@@ -1,5 +1,6 @@
 package br.skdev.core.action;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import br.skdev.core.annotation.Action;
@@ -23,7 +24,15 @@ public interface ActionHandler extends Serializable {
 				return this.getClass().getAnnotation(Action.class).id();
 			}
 		}
-		return Strman.toDecamelize(this.getClass().getSimpleName(), ".");
+		return Strman.toCamelCase(this.getClass().getSimpleName());
+	}
+
+	public default String getConfig() throws IOException {
+		return String.format("/actions/%s/config.json", getId());
+	}
+
+	public default String getComponent() throws IOException {
+		return String.format("/actions/%s/component.html", getId());
 	}
 
 }

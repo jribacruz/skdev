@@ -20,7 +20,7 @@ public class ActionRepositoyTest {
 
 	@Test
 	public void testFindByName() {
-		Optional<ActionHandler> action = actionRepository.findByClassName("TestAction");
+		Optional<ActionHandler> action = actionRepository.findById("TestAction");
 		Assert.assertTrue(action.isPresent());
 	}
 

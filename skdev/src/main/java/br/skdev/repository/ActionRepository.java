@@ -33,17 +33,17 @@ public class ActionRepository implements Serializable {
 	/**
 	 * Retorna uma action pelo nome.
 	 * 
-	 * @param name
+	 * @param id
 	 *            Name da action.
 	 * @return
 	 */
-	public Optional<ActionHandler> findByClassName(String name) {
-		log.info("[findByClassName] name={}", name);
+	public Optional<ActionHandler> findById(String id) {
+		log.info("[findByClassName] name={}", id);
 		//// @formatter:off
 		return actions
 				.stream()
 				.filter(action -> action.getClass().isAnnotationPresent(Action.class))
-				.filter(action -> action.getClass().getSimpleName().equals(name))
+				.filter(action -> action.getId().equals(id))
 				.findFirst();
 		// @formatter:on
 	}
