@@ -3,7 +3,8 @@
 
 	angular.module('skdevMD').controller('ProjectCT', ProjectCT);
 
-	ProjectCT.$inject = [ '$scope', '$log', 'ProjectSV', '$mdDialog', '$http', 'HttpSV' ];
+	ProjectCT.$inject = [ '$scope', '$log', 'ProjectSV', '$mdDialog', '$http',
+			'HttpSV' ];
 
 	/**
 	 * 
@@ -25,20 +26,9 @@
 
 		self.findAllDomainClasses = findAllDomainClasses;
 
-		//self.loaders = HttpSV.registerLoaders(["domainClasses:/project/domain/classes:true"]);
-		
-		//console.log("=====");
-		
-		self.dataHandler = HttpSV.registerDataHandlers(["domainClasses:/project/domain/classes/{id}:true"]);
-		
-		//console.log(self.dataHandler);
-		
-		/*
-		var queryParams = {
-		}
-		
-		console.log('Hello, {id}!'.format(queryParams));
-		*/
+		self.$dh = HttpSV
+				.$dh([ "domainClasses:/project/domain/classes/{id}:true" ]);
+
 		/**
 		 * 
 		 */

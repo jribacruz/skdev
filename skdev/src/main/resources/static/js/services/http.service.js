@@ -21,7 +21,7 @@
 
 		var service = {
 			get : get,
-			registerDataHandlers: registerDataHandlers
+			$dh: $dh
 		}
 		
 
@@ -94,7 +94,7 @@
 		/**
 		 * 
 		 */
-		function registerDataHandlers(dataHandlerArray) {
+		function $dh(dataHandlerArray) {
 			angular.forEach(dataHandlerArray, function(dataHandler) {
 				var dataHandlerTokens = dataHandler.split(':');
 				var id = dataHandlerTokens[0];

@@ -23,11 +23,11 @@
 					      md-whiteframe="4"
 					      style="height:100%"
 						  flex="" >
-						<md-subheader class="md-primary">Classes de Domínio <span ng-show="projectCT.dataHandler['domainClasses'].data.length > 0">({{projectCT.dataHandler['domainClasses'].data.length}})</span></md-subheader>
+						<md-subheader class="md-primary">Classes de Domínio <span ng-show="projectCT.$dh['domainClasses'].data.length > 0">({{projectCT.$dh['domainClasses'].data.length}})</span></md-subheader>
 						<md-content flex="">
-							 <md-progress-linear class="md-warn" md-mode="indeterminate" ng-show="projectCT.dataHandler['domainClasses'].loader"></md-progress-linear>
+							 <md-progress-linear class="md-warn" md-mode="indeterminate" ng-show="projectCT.$dh['domainClasses'].loader"></md-progress-linear>
 							 <md-list flex="" class="md-dense">
-						        <md-list-item  ng-repeat="domainClass in projectCT.dataHandler['domainClasses'].data | orderBy: 'name'">
+						        <md-list-item  ng-repeat="domainClass in projectCT.$dh['domainClasses'].data | orderBy: 'name'">
 						            <md-icon md-font-icon="material-icons">copyright</md-icon>
 						            <p>{{ domainClass.name }}</p>
 						        </md-list-item>
