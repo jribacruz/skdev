@@ -3,15 +3,16 @@
 
 	angular.module('skdevMD').controller('ProjectCT', ProjectCT);
 
-	ProjectCT.$inject = [ '$scope', '$log', 'ProjectSV', '$mdDialog', '$http',
-			'HttpSV' ];
+	ProjectCT.$inject = [ '$scope', '$log', 'ProjectSV', '$mdDialog', '$http', 'HttpSV' ];
 
 	/**
 	 * 
 	 * @param $scope
 	 * @param $log
-	 * @param $timeout
-	 * @param IndexSV
+	 * @param ProjectSV
+	 * @param $mdDialog
+	 * @param $http
+	 * @param HttpSV
 	 * @returns
 	 */
 	function ProjectCT($scope, $log, ProjectSV, $mdDialog, $http, HttpSV) {

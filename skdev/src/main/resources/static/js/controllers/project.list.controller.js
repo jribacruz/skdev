@@ -9,8 +9,8 @@
 	 * 
 	 * @param $scope
 	 * @param $log
-	 * @param $timeout
-	 * @param IndexSV
+	 * @param $mdDialog
+	 * @param HttpSV
 	 * @returns
 	 */
 	function ProjectListCT($scope, $log, $mdDialog, HttpSV) {
@@ -18,7 +18,7 @@
 		var self = this;
 
 		self.projects = HttpSV.$dh('projects');
-		
+
 		HttpSV.get('projects');
 	}
 })();

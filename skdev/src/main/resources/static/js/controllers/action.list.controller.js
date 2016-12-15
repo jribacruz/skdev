@@ -10,6 +10,8 @@
 	 * @param $scope
 	 * @param $log
 	 * @param $http
+	 * @param $mdDialog
+	 * @param HttpSV
 	 * @returns
 	 */
 	function ActionListCT($scope, $log, $http, $mdDialog, HttpSV) {
@@ -47,22 +49,15 @@
 					id : id
 				}
 			});
-			
+
 			/*
-			$http.get('http://localhost:8080/skdev/api/actions/' + id).success(
-					function(data) {
-						$mdDialog.show({
-							parent : angular.element(document.body),
-							template : data.template,
-							clickOutsideToClose : false,
-							controller : 'ActionCT',
-							controllerAs : 'actionCT',
-							locals : {
-								actionDialog : data,
-								actionId : id
-							}
-						});
-					});*/
+			 * $http.get('http://localhost:8080/skdev/api/actions/' +
+			 * id).success( function(data) { $mdDialog.show({ parent :
+			 * angular.element(document.body), template : data.template,
+			 * clickOutsideToClose : false, controller : 'ActionCT',
+			 * controllerAs : 'actionCT', locals : { actionDialog : data,
+			 * actionId : id } }); });
+			 */
 		}
 
 	}

@@ -10,6 +10,10 @@
 	 * @param $scope
 	 * @param $log
 	 * @param $http
+	 * @param $mdDialog
+	 * @param actionDialog
+	 * @param actionId
+	 * @param $mdToast
 	 * @returns
 	 */
 	function ActionCT($scope, $log, $http, $mdDialog, actionDialog, actionId, $mdToast) {
