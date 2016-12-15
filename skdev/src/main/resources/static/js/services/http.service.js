@@ -32,7 +32,7 @@
 		 */
 		function get(id, options) {
 			
-			$log.debug('[HttpSV] Method=GET, id='+id+', options='+JSON.stringify(options));
+			$log.debug(format('[HttpSV] Method=GET, id={}, options={}', id,JSON.stringify(options)));
 			
 			dataHandlers[id].loader = true;
 			options = options || {};
@@ -56,10 +56,6 @@
 		
 		function buildUrlRequest(id,options) {
 			var pathParams = options['pathParams'] || {};
-			// console.log(dataHandlers[id].url);
-			// console.log(pathParams);
-			// console.log(format('http://localhost:8080/skdev/api/project/domain/classes/{id}',
-			// pathParams));
 			var url = format(dataHandlers[id].url,pathParams);
 			return url;
 		}
