@@ -29,7 +29,7 @@
 		
 		//console.log("=====");
 		
-		self.dataHandler = HttpSV.registerDataHandlers(["domainClasses:/project/domain/classes:true"]);
+		self.dataHandler = HttpSV.registerDataHandlers(["domainClasses:/project/domain/classes/{id}:true"]);
 		
 		//console.log(self.dataHandler);
 		

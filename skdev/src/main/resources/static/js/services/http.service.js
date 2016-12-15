@@ -32,7 +32,10 @@
 		 */
 		function get(id, options) {
 			
+			$log.debug('[HttpSV] Method=GET, id='+id+', options='+JSON.stringify(options));
+			
 			dataHandlers[id].loader = true;
+			options = options || {};
 			var urlRequest = buildUrlRequest(id, options);
 			
 			return $http.get(urlRequest)
@@ -52,7 +55,12 @@
 		}
 		
 		function buildUrlRequest(id,options) {
-			return dataHandlers[id].url;
+			var pathParams = options['pathParams'] || {};
+			//console.log(dataHandlers[id].url);
+			//console.log(pathParams);
+			//console.log(format('http://localhost:8080/skdev/api/project/domain/classes/{id}', pathParams));
+			var url = format(dataHandlers[id].url,pathParams);
+			return url;
 		}
 		
 		/**
