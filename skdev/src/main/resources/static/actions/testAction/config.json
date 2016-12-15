@@ -1,6 +1,11 @@
 {
-	"selectDomainClassId": {
-		"optionsEndpoint": "/api/project/domain/classes",
-		"componentType": "SelectOneEClass"
+	"actionSuccess": {
+		"showOnSuccessExecute": true
+	},
+	"actionComponents": {
+		"selectDomainClassId": {
+			"optionsEndpoint": "/api/project/domain/classes",
+			"componentType": "SelectOneEClass"
+		}
 	}
 }

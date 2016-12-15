@@ -44,9 +44,9 @@
 		}
 		
 		function loadOptions() {
-			angular.forEach(self.config, function(itemConfig, id) {
-				if(itemConfig['optionsEndpoint']) {
-					$http.get(format('{}{}', context, itemConfig['optionsEndpoint']))
+			angular.forEach(self.config.actionComponents, function(actionComponentItem, id) {
+				if(actionComponentItem['optionsEndpoint']) {
+					$http.get(format('{}{}', context, actionComponentItem['optionsEndpoint']))
 						.success(function(data) {
 							self.options[id] = data;
 						});
