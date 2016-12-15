@@ -59,22 +59,15 @@
 		 * 
 		 */
 		function registerDataHandlers(dataHandlerArray) {
-			// console.log("[registerDataHandlers] Begin..");
 			angular.forEach(dataHandlerArray, function(dataHandler) {
 				var dataHandlerTokens = dataHandler.split(':');
-				// console.log(dataHandlerTokens)
 				var id = dataHandlerTokens[0];
 				var url = dataHandlerTokens[1];
-				// console.log('1')
 				var defaultLoaderState = angular.isDefined(dataHandlerTokens[2]) ? dataHandlerTokens[2] === 'true': false;
-				// console.log('2')
 				dataHandlers[id] = {};
 				dataHandlers[id].url = context+url;
-				// console.log('3')
 				dataHandlers[id].loader = defaultLoaderState;
-				// console.log('4')
 			});
-			// console.log("[registerDataHandlers] End.. " + dataHandlers);
 			return dataHandlers;
 		}
 		
