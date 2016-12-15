@@ -58,7 +58,7 @@
 					controller : 'ActionCT',
 					controllerAs : 'actionCT',
 					locals : {
-						actionDialog : data,
+						actionData : data,
 						actionId : id
 					}
 				});

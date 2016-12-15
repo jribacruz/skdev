@@ -1,0 +1,6 @@
+{
+	"selectDomainClassId": {
+		"optionsEndpoint": "/api/project/domain/classes",
+		"componentType": "SelectOneEClass"
+	}
+}

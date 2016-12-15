@@ -6,6 +6,14 @@
 			</div>
 		</md-toolbar>
 		<md-dialog-content flex class="md-dialog-content">
+			<md-input-container class="md-block">
+				<label>Selecione a classe de dominio</label>
+				<md-select ng-model="actionCT.values['selectDomainClassId']">
+					<md-option ng-repeat="option in actionCT.options['selectDomainClassId']" ng-value="option.name">
+						{{option.name}}
+					</md-option>
+				</md-select>
+			</md-input-container>
 		</md-dialog-content>
 		<md-dialog-actions>
 			<md-button class="md-primary" ng-disabled="actionForm.$invalid" ng-click="actionCT.execute()">Executar</md-button>
