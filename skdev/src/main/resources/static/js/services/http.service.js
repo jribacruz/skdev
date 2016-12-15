@@ -32,11 +32,11 @@
 		 */
 		function get(id, options) {
 			
-			$log.debug(format('[HttpSV] Method=GET, id={}, options={}', id,JSON.stringify(options)));
+			$log.debug(format('[HttpSV] Method=GET, URL={} , id={}, options={}', dataHandlers[id].url ,id,JSON.stringify(options)));
 			
 			dataHandlers[id].loader = true;
 			options = options || {};
-			var urlRequest = buildUrlRequest(id, options);
+			var urlRequest = _buildUrlRequest(id, options);
 			
 			return $http.get(urlRequest)
 				.then(httpComplete)
@@ -54,9 +54,40 @@
 			}
 		}
 		
-		function buildUrlRequest(id,options) {
+		/**
+		 * 
+		 */
+		function _buildUrlRequest(id,options) {
+			var url = dataHandlers[id].url;
+			url = _buildUrlPathParams(url,options);
+			$log.debug(format('[HttpSV] buildUrlPathParams={}',url));
+			url = _buildUrlQueryParams(url,options);
+			$log.debug(format('[HttpSV] buildUrlQueryParams={}',url));
+			return url;
+		}
+		
+		/**
+		 * 
+		 */
+		function _buildUrlPathParams(url,options) {
 			var pathParams = options['pathParams'] || {};
-			var url = format(dataHandlers[id].url,pathParams);
+			return format(url,pathParams);
+		}
+		
+		/**
+		 * 
+		 */
+		function _buildUrlQueryParams(url,options) {
+			if(options['queryParams']) {
+				var qArray = [];
+				angular.forEach(options.queryParams, function(qryParam, id) {
+					qArray.push(format('{}={}', id, qryParam));
+				});
+				if(url.endsWith('/')) {
+					return format('{}{}',url,qArray.join('&'));
+				}
+				return format('{}/{}',url,qArray.join('&'));
+			}
 			return url;
 		}
 		
