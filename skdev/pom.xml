@@ -93,17 +93,16 @@
 			<artifactId>freemarker</artifactId>
 			<version>2.3.20</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.webjars.npm/string-template -->
-		<dependency>
-			<groupId>org.webjars.npm</groupId>
-			<artifactId>string-template</artifactId>
-			<version>1.0.0</version>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok-maven -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.16.12</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.npm</groupId>
+			<artifactId>string-format</artifactId>
+			<version>0.5.0</version>
 		</dependency>
 	</dependencies>
 

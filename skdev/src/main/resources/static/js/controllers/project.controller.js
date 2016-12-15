@@ -3,17 +3,17 @@
 
 	angular.module('skdevMD').controller('ProjectCT', ProjectCT);
 
-	ProjectCT.$inject = [ '$scope', '$log', 'ProjectSV', '$mdDialog', '$http' ];
+	ProjectCT.$inject = [ '$scope', '$log', 'ProjectSV', '$mdDialog', '$http', 'HttpSV' ];
 
 	/**
-	 *
+	 * 
 	 * @param $scope
 	 * @param $log
 	 * @param $timeout
 	 * @param IndexSV
 	 * @returns
 	 */
-	function ProjectCT($scope, $log, ProjectSV, $mdDialog, $http) {
+	function ProjectCT($scope, $log, ProjectSV, $mdDialog, $http, HttpSV) {
 		$log.debug('[ProjectCT] Inicializando...');
 		var self = this;
 
@@ -25,12 +25,16 @@
 
 		self.findAllDomainClasses = findAllDomainClasses;
 
-		self.loaders = {
-			'domainClasses' : true
+		self.loaders = HttpSV.registerLoaders(["domainClasses:/project/domain/classes:true"]);
+		
+		var queryParams = {
+			id: '123'
 		}
-
+		
+		console.log('Hello, {id}!'.format(queryParams));
+		
 		/**
-		 *
+		 * 
 		 */
 		function init() {
 			self.findAllDomainClasses();
@@ -51,17 +55,14 @@
 		}
 
 		/**
-		 *
+		 * 
 		 */
 		function findAllDomainClasses() {
-			$http.get('http://localhost:8080/skdev/api/project/domain/classes')
-					.success(function(data) {
-						self.domainClasses = data;
-						self.loaders['domainClasses'] = false;
-					})
-					.error(function(response) {
-						self.loaders['domainClasses'] = false;
-					});
+			HttpSV.get('/project/domain/classes', {
+				loader : 'domainClasses'
+			}).then(function(data) {
+				self.domainClasses = data;
+			});
 		}
 
 	}
