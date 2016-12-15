@@ -46,7 +46,7 @@ public class ActionRest {
 		return ResponseEntity.notFound().build();
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, path = "api/actions/{id}/success")
+	@RequestMapping(method = RequestMethod.GET, path = "api/actions/{id}/success", produces="text/html")
 	public ResponseEntity<?> findActionSucceddById(@PathVariable("id") String actionId) throws IOException {
 		Optional<ActionHandler> action = actionService.findById(actionId);
 		if (action.isPresent()) {
