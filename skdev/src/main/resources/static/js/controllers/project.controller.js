@@ -26,8 +26,10 @@
 
 		self.findAllDomainClasses = findAllDomainClasses;
 
-		self.$dh = HttpSV
-				.$dh([ "domainClasses:/project/domain/classes/{id}:true" ]);
+		/*
+		 * Retorna os DataHandlers da applicação.
+		 */
+		self.$dh = HttpSV.$dh();
 
 		/**
 		 * 

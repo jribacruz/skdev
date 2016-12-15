@@ -1,8 +1,18 @@
 (function() {
 	'use strict';
 
-	angular.module("skdevMD", ['ngResource','ngAnimate', 'ngMaterial']).run(function() {
-		//format.extend(String.prototype, {});
-	});
+	startup.$inject = [ '$log', 'HttpSV' ];
+
+	angular.module("skdevMD", [ 'ngResource', 'ngAnimate', 'ngMaterial' ]).run(
+			startup);
+
+	function startup($log, HttpSV) {
+		$log.debug('[skdevMD] Startup App...');
+
+		/*
+		 * Registra os DataHandlers da Applicação.
+		 */
+		HttpSV.$dh([ "domainClasses:/project/domain/classes/{id}:true" ]);
+	}
 
 })();

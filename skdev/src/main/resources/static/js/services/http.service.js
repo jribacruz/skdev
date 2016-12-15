@@ -21,7 +21,7 @@
 
 		var service = {
 			get : get,
-			$dh: $dh
+			$dh: $dh,
 		}
 		
 
@@ -95,15 +95,26 @@
 		 * 
 		 */
 		function $dh(dataHandlerArray) {
-			angular.forEach(dataHandlerArray, function(dataHandler) {
-				var dataHandlerTokens = dataHandler.split(':');
-				var id = dataHandlerTokens[0];
-				var url = dataHandlerTokens[1];
-				var defaultLoaderState = angular.isDefined(dataHandlerTokens[2]) ? dataHandlerTokens[2] === 'true': false;
-				dataHandlers[id] = {};
-				dataHandlers[id].url = context+url;
-				dataHandlers[id].loader = defaultLoaderState;
-			});
+			if(angular.isArray(dataHandlerArray)) {
+				angular.forEach(dataHandlerArray, function(dataHandler) {
+					var dataHandlerTokens = dataHandler.split(':');
+					var id = dataHandlerTokens[0];
+					var url = dataHandlerTokens[1];
+					var defaultLoaderState = angular.isDefined(dataHandlerTokens[2]) ? dataHandlerTokens[2] === 'true': false;
+					dataHandlers[id] = {};
+					dataHandlers[id].url = context+url;
+					dataHandlers[id].loader = defaultLoaderState;
+					$log.debug(format('[HttpSV] register $dh={}', JSON.stringify(dataHandlers[id])));
+				});
+				return dataHandlers;
+			}
+			if(angular.isString(dataHandlerArray)) {
+				if(angular.isDefined(dataHandlers[dataHandlerArray])) {
+					return dataHandlers[dataHandlerArray];
+				}
+				$log.error(format('[httpSV] nenhum dataHandler($dh) encontrado para o id={}', dataHandlerArray));
+				return {};
+			}
 			return dataHandlers;
 		}
 		
