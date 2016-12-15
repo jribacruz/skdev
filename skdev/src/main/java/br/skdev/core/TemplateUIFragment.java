@@ -8,7 +8,6 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.skdev.core.component.base.UIComponent;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
@@ -40,7 +39,8 @@ public class TemplateUIFragment implements Serializable {
 		}
 		return this;
 	}
-
+	
+	/*
 	public <T extends UIComponent> String merge(T componentModel) {
 		Map<String, T> model = new HashMap<>();
 		model.put("component", componentModel);
@@ -57,5 +57,6 @@ public class TemplateUIFragment implements Serializable {
 		}
 		return "";
 	}
+	*/
 
 }
