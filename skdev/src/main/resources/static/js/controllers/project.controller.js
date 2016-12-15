@@ -25,7 +25,13 @@
 
 		self.findAllDomainClasses = findAllDomainClasses;
 
-		self.loaders = HttpSV.registerLoaders(["domainClasses:/project/domain/classes:true"]);
+		//self.loaders = HttpSV.registerLoaders(["domainClasses:/project/domain/classes:true"]);
+		
+		//console.log("=====");
+		
+		self.dataHandler = HttpSV.registerDataHandlers(["domainClasses:/project/domain/classes:true"]);
+		
+		//console.log(self.dataHandler);
 		
 		/*
 		var queryParams = {
@@ -58,11 +64,7 @@
 		 * 
 		 */
 		function findAllDomainClasses() {
-			HttpSV.get('/project/domain/classes', {
-				loader : 'domainClasses'
-			}).then(function(data) {
-				self.domainClasses = data;
-			});
+			HttpSV.get('domainClasses');
 		}
 
 	}

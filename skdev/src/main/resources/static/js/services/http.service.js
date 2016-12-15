@@ -14,52 +14,70 @@
 	 */
 	function HttpSV($log, $http, $location) {
 		$log.debug('[HttpSV] Inicializando... ');
-
+		
 		var context = 'http://' + $location.host() + ':' + $location.port() + '/skdev/api';
 
-		var loaders = {};
-		
+		var dataHandlers = {};
+
 		var service = {
 			get : get,
-			registerLoaders: registerLoaders
+			registerDataHandlers: registerDataHandlers
 		}
+		
 
 		return service;
 		
 		/**
 		 * Função Http GET
 		 */
-		function get(path, options) {
-			//console.log(context+path);
-			if(options.loader) {
-				loaders[options.loader] = true;
-			}
-			return $http.get(context+path)
+		function get(id, options) {
+			
+			dataHandlers[id].loader = true;
+			var urlRequest = buildUrlRequest(id, options);
+			
+			return $http.get(urlRequest)
 				.then(httpComplete)
 				.catch(httpFailure);
 			
 			function httpComplete(response) {
-				loaders[options.loader] = false;
+				dataHandlers[id].data = response.data;
+				dataHandlers[id].loader = false;
 				return response.data;
 			}
 			
 			function httpFailure(error) {
-				loaders[options.loader] = false;
+				dataHandlers[id].loader = false;
 				$log.debug('Request failed');
 			}
 		}
 		
-		function registerLoaders(httpLoaders) {
-			angular.forEach(httpLoaders, function(httpLoader) {
-				var defaultState = httpLoader.split(':').length > 1 ?  httpLoader.split(':')[1]==='true': true;
-				//console.log(httpLoader.split(':'))
-				//console.log(httpLoader.split(':')[1]==='true')
-				//console.log(httpLoader.split(':').length)
-				//console.log(defaultState);
-				loaders[httpLoader.split(':')[0]] = defaultState;
-			});
-			return loaders;
+		function buildUrlRequest(id,options) {
+			return dataHandlers[id].url;
 		}
+		
+		/**
+		 * 
+		 */
+		function registerDataHandlers(dataHandlerArray) {
+			// console.log("[registerDataHandlers] Begin..");
+			angular.forEach(dataHandlerArray, function(dataHandler) {
+				var dataHandlerTokens = dataHandler.split(':');
+				// console.log(dataHandlerTokens)
+				var id = dataHandlerTokens[0];
+				var url = dataHandlerTokens[1];
+				// console.log('1')
+				var defaultLoaderState = angular.isDefined(dataHandlerTokens[2]) ? dataHandlerTokens[2] === 'true': false;
+				// console.log('2')
+				dataHandlers[id] = {};
+				dataHandlers[id].url = context+url;
+				// console.log('3')
+				dataHandlers[id].loader = defaultLoaderState;
+				// console.log('4')
+			});
+			// console.log("[registerDataHandlers] End.. " + dataHandlers);
+			return dataHandlers;
+		}
+		
 
 	}
 
