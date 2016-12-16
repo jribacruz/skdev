@@ -27,6 +27,12 @@ public @interface Action {
 	 * 
 	 * @return
 	 */
+	String dialogTemplatePath() default "";
+
+	/**
+	 * 
+	 * @return
+	 */
 	String group() default "";
 
 	/**
