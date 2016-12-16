@@ -1,4 +1,4 @@
-package br.skdev.proxy;
+package br.skdev.core.proxy;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 
 import com.thoughtworks.qdox.model.JavaField;
 
-import br.skdev.model.EAnnotation;
-import br.skdev.model.EAttribute;
+import br.skdev.core.model.EAnnotation;
+import br.skdev.core.model.EAttribute;
 
 /**
  * Classe de proxy de EAttribute

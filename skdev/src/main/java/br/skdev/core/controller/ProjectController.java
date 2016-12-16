@@ -23,7 +23,13 @@ public class ProjectController {
 	@RequestMapping(method = RequestMethod.GET, path = "/project/{name}")
 	public String index(@PathVariable("name") String name, Model model) {
 		model.addAttribute("project", name);
-		workspaceContext.setJavaProject(workspaceContext.getWokspace().getProjectMap().get(name));
+		//// @formatter:off
+		workspaceContext.setMavenProject(workspaceContext.getWokspace().getMavenProjects()
+						.stream()
+						.filter(mavenProject -> mavenProject.getName().equals(name))
+						.findAny()
+						.get());
+		// @formatter:on
 		return "project";
 	}
 

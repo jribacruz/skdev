@@ -10,8 +10,8 @@
 			<!-- SELECT_ONE_ECLASS -->
 			<md-input-container class="md-block">
 				<label>Selecione a classe de dominio</label>
-				<md-select ng-model="actionCT.values['selectDomainClassId']" multiple>
-					<md-option ng-repeat="option in actionCT.endpoints['selectDomainClassId']" ng-value="option.name">
+				<md-select ng-model="actionCT.values['selectClassId']" multiple>
+					<md-option ng-repeat="option in actionCT.endpoints['selectClassId']" ng-value="option.name">
 						{{option.name}}
 					</md-option>
 				</md-select>

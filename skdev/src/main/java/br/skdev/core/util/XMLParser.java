@@ -1,4 +1,4 @@
-package br.skdev.parser;
+package br.skdev.core.util;
 
 import java.io.File;
 import java.io.IOException;

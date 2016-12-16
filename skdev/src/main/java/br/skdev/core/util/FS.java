@@ -8,10 +8,36 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 public class FS {
-
 	public static Optional<Stream<Path>> listDirectories(String path) {
 		try {
 			return Optional.of(Files.list(Paths.get(path)).filter(Files::isDirectory));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return Optional.empty();
+	}
+	
+	public static Optional<Stream<Path>> listFiles(String path) {
+		try {
+			return Optional.of(Files.list(Paths.get(path)).filter(Files::isRegularFile));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return Optional.empty();
+	}
+	
+	public static Optional<Stream<Path>> listFilesRecursively(String path) {
+		try {
+			return Optional.of(Files.walk(Paths.get(path)).filter(Files::isRegularFile));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return Optional.empty();
+	}
+	
+	public static Optional<Stream<Path>> listFilesRecursively(Path path) {
+		try {
+			return Optional.of(Files.walk(path).filter(Files::isRegularFile));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -47,5 +73,4 @@ public class FS {
 		}
 		return false;
 	}
-
 }

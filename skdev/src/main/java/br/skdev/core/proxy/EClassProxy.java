@@ -1,4 +1,4 @@
-package br.skdev.proxy;
+package br.skdev.core.proxy;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 
 import com.thoughtworks.qdox.model.JavaClass;
 
-import br.skdev.model.EAnnotation;
-import br.skdev.model.EAttribute;
-import br.skdev.model.EClass;
-import br.skdev.model.EMethod;
-import br.skdev.model.EPackage;
+import br.skdev.core.model.EAnnotation;
+import br.skdev.core.model.EAttribute;
+import br.skdev.core.model.EClass;
+import br.skdev.core.model.EMethod;
+import br.skdev.core.model.EPackage;
 
 /**
  * Classe de proxy de EClass

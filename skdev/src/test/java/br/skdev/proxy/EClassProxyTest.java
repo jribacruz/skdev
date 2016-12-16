@@ -17,7 +17,8 @@ import com.thoughtworks.qdox.JavaDocBuilder;
 import com.thoughtworks.qdox.model.JavaClass;
 import com.thoughtworks.qdox.model.JavaSource;
 
-import br.skdev.model.EClass;
+import br.skdev.core.model.EClass;
+import br.skdev.core.proxy.EClassProxy;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

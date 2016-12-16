@@ -15,7 +15,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.xml.sax.SAXException;
 
-import br.skdev.model.EPersistence;
+import br.skdev.core.model.EPersistence;
+import br.skdev.core.proxy.EPersistenceProxy;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

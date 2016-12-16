@@ -57,7 +57,7 @@
 		 * 
 		 */
 		function findAllDomainClasses() {
-			HttpSV.get('domainClasses');
+			HttpSV.get('classes');
 		}
 
 	}

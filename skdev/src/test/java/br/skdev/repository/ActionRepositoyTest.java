@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import br.skdev.core.action.ActionHandler;
+import br.skdev.core.repository.ActionRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

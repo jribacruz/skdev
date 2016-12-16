@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import br.skdev.core.context.WorkspaceContext;
 import br.skdev.core.model.EWorkspace;
+import br.skdev.core.proxy.EWorkspaceProxy;
 
 @Service
 public class WorkspaceService {
@@ -13,7 +14,8 @@ public class WorkspaceService {
 	private WorkspaceContext workspaceContext;
 
 	public void load(String path) {
-		EWorkspace workspace = new EWorkspace(path);
+		EWorkspace workspace = new EWorkspaceProxy(path);
 		workspaceContext.setWorkspace(workspace);
 	}
+	
 }

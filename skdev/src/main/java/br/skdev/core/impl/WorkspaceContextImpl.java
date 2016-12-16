@@ -29,12 +29,12 @@ public class WorkspaceContextImpl implements WorkspaceContext {
 	}
 
 	@Override
-	public void setJavaProject(EMavenProject project) {
+	public void setMavenProject(EMavenProject project) {
 		this.project = project;
 	}
 
 	@Override
-	public EMavenProject getJavaProject() {
+	public EMavenProject getMavenProject() {
 		return this.project;
 	}
 

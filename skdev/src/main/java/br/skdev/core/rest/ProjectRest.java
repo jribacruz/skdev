@@ -29,7 +29,7 @@ public class ProjectRest {
 	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/api/projects")
 	public SortedSet<EMavenProject> getProjects() {
-		return workspaceContext.getWokspace().getJavaProjects();
+		return workspaceContext.getWokspace().getMavenProjects();
 	}
 
 	/**
@@ -38,9 +38,9 @@ public class ProjectRest {
 	 * @return
 	 * @throws InterruptedException
 	 */
-	@RequestMapping(method = RequestMethod.GET, path = "/api/project/domain/classes")
-	public ResponseEntity<?> findAllDomainEJavaClasses() {
-		SortedSet<EClass> entities = projectService.findAllDomainEJavaClasses();
+	@RequestMapping(method = RequestMethod.GET, path = "/api/project/classes")
+	public ResponseEntity<?> findAllEClasses() {
+		SortedSet<EClass> entities = projectService.findAllClasses();
 		return ResponseEntity.ok(entities);
 
 	}

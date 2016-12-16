@@ -28,11 +28,11 @@ public interface WorkspaceContext extends Serializable {
 	 * 
 	 * @param project
 	 */
-	void setJavaProject(EMavenProject project);
+	void setMavenProject(EMavenProject project);
 
 	/**
 	 * 
 	 * @return
 	 */
-	EMavenProject getJavaProject();
+	EMavenProject getMavenProject();
 }

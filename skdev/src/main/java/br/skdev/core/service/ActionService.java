@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import br.skdev.core.action.ActionHandler;
 import br.skdev.core.annotation.Action;
 import br.skdev.core.context.ActionComponentContext;
-import br.skdev.repository.ActionRepository;
+import br.skdev.core.repository.ActionRepository;
 
 @Service
 public class ActionService {

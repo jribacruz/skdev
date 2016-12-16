@@ -1,8 +1,8 @@
-package br.skdev.proxy;
+package br.skdev.core.proxy;
 
 import com.thoughtworks.qdox.model.JavaPackage;
 
-import br.skdev.model.EPackage;
+import br.skdev.core.model.EPackage;
 
 public class EPackageProxy extends EPackage {
 

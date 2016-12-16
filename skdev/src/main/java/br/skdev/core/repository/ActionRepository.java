@@ -1,4 +1,4 @@
-package br.skdev.repository;
+package br.skdev.core.repository;
 
 import java.io.Serializable;
 import java.util.Optional;

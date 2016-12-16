@@ -1,4 +1,4 @@
-package br.skdev.proxy;
+package br.skdev.core.proxy;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 
 import com.thoughtworks.qdox.model.JavaMethod;
 
-import br.skdev.model.EAnnotation;
-import br.skdev.model.EMethod;
-import br.skdev.model.EMethodParameter;
+import br.skdev.core.model.EAnnotation;
+import br.skdev.core.model.EMethod;
+import br.skdev.core.model.EMethodParameter;
 import lombok.ToString;
 
 @ToString(callSuper = true)

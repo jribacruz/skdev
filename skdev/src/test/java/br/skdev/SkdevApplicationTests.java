@@ -6,8 +6,8 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import br.skdev.model.EClass;
-import br.skdev.proxy.EClassProxy;
+import br.skdev.core.model.EClass;
+import br.skdev.core.proxy.EClassProxy;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

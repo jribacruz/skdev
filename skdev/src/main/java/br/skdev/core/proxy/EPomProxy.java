@@ -1,4 +1,4 @@
-package br.skdev.proxy;
+package br.skdev.core.proxy;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,10 +12,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import br.skdev.model.EPom;
-import br.skdev.model.EPomDependency;
-import br.skdev.model.EPomParent;
-import br.skdev.parser.XMLParser;
+import br.skdev.core.model.EPom;
+import br.skdev.core.model.EPomDependency;
+import br.skdev.core.model.EPomParent;
+import br.skdev.core.util.XMLParser;
 
 public class EPomProxy extends EPom {
 

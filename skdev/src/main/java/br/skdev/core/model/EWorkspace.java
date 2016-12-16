@@ -1,19 +1,10 @@
 package br.skdev.core.model;
 
 import java.io.Serializable;
-import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
 import java.util.SortedSet;
-import java.util.TreeSet;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import br.skdev.core.util.FS;
 
 /**
  * 
@@ -39,17 +30,10 @@ public class EWorkspace implements Serializable {
 	 * 
 	 */
 	@JsonIgnore
-	private SortedSet<EMavenProject> javaProjects;
+	protected SortedSet<EMavenProject> mavenProjects;
 
-	/**
-	 * 
-	 */
-	@JsonIgnore
-	private Map<String, EMavenProject> projectMap;
-
-	public EWorkspace(String path) {
+	public EWorkspace() {
 		super();
-		this.path = path;
 	}
 
 	public String getPath() {
@@ -60,32 +44,12 @@ public class EWorkspace implements Serializable {
 		this.path = path;
 	}
 
-	public SortedSet<EMavenProject> getJavaProjects() {
-		if (this.javaProjects == null) {
-			// @formatter:off
-			this.javaProjects = new TreeSet<>();
-			Optional<Stream<Path>> directories = FS.listDirectories(this.path);
-			if (directories.isPresent()) {
-				this.javaProjects = directories.get()
-						.filter(path -> FS.hasFile(path, "pom.xml"))
-						.map(EMavenProject::new)
-						.collect(Collectors.toCollection(TreeSet::new));
-			}
-			// @formatter:on
-		}
-		return javaProjects;
+	public SortedSet<EMavenProject> getMavenProjects() {
+		return mavenProjects;
 	}
 
-	public void setJavaProjects(SortedSet<EMavenProject> projects) {
-		this.javaProjects = projects;
-	}
-
-	public Map<String, EMavenProject> getProjectMap() {
-		if (this.projectMap == null) {
-			this.projectMap = new HashMap<>();
-			this.javaProjects.forEach(p -> projectMap.put(p.getName(), p));
-		}
-		return projectMap;
+	public void setMavenProjects(SortedSet<EMavenProject> mavenProjects) {
+		this.mavenProjects = mavenProjects;
 	}
 
 	@Override

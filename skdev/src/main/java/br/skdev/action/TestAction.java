@@ -13,7 +13,7 @@ import br.skdev.core.context.ActionComponentContext;
  * @author jcruz
  *
  */
-@Action(description = "Ação de Teste", endpoints = { @Endpoint(id = "selectDomainClassId", path = "/api/project/domain/classes") })
+@Action(description = "Ação de Teste", endpoints = { @Endpoint(id = "selectClassId", path = "/api/project/classes") })
 public class TestAction implements ActionHandler {
 
 	/**

@@ -1,4 +1,4 @@
-package br.skdev.proxy;
+package br.skdev.core.proxy;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -6,7 +6,7 @@ import java.util.Map;
 
 import com.thoughtworks.qdox.model.Annotation;
 
-import br.skdev.model.EAnnotation;
+import br.skdev.core.model.EAnnotation;
 import lombok.ToString;
 
 @ToString(callSuper = true)
