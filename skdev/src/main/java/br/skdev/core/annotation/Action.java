@@ -34,4 +34,11 @@ public @interface Action {
 	 * @return
 	 */
 	String id() default "";
+
+	/**
+	 * 
+	 * @return
+	 */
+	br.skdev.core.annotation.Endpoint[] endpoints() default {};
+
 }

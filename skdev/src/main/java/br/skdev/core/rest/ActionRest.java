@@ -36,9 +36,9 @@ public class ActionRest {
 	public ResponseEntity<?> findActionById(@PathVariable("id") String actionId) throws IOException {
 		Optional<ActionHandler> action = actionService.findById(actionId);
 		if (action.isPresent()) {
-			Map<String, String> actionMap = new HashMap<>();
-			actionMap.put("config", action.get().getConfig());
-			actionMap.put("component", action.get().getComponent());
+			Map<String, Object> actionMap = new HashMap<>();
+			actionMap.put("endpoints", action.get().getEndpoints());
+			actionMap.put("dialogTemplateURL", action.get().getDialogTemplateURL());
 			log.info("[findActionById] body={}", actionMap);
 			return ResponseEntity.ok(actionMap);
 

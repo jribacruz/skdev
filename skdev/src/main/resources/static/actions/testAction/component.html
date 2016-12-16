@@ -5,11 +5,13 @@
 				<h2>Ação de Teste</h2>
 			</div>
 		</md-toolbar>
+		<!-- COMPONENTS -->
 		<md-dialog-content flex class="md-dialog-content">
+			<!-- SELECT_ONE_ECLASS -->
 			<md-input-container class="md-block">
 				<label>Selecione a classe de dominio</label>
 				<md-select ng-model="actionCT.values['selectDomainClassId']">
-					<md-option ng-repeat="option in actionCT.options['selectDomainClassId']" ng-value="option.name">
+					<md-option ng-repeat="option in actionCT.endpoints['selectDomainClassId']" ng-value="option.name">
 						{{option.name}}
 					</md-option>
 				</md-select>

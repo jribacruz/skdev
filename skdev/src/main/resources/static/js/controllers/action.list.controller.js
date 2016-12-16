@@ -53,7 +53,7 @@
 			}).then(function(data) {
 				$mdDialog.show({
 					parent : angular.element(document.body),
-					templateUrl : format('{}{}', context, data.component),
+					templateUrl : format('{}{}', context, data.dialogTemplateURL),
 					clickOutsideToClose : false,
 					controller : 'ActionCT',
 					controllerAs : 'actionCT',

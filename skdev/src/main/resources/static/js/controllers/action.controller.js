@@ -26,31 +26,18 @@
 
 		self.values = {};
 
-		self.options = {};
-
-		self.config = {};
+		self.endpoints = {};
 
 		var context = format('http://{}:{}/skdev', $location.host(), $location.port());
 
+		loadEndpoints();
 		
-		loadConfig();
-
-		function loadConfig() {
-			$log.debug(format("[ActionCT] Carregando configurações da action={}", actionId));
-			$http.get(format('{}{}', context, actionData.config)).success(function(data) {
-				self.config = data;
-				loadOptions();
-			});
-		}
-		
-		function loadOptions() {
-			angular.forEach(self.config.actionComponents, function(actionComponentItem, id) {
-				if(actionComponentItem['optionsEndpoint']) {
-					$http.get(format('{}{}', context, actionComponentItem['optionsEndpoint']))
-						.success(function(data) {
-							self.options[id] = data;
-						});
-				}
+		function loadEndpoints() {
+			angular.forEach(actionData.endpoints, function(endpointV, endpointK) {
+				$http.get(format('{}{}', context, endpointV))
+					.success(function(data) {
+						self.endpoints[endpointK] = data;
+					});
 			});
 		}
 

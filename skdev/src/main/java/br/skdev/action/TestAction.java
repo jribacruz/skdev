@@ -9,15 +9,15 @@ import org.springframework.core.io.ClassPathResource;
 
 import br.skdev.core.action.ActionHandler;
 import br.skdev.core.annotation.Action;
-import br.skdev.core.component.ComponentType;
-import br.skdev.core.context.ComponentContext;
+import br.skdev.core.annotation.Endpoint;
 
 /**
  * 
  * @author jcruz
  *
  */
-@Action(description = "Ação de Teste")
+@Action(description = "Ação de Teste", endpoints = {
+		@Endpoint(id = "selectDomainClassId", path = "/api/project/domain/classes") })
 public class TestAction implements ActionHandler {
 
 	/**
@@ -44,10 +44,6 @@ public class TestAction implements ActionHandler {
 		} finally {
 
 		}
-
-		ComponentContext ctx = null;
-
-		ctx.value("selectOneClass", ComponentType.SelectOneEClass);
 
 	}
 
