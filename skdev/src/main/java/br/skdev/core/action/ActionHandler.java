@@ -51,7 +51,7 @@ public interface ActionHandler extends Serializable {
 	}
 
 	public default String getDialogTemplateURL() throws IOException {
-		return String.format("/actions/%s/component.html", getId());
+		return String.format("/actions/%s/dialogTemplate.html", getId());
 	}
 
 	public default String getSuccess() throws IOException {
