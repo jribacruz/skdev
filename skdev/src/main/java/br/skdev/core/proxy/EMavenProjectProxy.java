@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 import com.thoughtworks.qdox.JavaDocBuilder;
 import com.thoughtworks.qdox.model.JavaClass;
 import com.thoughtworks.qdox.model.JavaSource;
+import com.thoughtworks.qdox.parser.ParseException;
 
 import br.skdev.core.model.EClass;
 import br.skdev.core.model.EMavenProject;
@@ -78,6 +79,8 @@ public class EMavenProjectProxy extends EMavenProject {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		return Optional.empty();

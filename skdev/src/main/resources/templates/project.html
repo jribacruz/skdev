@@ -26,10 +26,12 @@
 						<md-subheader class="md-primary">Classes de Domínio <span ng-show="projectCT.$dh['classes'].data.length > 0">({{projectCT.$dh['classes'].data.length}})</span></md-subheader>
 						<md-content flex="">
 							 <md-progress-linear class="md-warn" md-mode="indeterminate" ng-show="projectCT.$dh['classes'].loader"></md-progress-linear>
-							 <md-list flex="" class="md-dense">
-						        <md-list-item  ng-repeat="domainClass in projectCT.$dh['classes'].data | orderBy: 'name'">
+							 <md-list flex="" >
+						        <md-list-item class="md-2-line md-dense"  ng-repeat="domainClass in projectCT.$dh['classes'].data | orderBy: 'name'">
 						            <md-icon md-font-icon="material-icons">copyright</md-icon>
-						            <p>{{ domainClass.name }}</p>
+						            <div class="md-list-item-text">
+							            <h4 title="{{ domainClass.name }}">{{ domainClass.name }}</h4>
+						            </div>
 						        </md-list-item>
 						     </md-list>
 						</md-content>
