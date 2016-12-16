@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.skdev.core.context.WorkspaceContext;
+import br.skdev.core.service.ProjectService;
 
 /**
  * 
@@ -20,16 +21,13 @@ public class ProjectController {
 	@Autowired
 	private WorkspaceContext workspaceContext;
 
+	@Autowired
+	private ProjectService projectService;
+
 	@RequestMapping(method = RequestMethod.GET, path = "/project/{name}")
 	public String index(@PathVariable("name") String name, Model model) {
 		model.addAttribute("project", name);
-		//// @formatter:off
-		workspaceContext.setMavenProject(workspaceContext.getWokspace().getMavenProjects()
-						.stream()
-						.filter(mavenProject -> mavenProject.getName().equals(name))
-						.findAny()
-						.get());
-		// @formatter:on
+		workspaceContext.setMavenProject(projectService.findByName(name).get());
 		return "project";
 	}
 
