@@ -47,12 +47,12 @@
 
 		function execute() {
 			console.log(self.values);
-			/*
-			$http.post('http://localhost:8080/skdev/api/execute/action/' + actionId, self.values).success(function(data) {
+			
+			$http.post('http://localhost:8080/skdev/api/actions/' + actionId, self.values).success(function(data) {
 				$mdDialog.hide();
 				$mdToast.show($mdToast.simple().textContent('Ação executada com sucesso!').position("top right").hideDelay(3000));
 			});
-			*/
+			
 			hide();
 			/*
 			if(self.config.actionSuccess.showOnSuccessExecute) {

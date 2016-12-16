@@ -14,6 +14,7 @@ import org.springframework.core.io.ClassPathResource;
 
 import br.skdev.core.annotation.Action;
 import br.skdev.core.annotation.Endpoint;
+import br.skdev.core.context.ActionComponentContext;
 import strman.Strman;
 
 /**
@@ -26,7 +27,7 @@ public interface ActionHandler extends Serializable {
 	/**
 	 * 
 	 */
-	public abstract void execute();
+	public abstract void execute(ActionComponentContext ctx);
 
 	public default String getId() {
 		if (this.getClass().isAnnotationPresent(Action.class)) {
