@@ -54,9 +54,10 @@
 			});
 			*/
 			hide();
+			/*
 			if(self.config.actionSuccess.showOnSuccessExecute) {
 				$http.get(format('{}/api/actions/{}/success', context, actionId));
-			}
+			}*/
 		}
 
 	}
