@@ -1,16 +1,9 @@
 package br.skdev.core.action;
 
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.commonmark.node.Node;
-import org.commonmark.parser.Parser;
-import org.commonmark.renderer.html.HtmlRenderer;
-import org.springframework.core.io.ClassPathResource;
 
 import br.skdev.core.annotation.Action;
 import br.skdev.core.annotation.Endpoint;
@@ -29,6 +22,11 @@ public interface ActionHandler extends Serializable {
 	 */
 	public abstract void execute(ActionComponentContext ctx);
 
+	/**
+	 * Retorna o Id da Action.
+	 * 
+	 * @return
+	 */
 	public default String getId() {
 		if (this.getClass().isAnnotationPresent(Action.class)) {
 			if (!this.getClass().getAnnotation(Action.class).id().isEmpty()) {
@@ -38,6 +36,12 @@ public interface ActionHandler extends Serializable {
 		return Strman.toCamelCase(this.getClass().getSimpleName());
 	}
 
+	/**
+	 * Retorna os endpoints Rest.
+	 * 
+	 * @return
+	 * @throws IOException
+	 */
 	public default Map<String, String> getEndpoints() throws IOException {
 		Map<String, String> endpointMap = new HashMap<>();
 		if (this.getClass().isAnnotationPresent(Action.class)) {
@@ -51,6 +55,11 @@ public interface ActionHandler extends Serializable {
 		return endpointMap;
 	}
 
+	/**
+	 * 
+	 * @return
+	 * @throws IOException
+	 */
 	public default String getDialogTemplatePath() throws IOException {
 		if (this.getClass().isAnnotationPresent(Action.class)) {
 			if (!this.getClass().getAnnotation(Action.class).dialogTemplatePath().isEmpty()) {
@@ -59,6 +68,7 @@ public interface ActionHandler extends Serializable {
 		}
 		return String.format("/actions/%s/dialogTemplate.html", getId());
 	}
+	
 	//// @formatter:off
 	/*
 	public default String getSuccess() throws IOException {

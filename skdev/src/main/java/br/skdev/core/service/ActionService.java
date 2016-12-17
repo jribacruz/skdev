@@ -37,10 +37,10 @@ public class ActionService {
 	}
 
 	public void executeAction(String id, Map<String, Object> values) {
-		Optional<ActionHandler> actionHandler = findById(id);
-		if (actionHandler.isPresent()) {
+		Optional<ActionHandler> actionHandlerOp = findById(id);
+		actionHandlerOp.ifPresent(actionHandler -> {
 			ActionComponentContext ctx = new ActionComponentContext(values);
-			actionHandler.get().execute(ctx);
-		}
+			actionHandler.execute(ctx);
+		});
 	}
 }
