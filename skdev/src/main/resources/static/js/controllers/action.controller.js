@@ -30,8 +30,9 @@
 
 		var context = format('http://{}:{}/skdev', $location.host(), $location.port());
 
-		loadEndpoints();
+		//loadEndpoints();
 		
+		/*
 		function loadEndpoints() {
 			angular.forEach(actionData.endpoints, function(endpointV, endpointK) {
 				$http.get(format('{}{}', context, endpointV))
@@ -39,7 +40,7 @@
 						self.endpoints[endpointK] = data;
 					});
 			});
-		}
+		}*/
 
 		function hide() {
 			$mdDialog.hide();

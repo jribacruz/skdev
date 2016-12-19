@@ -19,7 +19,8 @@
 
 		var service = {
 			get : get,
-			getProjectName: getProjectName
+			getProjectName: getProjectName,
+			getContext: getContext
 		}
 		
 
@@ -28,6 +29,10 @@
 		function getProjectName() {
 			$log.debug(format('[HttpSV][getProjectName] location: {}', JSON.stringify(URI($location.absUrl()).search(true)))); 
 			return URI($location.absUrl()).search(true).name;
+		}
+		
+		function getContext() {
+			return context;
 		}
 		
 		/**
