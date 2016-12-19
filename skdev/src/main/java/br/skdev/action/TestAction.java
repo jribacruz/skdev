@@ -28,22 +28,7 @@ public class TestAction implements ActionHandler {
 	 */
 	@Override
 	public void execute(ActionComponentContext ctx) {
-
 		log.info("[execute] ctx={}", ctx);
-		// System.out.println(ctx);
-
-		/*
-		 * ClassPathResource classPathResource = new
-		 * ClassPathResource("file.fm");
-		 * 
-		 * try { File file = classPathResource.getFile(); FileReader fileReader
-		 * = new FileReader(file); BufferedReader in = new
-		 * BufferedReader(fileReader); System.out.println(in.readLine());
-		 * 
-		 * } catch (IOException e) { e.printStackTrace(); } finally {
-		 * 
-		 * }
-		 */
 
 	}
 
