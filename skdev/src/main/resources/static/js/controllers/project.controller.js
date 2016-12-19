@@ -25,18 +25,15 @@
 
 		self.showActionListDialog = showActionListDialog;
 
-		self.findAllDomainClasses = findAllDomainClasses;
-
-		/*
-		 * Retorna os DataHandlers da applicação.
-		 */
-		self.$dh = HttpSV.$dh();
+		self.classes = [];
+		
+		self.findAllClassesLoader = true;
 
 		/**
 		 * 
 		 */
 		function init() {
-			self.findAllDomainClasses();
+			findAllClasses();
 		}
 
 		/**
@@ -56,8 +53,11 @@
 		/**
 		 * 
 		 */
-		function findAllDomainClasses() {
-			HttpSV.get('classes');
+		function findAllClasses() {
+			HttpSV.get('/project/classes').then(function(data) {
+				self.classes = data;
+				self.findAllClassesLoader = false;
+			});
 		}
 
 	}
