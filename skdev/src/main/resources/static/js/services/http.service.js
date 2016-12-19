@@ -18,11 +18,17 @@
 		var context = format('http://{}:{}/skdev/api',$location.host(),$location.port());
 
 		var service = {
-			get : get
+			get : get,
+			getProjectName: getProjectName
 		}
 		
 
 		return service;
+		
+		function getProjectName() {
+			$log.debug(format('[HttpSV][getProjectName] location: {}', JSON.stringify(URI($location.absUrl()).search(true)))); 
+			return URI($location.absUrl()).search(true).name;
+		}
 		
 		/**
 		 * Função Http GET

@@ -1,12 +1,12 @@
 (function() {
 	'use strict';
 
-	startup.$inject = [ '$log', 'HttpSV' ];
+	startup.$inject = [ '$log' ];
 
 	angular.module("skdevMD", [ 'ngResource', 'ngAnimate', 'ngMaterial' ]).run(
 			startup);
 
-	function startup($log, HttpSV) {
+	function startup($log) {
 		$log.debug('[skdevMD] Startup App...');
 
 		/*

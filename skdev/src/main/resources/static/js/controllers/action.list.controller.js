@@ -30,7 +30,7 @@
 		 */
 		self.selectAction = selectAction;
 
-		self.$dh = HttpSV.$dh();
+		//self.$dh = HttpSV.$dh();
 
 		/**
 		 * Request da listagem de actions.
@@ -39,7 +39,10 @@
 		 * $http.get('http://localhost:8080/skdev/api/actions').success(function(data) {
 		 * self.actions = data });
 		 */
-		HttpSV.get('actions');
+		
+		function init() {
+			HttpSV.get('/actions');
+		}
 
 		/**
 		 * 
