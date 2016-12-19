@@ -18,6 +18,8 @@ public class EMavenProject implements Serializable, Comparable<EMavenProject> {
 
 	protected String absolutePath;
 
+	protected EPom pom;
+
 	@JsonIgnore
 	protected SortedSet<EClass> classes;
 
@@ -39,6 +41,14 @@ public class EMavenProject implements Serializable, Comparable<EMavenProject> {
 
 	public void setAbsolutePath(String absolutePath) {
 		this.absolutePath = absolutePath;
+	}
+
+	public EPom getPom() {
+		return pom;
+	}
+
+	public void setPom(EPom pom) {
+		this.pom = pom;
 	}
 
 	public SortedSet<EClass> getClasses() {

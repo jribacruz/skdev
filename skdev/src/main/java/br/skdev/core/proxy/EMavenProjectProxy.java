@@ -1,7 +1,6 @@
 package br.skdev.core.proxy;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -10,16 +9,20 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.xml.sax.SAXException;
 
 import com.thoughtworks.qdox.JavaDocBuilder;
 import com.thoughtworks.qdox.model.JavaClass;
 import com.thoughtworks.qdox.model.JavaSource;
-import com.thoughtworks.qdox.parser.ParseException;
 
 import br.skdev.core.model.EClass;
 import br.skdev.core.model.EMavenProject;
+import br.skdev.core.model.EPom;
 import br.skdev.core.util.FS;
 
 public class EMavenProjectProxy extends EMavenProject {
@@ -76,16 +79,25 @@ public class EMavenProjectProxy extends EMavenProject {
 		return this.classes;
 	}
 
+	@Override
+	public EPom getPom() {
+		if (this.pom == null) {
+			try {
+				this.pom = new EPomProxy(
+						new File(FilenameUtils.normalize(String.format("%s/pom.xml", this.getAbsolutePath()))));
+			} catch (SAXException | IOException | ParserConfigurationException e) {
+				log.error(e.getMessage());
+			}
+		}
+		return this.pom;
+	}
+
 	public Optional<JavaClass> createJavaClass(Path path) {
 		try {
 			JavaDocBuilder doc = new JavaDocBuilder();
 			JavaSource source = doc.addSource(new File(path.toFile().getAbsolutePath()));
 			return Optional.of(source.getClasses()[0]);
-		} catch (FileNotFoundException e) {
-			log.error(e.getMessage());
 		} catch (IOException e) {
-			log.error(e.getMessage());
-		} catch (ParseException e) {
 			log.error(e.getMessage());
 		}
 		return Optional.empty();

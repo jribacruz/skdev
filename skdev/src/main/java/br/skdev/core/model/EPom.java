@@ -3,6 +3,7 @@ package br.skdev.core.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -15,6 +16,7 @@ public class EPom implements Serializable {
 
 	protected EPomParent parent;
 
+	@JsonIgnore
 	protected Set<EPomDependency> dependecies;
 
 	public EPom() {
