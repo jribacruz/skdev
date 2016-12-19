@@ -17,6 +17,8 @@ public class EPackage implements Serializable {
 
 	protected String name;
 
+	protected String directory;
+
 	public EPackage() {
 		super();
 	}
@@ -27,6 +29,10 @@ public class EPackage implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDirectory() {
+		return directory;
 	}
 
 }

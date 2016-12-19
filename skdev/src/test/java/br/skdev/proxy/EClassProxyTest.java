@@ -50,6 +50,7 @@ public class EClassProxyTest {
 	@Test
 	public void test_getPackageName_EClass() {
 		EClass eClass = new EClassProxy(this.javaClass);
+		System.out.println(eClass.getClassPackage().getDirectory());
 		Assert.assertTrue(eClass.getClassPackage().getName().equals("br.skdev.model"));
 	}
 

@@ -29,7 +29,6 @@ public class TestAction implements ActionHandler {
 	@Override
 	public void execute(ActionComponentContext ctx) {
 		log.info("[execute] ctx={}", ctx);
-
 	}
 
 }

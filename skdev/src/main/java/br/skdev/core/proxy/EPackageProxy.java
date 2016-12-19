@@ -26,4 +26,12 @@ public class EPackageProxy extends EPackage {
 		return this.name;
 	}
 
+	@Override
+	public String getDirectory() {
+		if (this.directory == null) {
+			this.directory = javaPackage.getName().replaceAll("\\.", "/");
+		}
+		return this.directory;
+	}
+
 }
