@@ -17,8 +17,15 @@
 		$log.debug('[ProjectListCT] Inicializando...');
 		var self = this;
 
-		self.projects = HttpSV.$dh('projects');
+		self.projects = [];
 
-		HttpSV.get('projects');
+		init();
+		
+		function init() {
+			HttpSV.get('/projects').then(function(data){
+				self.projects = data;
+			});
+		}
+		
 	}
 })();
