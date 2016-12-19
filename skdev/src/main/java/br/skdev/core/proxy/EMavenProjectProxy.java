@@ -19,6 +19,7 @@ import org.xml.sax.SAXException;
 import com.thoughtworks.qdox.JavaDocBuilder;
 import com.thoughtworks.qdox.model.JavaClass;
 import com.thoughtworks.qdox.model.JavaSource;
+import com.thoughtworks.qdox.parser.ParseException;
 
 import br.skdev.core.model.EClass;
 import br.skdev.core.model.EMavenProject;
@@ -97,7 +98,7 @@ public class EMavenProjectProxy extends EMavenProject {
 			JavaDocBuilder doc = new JavaDocBuilder();
 			JavaSource source = doc.addSource(new File(path.toFile().getAbsolutePath()));
 			return Optional.of(source.getClasses()[0]);
-		} catch (IOException e) {
+		} catch (ParseException |IOException e) {
 			log.error(e.getMessage());
 		}
 		return Optional.empty();
