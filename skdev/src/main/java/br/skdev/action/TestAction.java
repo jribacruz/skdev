@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 
 import br.skdev.core.action.ActionHandler;
 import br.skdev.core.annotation.Action;
-import br.skdev.core.annotation.Endpoint;
 import br.skdev.core.context.ActionContext;
 
 /**
@@ -13,7 +12,7 @@ import br.skdev.core.context.ActionContext;
  * @author jcruz
  *
  */
-@Action(description = "Ação de Teste", endpoints = { @Endpoint(id = "selectClassId", path = "/api/project/classes") })
+@Action(description = "Ação de Teste")
 public class TestAction implements ActionHandler {
 
 	/**

@@ -38,7 +38,6 @@ public class ActionRest {
 		Optional<ActionHandler> action = actionService.findById(actionId);
 		if (action.isPresent()) {
 			Map<String, Object> actionMap = new HashMap<>();
-			actionMap.put("endpoints", action.get().getEndpoints());
 			actionMap.put("dialogTemplatePath", action.get().getDialogTemplatePath());
 			log.info("[findActionById] body={}", actionMap);
 			return ResponseEntity.ok(actionMap);

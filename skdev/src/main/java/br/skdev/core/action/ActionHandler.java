@@ -2,11 +2,8 @@ package br.skdev.core.action;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 import br.skdev.core.annotation.Action;
-import br.skdev.core.annotation.Endpoint;
 import br.skdev.core.context.ActionContext;
 import strman.Strman;
 
@@ -37,25 +34,6 @@ public interface ActionHandler extends Serializable {
 	}
 
 	/**
-	 * Retorna os endpoints Rest.
-	 * 
-	 * @return
-	 * @throws IOException
-	 */
-	public default Map<String, String> getEndpoints() throws IOException {
-		Map<String, String> endpointMap = new HashMap<>();
-		if (this.getClass().isAnnotationPresent(Action.class)) {
-			if (this.getClass().getAnnotation(Action.class).endpoints().length > 0) {
-				for (int i = 0; i < this.getClass().getAnnotation(Action.class).endpoints().length; i++) {
-					Endpoint endpoint = this.getClass().getAnnotation(Action.class).endpoints()[i];
-					endpointMap.put(endpoint.id(), endpoint.path());
-				}
-			}
-		}
-		return endpointMap;
-	}
-
-	/**
 	 * 
 	 * @return
 	 * @throws IOException
@@ -68,7 +46,7 @@ public interface ActionHandler extends Serializable {
 		}
 		return String.format("/actions/%s/dialogTemplate.html", getId());
 	}
-	
+
 	//// @formatter:off
 	/*
 	public default String getSuccess() throws IOException {
