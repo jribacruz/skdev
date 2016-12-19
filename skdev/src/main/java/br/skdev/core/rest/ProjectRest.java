@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.skdev.core.context.WorkspaceContext;
@@ -39,8 +40,8 @@ public class ProjectRest {
 	 * @throws InterruptedException
 	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/api/project/classes")
-	public ResponseEntity<?> findAllEClasses() {
-		SortedSet<EClass> entities = projectService.findAllClasses();
+	public ResponseEntity<?> findAllEClasses(@RequestParam("name") String projectName) {
+		SortedSet<EClass> entities = projectService.findAllClasses(projectName);
 		return ResponseEntity.ok(entities);
 
 	}

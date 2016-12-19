@@ -10,6 +10,9 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.thoughtworks.qdox.JavaDocBuilder;
 import com.thoughtworks.qdox.model.JavaClass;
 import com.thoughtworks.qdox.model.JavaSource;
@@ -25,6 +28,8 @@ public class EMavenProjectProxy extends EMavenProject {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	private static final Logger log = LoggerFactory.getLogger(EMavenProjectProxy.class);
 
 	private Path path;
 
@@ -77,11 +82,11 @@ public class EMavenProjectProxy extends EMavenProject {
 			JavaSource source = doc.addSource(new File(path.toFile().getAbsolutePath()));
 			return Optional.of(source.getClasses()[0]);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			log.error(e.getMessage());
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e.getMessage());
 		} catch (ParseException e) {
-			e.printStackTrace();
+			log.error(e.getMessage());
 		}
 		return Optional.empty();
 	}

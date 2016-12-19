@@ -76,9 +76,9 @@
 					qArray.push(format('{}={}', url, qryParam));
 				});
 				if(url.endsWith('/')) {
-					return format('{}{}',url,qArray.join('&'));
+					return format('{}?{}',url,qArray.join('&'));
 				}
-				return format('{}/{}',url,qArray.join('&'));
+				return format('{}/?{}',url,qArray.join('&'));
 			}
 			return url;
 		}
