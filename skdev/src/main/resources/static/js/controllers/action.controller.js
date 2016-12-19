@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('ActionCT', ActionCT);
 
-	ActionCT.$inject = [ '$scope', '$log', '$http', '$mdDialog', 'actionData', 'actionId', '$mdToast','$location' ];
+	ActionCT.$inject = [ '$scope', '$log', '$http', '$mdDialog', 'actionData', 'actionId', '$mdToast','$location', 'HttpSV' ];
 
 	/**
 	 * 
@@ -16,7 +16,7 @@
 	 * @param $mdToast
 	 * @returns
 	 */
-	function ActionCT($scope, $log, $http, $mdDialog, actionData, actionId, $mdToast, $location) {
+	function ActionCT($scope, $log, $http, $mdDialog, actionData, actionId, $mdToast, $location, HttpSV) {
 		$log.debug('[ActionCT] Inicializando...');
 		var self = this;
 
@@ -26,21 +26,21 @@
 
 		self.values = {};
 
-		self.endpoints = {};
+		self.options = {};
 
-		var context = format('http://{}:{}/skdev', $location.host(), $location.port());
-
-		//loadEndpoints();
+		self.loadOptionsFromEndpoint = loadOptionsFromEndpoint;
 		
-		/*
-		function loadEndpoints() {
-			angular.forEach(actionData.endpoints, function(endpointV, endpointK) {
-				$http.get(format('{}{}', context, endpointV))
-					.success(function(data) {
-						self.endpoints[endpointK] = data;
-					});
+		var context = format('http://{}:{}/skdev/api', $location.host(), $location.port());
+		
+		function loadOptionsFromEndpoint(id,path) {
+			HttpSV.get(format(path, self.values),{
+				queryParams: {
+					name: HttpSV.getProjectName()
+				}
+			}).then(function(data) {
+				self.options[id] = data;
 			});
-		}*/
+		}
 
 		function hide() {
 			$mdDialog.hide();
