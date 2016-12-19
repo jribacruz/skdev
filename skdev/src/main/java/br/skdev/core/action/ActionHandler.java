@@ -46,18 +46,4 @@ public interface ActionHandler extends Serializable {
 		}
 		return String.format("/actions/%s/dialogTemplate.html", getId());
 	}
-
-	//// @formatter:off
-	/*
-	public default String getSuccess() throws IOException {
-		ClassPathResource classPathResource = new ClassPathResource(String.format("/static/actions/%s/success.md", getId()));
-		File file = classPathResource.getFile();
-		FileReader fileReader = new FileReader(file);
-		Parser parser = Parser.builder().build();
-		Node document = parser.parseReader(fileReader);
-		HtmlRenderer renderer = HtmlRenderer.builder().build();
-		return renderer.render(document);
-	}
-	*/
-	// @formatter:on
 }
