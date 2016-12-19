@@ -1,17 +1,25 @@
 package br.skdev.core.template;
 
-import java.io.File;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.Serializable;
-import java.io.StringReader;
+import java.io.Writer;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.stereotype.Component;
 
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
+import freemarker.template.TemplateException;
 
 /**
  * 
  * @author jcruz
  *
  */
+@Component
 public class Template implements Serializable {
 
 	/**
@@ -19,18 +27,22 @@ public class Template implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private File file;
+	private Configuration cfg;
 
-	public Template(File file) {
-		super();
-		this.file = file;
+	@PostConstruct
+	public void init() {
+		this.cfg = new Configuration();
+		this.cfg.setObjectWrapper(new DefaultObjectWrapper());
+		this.cfg.setClassForTemplateLoading(Template.class, "/static/actions/templates/");
+		this.cfg.setDefaultEncoding("UTF-8");
 	}
 
-	public String merge(TemplateModel model) {
-		Configuration cfg = new Configuration();
-		cfg.setObjectWrapper(new DefaultObjectWrapper());
-		//Template t = new Template(this.templateName, new StringReader(templateBuilder.toString()), cfg);
-		return null;
+	public String merge(TemplateModel model, String templatePath) throws IOException, TemplateException {
+		freemarker.template.Template template = cfg.getTemplate(templatePath);
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		Writer out = new OutputStreamWriter(outputStream);
+		template.process(model.getContext(), out);
+		return outputStream.toString();
 	}
 
 }
