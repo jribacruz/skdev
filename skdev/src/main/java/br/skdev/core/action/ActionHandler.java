@@ -7,7 +7,7 @@ import java.util.Map;
 
 import br.skdev.core.annotation.Action;
 import br.skdev.core.annotation.Endpoint;
-import br.skdev.core.context.ActionComponentContext;
+import br.skdev.core.context.ActionContext;
 import strman.Strman;
 
 /**
@@ -20,7 +20,7 @@ public interface ActionHandler extends Serializable {
 	/**
 	 * 
 	 */
-	public abstract void execute(ActionComponentContext ctx);
+	public abstract void execute(ActionContext ctx);
 
 	/**
 	 * Retorna o Id da Action.

@@ -7,7 +7,7 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ActionComponentContext implements Serializable {
+public class ActionContext implements Serializable {
 
 	/**
 	 * 
@@ -16,7 +16,7 @@ public class ActionComponentContext implements Serializable {
 
 	private Map<String, Object> values;
 
-	public ActionComponentContext(Map<String, Object> values) {
+	public ActionContext(Map<String, Object> values) {
 		super();
 		this.values = values;
 	}

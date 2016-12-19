@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import br.skdev.core.action.ActionHandler;
 import br.skdev.core.annotation.Action;
-import br.skdev.core.context.ActionComponentContext;
+import br.skdev.core.context.ActionContext;
 import br.skdev.core.repository.ActionRepository;
 
 @Service
@@ -39,7 +39,7 @@ public class ActionService {
 	public void executeAction(String id, Map<String, Object> values) {
 		Optional<ActionHandler> actionHandlerOp = findById(id);
 		actionHandlerOp.ifPresent(actionHandler -> {
-			ActionComponentContext ctx = new ActionComponentContext(values);
+			ActionContext ctx = new ActionContext(values);
 			actionHandler.execute(ctx);
 		});
 	}

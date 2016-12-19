@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import br.skdev.core.action.ActionHandler;
 import br.skdev.core.annotation.Action;
 import br.skdev.core.annotation.Endpoint;
-import br.skdev.core.context.ActionComponentContext;
+import br.skdev.core.context.ActionContext;
 
 /**
  * 
@@ -27,7 +27,7 @@ public class TestAction implements ActionHandler {
 	 * 
 	 */
 	@Override
-	public void execute(ActionComponentContext ctx) {
+	public void execute(ActionContext ctx) {
 		log.info("[execute] ctx={}", ctx);
 	}
 
