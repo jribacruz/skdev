@@ -25,4 +25,11 @@ public class TemplateTest {
 		String mergedTemplate = template.merge(model, "hello.ftl");
 		System.out.println(mergedTemplate);
 	}
+
+	@Test
+	public void mergeInlineTemplate() throws IOException, TemplateException {
+		TemplateModel model = TemplateModel.of().add("className", "AtividadeDAO");
+		String mergedTemplate = template.mergeInline(model, "Nome da classe: ${className}");
+		System.out.println(mergedTemplate);
+	}
 }

@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
+import java.io.StringReader;
 import java.io.Writer;
 
 import javax.annotation.PostConstruct;
@@ -42,6 +43,15 @@ public class Template implements Serializable {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		Writer out = new OutputStreamWriter(outputStream);
 		template.process(model.getContext(), out);
+		return outputStream.toString();
+	}
+
+	public String mergeInline(TemplateModel templateModel, String strTemplate) throws TemplateException, IOException {
+		freemarker.template.Template inlineTemplate = new freemarker.template.Template("inlineTemplate",
+				new StringReader(strTemplate), new Configuration());
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		Writer out = new OutputStreamWriter(outputStream);
+		inlineTemplate.process(templateModel.getContext(), out);
 		return outputStream.toString();
 	}
 
