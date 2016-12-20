@@ -14,6 +14,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.xml.sax.SAXException;
 
 import com.thoughtworks.qdox.JavaDocBuilder;
@@ -26,7 +29,7 @@ import br.skdev.core.model.EMavenProject;
 import br.skdev.core.model.EPom;
 import br.skdev.core.util.FS;
 
-public class EMavenProjectProxy extends EMavenProject {
+public class EMavenProjectProxy extends EMavenProject implements ApplicationContextAware {
 
 	/**
 	 * 
@@ -34,7 +37,11 @@ public class EMavenProjectProxy extends EMavenProject {
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger log = LoggerFactory.getLogger(EMavenProjectProxy.class);
-
+	
+	private ApplicationContext applicationContext;
+	
+	private FS fs = this.applicationContext.getBean(FS.class);
+	
 	private Path path;
 
 	public EMavenProjectProxy(Path path) {
@@ -62,7 +69,7 @@ public class EMavenProjectProxy extends EMavenProject {
 	public SortedSet<EClass> getClasses() {
 		if (this.classes == null) {
 			this.classes = new TreeSet<>();
-			Optional<Stream<Path>> files = FS.listFilesRecursively(this.path);
+			Optional<Stream<Path>> files = fs.listFilesRecursively(this.path);
 			if (files.isPresent()) {
 				//// @formatter:off
 				this.classes = files.get()
@@ -102,6 +109,11 @@ public class EMavenProjectProxy extends EMavenProject {
 			log.error(e.getMessage());
 		}
 		return Optional.empty();
+	}
+
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		this.applicationContext = applicationContext;
 	}
 
 }

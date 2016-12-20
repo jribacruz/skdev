@@ -21,7 +21,7 @@ public class ActionRepositoyTest {
 
 	@Test
 	public void testFindByName() {
-		Optional<ActionHandler> action = actionRepository.findById("TestAction");
+		Optional<ActionHandler> action = actionRepository.findById("testAction");
 		Assert.assertTrue(action.isPresent());
 	}
 
