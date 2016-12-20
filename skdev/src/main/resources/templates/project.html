@@ -14,7 +14,17 @@
 	<div flex="" style="height:100%" layout="column" ng-controller="WorkspaceCT as workspaceCT" ng-clock="">
 	    <div flex="" style="height:100%" layout="column" ng-controller="ProjectCT as projectCT" ng-clock="">
 			<!-- MENU -->
-			<ng-include src="'/skdev/partials/toolbar.html'"/>
+			<md-toolbar id="toolbar" class="md-primary">
+				<div class="md-toolbar-tools">
+				    <h2 >
+				      <span>SKDEV - {{projectCT.projectName}}</span>
+				    </h2>
+				    <span flex=""></span>
+				    <md-button class="md-raised" aria-label="Ações" ng-click="workspaceCT.showActionListDialogByGroup('Teste','test')">
+				      Ações
+				    </md-button>
+				</div>
+			</md-toolbar>
 		    <md-content id="content" style="height: 100%" flex="">
 			    <div flex="" layout="column" style="height:100%">
 				    <section layout="row" flex="" style="height:100%">
