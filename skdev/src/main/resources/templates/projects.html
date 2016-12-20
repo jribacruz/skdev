@@ -11,6 +11,17 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>	
 </head>
 <body ng-app="skdevMD">
+	<md-toolbar id="toolbar" class="md-primary">
+		<div class="md-toolbar-tools">
+		    <h2 >
+		      <span></span>
+		    </h2>
+		    <span flex=""></span>
+		    <md-button class="md-raised" aria-label="Ações" ng-click="projectCT.showActionListDialog()">
+		      Ações
+		    </md-button>
+		</div>
+	</md-toolbar>
 	<div layout="row" ng-controller="ProjectListCT as projectListCT">
 		<div ng-repeat="project in projectListCT.projects" flex-xs="" flex-gt-xs="50">
 	        <md-card>
