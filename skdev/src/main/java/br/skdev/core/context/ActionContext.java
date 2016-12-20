@@ -1,6 +1,7 @@
 package br.skdev.core.context;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,12 +22,14 @@ public class ActionContext implements Serializable {
 		this.values = values;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<String> getValues(String key) {
-		return null;
+		Object value = values.get(key);
+		return value instanceof ArrayList ? (ArrayList<String>) value : new ArrayList<>();
 	}
 
 	public String getValue(String key) {
-		return null;
+		return (String) values.get(key);
 	}
 
 	@Override

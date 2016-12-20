@@ -28,6 +28,7 @@ public class TestAction implements ActionHandler {
 	@Override
 	public void execute(ActionContext ctx) {
 		log.info("[execute] ctx={}", ctx);
+		System.out.println(ctx.getValues("selectClassId"));
 	}
 
 }
