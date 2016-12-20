@@ -1,7 +1,8 @@
-package br.skdev;
+package br.skdev.template;
 
 import java.io.IOException;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,13 @@ public class TemplateTest {
 	public void mergeHelloTemplate() throws IOException, TemplateException {
 		TemplateModel model = TemplateModel.of().add("name", "José Ribamar");
 		String mergedTemplate = template.merge(model, "hello.ftl");
-		System.out.println(mergedTemplate);
+		Assert.assertTrue(mergedTemplate.equals("Hello José Ribamar"));
 	}
 
 	@Test
 	public void mergeInlineTemplate() throws IOException, TemplateException {
-		TemplateModel model = TemplateModel.of().add("className", "AtividadeDAO");
-		String mergedTemplate = template.mergeInline(model, "Nome da classe: ${className}");
-		System.out.println(mergedTemplate);
+		TemplateModel model = TemplateModel.of().add("className", "Atividade");
+		String mergedTemplate = template.mergeInline(model, "${className}DAO");
+		Assert.assertTrue(mergedTemplate.equals("AtividadeDAO"));
 	}
 }
