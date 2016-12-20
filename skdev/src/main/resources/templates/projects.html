@@ -11,26 +11,25 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>	
 </head>
 <body ng-app="skdevMD">
-	<div layout="column" layout-align="center center" ng-controller="ProjectListCT as projectListCT">
-		<div flex="" style="width:500px">
-			<md-card>
-				 <md-toolbar layout="row" class="md-primary">
-				      <div class="md-toolbar-tools">
-				        <span>Selecione um projeto</span>
-				      </div>
-			    </md-toolbar>
-				<md-content>
-			      <md-list flex="">
-			        <md-list-item class="md-3-line" ng-repeat="project in projectListCT.projects" ng-href="/skdev/project?name={{project.name}}">
-			          <md-icon md-font-icon="material-icons">folder_open</md-icon>	
-			          <div class="md-list-item-text" layout="column">
-			            <h3>{{ project.name }}</h3>
-			          </div>
-			        </md-list-item>	
-			      </md-list>
-			    </md-content>
-			</md-card>
-		</div>
+	<div layout="row" ng-controller="ProjectListCT as projectListCT">
+		<div ng-repeat="project in projectListCT.projects" flex-xs="" flex-gt-xs="50">
+	        <md-card>
+	        	<md-card-title>
+	          		<md-card-title-text>
+	            		<span class="md-headline">{{project.name}}</span>
+	            		<span class="md-subhead">{{project.pom.parent.artifactId}} - {{project.pom.parent.version}}</span>
+	          		</md-card-title-text>
+	          		<!-- 
+	          		<md-card-title-media>
+	            		<div class="md-media-lg card-media"></div>
+	          		</md-card-title-media>
+	          		 -->
+	        	</md-card-title>
+	        	<md-card-actions layout="row" layout-align="end center">
+	          		<md-button ng-href="/skdev/project?name={{project.name}}">Entrar</md-button>
+	        	</md-card-actions>
+	      	</md-card>
+		</div>  
 	</div>
 	<script src="/skdev/js/global.js"></script>
 </body>
