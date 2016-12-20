@@ -21,11 +21,11 @@ public class ActionContext implements Serializable {
 		this.values = values;
 	}
 
-	public List<String> getValuesById(String id) {
+	public List<String> getValues(String key) {
 		return null;
 	}
 
-	public String getValueIdId(String id) {
+	public String getValue(String key) {
 		return null;
 	}
 
