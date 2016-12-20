@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import br.skdev.core.model.EWorkspace;
 import br.skdev.core.proxy.EWorkspaceProxy;
+import br.skdev.core.util.FS;
 
 @Repository
 public class WorkspaceRepository {
@@ -21,6 +22,9 @@ public class WorkspaceRepository {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	private FS fs;
 
 	public EWorkspace findWorkspace() {
 		String q = "SELECT * FROM WORKSPACE W";
@@ -28,7 +32,7 @@ public class WorkspaceRepository {
 			return jdbcTemplate.queryForObject(q, new RowMapper<EWorkspace>() {
 				@Override
 				public EWorkspace mapRow(ResultSet rs, int arg1) throws SQLException {
-					return new EWorkspaceProxy(rs.getString("path"));
+					return new EWorkspaceProxy(fs,rs.getString("path"));
 				}
 			});
 		} catch (EmptyResultDataAccessException e) {

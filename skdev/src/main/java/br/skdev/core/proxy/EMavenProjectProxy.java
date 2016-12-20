@@ -14,9 +14,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.xml.sax.SAXException;
 
 import com.thoughtworks.qdox.JavaDocBuilder;
@@ -29,7 +26,7 @@ import br.skdev.core.model.EMavenProject;
 import br.skdev.core.model.EPom;
 import br.skdev.core.util.FS;
 
-public class EMavenProjectProxy extends EMavenProject implements ApplicationContextAware {
+public class EMavenProjectProxy extends EMavenProject {
 
 	/**
 	 * 
@@ -37,15 +34,14 @@ public class EMavenProjectProxy extends EMavenProject implements ApplicationCont
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger log = LoggerFactory.getLogger(EMavenProjectProxy.class);
-	
-	private ApplicationContext applicationContext;
-	
-	private FS fs = this.applicationContext.getBean(FS.class);
-	
+
 	private Path path;
 
-	public EMavenProjectProxy(Path path) {
+	private FS fs;
+
+	public EMavenProjectProxy(FS fs, Path path) {
 		super();
+		this.fs = fs;
 		this.path = path;
 	}
 
@@ -91,8 +87,7 @@ public class EMavenProjectProxy extends EMavenProject implements ApplicationCont
 	public EPom getPom() {
 		if (this.pom == null) {
 			try {
-				this.pom = new EPomProxy(
-						new File(FilenameUtils.normalize(String.format("%s/pom.xml", this.getAbsolutePath()))));
+				this.pom = new EPomProxy(new File(FilenameUtils.normalize(String.format("%s/pom.xml", this.getAbsolutePath()))));
 			} catch (SAXException | IOException | ParserConfigurationException e) {
 				log.error(e.getMessage());
 			}
@@ -105,15 +100,10 @@ public class EMavenProjectProxy extends EMavenProject implements ApplicationCont
 			JavaDocBuilder doc = new JavaDocBuilder();
 			JavaSource source = doc.addSource(new File(path.toFile().getAbsolutePath()));
 			return Optional.of(source.getClasses()[0]);
-		} catch (ParseException |IOException e) {
+		} catch (ParseException | IOException e) {
 			log.error(e.getMessage());
 		}
 		return Optional.empty();
-	}
-
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		this.applicationContext = applicationContext;
 	}
 
 }
