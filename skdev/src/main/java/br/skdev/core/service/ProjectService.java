@@ -40,11 +40,11 @@ public class ProjectService {
 
 	/**
 	 * 
-	 * @param name
+	 * @param projectName
 	 * @return
 	 */
-	public Optional<EMavenProject> findByName(String name) {
-		return projectRepository.findByName(name);
+	public Optional<EMavenProject> findByName(String projectName) {
+		return projectRepository.findByName(projectName);
 	}
 
 	/**
