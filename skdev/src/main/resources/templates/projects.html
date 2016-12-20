@@ -10,37 +10,52 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic"/>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>	
 </head>
-<body ng-app="skdevMD">
-	<md-toolbar id="toolbar" class="md-primary">
-		<div class="md-toolbar-tools">
-		    <h2 >
-		      <span></span>
-		    </h2>
-		    <span flex=""></span>
-		    <md-button class="md-raised" aria-label="Ações" ng-click="projectCT.showActionListDialog()">
-		      Ações
-		    </md-button>
-		</div>
-	</md-toolbar>
-	<div layout="row" ng-controller="ProjectListCT as projectListCT">
-		<div ng-repeat="project in projectListCT.projects" flex-xs="" flex-gt-xs="50">
-	        <md-card>
-	        	<md-card-title>
-	          		<md-card-title-text>
-	            		<span class="md-headline">{{project.name}}</span>
-	            		<span class="md-subhead">{{project.pom.parent.artifactId}} - {{project.pom.parent.version}}</span>
-	          		</md-card-title-text>
-	          		<!-- 
-	          		<md-card-title-media>
-	            		<div class="md-media-lg card-media"></div>
-	          		</md-card-title-media>
-	          		 -->
-	        	</md-card-title>
-	        	<md-card-actions layout="row" layout-align="end center">
-	          		<md-button ng-href="/skdev/project?name={{project.name}}">Entrar</md-button>
-	        	</md-card-actions>
-	      	</md-card>
-		</div>  
+<body ng-app="skdevMD" >
+	<div ng-controller="ProjectListCT as projectListCT" style="height: 100%" flex="" layout="column">
+		<md-toolbar id="toolbar" class="md-primary">
+			<div class="md-toolbar-tools">
+			    <h2 >
+			      <span></span>
+			    </h2>
+			    <span flex=""></span>
+			    <md-button class="md-raised" aria-label="Ações" ng-click="projectCT.showActionListDialog()">
+			      Ações
+			    </md-button>
+			</div>
+		</md-toolbar>
+		 <div layout="column" flex="" style="height: 100%">
+		<md-content layout="column" flex="" style="height: 100%">
+				<md-grid-list flex=""
+			 			   md-cols-gt-md="3"
+			  			   md-cols-sm="1"
+			  			   md-cols-xs="1"
+			 			   md-cols="2"
+			 			   md-cols-md="2"
+			 			   md-cols-lg="3"
+			 			   md-cols-gt-lg="5"
+			 			   md-cols-xl="4"
+			 			   md-gutter="8px" md-gutter-gt-sm="4px"
+			 			   md-row-height-gt-md="180px" 
+			 			   md-row-height="180px" ng-cloak="">
+			 	    <md-grid-tile ng-repeat="project in projectListCT.projects">
+				        <md-card style="width: 100%">
+				        	<md-card-title>
+				          		<md-card-title-text>
+				            		<span class="md-headline">{{project.name}}</span>
+				            		<span class="md-subhead">{{project.pom.parent.artifactId}} - {{project.pom.parent.version}}</span>
+				          		</md-card-title-text>
+				        	</md-card-title>
+				        	<!-- 
+				        	<md-card-content>Teste</md-card-content>
+				        	 -->
+				        	<md-card-actions layout="row" layout-align="end center">
+				          		<md-button ng-href="/skdev/project?name={{project.name}}">Entrar</md-button>
+				        	</md-card-actions>
+				      	</md-card>
+			 	    </md-grid-tile>
+			 	</md-grid-list>
+		</md-content>
+		 </div>
 	</div>
 	<script src="/skdev/js/global.js"></script>
 </body>
