@@ -18,8 +18,6 @@ public class EWorkspaceProxy extends EWorkspace {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String path;
-
 	public EWorkspaceProxy(String path) {
 		super();
 		this.path = path;

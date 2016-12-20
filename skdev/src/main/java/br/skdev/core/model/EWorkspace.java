@@ -21,10 +21,12 @@ public class EWorkspace implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	protected Integer id;
+
 	/**
 	 * 
 	 */
-	private String path;
+	protected String path;
 
 	/**
 	 * 
@@ -34,6 +36,14 @@ public class EWorkspace implements Serializable {
 
 	public EWorkspace() {
 		super();
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getPath() {
