@@ -3,8 +3,7 @@
 
 	angular.module('skdevMD').controller('ProjectCT', ProjectCT);
 
-	ProjectCT.$inject = [ '$scope', '$log', 'ProjectSV', '$mdDialog', '$http',
-			'HttpSV', '$location' ];
+	ProjectCT.$inject = [ '$scope', '$log', 'ProjectSV', '$mdDialog', '$http', 'HttpSV', '$location' ];
 
 	/**
 	 * 
@@ -16,8 +15,7 @@
 	 * @param HttpSV
 	 * @returns
 	 */
-	function ProjectCT($scope, $log, ProjectSV, $mdDialog, $http, HttpSV,
-			$location) {
+	function ProjectCT($scope, $log, ProjectSV, $mdDialog, $http, HttpSV, $location) {
 		$log.debug('[ProjectCT] Inicializando...');
 		var self = this;
 

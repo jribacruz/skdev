@@ -32,7 +32,7 @@
 		/**
 		 * Exibe o dialog com a listagem de actions.
 		 */
-		function showActionListDialogByGroup(group) {
+		function showActionListDialogByGroup(title, group) {
 			$log.debug('[showActionListDialog] Listagem de Actions.')
 			$mdDialog.show({
 				parent : angular.element(document.body),
@@ -41,7 +41,8 @@
 				controller : 'ActionListCT',
 				controllerAs : 'actionListCT',
 				locals: {
-					group: group
+					group: group,
+					title: title
 				}
 			});
 		}
