@@ -40,14 +40,17 @@
 		/**
 		 * Exibe o dialog com a listagem de actions.
 		 */
-		function showActionListDialog() {
+		function showActionListDialog(actionPath) {
 			$log.debug('[showActionListDialog] Listagem de Actions.')
 			$mdDialog.show({
 				parent : angular.element(document.body),
 				templateUrl : '/skdev/partials/action.list.html',
 				clickOutsideToClose : false,
 				controller : 'ActionListCT',
-				controllerAs : 'actionListCT'
+				controllerAs : 'actionListCT',
+				locals: {
+					actionPath: actionPath
+				}
 			});
 		}
 
