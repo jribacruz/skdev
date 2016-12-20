@@ -3,7 +3,8 @@
 
 	angular.module('skdevMD').controller('ProjectCT', ProjectCT);
 
-	ProjectCT.$inject = [ '$scope', '$log', 'ProjectSV', '$mdDialog', '$http', 'HttpSV', '$location' ];
+	ProjectCT.$inject = [ '$scope', '$log', 'ProjectSV', '$mdDialog', '$http',
+			'HttpSV', '$location' ];
 
 	/**
 	 * 
@@ -15,13 +16,12 @@
 	 * @param HttpSV
 	 * @returns
 	 */
-	function ProjectCT($scope, $log, ProjectSV, $mdDialog, $http, HttpSV, $location) {
+	function ProjectCT($scope, $log, ProjectSV, $mdDialog, $http, HttpSV,
+			$location) {
 		$log.debug('[ProjectCT] Inicializando...');
 		var self = this;
 
 		self.projectName = "";
-
-		self.showActionListDialog = showActionListDialog;
 
 		self.classes = [];
 
@@ -35,23 +35,6 @@
 		function init() {
 			self.projectName = HttpSV.getProjectName();
 			findAllClasses();
-		}
-
-		/**
-		 * Exibe o dialog com a listagem de actions.
-		 */
-		function showActionListDialog(actionPath) {
-			$log.debug('[showActionListDialog] Listagem de Actions.')
-			$mdDialog.show({
-				parent : angular.element(document.body),
-				templateUrl : '/skdev/partials/action.list.html',
-				clickOutsideToClose : false,
-				controller : 'ActionListCT',
-				controllerAs : 'actionListCT',
-				locals: {
-					actionPath: actionPath
-				}
-			});
 		}
 
 		/**

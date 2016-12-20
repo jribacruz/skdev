@@ -33,7 +33,7 @@ public @interface Action {
 	 * 
 	 * @return
 	 */
-	String group() default "";
+	String group();
 
 	/**
 	 * 

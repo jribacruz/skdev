@@ -12,15 +12,15 @@ import br.skdev.core.context.ActionContext;
  * @author jcruz
  *
  */
-@Action(description = "Ação de Teste", group = "test")
-public class TestAction implements ActionHandler {
+@Action(description = "Teste Action Archetype2", group="archetypes")
+public class TestArchetype2Action implements ActionHandler {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Logger log = LoggerFactory.getLogger(TestAction.class);
+	private Logger log = LoggerFactory.getLogger(TestArchetype2Action.class);
 
 	/**
 	 * 

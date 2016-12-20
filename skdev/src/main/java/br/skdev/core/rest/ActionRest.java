@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.skdev.core.action.ActionHandler;
@@ -26,9 +27,17 @@ public class ActionRest {
 	@Autowired
 	private ActionService actionService;
 
+	/*
 	@RequestMapping(method = RequestMethod.GET, path = "api/actions")
 	public ResponseEntity<?> findAllActionsDescription() {
 		Map<String, String> actionDescriptionMap = actionService.findAllActionDescription();
+		log.info("[findAllActions] {} actions encontradas", actionDescriptionMap.size());
+		return ResponseEntity.ok(actionDescriptionMap);
+	}*/
+	
+	@RequestMapping(method = RequestMethod.GET, path = "api/actions")
+	public ResponseEntity<?> findAllActionsDescriptionByGroup(@RequestParam("group") String group) {
+		Map<String, String> actionDescriptionMap = actionService.findAllActionDescriptionByGroup(group);
 		log.info("[findAllActions] {} actions encontradas", actionDescriptionMap.size());
 		return ResponseEntity.ok(actionDescriptionMap);
 	}

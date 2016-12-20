@@ -46,4 +46,14 @@ public interface ActionHandler extends Serializable {
 		}
 		return String.format("/actions/%s/dialogTemplate.html", getId());
 	}
+	
+	
+	public default String getGroup() {
+		if (this.getClass().isAnnotationPresent(Action.class)) {
+			if (!this.getClass().getAnnotation(Action.class).group().isEmpty()) {
+				return this.getClass().getAnnotation(Action.class).group();
+			}
+		}
+		return "";
+	}
 }

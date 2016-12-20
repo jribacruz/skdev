@@ -31,6 +31,17 @@ public class ActionService {
 							action -> action.getClass().getAnnotation(Action.class).description()));
 		// @formatter:on
 	}
+	
+	public Map<String, String> findAllActionDescriptionByGroup(String group) {
+		//// @formatter:off
+		return this.actionRepository.findAll()
+					.stream()
+					.filter(actionHandler -> actionHandler.getGroup().equals(group))
+					.collect(Collectors.toMap(
+							action -> action.getId(), 
+							action -> action.getClass().getAnnotation(Action.class).description()));
+		// @formatter:on
+	}
 
 	public Optional<ActionHandler> findById(String id) {
 		return this.actionRepository.findById(id);

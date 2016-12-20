@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>	
 </head>
 <body ng-app="skdevMD" >
-	<div ng-controller="ProjectListCT as projectListCT" style="height: 100%" flex="" layout="column">
+	<div ng-controller="WorkspaceCT as workspaceCT" style="height: 100%" flex="" layout="column">
 		<md-toolbar id="toolbar" class="md-primary">
 			<div class="md-toolbar-tools">
 			    <h2 >
@@ -19,10 +19,10 @@
 			    </h2>
 			    <span flex=""></span>
 			    <!-- 
-			    <md-button class="md-raised" aria-label="Ações" ng-click="projectCT.showActionListDialog()">
+			     -->
+			    <md-button class="md-raised" aria-label="Ações" ng-click="workspaceCT.showActionListDialogByGroup('archetypes')">
 			      Ações
 			    </md-button>
-			     -->
 			</div>
 		</md-toolbar>
 		 <div layout="column" flex="" style="height: 100%">
@@ -39,7 +39,7 @@
 			 			   md-gutter="8px" md-gutter-gt-sm="4px"
 			 			   md-row-height-gt-md="170px" 
 			 			   md-row-height="170px" ng-cloak="">
-			 	    <md-grid-tile ng-repeat="project in projectListCT.projects">
+			 	    <md-grid-tile ng-repeat="project in workspaceCT.projects">
 				        <md-card style="width: 100%">
 				        	<md-card-title>
 				          		<md-card-title-text>
