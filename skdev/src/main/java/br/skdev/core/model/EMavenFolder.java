@@ -1,6 +1,6 @@
-package br.skdev.core;
+package br.skdev.core.model;
 
-public enum MavenFolder {
+public enum EMavenFolder {
 	/**
 	 * 
 	 */
@@ -41,7 +41,7 @@ public enum MavenFolder {
 
 	private String path;
 
-	private MavenFolder(String path) {
+	private EMavenFolder(String path) {
 		this.path = path;
 	}
 

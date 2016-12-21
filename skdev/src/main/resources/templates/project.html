@@ -11,9 +11,10 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>	
 </head>
 <body ng-app="skdevMD">
-	<div flex="" style="height:100%" layout="column" ng-controller="WorkspaceCT as workspaceCT" ng-clock="">
-	    <div flex="" style="height:100%" layout="column" ng-controller="ProjectCT as projectCT" ng-clock="">
+	<div flex="" style="height:100%" layout="column" ng-controller="WorkspaceCT as workspaceCT">
+	    <div flex="" style="height:100%" layout="column" ng-controller="ProjectCT as projectCT">
 			<!-- MENU -->
+			<!-- 
 			<md-toolbar id="toolbar" class="md-primary">
 				<div class="md-toolbar-tools">
 				    <h2 >
@@ -25,6 +26,8 @@
 				    </md-button>
 				</div>
 			</md-toolbar>
+			 -->
+			<ng-include src="'partials/menu.html'"/>
 		    <md-content id="content" style="height: 100%" flex="">
 			    <div flex="" layout="column" style="height:100%">
 				    <section layout="row" flex="" style="height:100%">
