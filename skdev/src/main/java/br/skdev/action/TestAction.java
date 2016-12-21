@@ -12,7 +12,7 @@ import br.skdev.core.context.ActionContext;
  * @author jcruz
  *
  */
-@Action(description = "Ação de Teste", group = "test")
+@Action(description = "Ação de Teste", groups = "test")
 public class TestAction implements ActionHandler {
 
 	/**

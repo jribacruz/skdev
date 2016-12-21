@@ -8,6 +8,8 @@ import java.lang.annotation.Target;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+
 /**
  * 
  * @author jcruz
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Component;
 @Retention(RUNTIME)
 @Target(TYPE)
 @Component
+@JsonAnyGetter
 public @interface Action {
 	/**
 	 * 
@@ -33,7 +36,7 @@ public @interface Action {
 	 * 
 	 * @return
 	 */
-	String group();
+	String[] groups();
 
 	/**
 	 * 

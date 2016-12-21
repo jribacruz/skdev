@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,13 +28,13 @@ public class ActionRest {
 	@Autowired
 	private ActionService actionService;
 
-	/*
-	@RequestMapping(method = RequestMethod.GET, path = "api/actions")
-	public ResponseEntity<?> findAllActionsDescription() {
-		Map<String, String> actionDescriptionMap = actionService.findAllActionDescription();
-		log.info("[findAllActions] {} actions encontradas", actionDescriptionMap.size());
-		return ResponseEntity.ok(actionDescriptionMap);
-	}*/
+	
+	@RequestMapping(method = RequestMethod.GET, path = "api/all/actions")
+	public ResponseEntity<?> findAllActions() {
+		Set<ActionHandler> actions = actionService.findAllActions();
+		log.info("[findAllActions] {} actions encontradas", actions.size());
+		return ResponseEntity.ok(actions);
+	}
 	
 	@RequestMapping(method = RequestMethod.GET, path = "api/actions")
 	public ResponseEntity<?> findAllActionsDescriptionByGroup(@RequestParam("group") String group) {

@@ -2,6 +2,9 @@ package br.skdev.core.action;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import br.skdev.core.annotation.Action;
 import br.skdev.core.context.ActionContext;
@@ -46,14 +49,15 @@ public interface ActionHandler extends Serializable {
 		}
 		return String.format("/actions/%s/dialogTemplate.html", getId());
 	}
-	
-	
-	public default String getGroup() {
+
+	/**
+	 * 
+	 * @return
+	 */
+	public default Set<String> getGroup() {
 		if (this.getClass().isAnnotationPresent(Action.class)) {
-			if (!this.getClass().getAnnotation(Action.class).group().isEmpty()) {
-				return this.getClass().getAnnotation(Action.class).group();
-			}
+			return new HashSet<>(Arrays.asList(getClass().getAnnotation(Action.class).groups()));
 		}
-		return "";
+		return new HashSet<>();
 	}
 }

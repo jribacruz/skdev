@@ -2,6 +2,7 @@ package br.skdev.core.service;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -22,21 +23,15 @@ public class ActionService {
 	@Autowired
 	private ActionRepository actionRepository;
 
-	public Map<String, String> findAllActionDescription() {
-		//// @formatter:off
-		return this.actionRepository.findAll()
-					.stream()
-					.collect(Collectors.toMap(
-							action -> action.getId(), 
-							action -> action.getClass().getAnnotation(Action.class).description()));
-		// @formatter:on
+	public Set<ActionHandler> findAllActions() {
+		return this.actionRepository.findAll();
 	}
-	
+
 	public Map<String, String> findAllActionDescriptionByGroup(String group) {
 		//// @formatter:off
 		return this.actionRepository.findAll()
 					.stream()
-					.filter(actionHandler -> actionHandler.getGroup().equals(group))
+					.filter(actionHandler -> actionHandler.getGroup().contains(group))
 					.collect(Collectors.toMap(
 							action -> action.getId(), 
 							action -> action.getClass().getAnnotation(Action.class).description()));

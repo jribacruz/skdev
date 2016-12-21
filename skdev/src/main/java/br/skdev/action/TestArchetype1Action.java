@@ -12,7 +12,7 @@ import br.skdev.core.context.ActionContext;
  * @author jcruz
  *
  */
-@Action(description = "Teste Action Archetype1", group="archetypes")
+@Action(description = "Teste Action Archetype1", groups="archetypes")
 public class TestArchetype1Action implements ActionHandler {
 
 	/**
