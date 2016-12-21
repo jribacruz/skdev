@@ -1,5 +1,6 @@
 package br.skdev.core.service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.skdev.core.action.ActionHandler;
-import br.skdev.core.annotation.Action;
 import br.skdev.core.context.ActionContext;
 import br.skdev.core.repository.ActionRepository;
 
@@ -27,14 +27,12 @@ public class ActionService {
 		return this.actionRepository.findAll();
 	}
 
-	public Map<String, String> findAllActionDescriptionByGroup(String group) {
+	public Set<ActionHandler> findActionsByGroups(List<String> groups) {
 		//// @formatter:off
 		return this.actionRepository.findAll()
 					.stream()
-					.filter(actionHandler -> actionHandler.getGroup().contains(group))
-					.collect(Collectors.toMap(
-							action -> action.getId(), 
-							action -> action.getClass().getAnnotation(Action.class).description()));
+					.filter(actionHandler -> actionHandler.getGroup().stream().anyMatch(group -> groups.contains(group)))
+					.collect(Collectors.toSet());
 		// @formatter:on
 	}
 

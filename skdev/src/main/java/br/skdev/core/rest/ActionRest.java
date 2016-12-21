@@ -1,7 +1,7 @@
 package br.skdev.core.rest;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -28,34 +28,43 @@ public class ActionRest {
 	@Autowired
 	private ActionService actionService;
 
-	
-	@RequestMapping(method = RequestMethod.GET, path = "api/all/actions")
-	public ResponseEntity<?> findAllActions() {
+	@RequestMapping(method = RequestMethod.GET, path = "api/actions")
+	public ResponseEntity<?> findActions(@RequestParam(name = "group", required = false) List<String> groups) {
+		if (!groups.isEmpty()) {
+			Set<ActionHandler> actions = actionService.findActionsByGroups(groups);
+			log.info("[findAllActions] {} actions encontradas", actions.size());
+			return ResponseEntity.ok(actions);
+		}
 		Set<ActionHandler> actions = actionService.findAllActions();
 		log.info("[findAllActions] {} actions encontradas", actions.size());
 		return ResponseEntity.ok(actions);
-	}
-	
-	@RequestMapping(method = RequestMethod.GET, path = "api/actions")
-	public ResponseEntity<?> findAllActionsDescriptionByGroup(@RequestParam("group") String group) {
-		Map<String, String> actionDescriptionMap = actionService.findAllActionDescriptionByGroup(group);
-		log.info("[findAllActions] {} actions encontradas", actionDescriptionMap.size());
-		return ResponseEntity.ok(actionDescriptionMap);
+
 	}
 
+	/**
+	 * 
+	 * @param actionId
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(method = RequestMethod.GET, path = "api/actions/{id}")
 	public ResponseEntity<?> findActionById(@PathVariable("id") String actionId) throws IOException {
 		Optional<ActionHandler> action = actionService.findById(actionId);
 		if (action.isPresent()) {
-			Map<String, Object> actionMap = new HashMap<>();
-			actionMap.put("dialogTemplatePath", action.get().getDialogTemplatePath());
-			log.info("[findActionById] body={}", actionMap);
-			return ResponseEntity.ok(actionMap);
+			log.info("[findActionById] body={}", action.get());
+			return ResponseEntity.ok(action.get());
 
 		}
 		return ResponseEntity.notFound().build();
 	}
 
+	/**
+	 * 
+	 * @param actionId
+	 * @param values
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(method = RequestMethod.POST, path = "api/actions/{id}")
 	public ResponseEntity<?> executeActionById(@PathVariable("id") String actionId, @RequestBody Map<String, Object> values)
 			throws IOException {
