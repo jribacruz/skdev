@@ -4,9 +4,9 @@ import java.util.SortedSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.skdev.core.context.WorkspaceContext;
@@ -32,17 +32,19 @@ public class ProjectRest {
 	public SortedSet<EMavenProject> getProjects() {
 		return workspaceContext.getWokspace().getMavenProjects();
 	}
+	
 
 	/**
-	 * Retorna a lista de classes de dominio.
+	 * Retorna as classes do projeto.
 	 * 
 	 * @return
 	 * @throws InterruptedException
 	 */
-	@RequestMapping(method = RequestMethod.GET, path = "/api/project/classes")
-	public ResponseEntity<?> findAllEClasses(@RequestParam("name") String projectName) {
-		SortedSet<EClass> entities = projectService.findAllClasses(projectName);
+	@RequestMapping(method = RequestMethod.GET, path = "/api/projects/{projectName}/classes", produces = "application/json")
+	public ResponseEntity<?> findAllEClasses(@PathVariable("projectName") String projectName) {
+		EMavenProject eMavenProject = projectService.findByName(projectName);
+		SortedSet<EClass> entities = projectService.findAllEClasses(eMavenProject);
 		return ResponseEntity.ok(entities);
-
 	}
+
 }
