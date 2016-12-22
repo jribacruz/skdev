@@ -32,6 +32,7 @@ public class ProjectRest {
 	public SortedSet<EMavenProject> getProjects() {
 		return workspaceContext.getWokspace().getMavenProjects();
 	}
+	
 
 	/**
 	 * Retorna as classes do projeto.
