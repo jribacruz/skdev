@@ -29,8 +29,7 @@ public class XMLParser {
 
 	private boolean namespaceAware = false;
 
-	public XMLParser(File xmlFile, boolean namespaceAware)
-			throws SAXException, IOException, ParserConfigurationException {
+	public XMLParser(File xmlFile, boolean namespaceAware) throws SAXException, IOException, ParserConfigurationException {
 		super();
 		this.xmlFile = xmlFile;
 		this.namespaceAware = namespaceAware;
@@ -81,4 +80,9 @@ public class XMLParser {
 		}
 		return Optional.empty();
 	}
+
+	public File getXmlFile() {
+		return xmlFile;
+	}
+
 }

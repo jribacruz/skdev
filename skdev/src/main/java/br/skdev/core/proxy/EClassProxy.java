@@ -11,6 +11,7 @@ import br.skdev.core.model.EAttribute;
 import br.skdev.core.model.EClass;
 import br.skdev.core.model.EMethod;
 import br.skdev.core.model.EPackage;
+import br.skdev.core.model.ESourceFolder;
 
 /**
  * Classe de proxy de EClass
@@ -30,6 +31,18 @@ public class EClassProxy extends EClass {
 	public EClassProxy(JavaClass javaClass) {
 		super();
 		this.javaClass = javaClass;
+	}
+
+	@Override
+	public ESourceFolder getSourceFolder() {
+		if(this.sourceFolder == null) {
+			this.sourceFolder = Arrays.asList(ESourceFolder.values())
+										.stream()
+										.filter(eSourceFolder -> javaClass.getSource().getURL().toString().contains(eSourceFolder.getPath()))
+										.findFirst()
+										.get();
+		}
+		return this.sourceFolder;
 	}
 
 	@Override

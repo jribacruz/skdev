@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.skdev.core.model.EClass;
-import br.skdev.core.model.EMavenFolder;
+import br.skdev.core.model.ESourceFolder;
 import br.skdev.core.model.EMavenProject;
 import br.skdev.core.model.EPackage;
 import br.skdev.core.repository.ProjectRepository;
@@ -56,7 +56,7 @@ public class ProjectService {
 	 * @param eMavenFolder
 	 * @param path
 	 */
-	public void mkdir(EMavenProject eMavenProject, EMavenFolder eMavenFolder, String path) {
+	public void mkdir(EMavenProject eMavenProject, ESourceFolder eMavenFolder, String path) {
 		String finalPath = fs.normalize(eMavenProject.getAbsolutePath(), eMavenFolder.getPath(), path);
 		log.info("[mkdir] path={}", finalPath);
 		fs.mkdir(finalPath);
@@ -70,7 +70,7 @@ public class ProjectService {
 	 * @param ePackage
 	 * @param path
 	 */
-	public void mkdir(EMavenProject eMavenProject, EMavenFolder eMavenFolder, EPackage ePackage, String path) {
+	public void mkdir(EMavenProject eMavenProject, ESourceFolder eMavenFolder, EPackage ePackage, String path) {
 		String finalPath = fs.normalize(eMavenProject.getAbsolutePath(), eMavenFolder.getPath(), ePackage.getDirectory(), path);
 		log.info("[mkdir] path={}", finalPath);
 		fs.mkdir(finalPath);

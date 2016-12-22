@@ -23,6 +23,8 @@ public class EClass implements Serializable, Comparable<EClass> {
 	 */
 	protected static final long serialVersionUID = 1L;
 
+	protected ESourceFolder sourceFolder;
+
 	/**
 	 * 
 	 */
@@ -58,6 +60,14 @@ public class EClass implements Serializable, Comparable<EClass> {
 
 	public EClass() {
 		super();
+	}
+
+	public ESourceFolder getSourceFolder() {
+		return sourceFolder;
+	}
+
+	public void setSourceFolder(ESourceFolder sourceFolder) {
+		this.sourceFolder = sourceFolder;
 	}
 
 	public String getName() {

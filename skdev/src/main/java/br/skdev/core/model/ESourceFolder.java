@@ -1,6 +1,8 @@
 package br.skdev.core.model;
 
-public enum EMavenFolder {
+import com.fasterxml.jackson.annotation.JsonValue;
+
+public enum ESourceFolder {
 	/**
 	 * 
 	 */
@@ -32,19 +34,15 @@ public enum EMavenFolder {
 	/**
 	 * 
 	 */
-	TARGET("/target/"),
-
-	/**
-	 * 
-	 */
-	ROOT("/");
+	TARGET("/target/");
 
 	private String path;
 
-	private EMavenFolder(String path) {
+	private ESourceFolder(String path) {
 		this.path = path;
 	}
 
+	@JsonValue
 	public String getPath() {
 		return path;
 	}

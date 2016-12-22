@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('WorkspaceCT', WorkspaceCT);
 
-	WorkspaceCT.$inject = [ '$scope', '$log', '$mdDialog', 'HttpSV' ];
+	WorkspaceCT.$inject = [ '$scope', '$log', '$mdDialog', 'HttpSV', '$injector' ];
 
 	/**
 	 * 
@@ -13,7 +13,7 @@
 	 * @param HttpSV
 	 * @returns
 	 */
-	function WorkspaceCT($scope, $log, $mdDialog, HttpSV) {
+	function WorkspaceCT($scope, $log, $mdDialog, HttpSV, $injector) {
 		$log.debug('[WorkspaceCT] Inicializando...');
 		var self = this;
 
@@ -21,12 +21,26 @@
 
 		self.showActionListDialogByGroup = showActionListDialogByGroup;
 		
+		$scope.fn = new Function('HttpSV',"HttpSV.get('/projects').then(function(data){self.projects = data;})");
+
 		init();
 		
+		
 		function init() {
+			/*
 			HttpSV.get('/projects').then(function(data){
 				self.projects = data;
-			});
+			});*/
+			//fn();
+			//console.log($scope);
+			//var angularFn = angular.bind(self,fn);
+			//$scope.$eval(angularFn);
+			var afn = angular.bind(this, $scope.fn);
+			//$scope.$eval($scope.fn, HttpSV);
+			afn.call($scope, HttpSV, self);
+			//afn();
+			//$scope.$apply(afn);
+			//$injector.invoke([HttpSV, fn]);
 		}
 		
 		/**

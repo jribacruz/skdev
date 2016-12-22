@@ -13,6 +13,7 @@ import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 import br.skdev.core.model.EPersistence;
+import br.skdev.core.model.ESourceFolder;
 import br.skdev.core.util.XMLParser;
 
 public class EPersistenceProxy extends EPersistence {
@@ -45,8 +46,7 @@ public class EPersistenceProxy extends EPersistence {
 		if (this.persistenceUnitTransactionType == null) {
 			Optional<Node> node = xmlParser.getNodeByXPathExpression("//persistence-unit");
 			if (node.isPresent()) {
-				this.persistenceUnitTransactionType = node.get().getAttributes().getNamedItem("transaction-type")
-						.getNodeValue();
+				this.persistenceUnitTransactionType = node.get().getAttributes().getNamedItem("transaction-type").getNodeValue();
 			}
 		}
 		return this.persistenceUnitTransactionType;
@@ -75,8 +75,7 @@ public class EPersistenceProxy extends EPersistence {
 							Collectors.toMap(
 									node -> node.getAttributes().getNamedItem("name").getNodeValue(), 
 									node -> node.getAttributes().getNamedItem("value").getNodeValue()
-									)
-							);
+									));
 			// @formatter:on
 		}
 		return this.properties;

@@ -18,6 +18,7 @@ import com.thoughtworks.qdox.model.JavaClass;
 import com.thoughtworks.qdox.model.JavaSource;
 
 import br.skdev.core.model.EClass;
+import br.skdev.core.model.ESourceFolder;
 import br.skdev.core.proxy.EClassProxy;
 
 @RunWith(SpringRunner.class)
@@ -38,7 +39,17 @@ public class EClassProxyTest {
 	@Test
 	public void test_getName_EClass() {
 		EClass eClass = new EClassProxy(this.javaClass);
+		System.out.println("[test_getName_EClass] "+javaClass.getSource().getURL());
 		Assert.assertTrue(eClass.getName().equals("Foo"));
+	}
+	
+	
+
+	@Test
+	public void test_getSourceFolder_EClass() {
+		EClass eClass = new EClassProxy(this.javaClass);
+		System.out.println("[test_getName_EClass] "+javaClass.getSource().getURL().toString().contains(ESourceFolder.SRC_TEST_JAVA.getPath()));
+		Assert.assertTrue(eClass.getSourceFolder().equals(ESourceFolder.SRC_TEST_JAVA));
 	}
 
 	@Test

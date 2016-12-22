@@ -14,6 +14,8 @@ public class EPersistence implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	protected ESourceFolder sourceFolder;
+
 	protected String persistenceUnitName;
 
 	protected String persistenceUnitTransactionType;
@@ -21,6 +23,14 @@ public class EPersistence implements Serializable {
 	protected Set<String> classes;
 
 	protected Map<String, String> properties;
+
+	public ESourceFolder getSourceFolder() {
+		return sourceFolder;
+	}
+
+	public void setSourceFolder(ESourceFolder sourceFolder) {
+		this.sourceFolder = sourceFolder;
+	}
 
 	public String getPersistenceUnitName() {
 		return persistenceUnitName;
