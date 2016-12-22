@@ -1,14 +1,13 @@
 package br.skdev.core.repository;
 
 import java.io.Serializable;
-import java.util.Optional;
 import java.util.SortedSet;
-import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.skdev.core.context.WorkspaceContext;
+import br.skdev.core.exception.ProjectNotFoundException;
 import br.skdev.core.model.EClass;
 import br.skdev.core.model.EMavenProject;
 
@@ -23,23 +22,17 @@ public class ProjectRepository implements Serializable {
 	@Autowired
 	private WorkspaceContext workspaceContext;
 
-	public Optional<EMavenProject> findByName(String name) {
+	public EMavenProject findByName(String projectName) {
 		//// @formatter:off
 		return workspaceContext.getWokspace().getMavenProjects()
 			.stream()
-			.filter(mavenProject -> mavenProject.getName().equals(name))
-			.findAny();
-		// @formatter:on
+			.filter(mavenProject -> mavenProject.getName().equals(projectName))
+			.findAny()
+			.orElseThrow(ProjectNotFoundException::new);
 	}
 
-	public SortedSet<EClass> findAllClasses(String projectName) {
-		//// @formatter:off
-		Optional<EMavenProject> eclass = workspaceContext.getWokspace().getMavenProjects()
-				.stream()
-				.filter(eMavenProject -> eMavenProject.getName().equals(projectName))
-				.findFirst();
-		// @formatter:on
-		return eclass.isPresent() ? eclass.get().getClasses() : new TreeSet<>();
+	public SortedSet<EClass> findAllEClasses(EMavenProject eMavenProject) {
+		return eMavenProject.getClasses();
 	}
 
 }

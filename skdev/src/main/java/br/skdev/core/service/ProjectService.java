@@ -1,6 +1,5 @@
 package br.skdev.core.service;
 
-import java.util.Optional;
 import java.util.SortedSet;
 
 import org.slf4j.Logger;
@@ -36,8 +35,8 @@ public class ProjectService {
 	 * @param projectName
 	 * @return
 	 */
-	public SortedSet<EClass> findAllClasses(String projectName) {
-		return projectRepository.findAllClasses(projectName);
+	public EMavenProject findByName(String projectName) {
+		return projectRepository.findByName(projectName);
 	}
 
 	/**
@@ -45,8 +44,8 @@ public class ProjectService {
 	 * @param projectName
 	 * @return
 	 */
-	public Optional<EMavenProject> findByName(String projectName) {
-		return projectRepository.findByName(projectName);
+	public SortedSet<EClass> findAllEClasses(EMavenProject eMavenProject) {
+		return projectRepository.findAllEClasses(eMavenProject);
 	}
 
 	/**

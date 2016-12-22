@@ -34,15 +34,16 @@ public class ProjectRest {
 	}
 
 	/**
-	 * Retorna a lista de classes de dominio.
+	 * Retorna as classes do projeto.
 	 * 
 	 * @return
 	 * @throws InterruptedException
 	 */
-	@RequestMapping(method = RequestMethod.GET, path = "/api/projects/{projectName}/classes")
+	@RequestMapping(method = RequestMethod.GET, path = "/api/projects/{projectName}/classes", produces = "application/json")
 	public ResponseEntity<?> findAllEClasses(@PathVariable("projectName") String projectName) {
-		SortedSet<EClass> entities = projectService.findAllClasses(projectName);
+		EMavenProject eMavenProject = projectService.findByName(projectName);
+		SortedSet<EClass> entities = projectService.findAllEClasses(eMavenProject);
 		return ResponseEntity.ok(entities);
-
 	}
+
 }
