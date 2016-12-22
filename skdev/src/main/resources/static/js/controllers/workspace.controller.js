@@ -21,7 +21,7 @@
 
 		self.showActionListDialogByGroup = showActionListDialogByGroup;
 		
-		$scope.fn = new Function('HttpSV',"HttpSV.get('/projects').then(function(data){self.projects = data;})");
+		$scope.fn = new Function('HttpSV', 'self' ,"HttpSV.get('/projects').then(function(data){self.projects = data;})");
 
 		init();
 		
@@ -35,9 +35,10 @@
 			//console.log($scope);
 			//var angularFn = angular.bind(self,fn);
 			//$scope.$eval(angularFn);
-			var afn = angular.bind(this, $scope.fn);
+			var afn = angular.bind(this, $scope.fn, HttpSV, self);
+			afn();
 			//$scope.$eval($scope.fn, HttpSV);
-			afn.call($scope, HttpSV, self);
+			//afn.call($scope, HttpSV, self);
 			//afn();
 			//$scope.$apply(afn);
 			//$injector.invoke([HttpSV, fn]);
