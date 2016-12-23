@@ -24,17 +24,6 @@ public class ProjectRest {
 	private ProjectService projectService;
 
 	/**
-	 * Lista de projetos do workspace.
-	 * 
-	 * @return
-	 */
-	@RequestMapping(method = RequestMethod.GET, path = "/api/projects")
-	public SortedSet<EMavenProject> getProjects() {
-		return workspaceContext.getWokspace().getMavenProjects();
-	}
-	
-
-	/**
 	 * Retorna as classes do projeto.
 	 * 
 	 * @return
