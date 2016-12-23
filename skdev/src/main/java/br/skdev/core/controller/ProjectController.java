@@ -27,7 +27,7 @@ public class ProjectController {
 	@RequestMapping(method = RequestMethod.GET, path = "/project")
 	public String index(@RequestParam("name") String name, Model model) {
 		model.addAttribute("project", name);
-		workspaceContext.setMavenProject(projectService.findByName(name));
+		//workspaceContext.setMavenProject(projectService.findByName(name));
 		return "project";
 	}
 
