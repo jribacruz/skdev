@@ -21,7 +21,7 @@
 
 		self.showActionListDialogByGroup = showActionListDialogByGroup;
 		
-		$scope.fn = new Function('HttpSV', 'self' ,"HttpSV.get('/projects').then(function(data){self.projects = data;})");
+		$scope.fn = new Function('HttpSV', 'self' ,"(function(HttpSV) { HttpSV.get('/projects').then(function(data){self.projects = data;}) })(HttpSV);");
 
 		init();
 		
