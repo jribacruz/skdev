@@ -37,11 +37,10 @@ public class EMavenProjectProxy extends EMavenProject {
 
 	private Path path;
 
-	private FS fs;
+	private FS fs = new FS();
 
-	public EMavenProjectProxy(FS fs, Path path) {
+	public EMavenProjectProxy(Path path) {
 		super();
-		this.fs = fs;
 		this.path = path;
 	}
 

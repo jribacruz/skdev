@@ -47,4 +47,11 @@ public class WorkspaceRest {
 	public SortedSet<EMavenProject> getProjects() {
 		return workspaceContext.getWokspace().getMavenProjects();
 	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/api/workspace/projects", consumes="application/json")
+	public ResponseEntity<?> getProject(@RequestBody EMavenProject eMavenProject) { 
+		eMavenProject.getClasses().forEach(eClass -> System.out.println(eClass.getName()));
+		return ResponseEntity.ok().build();
+		//return workspaceContext.getWokspace().getMavenProjects();
+	}
 }
