@@ -1,6 +1,7 @@
 package br.skdev.core.model;
 
 import java.io.Serializable;
+import java.util.Set;
 import java.util.SortedSet;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,12 +24,22 @@ public class EMavenProject implements Serializable, Comparable<EMavenProject> {
 	protected String absolutePath;
 
 	protected EPom pom;
+	
+	protected Set<EModel> models;
 
 	@JsonIgnore
 	protected SortedSet<EClass> classes;
 
 	public EMavenProject() {
 		super();
+	}
+
+	public Set<EModel> getModels() {
+		return models;
+	}
+
+	public void setModels(Set<EModel> models) {
+		this.models = models;
 	}
 
 	public String getName() {
