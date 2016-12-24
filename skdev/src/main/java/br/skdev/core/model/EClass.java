@@ -16,7 +16,7 @@ import lombok.EqualsAndHashCode;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @EqualsAndHashCode(of = "fullyQualifiedName")
-public class EClass extends EModel implements Serializable, Comparable<EClass> {
+public class EClass extends ETemplateModel implements Serializable, Comparable<EClass> {
 
 	/**
 	 * 

@@ -1,4 +1,4 @@
-package br.skdev.core.proxy;
+package br.skdev.core.deserializer;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import br.skdev.core.model.EMavenProject;
+import br.skdev.core.proxy.EMavenProjectProxy;
 
 public class EMavenProjectDeserializer extends JsonDeserializer<EMavenProject> {
 

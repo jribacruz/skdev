@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXTERNAL_PROPERTY)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
 // @formatter:off
 @JsonSubTypes({
 	@JsonSubTypes.Type(value=EClass.class, name = "EClass"),
@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 	@JsonSubTypes.Type(value = EMethod.class, name = "EMethod") 
 })
 // @formatter:on
-public class EModel implements Serializable {
+public class ETemplateModel implements Serializable {
 
 	/**
 	 * 

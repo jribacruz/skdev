@@ -15,7 +15,7 @@ import br.skdev.core.context.WorkspaceContext;
 import br.skdev.core.model.EAttribute;
 import br.skdev.core.model.EClass;
 import br.skdev.core.model.EMavenProject;
-import br.skdev.core.model.EModel;
+import br.skdev.core.model.ETemplateModel;
 import br.skdev.core.service.ProjectService;
 
 @RestController
@@ -45,7 +45,7 @@ public class ProjectRest {
 		//EMavenProject eMavenProject = projectService.findByName(projectName);
 		//SortedSet<EClass> entities = projectService.findAllEClasses(eMavenProject);
 		EMavenProject  eMavenProject = new EMavenProject();
-		Set<EModel> models = new HashSet<>();
+		Set<ETemplateModel> models = new HashSet<>();
 		EClass class1 = new EClass();
 		class1.setName("Atividade");
 		class1.setFullyQualifiedName("br.jus.Atividade");

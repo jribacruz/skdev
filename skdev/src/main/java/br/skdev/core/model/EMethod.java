@@ -12,7 +12,7 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @EqualsAndHashCode(of = { "name", "parameters" })
 @ToString(of = { "name", "parameters" })
-public class EMethod extends EModel implements Serializable {
+public class EMethod extends ETemplateModel implements Serializable {
 
 	/**
 	 * 

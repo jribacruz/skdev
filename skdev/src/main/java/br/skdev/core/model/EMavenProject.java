@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import br.skdev.core.proxy.EMavenProjectDeserializer;
+import br.skdev.core.deserializer.EMavenProjectDeserializer;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonDeserialize(using=EMavenProjectDeserializer.class)
@@ -25,7 +25,7 @@ public class EMavenProject implements Serializable, Comparable<EMavenProject> {
 
 	protected EPom pom;
 	
-	protected Set<EModel> models;
+	protected Set<ETemplateModel> models;
 
 	@JsonIgnore
 	protected SortedSet<EClass> classes;
@@ -34,11 +34,11 @@ public class EMavenProject implements Serializable, Comparable<EMavenProject> {
 		super();
 	}
 
-	public Set<EModel> getModels() {
+	public Set<ETemplateModel> getModels() {
 		return models;
 	}
 
-	public void setModels(Set<EModel> models) {
+	public void setModels(Set<ETemplateModel> models) {
 		this.models = models;
 	}
 
