@@ -37,22 +37,30 @@ public class WorkspaceController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/")
 	public String index() {
+		//// @formatter:off
+		/*
 		Optional<EWorkspace> eWorkspaceOpt = workspaceService.findWorkspace();
 		if (eWorkspaceOpt.isPresent()) {
 			log.info("Workspace encontrado: "+eWorkspaceOpt.get());
 			workspaceContext.setWorkspace(eWorkspaceOpt.get());
 			return "projects";
 		}
+		*/
+		// @formatter:on
 		return "workspace";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/workspace/setup")
 	public String setup(@ModelAttribute("path") String path) {
+		//// @formatter:off
+		/*
 		workspaceService.insert(path);
 		Optional<EWorkspace> eWorkspaceOpt = workspaceService.findWorkspace();
 		if (eWorkspaceOpt.isPresent()) {
 			workspaceContext.setWorkspace(eWorkspaceOpt.get());
 		}
+		*/
+		// @formatter:on
 		return "redirect:projects";
 	}
 
