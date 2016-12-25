@@ -14,7 +14,17 @@ public class ETemplate implements Serializable {
 
 	private Long id;
 
-	private String template;
+	private String content;
+
+	public ETemplate() {
+		super();
+	}
+
+	public ETemplate(Long id, String content) {
+		super();
+		this.id = id;
+		this.content = content;
+	}
 
 	public Long getId() {
 		return id;
@@ -24,12 +34,12 @@ public class ETemplate implements Serializable {
 		this.id = id;
 	}
 
-	public String getTemplate() {
-		return template;
+	public String getContent() {
+		return content;
 	}
 
-	public void setTemplate(String template) {
-		this.template = template;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 }
