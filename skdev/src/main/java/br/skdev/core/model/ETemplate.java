@@ -1,12 +1,8 @@
 package br.skdev.core.model;
 
 import java.io.Serializable;
-import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
-import br.skdev.core.deserializer.ETemplateModelMapDeserializer;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ETemplate implements Serializable {
@@ -18,8 +14,7 @@ public class ETemplate implements Serializable {
 
 	private Long id;
 
-	@JsonDeserialize(using = ETemplateModelMapDeserializer.class)
-	private Map<String, ETemplateModel> models;
+	private String template;
 
 	public Long getId() {
 		return id;
@@ -29,19 +24,12 @@ public class ETemplate implements Serializable {
 		this.id = id;
 	}
 
-	public Map<String, ETemplateModel> getModels() {
-		return models;
+	public String getTemplate() {
+		return template;
 	}
 
-	public void setModels(Map<String, ETemplateModel> models) {
-		this.models = models;
+	public void setTemplate(String template) {
+		this.template = template;
 	}
-
-	@Override
-	public String toString() {
-		return "ETemplate [id=" + id + ", models=" + models + "]";
-	}
-	
-	
 
 }

@@ -1,0 +1,16 @@
+package br.skdev.core.repository;
+
+import java.io.Serializable;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class TemplateRepository implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+
+}
