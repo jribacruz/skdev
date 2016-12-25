@@ -21,7 +21,7 @@ public class TemplateRepository implements Serializable {
 
 	public ETemplate findById(Integer id) {
 		ETemplate eTemplate = jdbcTemplate.queryForObject("SELECT T.* FROM TEMPLATE T WHERE T.ID = ?", new Object[] { id }, (rs, i) -> {
-			return new ETemplate(rs.getLong("id"), rs.getString("content"));
+			return new ETemplate(rs.getInt("id"), rs.getString("name") , rs.getString("content"));
 		});
 		return eTemplate;
 	}

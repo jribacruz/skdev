@@ -6,11 +6,13 @@ import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.io.StringReader;
 import java.io.Writer;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Component;
 
+import br.skdev.core.model.ETemplateModel;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.TemplateException;
@@ -38,20 +40,12 @@ public class Template implements Serializable {
 		this.cfg.setDefaultEncoding("UTF-8");
 	}
 
-	public String merge(TemplateModel model, String templatePath) throws IOException, TemplateException {
-		freemarker.template.Template template = cfg.getTemplate(templatePath);
+	public String merge(String template, Map<String, ETemplateModel> model) throws TemplateException, IOException {
+		freemarker.template.Template inlineTemplate = new freemarker.template.Template("inlineTemplate", new StringReader(template),
+				new Configuration());
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		Writer out = new OutputStreamWriter(outputStream);
-		template.process(model.getContext(), out);
-		return outputStream.toString();
-	}
-
-	public String mergeInline(TemplateModel templateModel, String strTemplate) throws TemplateException, IOException {
-		freemarker.template.Template inlineTemplate = new freemarker.template.Template("inlineTemplate",
-				new StringReader(strTemplate), new Configuration());
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		Writer out = new OutputStreamWriter(outputStream);
-		inlineTemplate.process(templateModel.getContext(), out);
+		inlineTemplate.process(model, out);
 		return outputStream.toString();
 	}
 

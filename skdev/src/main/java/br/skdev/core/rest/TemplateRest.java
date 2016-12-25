@@ -1,5 +1,7 @@
 package br.skdev.core.rest;
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.skdev.core.model.ETemplate;
 import br.skdev.core.model.request.ETemplateModelRequest;
 import br.skdev.core.service.TemplateService;
+import freemarker.template.TemplateException;
 
 @RestController
 public class TemplateRest {
@@ -23,9 +26,12 @@ public class TemplateRest {
 	private TemplateService templateService;
 
 	@RequestMapping(method = RequestMethod.POST, path = "/api/templates/{id}/_merge")
-	public ResponseEntity<?> merge(@PathVariable("id") Long templateId, @RequestBody ETemplateModelRequest eTemplateModelRequest) {
+	public ResponseEntity<?> merge(@PathVariable("id") Integer templateId, @RequestBody ETemplateModelRequest eTemplateModelRequest)
+			throws TemplateException, IOException {
+		ETemplate template = templateService.findById(templateId);
+		String merged = templateService.merge(template, eTemplateModelRequest.getModels());
 		log.info("[merge] {}", eTemplateModelRequest);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok(merged);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, path = "/api/templates/{id}")

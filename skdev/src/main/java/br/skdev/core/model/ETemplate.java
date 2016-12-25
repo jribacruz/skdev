@@ -12,7 +12,9 @@ public class ETemplate implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
+	private Integer id;
+
+	private String name;
 
 	private String content;
 
@@ -20,18 +22,27 @@ public class ETemplate implements Serializable {
 		super();
 	}
 
-	public ETemplate(Long id, String content) {
+	public ETemplate(Integer id, String name, String content) {
 		super();
 		this.id = id;
+		this.name = name;
 		this.content = content;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getContent() {
