@@ -1,10 +1,20 @@
 package br.skdev.core.proxy;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.thoughtworks.qdox.JavaDocBuilder;
 import com.thoughtworks.qdox.model.JavaClass;
+import com.thoughtworks.qdox.model.JavaSource;
+import com.thoughtworks.qdox.parser.ParseException;
 
 import br.skdev.core.model.EAnnotation;
 import br.skdev.core.model.EAttribute;
@@ -26,6 +36,8 @@ public class EClassProxy extends EClass {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private static final Logger log = LoggerFactory.getLogger(EClassProxy.class);
+
 	private JavaClass javaClass;
 
 	public EClassProxy(JavaClass javaClass) {
@@ -35,14 +47,19 @@ public class EClassProxy extends EClass {
 
 	@Override
 	public ESourceFolder getSourceFolder() {
-		if(this.sourceFolder == null) {
-			this.sourceFolder = Arrays.asList(ESourceFolder.values())
-										.stream()
-										.filter(eSourceFolder -> javaClass.getSource().getURL().toString().contains(eSourceFolder.getPath()))
-										.findFirst()
-										.get();
+		if (this.sourceFolder == null) {
+			this.sourceFolder = Arrays.asList(ESourceFolder.values()).stream()
+					.filter(eSourceFolder -> javaClass.getSource().getURL().toString().contains(eSourceFolder.getPath())).findFirst().get();
 		}
 		return this.sourceFolder;
+	}
+
+	@Override
+	public String getPath() {
+		if (this.path == null) {
+			this.path = javaClass.getSource().getURL().getPath();
+		}
+		return this.path;
 	}
 
 	@Override
@@ -108,6 +125,28 @@ public class EClassProxy extends EClass {
 			// @formatter:on
 		}
 		return this.annotations;
+	}
+
+	public static Optional<JavaClass> createJavaClass(Path path) {
+		try {
+			JavaDocBuilder doc = new JavaDocBuilder();
+			JavaSource source = doc.addSource(new File(path.toFile().getAbsolutePath()));
+			return Optional.of(source.getClasses()[0]);
+		} catch (ParseException | IOException e) {
+			log.error(e.getMessage());
+		}
+		return Optional.empty();
+	}
+
+	public static Optional<JavaClass> createJavaClass(String path) {
+		try {
+			JavaDocBuilder doc = new JavaDocBuilder();
+			JavaSource source = doc.addSource(new File(path));
+			return Optional.of(source.getClasses()[0]);
+		} catch (ParseException | IOException e) {
+			log.error(e.getMessage());
+		}
+		return Optional.empty();
 	}
 
 }

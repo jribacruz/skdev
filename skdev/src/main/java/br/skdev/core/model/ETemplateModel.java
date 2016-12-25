@@ -10,7 +10,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonSubTypes({
 	@JsonSubTypes.Type(value=EClass.class, name = "EClass"),
 	@JsonSubTypes.Type(value = EAttribute.class, name = "EAttribute"),
-	@JsonSubTypes.Type(value = EMethod.class, name = "EMethod") 
+	@JsonSubTypes.Type(value = EMethod.class, name = "EMethod"),
+	@JsonSubTypes.Type(value = EString.class, name = "EString") 
 })
 // @formatter:on
 public class ETemplateModel implements Serializable {

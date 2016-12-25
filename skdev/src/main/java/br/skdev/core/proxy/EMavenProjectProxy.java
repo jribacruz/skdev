@@ -16,11 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
-import com.thoughtworks.qdox.JavaDocBuilder;
-import com.thoughtworks.qdox.model.JavaClass;
-import com.thoughtworks.qdox.model.JavaSource;
-import com.thoughtworks.qdox.parser.ParseException;
-
 import br.skdev.core.model.EClass;
 import br.skdev.core.model.EMavenProject;
 import br.skdev.core.model.EPom;
@@ -69,7 +64,7 @@ public class EMavenProjectProxy extends EMavenProject {
 				//// @formatter:off
 				this.classes = files.get()
 									.filter(_path -> _path.toFile().getName().endsWith("java"))
-									.map(this::createJavaClass)
+									.map(EClassProxy::createJavaClass)
 									.filter(javaClass -> javaClass.isPresent())
 									.map(javaClass -> javaClass.get())
 									.map(EClassProxy::new)
@@ -92,17 +87,6 @@ public class EMavenProjectProxy extends EMavenProject {
 			}
 		}
 		return this.pom;
-	}
-
-	public Optional<JavaClass> createJavaClass(Path path) {
-		try {
-			JavaDocBuilder doc = new JavaDocBuilder();
-			JavaSource source = doc.addSource(new File(path.toFile().getAbsolutePath()));
-			return Optional.of(source.getClasses()[0]);
-		} catch (ParseException | IOException e) {
-			log.error(e.getMessage());
-		}
-		return Optional.empty();
 	}
 
 }

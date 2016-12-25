@@ -19,7 +19,6 @@ public class EMavenProjectDeserializer extends JsonDeserializer<EMavenProject> {
 	public EMavenProject deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
 		ObjectCodec oc = jp.getCodec();
 		JsonNode node = oc.readTree(jp);
-		System.out.println(node);
 		final String projectPath = node.get("absolutePath").asText();
 		return new EMavenProjectProxy(Paths.get(projectPath));
 	}

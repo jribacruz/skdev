@@ -28,6 +28,11 @@ public class EClass extends ETemplateModel implements Serializable, Comparable<E
 	/**
 	 * 
 	 */
+	protected String path;
+
+	/**
+	 * 
+	 */
 	protected String name;
 
 	/**
@@ -68,6 +73,14 @@ public class EClass extends ETemplateModel implements Serializable, Comparable<E
 
 	public void setSourceFolder(ESourceFolder sourceFolder) {
 		this.sourceFolder = sourceFolder;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 	public String getName() {
