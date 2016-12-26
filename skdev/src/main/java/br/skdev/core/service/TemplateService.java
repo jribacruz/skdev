@@ -14,6 +14,7 @@ import br.skdev.core.model.ETemplate;
 import br.skdev.core.model.ETemplateModel;
 import br.skdev.core.repository.TemplateRepository;
 import freemarker.template.Configuration;
+import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
 @Service
@@ -26,16 +27,12 @@ public class TemplateService {
 		return templateRepository.findByName(name);
 	}
 
-	public String merge(ETemplate etemplate, Map<String, ETemplateModel> models) throws TemplateException, IOException {
-		return merge(etemplate.getContent(), models);
-	}
-
-	public String merge(String template, Map<String, ETemplateModel> model) throws TemplateException, IOException {
-		freemarker.template.Template inlineTemplate = new freemarker.template.Template("inlineTemplate", new StringReader(template),
-				new Configuration());
+	public String merge(ETemplate eTemplate, Map<String, ETemplateModel> model) throws TemplateException, IOException {
+		Template inlineTemplate = new Template("inlineTemplate", new StringReader(eTemplate.getContent()), new Configuration());
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		Writer out = new OutputStreamWriter(outputStream);
 		inlineTemplate.process(model, out);
 		return outputStream.toString();
 	}
+
 }
