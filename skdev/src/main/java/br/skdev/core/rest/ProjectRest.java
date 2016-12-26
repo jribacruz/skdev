@@ -27,9 +27,13 @@ public class ProjectRest {
 	private WorkspaceService workspaceService;
 
 	/**
+	 * Lista todas as classe do src/main/java do projeto.
 	 * 
 	 * @param projectName
-	 * @return
+	 *            Nome do projeto
+	 * @param workspace
+	 *            Caminho do workspace
+	 * @return Lista de EClasses
 	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/api/projects/{projectName}/main/classes", produces = "application/json")
 	public ResponseEntity<?> findMainEClasses(@PathVariable("projectName") String projectName,
