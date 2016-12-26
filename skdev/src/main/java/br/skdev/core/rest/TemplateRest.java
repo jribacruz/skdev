@@ -39,4 +39,6 @@ public class TemplateRest {
 		ETemplate template = templateService.findByName(name);
 		return ResponseEntity.ok(template);
 	}
+	
+	
 }
