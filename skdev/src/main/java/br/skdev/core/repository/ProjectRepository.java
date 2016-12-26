@@ -1,12 +1,14 @@
 package br.skdev.core.repository;
 
 import java.io.Serializable;
+import java.util.Set;
 import java.util.SortedSet;
 
 import org.springframework.stereotype.Repository;
 
 import br.skdev.core.exception.ProjectNotFoundException;
 import br.skdev.core.model.EClass;
+import br.skdev.core.model.EDirectory;
 import br.skdev.core.model.EMavenProject;
 import br.skdev.core.model.EWorkspace;
 
@@ -31,4 +33,8 @@ public class ProjectRepository implements Serializable {
 		return eMavenProject.getClasses();
 	}
 
+	
+	public Set<EDirectory> findDirectories(EMavenProject eMavenProject) {
+		return eMavenProject.getDirectories();
+	}
 }

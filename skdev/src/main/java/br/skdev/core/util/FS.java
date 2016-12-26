@@ -33,6 +33,15 @@ public class FS implements Serializable {
 		}
 		return Optional.empty();
 	}
+	
+	public Optional<Stream<Path>> listDirectoriesRecursively(String path) {
+		try {
+			return Optional.of(Files.walk(Paths.get(path)).filter(Files::isDirectory));
+		} catch (IOException e) {
+			log.error(e.getMessage());
+		}
+		return Optional.empty();
+	}
 
 	public Optional<Stream<Path>> listFiles(String path) {
 		try {

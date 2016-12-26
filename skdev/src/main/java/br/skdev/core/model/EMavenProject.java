@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import br.skdev.core.deserializer.EMavenProjectDeserializer;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonDeserialize(using=EMavenProjectDeserializer.class)
+@JsonDeserialize(using = EMavenProjectDeserializer.class)
 public class EMavenProject implements Serializable, Comparable<EMavenProject> {
 
 	/**
@@ -24,11 +24,14 @@ public class EMavenProject implements Serializable, Comparable<EMavenProject> {
 	protected String absolutePath;
 
 	protected EPom pom;
-	
+
 	protected Set<ETemplateModel> models;
 
 	@JsonIgnore
 	protected SortedSet<EClass> classes;
+
+	@JsonIgnore
+	protected Set<EDirectory> directories;
 
 	public EMavenProject() {
 		super();
@@ -72,6 +75,14 @@ public class EMavenProject implements Serializable, Comparable<EMavenProject> {
 
 	public void setClasses(SortedSet<EClass> classes) {
 		this.classes = classes;
+	}
+
+	public Set<EDirectory> getDirectories() {
+		return directories;
+	}
+
+	public void setDirectories(Set<EDirectory> directories) {
+		this.directories = directories;
 	}
 
 	@Override

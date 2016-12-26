@@ -1,5 +1,6 @@
 package br.skdev.core.service;
 
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.skdev.core.model.EClass;
+import br.skdev.core.model.EDirectory;
 //github.com/jribacruz/skdev.git
 import br.skdev.core.model.EMavenProject;
 import br.skdev.core.model.ESourceFolder;
@@ -53,4 +55,8 @@ public class ProjectService {
 		// @formatter:on
 	}
 
+	
+	public Set<EDirectory> findDirectories(EMavenProject eMavenProject) {
+		return projectRepository.findDirectories(eMavenProject);
+	}
 }

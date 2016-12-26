@@ -3,7 +3,9 @@ package br.skdev.core.proxy;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -17,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 import br.skdev.core.model.EClass;
+import br.skdev.core.model.EDirectory;
 import br.skdev.core.model.EMavenProject;
 import br.skdev.core.model.EPom;
 import br.skdev.core.util.FS;
@@ -87,6 +90,22 @@ public class EMavenProjectProxy extends EMavenProject {
 			}
 		}
 		return this.pom;
+	}
+
+	@Override
+	public Set<EDirectory> getDirectories() {
+		if(this.directories == null) {
+			this.directories = new HashSet<>();
+			Optional<Stream<Path>> directories = fs.listDirectoriesRecursively(this.getAbsolutePath());
+			if(directories.isPresent()) {
+				this.directories = directories.get()
+										.filter(_path -> !_path.toFile().getAbsolutePath().contains(".svn"))
+										.filter(_path -> !_path.toFile().getAbsolutePath().contains("target"))
+										.map(_path -> new EDirectory(_path.toFile().getAbsolutePath()))
+										.collect(Collectors.toSet());
+			}
+		}
+		return this.directories;
 	}
 
 }
