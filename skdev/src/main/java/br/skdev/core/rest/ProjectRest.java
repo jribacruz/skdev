@@ -6,6 +6,7 @@ import java.util.SortedSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,6 +63,22 @@ public class ProjectRest {
 		EMavenProject eMavenProject = projectService.findByName(eWorkspace, projectName);
 		Set<EDirectory> directories = projectService.findDirectories(eMavenProject);
 		return ResponseEntity.ok(new EDirectoriesResponse(directories));
+	}
+
+	/**
+	 * 
+	 * @param projectName
+	 * @param workspace
+	 * @param eDirectory
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.POST, path = "/api/projects/{projectName}/directories", produces = "application/json")
+	public ResponseEntity<?> createDirectory(@PathVariable("projectName") String projectName, @RequestParam("workspace") String workspace,
+			@RequestBody EDirectory eDirectory) {
+		EWorkspace eWorkspace = workspaceService.load(workspace);
+		EMavenProject eMavenProject = projectService.findByName(eWorkspace, projectName);
+		projectService.createDirectory(eMavenProject, eDirectory);
+		return ResponseEntity.ok().build();
 	}
 
 }

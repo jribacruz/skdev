@@ -101,7 +101,7 @@ public class EMavenProjectProxy extends EMavenProject {
 				this.directories = directories.get()
 										.filter(_path -> !_path.toFile().getAbsolutePath().contains(".svn"))
 										.filter(_path -> !_path.toFile().getAbsolutePath().contains("target"))
-										.map(_path -> new EDirectory(_path.toFile().getAbsolutePath()))
+										.map(_path -> new EDirectory(_path.toFile().getAbsolutePath().replaceAll(path.toFile().getAbsolutePath(), "")))
 										.collect(Collectors.toSet());
 			}
 		}

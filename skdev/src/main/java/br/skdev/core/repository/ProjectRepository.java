@@ -11,6 +11,7 @@ import br.skdev.core.model.EClass;
 import br.skdev.core.model.EDirectory;
 import br.skdev.core.model.EMavenProject;
 import br.skdev.core.model.EWorkspace;
+import br.skdev.core.util.FS;
 
 @Repository
 public class ProjectRepository implements Serializable {
@@ -19,6 +20,8 @@ public class ProjectRepository implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	private FS fs = new FS();
 
 	public EMavenProject findByName(EWorkspace eWorkspace, String projectName) {
 		//// @formatter:off
@@ -36,5 +39,9 @@ public class ProjectRepository implements Serializable {
 	
 	public Set<EDirectory> findDirectories(EMavenProject eMavenProject) {
 		return eMavenProject.getDirectories();
+	}
+	
+	public void createDirectory(EMavenProject eMavenProject, EDirectory eDirectory) {
+		fs.mkdir(eMavenProject.getAbsolutePath(), eDirectory.getPath());
 	}
 }

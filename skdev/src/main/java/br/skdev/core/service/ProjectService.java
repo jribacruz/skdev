@@ -59,4 +59,8 @@ public class ProjectService {
 	public Set<EDirectory> findDirectories(EMavenProject eMavenProject) {
 		return projectRepository.findDirectories(eMavenProject);
 	}
+	
+	public void createDirectory(EMavenProject eMavenProject, EDirectory eDirectory) {
+		projectRepository.createDirectory(eMavenProject, eDirectory);
+	}
 }
