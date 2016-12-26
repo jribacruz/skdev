@@ -9,4 +9,4 @@ CREATE TABLE TEMPLATE(
 	CONTENT VARCHAR(4096)
 );
 
-INSERT INTO TEMPLATE(NAME,CONTENT) VALUES('teste.ftl','Hello ${entity.name} artifactId: ${artifactId.value} <#list entity.attributes as attr> attribute: ${attr.name}:${attr.type} </#list>');
+INSERT INTO TEMPLATE(NAME,CONTENT) VALUES('testeTemplate','Hello ${entity.name} artifactId: ${artifactId.value} <#list entity.attributes as attr> attribute: ${attr.name}:${attr.type} </#list>');

@@ -21,8 +21,8 @@ public class TemplateService {
 	@Autowired
 	private Template template;
 
-	public ETemplate findById(Integer id) {
-		return templateRepository.findById(id);
+	public ETemplate findByName(String name) {
+		return templateRepository.findByName(name);
 	}
 
 	public String merge(ETemplate etemplate, Map<String, ETemplateModel> models) throws TemplateException, IOException {
