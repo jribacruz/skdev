@@ -47,6 +47,15 @@ public class ProjectRest {
 		return ResponseEntity.ok(new EClassesResponse(entities));
 	}
 
+	/**
+	 * 
+	 * 
+	 * Lista todos os diretórios do projeto.
+	 * 
+	 * @param projectName
+	 * @param workspace
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/api/projects/{projectName}/directories", produces = "application/json")
 	public ResponseEntity<?> findDirectories(@PathVariable("projectName") String projectName, @RequestParam("workspace") String workspace) {
 		EWorkspace eWorkspace = workspaceService.load(workspace);
