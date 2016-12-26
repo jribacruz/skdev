@@ -1,7 +1,5 @@
 package br.skdev.core.controller;
 
-import java.util.Optional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import br.skdev.core.context.WorkspaceContext;
-import br.skdev.core.model.EWorkspace;
 import br.skdev.core.service.WorkspaceService;
 
 /**
@@ -26,9 +22,6 @@ public class WorkspaceController {
 
 	@Autowired
 	private WorkspaceService workspaceService;
-
-	@Autowired
-	private WorkspaceContext workspaceContext;
 
 	/**
 	 * Seleciona o diretório de workspace.
