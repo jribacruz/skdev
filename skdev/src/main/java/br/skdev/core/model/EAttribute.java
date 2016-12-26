@@ -5,11 +5,13 @@ import java.util.Map;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import lombok.EqualsAndHashCode;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @EqualsAndHashCode(of = "name")
+@JsonTypeName("EAttribute")
 public class EAttribute extends ETemplateModel implements Serializable, Comparable<EAttribute> {
 
 	/**

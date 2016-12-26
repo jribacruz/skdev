@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import lombok.EqualsAndHashCode;
 
@@ -16,6 +17,7 @@ import lombok.EqualsAndHashCode;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @EqualsAndHashCode(of = "fullyQualifiedName")
+@JsonTypeName("EClass")
 public class EClass extends ETemplateModel implements Serializable, Comparable<EClass> {
 
 	/**

@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -12,6 +13,7 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @EqualsAndHashCode(of = { "name", "parameters" })
 @ToString(of = { "name", "parameters" })
+@JsonTypeName("EMethod")
 public class EMethod extends ETemplateModel implements Serializable {
 
 	/**
