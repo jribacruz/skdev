@@ -1,4 +1,4 @@
-package br.skdev.core.model.request;
+package br.skdev.core.model.response;
 
 import java.io.Serializable;
 import java.util.Set;

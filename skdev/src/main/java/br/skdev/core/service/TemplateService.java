@@ -27,8 +27,8 @@ public class TemplateService {
 		return templateRepository.findByName(name);
 	}
 
-	public String merge(ETemplate eTemplate, Map<String, ETemplateModel> model) throws TemplateException, IOException {
-		Template inlineTemplate = new Template("inlineTemplate", new StringReader(eTemplate.getContent()), new Configuration());
+	public String merge(String strTemplate, Map<String, ETemplateModel> model) throws TemplateException, IOException {
+		Template inlineTemplate = new Template("inlineTemplate", new StringReader(strTemplate), new Configuration());
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		Writer out = new OutputStreamWriter(outputStream);
 		inlineTemplate.process(model, out);

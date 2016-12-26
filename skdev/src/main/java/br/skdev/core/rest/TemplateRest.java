@@ -29,7 +29,7 @@ public class TemplateRest {
 	public ResponseEntity<?> merge(@RequestParam("name") String name, @RequestBody ETemplateModelRequest eTemplateModelRequest)
 			throws TemplateException, IOException {
 		ETemplate template = templateService.findByName(name);
-		String merged = templateService.merge(template, eTemplateModelRequest.getModels());
+		String merged = templateService.merge(template.getContent(), eTemplateModelRequest.getModels());
 		log.info("[merge] {}", eTemplateModelRequest);
 		return ResponseEntity.ok(merged);
 	}

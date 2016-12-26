@@ -1,5 +1,6 @@
 package br.skdev.core.rest;
 
+import java.io.IOException;
 import java.util.Set;
 import java.util.SortedSet;
 
@@ -16,10 +17,13 @@ import br.skdev.core.model.EClass;
 import br.skdev.core.model.EDirectory;
 import br.skdev.core.model.EMavenProject;
 import br.skdev.core.model.EWorkspace;
-import br.skdev.core.model.request.EClassesResponse;
-import br.skdev.core.model.request.EDirectoriesResponse;
+import br.skdev.core.model.request.EDirectoryRequest;
+import br.skdev.core.model.response.EClassesResponse;
+import br.skdev.core.model.response.EDirectoriesResponse;
 import br.skdev.core.service.ProjectService;
+import br.skdev.core.service.TemplateService;
 import br.skdev.core.service.WorkspaceService;
+import freemarker.template.TemplateException;
 
 @RestController
 public class ProjectRest {
@@ -29,6 +33,9 @@ public class ProjectRest {
 
 	@Autowired
 	private WorkspaceService workspaceService;
+
+	@Autowired
+	private TemplateService templateService;
 
 	/**
 	 * Lista todas as classe do src/main/java do projeto.
@@ -71,13 +78,20 @@ public class ProjectRest {
 	 * @param workspace
 	 * @param eDirectory
 	 * @return
+	 * @throws IOException
+	 * @throws TemplateException
 	 */
 	@RequestMapping(method = RequestMethod.POST, path = "/api/projects/{projectName}/directories", produces = "application/json")
 	public ResponseEntity<?> createDirectory(@PathVariable("projectName") String projectName, @RequestParam("workspace") String workspace,
-			@RequestBody EDirectory eDirectory) {
+			@RequestBody EDirectoryRequest eDirectoryRequest) throws TemplateException, IOException {
 		EWorkspace eWorkspace = workspaceService.load(workspace);
 		EMavenProject eMavenProject = projectService.findByName(eWorkspace, projectName);
-		projectService.createDirectory(eMavenProject, eDirectory);
+		if (eDirectoryRequest.getModels() == null) {
+			projectService.createDirectory(eMavenProject, eDirectoryRequest.getDirectory());
+			return ResponseEntity.ok().build();
+		}
+		String mpath = templateService.merge(eDirectoryRequest.getDirectory().getPath(), eDirectoryRequest.getModels());
+		projectService.createDirectory(eMavenProject, new EDirectory(mpath));
 		return ResponseEntity.ok().build();
 	}
 
