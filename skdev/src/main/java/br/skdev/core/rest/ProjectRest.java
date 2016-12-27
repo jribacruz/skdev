@@ -71,6 +71,8 @@ public class ProjectRest {
 
 	/**
 	 * 
+	 * Cria um diretório
+	 * 
 	 * @param projectName
 	 * @param workspace
 	 * @param eDirectory
