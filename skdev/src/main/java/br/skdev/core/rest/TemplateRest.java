@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.skdev.core.model.ETemplate;
-import br.skdev.core.model.request.ETemplateModelRequest;
+import br.skdev.core.model.request.ETemplateRequest;
 import br.skdev.core.service.TemplateService;
 import freemarker.template.TemplateException;
 
@@ -26,11 +26,9 @@ public class TemplateRest {
 	private TemplateService templateService;
 
 	@RequestMapping(method = RequestMethod.POST, path = "/api/templates/_merge")
-	public ResponseEntity<?> merge(@RequestParam("name") String name, @RequestBody ETemplateModelRequest eTemplateModelRequest)
-			throws TemplateException, IOException {
-		ETemplate template = templateService.findByName(name);
-		String merged = templateService.merge(template.getContent(), eTemplateModelRequest.getModels());
-		log.info("[merge] {}", eTemplateModelRequest);
+	public ResponseEntity<?> merge(@RequestBody ETemplateRequest eTemplateRequest) throws TemplateException, IOException {
+		String merged = templateService.merge(eTemplateRequest.getTemplate().getContent(), eTemplateRequest.getModels());
+		log.info("[merge] {}", eTemplateRequest);
 		return ResponseEntity.ok(merged);
 	}
 
@@ -39,6 +37,5 @@ public class TemplateRest {
 		ETemplate template = templateService.findByName(name);
 		return ResponseEntity.ok(template);
 	}
-	
-	
+
 }
