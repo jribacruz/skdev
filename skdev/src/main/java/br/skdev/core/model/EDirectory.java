@@ -2,6 +2,8 @@ package br.skdev.core.model;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -12,6 +14,7 @@ public class EDirectory implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@NotBlank(message="O caminho do diretório não pode estar em branco")
 	private String path;
 
 	public EDirectory() {

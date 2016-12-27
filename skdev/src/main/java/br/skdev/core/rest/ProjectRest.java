@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Set;
 import java.util.SortedSet;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -83,15 +85,10 @@ public class ProjectRest {
 	 */
 	@RequestMapping(method = RequestMethod.POST, path = "/api/projects/{projectName}/directories", produces = "application/json")
 	public ResponseEntity<?> createDirectory(@PathVariable("projectName") String projectName, @RequestParam("workspace") String workspace,
-			@RequestBody EDirectoryRequest eDirectoryRequest) throws TemplateException, IOException {
+			@RequestBody @Valid EDirectory eDirectory) throws TemplateException, IOException {
 		EWorkspace eWorkspace = workspaceService.load(workspace);
 		EMavenProject eMavenProject = projectService.findByName(eWorkspace, projectName);
-		if (eDirectoryRequest.getModels() == null) {
-			projectService.createDirectory(eMavenProject, eDirectoryRequest.getDirectory());
-			return ResponseEntity.ok().build();
-		}
-		String mpath = templateService.merge(eDirectoryRequest.getDirectory().getPath(), eDirectoryRequest.getModels());
-		projectService.createDirectory(eMavenProject, new EDirectory(mpath));
+		projectService.createDirectory(eMavenProject, eDirectory);
 		return ResponseEntity.ok().build();
 	}
 
