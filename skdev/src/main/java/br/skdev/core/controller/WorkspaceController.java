@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.skdev.core.model.EWorkspace;
 import br.skdev.core.service.WorkspaceService;
 
 /**
@@ -30,30 +32,12 @@ public class WorkspaceController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/")
 	public String index() {
-		//// @formatter:off
-		/*
-		Optional<EWorkspace> eWorkspaceOpt = workspaceService.findWorkspace();
-		if (eWorkspaceOpt.isPresent()) {
-			log.info("Workspace encontrado: "+eWorkspaceOpt.get());
-			workspaceContext.setWorkspace(eWorkspaceOpt.get());
-			return "projects";
-		}
-		*/
-		// @formatter:on
 		return "workspace";
 	}
 
-	@RequestMapping(method = RequestMethod.POST, path = "/workspace/setup")
-	public String setup(@ModelAttribute("path") String path) {
-		//// @formatter:off
-		/*
-		workspaceService.insert(path);
-		Optional<EWorkspace> eWorkspaceOpt = workspaceService.findWorkspace();
-		if (eWorkspaceOpt.isPresent()) {
-			workspaceContext.setWorkspace(eWorkspaceOpt.get());
-		}
-		*/
-		// @formatter:on
+	@RequestMapping(method = RequestMethod.POST, path = "/workspace")
+	public String setup(@ModelAttribute("path") String path, RedirectAttributes redirectAttributes) {
+		EWorkspace eWorkspace = workspaceService.load(path);
 		return "redirect:projects";
 	}
 

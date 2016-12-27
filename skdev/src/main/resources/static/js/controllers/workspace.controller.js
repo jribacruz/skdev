@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('WorkspaceCT', WorkspaceCT);
 
-	WorkspaceCT.$inject = [ '$scope', '$log', '$mdDialog', 'HttpSV', '$injector' ];
+	WorkspaceCT.$inject = [ '$scope', '$log', '$mdDialog', 'HttpSV' ];
 
 	/**
 	 * 
@@ -13,37 +13,24 @@
 	 * @param HttpSV
 	 * @returns
 	 */
-	function WorkspaceCT($scope, $log, $mdDialog, HttpSV, $injector) {
+	function WorkspaceCT($scope, $log, $mdDialog, HttpSV) {
 		$log.debug('[WorkspaceCT] Inicializando...');
 		var self = this;
 
 		self.projects = [];
 
 		self.showActionListDialogByGroup = showActionListDialogByGroup;
-		
-		$scope.fn = new Function('HttpSV', 'self' ,"(function(HttpSV) { HttpSV.get('/projects').then(function(data){self.projects = data;}) })(HttpSV);");
+
+		$scope.fn = new Function('HttpSV', 'self',
+				"(function(HttpSV) { HttpSV.get('/projects').then(function(data){self.projects = data;}) })(HttpSV);");
 
 		init();
-		
-		
+
 		function init() {
-			/*
-			HttpSV.get('/projects').then(function(data){
-				self.projects = data;
-			});*/
-			//fn();
-			//console.log($scope);
-			//var angularFn = angular.bind(self,fn);
-			//$scope.$eval(angularFn);
 			var afn = angular.bind(this, $scope.fn, HttpSV, self);
 			afn();
-			//$scope.$eval($scope.fn, HttpSV);
-			//afn.call($scope, HttpSV, self);
-			//afn();
-			//$scope.$apply(afn);
-			//$injector.invoke([HttpSV, fn]);
 		}
-		
+
 		/**
 		 * Exibe o dialog com a listagem de actions.
 		 */
@@ -55,12 +42,12 @@
 				clickOutsideToClose : false,
 				controller : 'ActionListCT',
 				controllerAs : 'actionListCT',
-				locals: {
-					group: group,
-					title: title
+				locals : {
+					group : group,
+					title : title
 				}
 			});
 		}
-		
+
 	}
 })();
