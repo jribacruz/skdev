@@ -19,11 +19,9 @@ import br.skdev.core.model.EClass;
 import br.skdev.core.model.EDirectory;
 import br.skdev.core.model.EMavenProject;
 import br.skdev.core.model.EWorkspace;
-import br.skdev.core.model.request.EDirectoryRequest;
 import br.skdev.core.model.response.EClassesResponse;
 import br.skdev.core.model.response.EDirectoriesResponse;
 import br.skdev.core.service.ProjectService;
-import br.skdev.core.service.TemplateService;
 import br.skdev.core.service.WorkspaceService;
 import freemarker.template.TemplateException;
 
@@ -35,9 +33,6 @@ public class ProjectRest {
 
 	@Autowired
 	private WorkspaceService workspaceService;
-
-	@Autowired
-	private TemplateService templateService;
 
 	/**
 	 * Lista todas as classe do src/main/java do projeto.
