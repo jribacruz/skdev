@@ -33,7 +33,7 @@ public class FS implements Serializable {
 		}
 		return Optional.empty();
 	}
-	
+
 	public Optional<Stream<Path>> listDirectoriesRecursively(String path) {
 		try {
 			return Optional.of(Files.walk(Paths.get(path)).filter(Files::isDirectory));
@@ -127,8 +127,7 @@ public class FS implements Serializable {
 		}
 		log.info("Arquivo já existe: {}", path);
 	}
-	
-	
+
 	public void appendFile(String path, String content) {
 		this.createParentDirsIfNotExists(path);
 		if (Files.exists(Paths.get(path))) {
