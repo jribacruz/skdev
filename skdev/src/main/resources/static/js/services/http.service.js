@@ -1,9 +1,9 @@
 (function() {
 	'use strict';
 
-	angular.module("skdevMD").factory('HttpSV', HttpSV);
+	angular.module("skdevMD").factory('httpSV', httpSV);
 
-	HttpSV.$inject = [ '$log', '$http', '$location' ];
+	httpSV.$inject = [ '$log', '$http', '$location' ];
 
 	/**
 	 * 
@@ -12,8 +12,8 @@
 	 * @param $location
 	 * @returns
 	 */
-	function HttpSV($log, $http, $location) {
-		$log.debug('[HttpSV] Inicializando... ');
+	function httpSV($log, $http, $location) {
+		$log.debug('[httpSV] Inicializando... ');
 		
 		var context = format('http://{}:{}/skdev/api',$location.host(),$location.port());
 
@@ -27,7 +27,7 @@
 		return service;
 		
 		function getProjectName() {
-			$log.debug(format('[HttpSV][getProjectName] location: {}', JSON.stringify(URI($location.absUrl()).search(true)))); 
+			$log.debug(format('[httpSV][getProjectName] location: {}', JSON.stringify(URI($location.absUrl()).search(true)))); 
 			return URI($location.absUrl()).search(true).name;
 		}
 		
@@ -40,7 +40,7 @@
 		 */
 		function get(url, options) {
 			
-			$log.debug(format('[HttpSV] Method=GET, URL={} , url={}, options={}', url ,url,JSON.stringify(options)));
+			$log.debug(format('[httpSV] Method=GET, URL={} , url={}, options={}', url ,url,JSON.stringify(options)));
 			
 			options = options || {};
 			var urlRequest = _buildUrlRequest(format('{}{}',context, url), options);
@@ -63,9 +63,9 @@
 		 */
 		function _buildUrlRequest(url,options) {
 			url = _buildUrlPathParams(url,options);
-			$log.debug(format('[HttpSV] buildUrlPathParams={}',url));
+			$log.debug(format('[httpSV] buildUrlPathParams={}',url));
 			url = _buildUrlQueryParams(url,options);
-			$log.debug(format('[HttpSV] buildUrlQueryParams={}',url));
+			$log.debug(format('[httpSV] buildUrlQueryParams={}',url));
 			return url;
 		}
 		
