@@ -92,6 +92,8 @@ public class ProjectRest {
 
 	/**
 	 * 
+	 * Cria um arquivo no projeto.
+	 * 
 	 * @param projectName
 	 * @param workspace
 	 * @param eFile
