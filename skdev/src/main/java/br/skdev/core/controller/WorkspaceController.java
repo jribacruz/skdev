@@ -38,7 +38,8 @@ public class WorkspaceController {
 	@RequestMapping(method = RequestMethod.POST, path = "/workspace")
 	public String setup(@ModelAttribute("path") String path, RedirectAttributes redirectAttributes) {
 		EWorkspace eWorkspace = workspaceService.load(path);
-		return "redirect:projects";
+		redirectAttributes.addAttribute("workspace", eWorkspace.getPath());
+		return "redirect:workspace/projects";
 	}
 
 	@RequestMapping("/workspace/projects")
