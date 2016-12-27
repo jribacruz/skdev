@@ -20,6 +20,7 @@
 		var service = {
 			get : get,
 			getProjectName: getProjectName,
+			getWorkspace: getWorkspace,
 			getContext: getContext
 		}
 		
@@ -33,6 +34,10 @@
 		
 		function getContext() {
 			return context;
+		}
+		
+		function getWorkspace() {
+			return URI($location.absUrl()).search(true).workspace;
 		}
 		
 		/**
