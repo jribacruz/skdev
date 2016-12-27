@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import br.skdev.core.model.EClass;
 import br.skdev.core.model.EDirectory;
+import br.skdev.core.model.EFile;
 //github.com/jribacruz/skdev.git
 import br.skdev.core.model.EMavenProject;
 import br.skdev.core.model.ESourceFolder;
@@ -60,7 +61,17 @@ public class ProjectService {
 		return projectRepository.findDirectories(eMavenProject);
 	}
 	
+	/**
+	 * 
+	 * @param eMavenProject
+	 * @param eDirectory
+	 */
 	public void createDirectory(EMavenProject eMavenProject, EDirectory eDirectory) {
 		projectRepository.createDirectory(eMavenProject, eDirectory);
+	}
+	
+	
+	public void createFile(EMavenProject eMavenProject, EFile eFile) {
+		projectRepository.createFile(eMavenProject, eFile);
 	}
 }

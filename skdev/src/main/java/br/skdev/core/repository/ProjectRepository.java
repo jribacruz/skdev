@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import br.skdev.core.exception.ProjectNotFoundException;
 import br.skdev.core.model.EClass;
 import br.skdev.core.model.EDirectory;
+import br.skdev.core.model.EFile;
 import br.skdev.core.model.EMavenProject;
 import br.skdev.core.model.EWorkspace;
 import br.skdev.core.util.FS;
@@ -41,7 +42,12 @@ public class ProjectRepository implements Serializable {
 		return eMavenProject.getDirectories();
 	}
 	
+	
 	public void createDirectory(EMavenProject eMavenProject, EDirectory eDirectory) {
 		fs.mkdir(eMavenProject.getAbsolutePath(), eDirectory.getPath());
+	}
+	
+	public void createFile(EMavenProject eMavenProject, EFile eFile) {
+		fs.createFile(eMavenProject.getAbsolutePath().concat("/").concat(eFile.getPath()), eFile.getContent());
 	}
 }

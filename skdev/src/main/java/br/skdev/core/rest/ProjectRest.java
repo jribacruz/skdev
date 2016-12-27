@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.skdev.core.model.EClass;
 import br.skdev.core.model.EDirectory;
+import br.skdev.core.model.EFile;
 import br.skdev.core.model.EMavenProject;
 import br.skdev.core.model.EWorkspace;
 import br.skdev.core.model.response.EClassesResponse;
@@ -86,6 +87,24 @@ public class ProjectRest {
 		EWorkspace eWorkspace = workspaceService.load(workspace);
 		EMavenProject eMavenProject = projectService.findByName(eWorkspace, projectName);
 		projectService.createDirectory(eMavenProject, eDirectory);
+		return ResponseEntity.ok().build();
+	}
+
+	/**
+	 * 
+	 * @param projectName
+	 * @param workspace
+	 * @param eFile
+	 * @return
+	 * @throws TemplateException
+	 * @throws IOException
+	 */
+	@RequestMapping(method = RequestMethod.POST, path = "/api/projects/{projectName}/files", produces = "application/json")
+	public ResponseEntity<?> createFile(@PathVariable("projectName") String projectName, @RequestParam("workspace") String workspace,
+			@RequestBody @Valid EFile eFile) throws TemplateException, IOException {
+		EWorkspace eWorkspace = workspaceService.load(workspace);
+		EMavenProject eMavenProject = projectService.findByName(eWorkspace, projectName);
+		projectService.createFile(eMavenProject, eFile);
 		return ResponseEntity.ok().build();
 	}
 
