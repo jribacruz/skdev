@@ -1,0 +1,62 @@
+<!doctype html>
+<html ng-app="skdevMD">
+    <head>
+		<title>Action Editor</title>
+		<link href="/skdev/css/global.css" rel="stylesheet" type="text/css"/>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic"/>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>	
+	    <link rel="stylesheet" type="text/css" href="/skdev/editorBuild/code_edit/built-codeEdit.css"/>
+		<script src="/skdev/editorBuild/code_edit/built-codeEdit.js"></script>
+    </head>
+	<body id="orion-browser" spellcheck="false" class="orionPage">
+		<div ng-controller="ActionEditorCT as actionEditorCT" style="height: 100%" flex="" layout="column">
+			<md-toolbar id="toolbar" class="md-primary">
+				<div class="md-toolbar-tools">
+				    <h2 >
+				      <span>Action Editor - </span>
+				    </h2>
+				    <span flex=""></span>
+				    <md-button class="md-raised" aria-label="Ações" ng-click="actionEditorCT.showHTML()">
+					      HTML
+				    </md-button>
+				     <md-button class="md-raised" aria-label="Ações" ng-click="actionEditorCT.showJS()">
+					      JavaScript
+				    </md-button>
+				        <md-menu>
+					      <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+					        <md-icon md-menu-origin="" md-svg-icon="call:phone"></md-icon>
+					      </md-button>
+					      <md-menu-content width="4">
+					        <md-menu-item>
+					          <md-button ng-click="ctrl.redial($event)">
+					            <md-icon md-svg-icon="call:dialpad" md-menu-align-target=""></md-icon>
+					            Redial
+					          </md-button>
+					        </md-menu-item>
+					        <md-menu-item>
+					          <md-button disabled="disabled" ng-click="ctrl.checkVoicemail()">
+					            <md-icon md-svg-icon="call:voicemail"></md-icon>
+					            Check voicemail
+					          </md-button>
+					        </md-menu-item>
+					        <md-menu-divider></md-menu-divider>
+					        <md-menu-item>
+					          <md-button ng-click="ctrl.toggleNotifications()">
+					            <md-icon md-svg-icon="social:notifications-{{ctrl.notificationsEnabled ? 'off' : 'on'}}"></md-icon>
+					            {{ctrl.notificationsEnabled ? 'Disable' : 'Enable' }} notifications
+					          </md-button>
+					        </md-menu-item>
+					      </md-menu-content>
+					   </md-menu>
+				</div>
+			</md-toolbar>
+			<div layout="column" flex="" style="height: 100%">
+				<md-content layout="column" style="height: 100%">
+					<div id="editorId" layout="column" flex="" style="height: 100%">
+					</div>
+				</md-content>
+			</div>
+		</div>
+		<script src="/skdev/js/global.js"></script>
+	</body>
+</html>
