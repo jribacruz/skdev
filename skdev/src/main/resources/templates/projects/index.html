@@ -12,70 +12,12 @@
 </head>
 <body ng-app="skdevMD" >
 	<div ng-controller="WorkspaceCT as workspaceCT" style="height: 100%" flex="" layout="column">
-		<md-toolbar id="toolbar" class="md-primary">
-			<div class="md-toolbar-tools">
-			    <h2 >
-			      <span>SKDEV - Workspace</span>
-			    </h2>
-			    <span flex=""></span>
-			    <!-- 
-			    <md-button class="md-raised" aria-label="Ações" ng-click="workspaceCT.showActionListDialogByGroup('Novo Projeto','archetypes')">
-			      Ações
-			    </md-button>
-			     -->
-			</div>
-		</md-toolbar>
+		<div th:replace="projects/fragments/toolbar :: #toolbar"></div>
 		<div layout="column" flex="" style="height: 100%">
-		<md-content layout="column" flex="" style="height: 100%">
-			 <section layout="row" flex="" style="height:100%">
-						<md-sidenav class="md-sidenav-left"
-						      md-component-id="left"
-						      md-whiteframe="4"
-						      md-is-locked-open="true"
-						      style="height:100%"
-							  flex="" >
-							<md-subheader class="md-primary">Ações <span ng-show="projectCT.classes.length > 0">({{projectCT.classes.length}})</span></md-subheader>
-							<md-content flex="">
-								 <md-progress-linear class="md-warn" md-mode="indeterminate" ng-show="projectCT.findAllClassesLoader"></md-progress-linear>
-								 <md-list flex="" >
-							        <md-list-item class="md-2-line md-dense"  ng-repeat="domainClass in projectCT.classes | orderBy: 'name'">
-							            <md-icon md-font-icon="material-icons">copyright</md-icon>
-							            <div class="md-list-item-text">
-								            <h4 title="{{ domainClass.name }}">{{ domainClass.name }}</h4>
-							            </div>
-							        </md-list-item>
-							     </md-list>
-							</md-content>
-					   	</md-sidenav>
-					   	<md-content flex="">
-					   	<md-subheader class="md-primary">Projetos</md-subheader>
-						<md-grid-list flex=""
-									   md-cols-gt-md="3"
-						 			   md-cols-sm="1"
-						 			   md-cols-xs="1"
-									   md-cols="2"
-									   md-cols-md="2"
-									   md-cols-lg="3"
-									   md-cols-gt-lg="3"
-									   md-cols-xl="3"
-									   md-gutter="4px" md-gutter-gt-sm="4px"
-									   md-row-height-gt-md="170px" 
-									   md-row-height="170px" ng-cloak="">
-							    <md-grid-tile ng-repeat="project in workspaceCT.projects">
-						        <md-card style="width: 100%">
-							       	<md-card-title>
-							         		<md-card-title-text>
-							           		<span class="md-headline">{{project.name}}</span>
-							           		<span class="md-subhead">{{project.pom.parent.artifactId}} - {{project.pom.parent.version}}</span>
-							         		</md-card-title-text>
-							       	</md-card-title>
-							       	<md-card-actions layout="row" layout-align="end center">
-							         		<md-button class="md-primary" ng-href="/skdev/project?name={{project.name}}">Entrar</md-button>
-							       	</md-card-actions>
-						     	</md-card>
-						    </md-grid-tile>
-						</md-grid-list>
-				   	</md-content>
+			<md-content layout="column" flex="" style="height: 100%">
+				 <section layout="row" flex="" style="height:100%">
+					 <div th:replace="projects/fragments/sidenav :: #sidenav"></div>
+					 <div th:replace="projects/fragments/content :: #content"></div>			
 				</section>
 			</md-content>
 		</div>

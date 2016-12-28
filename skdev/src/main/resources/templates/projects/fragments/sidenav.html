@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+	<md-sidenav
+		id="sidenav" 
+		class="md-sidenav-left"
+	    md-component-id="left"
+	    md-whiteframe="4"
+	    md-is-locked-open="true"
+	    style="height:100%"
+	  	flex="" >
+		<md-subheader class="md-primary">Ações <span ng-show="projectCT.classes.length > 0">({{projectCT.classes.length}})</span></md-subheader>
+		<md-content flex="">
+			 <md-progress-linear class="md-warn" md-mode="indeterminate" ng-show="projectCT.findAllClassesLoader"></md-progress-linear>
+			 <md-list flex="" >
+		        <md-list-item class="md-2-line md-dense"  ng-repeat="domainClass in projectCT.classes | orderBy: 'name'">
+		            <md-icon md-font-icon="material-icons">copyright</md-icon>
+		            <div class="md-list-item-text">
+			            <h4 title="{{ domainClass.name }}">{{ domainClass.name }}</h4>
+		            </div>
+		        </md-list-item>
+		     </md-list>
+		</md-content>
+	</md-sidenav>
+</body>
+</html>
