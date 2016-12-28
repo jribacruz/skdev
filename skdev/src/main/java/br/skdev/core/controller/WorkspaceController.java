@@ -44,6 +44,6 @@ public class WorkspaceController {
 
 	@RequestMapping("/workspace/projects")
 	public String projects() {
-		return "projects";
+		return "projects/index";
 	}
 }
