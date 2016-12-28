@@ -58,7 +58,7 @@
 									   md-cols-lg="3"
 									   md-cols-gt-lg="3"
 									   md-cols-xl="3"
-									   md-gutter="8px" md-gutter-gt-sm="4px"
+									   md-gutter="4px" md-gutter-gt-sm="4px"
 									   md-row-height-gt-md="170px" 
 									   md-row-height="170px" ng-cloak="">
 							    <md-grid-tile ng-repeat="project in workspaceCT.projects">
@@ -70,7 +70,7 @@
 							         		</md-card-title-text>
 							       	</md-card-title>
 							       	<md-card-actions layout="row" layout-align="end center">
-							         		<md-button ng-href="/skdev/project?name={{project.name}}">Entrar</md-button>
+							         		<md-button class="md-primary" ng-href="/skdev/project?name={{project.name}}">Entrar</md-button>
 							       	</md-card-actions>
 						     	</md-card>
 						    </md-grid-tile>
