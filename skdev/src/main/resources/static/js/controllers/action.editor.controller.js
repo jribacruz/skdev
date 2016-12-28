@@ -48,6 +48,9 @@
 					editorViewer.settings.contentAssistAutoTrigger = true;
 					editorViewer.settings.showOccurrences = true;
 				}
+				editorViewer.onDirtyChange(function() {
+					console.log('dirty.....');
+				})
 			});
 		}
 	}
