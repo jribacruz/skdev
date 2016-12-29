@@ -50,19 +50,19 @@ public class EClass extends ETemplateModel implements Serializable, Comparable<E
 	/**
 	 * 
 	 */
-	@JsonIgnore
+	//@JsonIgnore
 	protected Set<EAttribute> attributes;
 
 	/**
 	 * 
 	 */
-	@JsonIgnore
+	//@JsonIgnore
 	protected Set<EMethod> methods;
 
 	/**
 	 * 
 	 */
-	@JsonIgnore
+	//@JsonIgnore
 	protected Set<EAnnotation> annotations;
 
 	public EClass() {
