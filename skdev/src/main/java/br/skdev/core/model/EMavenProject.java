@@ -25,8 +25,6 @@ public class EMavenProject implements Serializable, Comparable<EMavenProject> {
 
 	protected EPom pom;
 
-	protected Set<ETemplateModel> models;
-
 	@JsonIgnore
 	protected SortedSet<EClass> classes;
 
@@ -35,14 +33,6 @@ public class EMavenProject implements Serializable, Comparable<EMavenProject> {
 
 	public EMavenProject() {
 		super();
-	}
-
-	public Set<ETemplateModel> getModels() {
-		return models;
-	}
-
-	public void setModels(Set<ETemplateModel> models) {
-		this.models = models;
 	}
 
 	public String getName() {

@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @EqualsAndHashCode(of = "name")
 @JsonTypeName("EAttribute")
-public class EAttribute extends ETemplateModel implements Serializable, Comparable<EAttribute> {
+public class EAttribute implements Serializable, Comparable<EAttribute> {
 
 	/**
 	 * 

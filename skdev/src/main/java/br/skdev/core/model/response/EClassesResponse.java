@@ -5,7 +5,7 @@ import java.util.SortedSet;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import br.skdev.core.model.ETemplateModel;
+import br.skdev.core.model.EClass;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EClassesResponse implements Serializable {
@@ -15,25 +15,23 @@ public class EClassesResponse implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public SortedSet<? extends ETemplateModel> elements;
+	public SortedSet<EClass> classes;
 
 	public EClassesResponse() {
 		super();
 	}
 
-	public EClassesResponse(SortedSet<? extends ETemplateModel> elements) {
+	public EClassesResponse(SortedSet<EClass> classes) {
 		super();
-		this.elements = elements;
+		this.classes = classes;
 	}
 
-	public SortedSet<? extends ETemplateModel> getElements() {
-		return elements;
+	public SortedSet<EClass> getClasses() {
+		return classes;
 	}
 
-	public void setElements(SortedSet<? extends ETemplateModel> elements) {
-		this.elements = elements;
+	public void setClasses(SortedSet<EClass> classes) {
+		this.classes = classes;
 	}
-
-	
 
 }

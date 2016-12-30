@@ -3,7 +3,6 @@ package br.skdev.core.model;
 import java.io.Serializable;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -18,7 +17,7 @@ import lombok.EqualsAndHashCode;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @EqualsAndHashCode(of = "fullyQualifiedName")
 @JsonTypeName("EClass")
-public class EClass extends ETemplateModel implements Serializable, Comparable<EClass> {
+public class EClass implements Serializable, Comparable<EClass> {
 
 	/**
 	 * 
@@ -50,19 +49,19 @@ public class EClass extends ETemplateModel implements Serializable, Comparable<E
 	/**
 	 * 
 	 */
-	//@JsonIgnore
+	// @JsonIgnore
 	protected Set<EAttribute> attributes;
 
 	/**
 	 * 
 	 */
-	//@JsonIgnore
+	// @JsonIgnore
 	protected Set<EMethod> methods;
 
 	/**
 	 * 
 	 */
-	//@JsonIgnore
+	// @JsonIgnore
 	protected Set<EAnnotation> annotations;
 
 	public EClass() {

@@ -14,7 +14,7 @@ import lombok.ToString;
 @EqualsAndHashCode(of = { "name", "parameters" })
 @ToString(of = { "name", "parameters" })
 @JsonTypeName("EMethod")
-public class EMethod extends ETemplateModel implements Serializable {
+public class EMethod implements Serializable {
 
 	/**
 	 * 
