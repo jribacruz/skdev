@@ -15,14 +15,14 @@
 	<body spellcheck="false">
 		<div style="height: 100%" flex="" layout="column">
 			<!-- FRAGMENTO DO TOOLBAR -->
-			<div th:replace="action/fragments/toolbar :: #toolbar"></div>
+			<div th:replace="actions/fragments/toolbar :: #toolbar"></div>
 			<div layout="column" flex="" style="height: 100%">
 				<md-content layout="column" flex="" style="height: 100%">
 					 <section layout="row" flex="" style="height:100%">
 					 	 <!-- FRAGMENTO DO SIDENAV -->
-						 <div th:replace="action/fragments/sidenav :: #sidenav"></div>
+						 <div th:replace="actions/fragments/sidenav :: #sidenav"></div>
 						 <!-- FRAGMENTO DO CONTENT -->
-						 <div th:replace="action/fragments/content :: #content"></div>			
+						 <div th:replace="actions/fragments/content :: #content"></div>			
 					</section>
 				</md-content>
 			</div>

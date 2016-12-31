@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ActionEditorController {
 
-	@RequestMapping(method = RequestMethod.GET, path = "/action/editor")
+	@RequestMapping(method = RequestMethod.GET, path = "/actions/editor")
 	public String actionEditor() {
-		return "action/index";
+		return "actions/index";
 	}
 
 }
