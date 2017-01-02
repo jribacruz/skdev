@@ -24,7 +24,6 @@ import br.skdev.core.model.response.EClassesResponse;
 import br.skdev.core.model.response.EDirectoriesResponse;
 import br.skdev.core.service.ProjectService;
 import br.skdev.core.service.WorkspaceService;
-import freemarker.template.TemplateException;
 
 @RestController
 public class ProjectRest {
@@ -83,7 +82,7 @@ public class ProjectRest {
 	 */
 	@RequestMapping(method = RequestMethod.POST, path = "/api/projects/{projectName}/directories", produces = "application/json")
 	public ResponseEntity<?> createDirectory(@PathVariable("projectName") String projectName, @RequestParam("workspace") String workspace,
-			@RequestBody @Valid EDirectory eDirectory) throws TemplateException, IOException {
+			@RequestBody @Valid EDirectory eDirectory) {
 		EWorkspace eWorkspace = workspaceService.load(workspace);
 		EMavenProject eMavenProject = projectService.findByName(eWorkspace, projectName);
 		projectService.createDirectory(eMavenProject, eDirectory);
@@ -103,7 +102,7 @@ public class ProjectRest {
 	 */
 	@RequestMapping(method = RequestMethod.POST, path = "/api/projects/{projectName}/files", produces = "application/json")
 	public ResponseEntity<?> createFile(@PathVariable("projectName") String projectName, @RequestParam("workspace") String workspace,
-			@RequestBody @Valid EFile eFile) throws TemplateException, IOException {
+			@RequestBody @Valid EFile eFile) {
 		EWorkspace eWorkspace = workspaceService.load(workspace);
 		EMavenProject eMavenProject = projectService.findByName(eWorkspace, projectName);
 		projectService.createFile(eMavenProject, eFile);
