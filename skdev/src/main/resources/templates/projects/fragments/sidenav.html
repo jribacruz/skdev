@@ -9,14 +9,17 @@
 	    md-is-locked-open="true"
 	    style="height:100%"
 	  	flex="" >
-		<md-subheader class="md-primary">Ações <span ng-show="projectCT.classes.length > 0">({{projectCT.classes.length}})</span></md-subheader>
+		<md-subheader class="md-primary">Projetos <span ng-show="workspaceCT.projects.length > 0">({{workspaceCT.projects.length}})</span></md-subheader>
 		<md-content flex="">
 			 <md-progress-linear class="md-warn" md-mode="indeterminate" ng-show="projectCT.findAllClassesLoader"></md-progress-linear>
 			 <md-list flex="" >
-		        <md-list-item class="md-2-line md-dense"  ng-repeat="domainClass in projectCT.classes | orderBy: 'name'">
+		        <md-list-item class="md-2-line md-dense"  ng-repeat="project in workspaceCT.projects | orderBy: 'name'" ng-click="null">
+		        	<!-- 
 		            <md-icon md-font-icon="material-icons">copyright</md-icon>
+		        	 -->
 		            <div class="md-list-item-text">
-			            <h4 title="{{ domainClass.name }}">{{ domainClass.name }}</h4>
+			            <h3 title="{{ project.name }}">{{ project.name }}</h3>
+			            <p>{{project.pom.parent.artifactId}} - {{project.pom.parent.version}}</p>
 		            </div>
 		        </md-list-item>
 		     </md-list>
