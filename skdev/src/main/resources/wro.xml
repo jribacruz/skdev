@@ -36,6 +36,10 @@
 		<js minimize="true">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/comment/comment.js</js>
 		<js minimize="true">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/comment/continuecomment.js</js>
 	</group>
+	
+	<group name="handlebars">
+		<js minimize="false">classpath:META-INF/resources/webjars/handlebars/4.0.5/handlebars.min.js</js>
+	</group>
 
 	<group name="global">
 		<js minimize="false">classpath:META-INF/resources/webjars/angularjs/1.6.0/angular.min.js</js>
@@ -48,5 +52,6 @@
 		<js minimize="false">classpath:META-INF/resources/webjars/URI.js/1.14.1/URI.min.js</js>
 		<js minimize="true">classpath:META-INF/resources/webjars/string-format/0.5.0/lib/string-format.js</js>
 		<group-ref>app</group-ref>
+		<group-ref>handlebars</group-ref>
 	</group>
 </groups>
