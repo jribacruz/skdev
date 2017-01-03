@@ -3,32 +3,17 @@
 <body>					   	
 	<md-content id="content" flex="">
 	   	<md-subheader class="md-primary">Ações</md-subheader>
-		<md-grid-list flex=""
-			   md-cols-gt-md="3"
- 			   md-cols-sm="1"
- 			   md-cols-xs="1"
-			   md-cols="2"
-			   md-cols-md="2"
-			   md-cols-lg="3"
-			   md-cols-gt-lg="3"
-			   md-cols-xl="3"
-			   md-gutter="4px" md-gutter-gt-sm="4px"
-			   md-row-height-gt-md="170px" 
-			   md-row-height="170px" ng-cloak="">
-			   <md-grid-tile ng-repeat="project in workspaceCT.projects">
-		       <md-card style="width: 100%">
-			       	<md-card-title>
-			         		<md-card-title-text>
-			           		<span class="md-headline">{{project.name}}</span>
-			           		<span class="md-subhead">{{project.pom.parent.artifactId}} - {{project.pom.parent.version}}</span>
-			         		</md-card-title-text>
-			       	</md-card-title>
-			       	<md-card-actions layout="row" layout-align="end center">
-			         		<md-button class="md-primary" ng-href="/skdev/project?name={{project.name}}">Entrar</md-button>
-			       	</md-card-actions>
-		     	</md-card>
-		    </md-grid-tile>
-		</md-grid-list>
+	   	<md-list flex="" >
+		        <md-list-item class="md-2-line md-dense"  ng-repeat="project in workspaceCT.projects | orderBy: 'name'">
+		        	<!-- 
+		            <md-icon md-font-icon="material-icons">copyright</md-icon>
+		        	 -->
+		            <div class="md-list-item-text">
+			            <h3 title="{{ project.name }}">{{ project.name }}</h3>
+			            <p>{{project.pom.parent.artifactId}} - {{project.pom.parent.version}}</p>
+		            </div>
+		        </md-list-item>
+		     </md-list>
 	</md-content>
 </body>
 </html>
