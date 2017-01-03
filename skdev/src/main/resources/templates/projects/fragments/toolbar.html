@@ -7,14 +7,29 @@
 				<span>SKDEV - Workspace</span>
 			</h2>
 			<span flex=""></span>
-			<!-- 
-			    <md-button class="md-raised" aria-label="Ações" ng-click="workspaceCT.showActionListDialogByGroup('Novo Projeto','archetypes')">
-			      Ações
-			    </md-button>
-			     -->
-			<md-button class="md-icon-button" aria-label="Ações" ng-click="null">
-			      <md-icon md-font-icon="material-icons">more_vert</md-icon>
-			 </md-button>  
+			<md-menu>
+		      <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+		        <md-icon md-font-icon="material-icons">more_vert</md-icon>
+		      </md-button>
+		      <md-menu-content width="4">
+		        <md-menu-item>
+		          <md-button ng-click="ctrl.redial($event)">
+		            Novo Projeto
+		          </md-button>
+		        </md-menu-item>
+		        <md-menu-item>
+		          <md-button disabled="disabled" ng-click="ctrl.checkVoicemail()">
+		            Check voicemail
+		          </md-button>
+		        </md-menu-item>
+		        <md-menu-divider></md-menu-divider>
+		        <md-menu-item>
+		          <md-button ng-click="ctrl.toggleNotifications()">
+		            {{ctrl.notificationsEnabled ? 'Disable' : 'Enable' }} notifications
+		          </md-button>
+		        </md-menu-item>
+		      </md-menu-content>
+		    </md-menu> 	 
 		</div>
 	</md-toolbar>
 </body>

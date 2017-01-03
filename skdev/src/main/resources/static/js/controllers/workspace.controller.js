@@ -22,14 +22,14 @@
 		self.showActionListDialogByGroup = showActionListDialogByGroup;
 
 		
-		  $scope.fn = new Function('httpSV', 'self', "(function(httpSV)  {  httpSV.get('/projects').then(function(data){self.projects = data;})})(httpSV);");
+		//  $scope.fn = new Function('httpSV', 'self', "(function(httpSV)  {  httpSV.get('/projects').then(function(data){self.projects = data;})})(httpSV);");
 		 
 		init();
 
 		function init() {
 			
-			  var afn = angular.bind(this, $scope.fn, httpSV, self); 
-			  afn();
+		//	  var afn = angular.bind(this, $scope.fn, httpSV, self); 
+		//	  afn();
 			 
 			// console.log($location.absUrl());
 			httpSV.get('/projects', {

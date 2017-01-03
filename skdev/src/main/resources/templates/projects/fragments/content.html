@@ -3,17 +3,6 @@
 <body>					   	
 	<md-content id="content" flex="">
 	   	<md-subheader class="md-primary">Ações</md-subheader>
-	   	<md-list flex="" >
-		        <md-list-item class="md-2-line md-dense"  ng-repeat="project in workspaceCT.projects | orderBy: 'name'">
-		        	<!-- 
-		            <md-icon md-font-icon="material-icons">copyright</md-icon>
-		        	 -->
-		            <div class="md-list-item-text">
-			            <h3 title="{{ project.name }}">{{ project.name }}</h3>
-			            <p>{{project.pom.parent.artifactId}} - {{project.pom.parent.version}}</p>
-		            </div>
-		        </md-list-item>
-		     </md-list>
 	</md-content>
 </body>
 </html>
