@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>					   	
+	<md-content id="content" flex="">
+	   	<md-tabs md-dynamic-height="" md-border-bottom="">
+	      <div th:replace="projects/fragments/content/dashboard :: #dashboard"></div>		
+	      <div th:replace="projects/fragments/content/console :: #console"></div>
+      </md-tabs>
+	</md-content>
+</body>
+</html>
