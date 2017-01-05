@@ -3,8 +3,8 @@
 
 	startup.$inject = [ '$log' ];
 
-	angular.module("skdevMD", [ 'ngResource', 'ngAnimate', 'ngMaterial', 'md.data.table' ]).run(
-			startup);
+	angular.module("skdevMD", [ 'ngResource', 'ngAnimate', 'ngMaterial', 'md.data.table' ])
+		.run(startup);
 
 	function startup($log) {
 		$log.debug('[skdevMD] Startup App...');
