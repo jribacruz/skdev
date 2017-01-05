@@ -21,7 +21,6 @@
 
 		self.showActionListDialogByGroup = showActionListDialogByGroup;
 		
-		self.showActionExplorer = showActionExplorer;
 
 		
 		//  $scope.fn = new Function('httpSV', 'self', "(function(httpSV)  {  httpSV.get('/projects').then(function(data){self.projects = data;})})(httpSV);");
@@ -60,10 +59,6 @@
 					title : title
 				}
 			});
-		}
-		
-		function showActionExplorer() {
-			$mdSidenav('sidenav2').toggle();
 		}
 
 	}
