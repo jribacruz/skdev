@@ -11,19 +11,12 @@
 	 * @param $log
 	 * @param ProjectSV
 	 * @param $mdDialog
-	 * @param $http
-	 * @param HttpSV
+	 * @param httpSV
 	 * @returns
 	 */
 	function ProjectCT($scope, $log, ProjectSV, $mdDialog, httpSV) {
 		$log.debug('[ProjectCT] Inicializando...');
 		var self = this;
-
-		self.projectName = "";
-
-		self.classes = [];
-
-		self.findAllClassesLoader = true;
 
 		init();
 
@@ -31,22 +24,6 @@
 		 * 
 		 */
 		function init() {
-			self.projectName = HttpSV.getProjectName();
-			findAllClasses();
-		}
-
-		/**
-		 * 
-		 */
-		function findAllClasses() {
-			HttpSV.get('/project/classes', {
-				queryParams : {
-					name : self.projectName
-				}
-			}).then(function(data) {
-				self.classes = data;
-				self.findAllClassesLoader = false;
-			});
 		}
 
 	}
