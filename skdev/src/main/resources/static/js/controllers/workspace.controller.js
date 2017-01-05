@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('WorkspaceCT', WorkspaceCT);
 
-	WorkspaceCT.$inject = [ '$scope', '$log', '$mdDialog', 'httpSV', '$location', '$mdSidenav' ];
+	WorkspaceCT.$inject = [ '$scope', '$log', '$mdDialog', 'httpSV', '$location', '$mdSidenav', 'notificationSV' ];
 
 	/**
 	 * 
@@ -13,13 +13,15 @@
 	 * @param httpSV
 	 * @returns
 	 */
-	function WorkspaceCT($scope, $log, $mdDialog, httpSV, $location, $mdSidenav) {
+	function WorkspaceCT($scope, $log, $mdDialog, httpSV, $location, $mdSidenav, notificationSV) {
 		$log.debug('[WorkspaceCT] Inicializando...');
 		var self = this;
 
 		self.projects = [];
 
 		self.showActionListDialogByGroup = showActionListDialogByGroup;
+		
+		self.showNotification = showNotification;
 		
 
 		
@@ -59,6 +61,10 @@
 					title : title
 				}
 			});
+		}
+		
+		function showNotification(message) {
+			notificationSV.show(message);
 		}
 
 	}
