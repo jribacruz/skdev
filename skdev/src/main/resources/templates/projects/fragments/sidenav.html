@@ -4,7 +4,7 @@
 	<md-sidenav
 		id="sidenav" 
 		class="md-sidenav-left"
-	    md-component-id="left"
+	    md-component-id="sidenav"
 	    md-whiteframe="4"
 	    md-is-locked-open="true"
 	    style="height:100%"
@@ -17,6 +17,7 @@
 		        	<!-- 
 		            <md-icon md-font-icon="material-icons">copyright</md-icon>
 		        	 -->
+		        	<md-icon md-font-icon="material-icons">folder_open</md-icon>
 		            <div class="md-list-item-text">
 			            <h3 title="{{ project.name }}">{{ project.name }}</h3>
 			            <p>{{project.pom.parent.artifactId}} - {{project.pom.parent.version}}</p>

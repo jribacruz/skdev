@@ -14,18 +14,21 @@
 		      <md-menu-content width="4">
 		        <md-menu-item>
 		          <md-button ng-click="ctrl.redial($event)">
+		          	<md-icon md-font-icon="material-icons">create_new_folder</md-icon>
 		            Novo Projeto
 		          </md-button>
 		        </md-menu-item>
 		        <md-menu-item>
-		          <md-button disabled="disabled" ng-click="ctrl.checkVoicemail()">
-		            Check voicemail
+		          <md-button  ng-click="workspaceCT.showActionExplorer()">
+		          	<md-icon md-font-icon="material-icons">code</md-icon>
+		            Nova Ação
 		          </md-button>
 		        </md-menu-item>
 		        <md-menu-divider></md-menu-divider>
 		        <md-menu-item>
 		          <md-button ng-click="ctrl.toggleNotifications()">
-		            {{ctrl.notificationsEnabled ? 'Disable' : 'Enable' }} notifications
+		          	<md-icon md-font-icon="material-icons">settings</md-icon>
+		            Configurações
 		          </md-button>
 		        </md-menu-item>
 		      </md-menu-content>
