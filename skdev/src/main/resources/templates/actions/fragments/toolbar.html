@@ -7,11 +7,35 @@
 				<span>SKDEV - Action Editor</span>
 			</h2>
 			<span flex=""></span>
-			<!-- 
-			    <md-button class="md-raised" aria-label="Ações" ng-click="workspaceCT.showActionListDialogByGroup('Novo Projeto','archetypes')">
-			      Ações
-			    </md-button>
-			     -->
+			<md-menu>
+		      <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+		        <md-icon md-font-icon="material-icons">menu</md-icon>
+		      </md-button>
+		      <md-menu-content width="4">
+		        <md-menu-item>
+		          <md-button ng-click="ctrl.redial($event)">
+		          	<md-icon md-font-icon="material-icons">create_new_folder</md-icon>
+		            Novo Template
+		          </md-button>
+		        </md-menu-item>
+		        <md-menu-divider></md-menu-divider>
+		        <md-menu-item>
+		          <md-button  ng-click="workspaceCT.showNotification('Notificação Online')">
+		          	<md-icon md-font-icon="material-icons">backup</md-icon>
+		            Upload
+		          </md-button>
+		        </md-menu-item>
+		        <md-menu-item>
+		          <md-button ng-click="ctrl.toggleNotifications()">
+		          	<md-icon md-svg-icon="android"></md-icon>
+		          	<!-- 
+		          	<md-icon md-font-icon="material-icons">arrow-down-bold-hexagon-outline</md-icon>
+		          	 -->
+		            Configurações
+		          </md-button>
+		        </md-menu-item>
+		      </md-menu-content>
+		    </md-menu> 	 
 		</div>
 	</md-toolbar>
 </body>
