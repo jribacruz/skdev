@@ -5,7 +5,14 @@
       <md-tab-content flex="" layout-fill="">
    	  		<div layout="column" style="height: 100%">
 	      		<div>
-	      			<md-button>Teste</md-button>
+	      			<div layout="row">
+	      				<div>
+	      				</div>
+	      				<div flex=""></div>
+	      				<md-button class="md-icon-button" title="Executar" ng-click="actionEditorCT.runDialog()">
+	      					<md-icon md-svg-icon="arrow-right-drop-circle"></md-icon>
+	      				</md-button>
+	      			</div>
 	      		</div>
 	      		<md-content flex="" style="height: 100%">
 		   	  		<div id="dialogEditor" style="height: 100%; border: 1px solid #ddd" layout="column" flex=""></div>

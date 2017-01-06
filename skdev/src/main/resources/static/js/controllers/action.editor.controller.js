@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('ActionEditorCT', ActionEditorCT);
 
-	ActionEditorCT.$inject = [ '$scope', '$log' ];
+	ActionEditorCT.$inject = [ '$scope', '$log', '$mdDialog' ];
 
 	/**
 	 * 
@@ -15,11 +15,13 @@
 	 * @param HttpSV
 	 * @returns
 	 */
-	function ActionEditorCT($scope, $log) {
+	function ActionEditorCT($scope, $log, $mdDialog) {
 		$log.debug('[ActionEditorCT] Inicializando...');
 		var self = this;
 
 		var editors = {};
+		
+		self.runDialog = runDialog;
 
 		init();
 
@@ -56,6 +58,16 @@
 				});
 				editors['execute'].setSize('100%', '100%');
 
+			});
+		}
+		
+		function runDialog() {
+			console.log(editors['dialog'].getValue());
+			$mdDialog.show({
+				parent : angular.element(document.body),
+				template : editors['dialog'].getValue(),
+				clickOutsideToClose : false,
+				controller : 'ActionCT'
 			});
 		}
 	}
