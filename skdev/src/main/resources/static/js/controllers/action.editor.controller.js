@@ -23,34 +23,28 @@
 
 		init();
 		
-		self.showJS = showJS;
-		
-		self.showHTML = showHTML;
-		
-		function showJS() {
-			editors['editor'].setContents("var foo;", "application/javascript");
-		}
-		
-		function showHTML() {
-			editors['editor'].setContents("<html></html>", "text/html");
-		}
-
 		function init() {
-			editors['editor'] = new orion.codeEdit();
-			editors['editor'].create({
-				parent : "editorId",
-				contentType : "text/html",
-				contents : "",
-				noFocus: true
-			}).then(function(editorViewer) {
-				editors['editor'] = editorViewer;
-				if (editorViewer.settings) {
-					editorViewer.settings.contentAssistAutoTrigger = true;
-					editorViewer.settings.showOccurrences = true;
-				}
-				editorViewer.onDirtyChange(function() {
-					console.log('dirty.....');
-				})
+			$log.debug('[ActionEditorCT] Inicializando editor execute.js')
+			angular.element(document).ready(function() {
+				//console.log(document.getElementById('executeEditor'))
+				editors['execute'] = CodeMirror(document.getElementById('executeEditor'),{
+					  value: "$notification.show('Funcionou')",
+					  mode:  "javascript",
+					  lineNumbers: true,
+					  gutters: ["CodeMirror-lint-markers"],
+					  lint: true,
+					  autoCloseBrackets: true,
+					  extraKeys: {"Ctrl-Space": "autocomplete"},
+					  matchBrackets: false,
+					  theme: 'eclipse',
+					  indentUnit: 4
+				});	
+				editors['dialog'] = CodeMirror(document.getElementById('dialogEditor'),{
+					  mode:  "htmlmixed",
+					  lineNumbers: true,
+					  autoCloseTags: true,
+					  theme: 'eclipse'
+					});
 			});
 		}
 	}
