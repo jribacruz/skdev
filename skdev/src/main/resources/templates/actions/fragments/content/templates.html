@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <body>					   	
-    <md-tab id="dialog" label="Dialog.html" style="height: 100%" layout-fill="">
+   <md-tab id="templates" label="Templates">
       <md-tab-content flex="" layout-fill="">
    	  		<div layout="column" style="height: 100%">
-	      		<div>
+	      		<div style="border-bottom: 1px solid #ddd">
 	      			<div layout="row">
 	      				<div>
 	      				</div>
@@ -15,10 +15,17 @@
 	      			</div>
 	      		</div>
 	      		<md-content flex="" style="height: 100%">
-		   	  		<div id="dialoghtmlEditor" style="height: 100%; border: 1px solid #ddd" layout="column" flex=""></div>
+	      			<div layout="row" style="height: 100%">
+	      				<div flex="15" style="background-color: #fff; border-right: 1px solid #ddd">
+	      					<md-subheader class="md-primary">Templates Handlebars</md-subheader>
+	      				</div>
+	      				<div flex="" style="height: 100%">
+			      			<div id="templatesEditor" style="height: 100%; " layout="column" flex=""></div>
+	      				</div>
+	      			</div>
 	      		</md-content>
       		</div>
       </md-tab-content>
-    </md-tab>
+   </md-tab>
 </body>
 </html>

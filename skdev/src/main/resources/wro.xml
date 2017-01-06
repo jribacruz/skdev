@@ -21,7 +21,9 @@
 		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/mode/htmlmixed/htmlmixed.js</js>
 		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/runmode/runmode.js</js>
 		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/runmode/colorize.js</js>
+		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/mode/simple.js</js>
 		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/mode/multiplex.js</js>
+		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/mode/handlebars/handlebars.js</js>
 		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/lint/lint.js</js>
 		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/lint/javascript-lint.js</js>
 		<js minimize="false">classpath:META-INF/resources/webjars/jshint/2.9.3/jshint.js</js>

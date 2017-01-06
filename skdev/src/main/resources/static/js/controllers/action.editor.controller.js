@@ -31,19 +31,19 @@
 				/*
 				 * Inicializando o editor de dialog.
 				 */
-				editors['dialog'] = CodeMirror(document.getElementById('dialogEditor'), {
+				editors['dialoghtml'] = CodeMirror(document.getElementById('dialoghtmlEditor'), {
 					mode : "htmlmixed",
 					lineNumbers : true,
 					autoCloseTags : true,
 					theme : 'eclipse',
 					styleActiveLine: true
 				});
-				editors['dialog'].setSize('100%', '100%');
+				editors['dialoghtml'].setSize('100%', '100%');
 				
 				/*
 				 * Inicializando o editor de action execute
 				 */
-				editors['execute'] = CodeMirror(document.getElementById('executeEditor'), {
+				editors['executejs'] = CodeMirror(document.getElementById('executejsEditor'), {
 					value : "$notification.show('Funcionou')",
 					mode : "javascript",
 					lineNumbers : true,
@@ -58,13 +58,21 @@
 					indentUnit : 4,
 					styleActiveLine: true
 				});
-				editors['execute'].setSize('100%', '100%');
+				editors['executejs'].setSize('100%', '100%');
+				
+				editors['templates'] = CodeMirror(document.getElementById('templatesEditor'), {
+					mode : "handlebars",
+					lineNumbers : true,
+					theme : 'eclipse',
+					styleActiveLine: true
+				});
+				editors['templates'].setSize('100%', '100%');
 
 			});
 		}
 		
 		function runDialog() {
-			console.log(editors['dialog'].getValue());
+			console.log(editors['dialoghtml'].getValue());
 			$mdDialog.show({
 				parent : angular.element(document.body),
 				template : editors['dialog'].getValue(),
