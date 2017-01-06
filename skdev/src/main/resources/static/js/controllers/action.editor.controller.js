@@ -35,7 +35,8 @@
 					mode : "htmlmixed",
 					lineNumbers : true,
 					autoCloseTags : true,
-					theme : 'eclipse'
+					theme : 'eclipse',
+					styleActiveLine: true
 				});
 				editors['dialog'].setSize('100%', '100%');
 				
@@ -54,7 +55,8 @@
 					},
 					matchBrackets : false,
 					theme : 'eclipse',
-					indentUnit : 4
+					indentUnit : 4,
+					styleActiveLine: true
 				});
 				editors['execute'].setSize('100%', '100%');
 
