@@ -35,6 +35,7 @@
 		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/comment/comment.js</js>
 		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/comment/continuecomment.js</js>
 		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/selection/active-line.js</js>
+		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/display/placeholder.js</js>
 	</group>
 	
 	<group name="handlebars">

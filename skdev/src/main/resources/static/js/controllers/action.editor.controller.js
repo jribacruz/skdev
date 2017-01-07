@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('ActionEditorCT', ActionEditorCT);
 
-	ActionEditorCT.$inject = [ '$scope', '$log', '$mdDialog' ];
+	ActionEditorCT.$inject = [ '$scope', '$log', '$mdDialog', '$mdSidenav' ];
 
 	/**
 	 * 
@@ -15,13 +15,15 @@
 	 * @param HttpSV
 	 * @returns
 	 */
-	function ActionEditorCT($scope, $log, $mdDialog) {
+	function ActionEditorCT($scope, $log, $mdDialog, $mdSidenav) {
 		$log.debug('[ActionEditorCT] Inicializando...');
 		var self = this;
 
 		var editors = {};
 		
 		self.runDialog = runDialog;
+		
+		self.showTemplates = showTemplates;
 
 		init();
 
@@ -44,7 +46,6 @@
 				 * Inicializando o editor de action execute
 				 */
 				editors['executejs'] = CodeMirror(document.getElementById('executejsEditor'), {
-					value : "$notification.show('Funcionou')",
 					mode : "javascript",
 					lineNumbers : true,
 					gutters : [ "CodeMirror-lint-markers" ],
@@ -79,6 +80,10 @@
 				clickOutsideToClose : false,
 				controller : 'ActionCT'
 			});
+		}
+		
+		function showTemplates() {
+			$mdSidenav('sidenav').toggle();
 		}
 	}
 })();
