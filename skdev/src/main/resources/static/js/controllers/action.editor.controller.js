@@ -29,6 +29,20 @@
 			$log.debug('[ActionEditorCT] Inicializando editor execute.js')
 			angular.element(document).ready(function() {
 				/*
+				 * Inicializando o editor de configuração.
+				 */
+				editors['configjson'] = CodeMirror(document.getElementById('configjsonEditor'), {
+					mode: "application/json",
+					lineNumbers : true,
+					autoCloseBrackets : true,
+					gutters : [ "CodeMirror-lint-markers" ],
+					lint : true,
+					indentUnit : 4,
+					theme : 'eclipse',
+					styleActiveLine: true
+				});
+				editors['configjson'].setSize('100%', '100%');
+				/*
 				 * Inicializando o editor de dialog.
 				 */
 				editors['dialoghtml'] = CodeMirror(document.getElementById('dialoghtmlEditor'), {

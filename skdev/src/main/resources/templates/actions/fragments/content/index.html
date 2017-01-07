@@ -3,6 +3,7 @@
 <body>					   	
 	<md-content id="content" flex="" layout="column" style="height: 100%">
 	   	<md-tabs flex="" layout="column" layout-fill="" md-border-bottom="">
+	   	  <div th:replace="actions/fragments/content/config :: #config"></div>	
 	      <div th:replace="actions/fragments/content/dialog :: #dialog"></div>	
 	      <div th:replace="actions/fragments/content/execute :: #execute"></div>	
 	      <div th:replace="actions/fragments/content/templates :: #templates"></div>	
