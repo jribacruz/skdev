@@ -41,19 +41,22 @@
 	<group name="handlebars">
 		<js minimize="false">classpath:META-INF/resources/webjars/handlebars/4.0.5/handlebars.min.js</js>
 	</group>
+	
+	<group name="angular-material">
+		<css minimize="false">classpath:META-INF/resources/webjars/angular-material/1.1.1/angular-material.min.css</css>
+		<js minimize="false">classpath:META-INF/resources/webjars/angular-material/1.1.1/angular-material.min.js</js>
+		<js minimize="false">classpath:META-INF/resources/webjars/angular-material/1.1.1/angular-material.min.js</js>
+		<css minimize="false">classpath:META-INF/resources/webjars/md-data-table/0.10.9/md-data-table.min.css</css>
+		<js minimize="false">classpath:META-INF/resources/webjars/md-data-table/0.10.9/md-data-table.min.js</js>
+	</group>
 
 	<group name="global">
 		<js minimize="false">classpath:META-INF/resources/webjars/angularjs/1.6.0/angular.min.js</js>
 		<js minimize="false">classpath:META-INF/resources/webjars/angularjs/1.6.0/angular-resource.min.js</js>
 		<js minimize="false">classpath:META-INF/resources/webjars/angularjs/1.6.0/angular-animate.min.js</js>
 		<js minimize="false">classpath:META-INF/resources/webjars/angularjs/1.6.0/angular-aria.min.js</js>
-		<css minimize="false">classpath:META-INF/resources/webjars/angular-material/1.1.1/angular-material.min.css</css>
-		<js minimize="false">classpath:META-INF/resources/webjars/angular-material/1.1.1/angular-material.min.js</js>
-		<js minimize="false">classpath:META-INF/resources/webjars/angular-material/1.1.1/angular-material.min.js</js>
 		<js minimize="false">classpath:META-INF/resources/webjars/URI.js/1.14.1/URI.min.js</js>
 		<js minimize="true">classpath:META-INF/resources/webjars/string-format/0.5.0/lib/string-format.js</js>
-		<css minimize="false">classpath:META-INF/resources/webjars/md-data-table/0.10.9/md-data-table.min.css</css>
-		<js minimize="false">classpath:META-INF/resources/webjars/md-data-table/0.10.9/md-data-table.min.js</js>
 		<group-ref>app</group-ref>
 		<group-ref>handlebars</group-ref>
 	</group>
