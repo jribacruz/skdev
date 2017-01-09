@@ -150,6 +150,12 @@
 			<artifactId>flyway-core</artifactId>
 			<version>4.0.3</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.webjars/webix -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>webix</artifactId>
+		    <version>4.0.8</version>
+		</dependency>
 	</dependencies>
 
 	<build>

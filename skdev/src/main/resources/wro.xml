@@ -49,6 +49,11 @@
 		<css minimize="false">classpath:META-INF/resources/webjars/md-data-table/0.10.9/md-data-table.min.css</css>
 		<js minimize="false">classpath:META-INF/resources/webjars/md-data-table/0.10.9/md-data-table.min.js</js>
 	</group>
+	
+	<group name="webix">
+		<css minimize="false">classpath:META-INF/resources/webjars/webix/4.0.8/skins/compact.css</css>
+		<js minimize="false">classpath:META-INF/resources/webjars/webix/4.0.8/webix.js</js>
+	</group>
 
 	<group name="global">
 		<js minimize="false">classpath:META-INF/resources/webjars/angularjs/1.6.0/angular.min.js</js>

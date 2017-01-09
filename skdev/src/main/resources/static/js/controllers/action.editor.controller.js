@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('ActionEditorCT', ActionEditorCT);
 
-	ActionEditorCT.$inject = [ '$scope', '$log', '$mdDialog', '$mdSidenav' ];
+	ActionEditorCT.$inject = [ '$scope', '$log'];
 
 	/**
 	 * 
@@ -15,7 +15,7 @@
 	 * @param HttpSV
 	 * @returns
 	 */
-	function ActionEditorCT($scope, $log, $mdDialog, $mdSidenav) {
+	function ActionEditorCT($scope, $log) {
 		$log.debug('[ActionEditorCT] Inicializando...');
 		var self = this;
 
@@ -33,6 +33,7 @@
 				/*
 				 * Inicializando o editor de configuração.
 				 */
+				/*
 				editors['configjson'] = CodeMirror(document.getElementById('configjsonEditor'), {
 					mode : "application/json",
 					lineNumbers : true,
@@ -44,9 +45,11 @@
 					styleActiveLine : true
 				});
 				editors['configjson'].setSize('100%', '100%');
+				*/
 				/*
 				 * Inicializando o editor de dialog.
 				 */
+				
 				editors['dialoghtml'] = CodeMirror(document.getElementById('dialoghtmlEditor'), {
 					mode : "htmlmixed",
 					lineNumbers : true,
@@ -55,6 +58,7 @@
 					styleActiveLine : true
 				});
 				editors['dialoghtml'].setSize('100%', '100%');
+				
 
 				/*
 				 * Inicializando o editor de action execute
@@ -78,6 +82,7 @@
 				/*
 				 * Inicializando o editor de templates.
 				 */
+				/*
 				editors['templates'] = CodeMirror(document.getElementById('templatesEditor'), {
 					mode : "handlebars",
 					lineNumbers : true,
@@ -85,6 +90,7 @@
 					styleActiveLine : true
 				});
 				editors['templates'].setSize('100%', '100%');
+				*/
 
 			});
 		}
