@@ -3,7 +3,7 @@
 
 	startup.$inject = [ '$log' ];
 
-	angular.module("skdevMD", [ 'ngResource', 'ngAnimate', 'ngMaterial' ])
+	angular.module("skdevMD", [ 'ngResource', 'ngAnimate', 'ngMaterial', 'md.data.table' ])
 		.run(startup)
 		.config(function($mdIconProvider) {
 			$mdIconProvider
