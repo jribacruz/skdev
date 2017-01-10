@@ -26,5 +26,10 @@ public class ProjectController {
 		// workspaceContext.setMavenProject(projectService.findByName(name));
 		return "project";
 	}
+	
+	@RequestMapping("/workspace")
+	public String projects() {
+		return "projects/index";
+	}
 
 }

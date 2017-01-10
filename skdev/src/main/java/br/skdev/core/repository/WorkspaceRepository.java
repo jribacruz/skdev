@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.skdev.core.cache.EWorkspaceCache;
+import br.skdev.core.configuration.SKDevConfig;
 import br.skdev.core.exception.WorkspaceNotFoundException;
 import br.skdev.core.model.EWorkspace;
 import br.skdev.core.proxy.EWorkspaceProxy;
@@ -20,16 +21,19 @@ public class WorkspaceRepository {
 
 	@Autowired
 	private EWorkspaceCache cache;
+	
+	@Autowired
+	private SKDevConfig skDevConfig;
 
-	public EWorkspace load(String path) {
-		if (Files.notExists(Paths.get(path))) {
+	public EWorkspace load() {
+		if (Files.notExists(Paths.get(skDevConfig.getWorkspace()))) {
 			throw new WorkspaceNotFoundException();
 		}
-		if (cache.getWorkspace() != null && cache.getWorkspace().getPath().equals(path)) {
+		if (cache.getWorkspace() != null && cache.getWorkspace().getPath().equals(skDevConfig.getWorkspace())) {
 			log.info("Retornando Workspace do Cache.");
 			return cache.getWorkspace();
 		}
-		cache.setWorkspace(new EWorkspaceProxy(path));
+		cache.setWorkspace(new EWorkspaceProxy(skDevConfig.getWorkspace()));
 		return cache.getWorkspace();
 	}
 

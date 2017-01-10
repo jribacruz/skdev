@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.skdev.core.model.EClass;
@@ -44,9 +43,8 @@ public class ProjectRest {
 	 * @return Lista de EClasses
 	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/api/projects/{projectName}/main/classes", produces = "application/json")
-	public ResponseEntity<?> findMainEClasses(@PathVariable("projectName") String projectName,
-			@RequestParam("workspace") String workspace) {
-		EWorkspace eWorkspace = workspaceService.load(workspace);
+	public ResponseEntity<?> findMainEClasses(@PathVariable("projectName") String projectName) {
+		EWorkspace eWorkspace = workspaceService.load();
 		EMavenProject eMavenProject = projectService.findByName(eWorkspace, projectName);
 		SortedSet<EClass> entities = projectService.findMainEClasses(eMavenProject);
 		return ResponseEntity.ok(new EClassesResponse(entities));
@@ -62,8 +60,8 @@ public class ProjectRest {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/api/projects/{projectName}/directories", produces = "application/json")
-	public ResponseEntity<?> findDirectories(@PathVariable("projectName") String projectName, @RequestParam("workspace") String workspace) {
-		EWorkspace eWorkspace = workspaceService.load(workspace);
+	public ResponseEntity<?> findDirectories(@PathVariable("projectName") String projectName) {
+		EWorkspace eWorkspace = workspaceService.load();
 		EMavenProject eMavenProject = projectService.findByName(eWorkspace, projectName);
 		Set<EDirectory> directories = projectService.findDirectories(eMavenProject);
 		return ResponseEntity.ok(new EDirectoriesResponse(directories));
@@ -81,9 +79,8 @@ public class ProjectRest {
 	 * @throws TemplateException
 	 */
 	@RequestMapping(method = RequestMethod.POST, path = "/api/projects/{projectName}/directories", produces = "application/json")
-	public ResponseEntity<?> createDirectory(@PathVariable("projectName") String projectName, @RequestParam("workspace") String workspace,
-			@RequestBody @Valid EDirectory eDirectory) {
-		EWorkspace eWorkspace = workspaceService.load(workspace);
+	public ResponseEntity<?> createDirectory(@PathVariable("projectName") String projectName, @RequestBody @Valid EDirectory eDirectory) {
+		EWorkspace eWorkspace = workspaceService.load();
 		EMavenProject eMavenProject = projectService.findByName(eWorkspace, projectName);
 		projectService.createDirectory(eMavenProject, eDirectory);
 		return ResponseEntity.ok().build();
@@ -101,9 +98,8 @@ public class ProjectRest {
 	 * @throws IOException
 	 */
 	@RequestMapping(method = RequestMethod.POST, path = "/api/projects/{projectName}/files", produces = "application/json")
-	public ResponseEntity<?> createFile(@PathVariable("projectName") String projectName, @RequestParam("workspace") String workspace,
-			@RequestBody @Valid EFile eFile) {
-		EWorkspace eWorkspace = workspaceService.load(workspace);
+	public ResponseEntity<?> createFile(@PathVariable("projectName") String projectName, @RequestBody @Valid EFile eFile) {
+		EWorkspace eWorkspace = workspaceService.load();
 		EMavenProject eMavenProject = projectService.findByName(eWorkspace, projectName);
 		projectService.createFile(eMavenProject, eFile);
 		return ResponseEntity.ok().build();

@@ -16,8 +16,8 @@ public class WorkspaceService {
 
 	private Logger log = LoggerFactory.getLogger(WorkspaceRepository.class);
 
-	public EWorkspace load(String path) {
-		EWorkspace eWorkspace = workspaceRepository.load(path);
+	public EWorkspace load() {
+		EWorkspace eWorkspace = workspaceRepository.load();
 		log.info("[load] Total de projetos do workspace: {}", eWorkspace.getMavenProjects().size());
 		return eWorkspace;
 	}
