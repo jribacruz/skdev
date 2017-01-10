@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('ActionEditorCT', ActionEditorCT);
 
-	ActionEditorCT.$inject = [ '$scope', '$log'];
+	ActionEditorCT.$inject = [ '$scope', '$log', '$mdSidenav'];
 
 	/**
 	 * 
@@ -15,7 +15,7 @@
 	 * @param HttpSV
 	 * @returns
 	 */
-	function ActionEditorCT($scope, $log) {
+	function ActionEditorCT($scope, $log, $mdSidenav) {
 		$log.debug('[ActionEditorCT] Inicializando...');
 		var self = this;
 
@@ -105,6 +105,7 @@
 				controller : 'ActionCT'
 			});
 		}
+		
 
 		function showTemplates() {
 			$mdSidenav('sidenav').toggle();
