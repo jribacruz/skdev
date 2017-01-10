@@ -24,11 +24,7 @@
 		init();
 
 		function init() {
-			httpSV.get('/projects', {
-				queryParams : {
-					workspace : httpSV.getWorkspace()
-				}
-			}).then(function(projects) {
+			httpSV.get('/projects').then(function(projects) {
 				self.projects = projects;
 			});
 

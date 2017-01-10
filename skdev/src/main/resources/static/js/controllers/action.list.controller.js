@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('ActionListCT', ActionListCT);
 
-	ActionListCT.$inject = [ '$scope', '$log', '$http', '$mdDialog', 'HttpSV', '$location', 'group', 'title' ];
+	ActionListCT.$inject = [ '$scope', '$log', '$http', '$mdDialog', 'httpSV', '$location' ];
 
 	/**
 	 * 
@@ -14,7 +14,7 @@
 	 * @param HttpSV
 	 * @returns
 	 */
-	function ActionListCT($scope, $log, $http, $mdDialog, HttpSV, $location, group, title) {
+	function ActionListCT($scope, $log, $http, $mdDialog, httpSV, $location) {
 		$log.debug('[ActionListCT] Inicializando...');
 		var self = this;
 		
@@ -33,12 +33,7 @@
 		init();
 
 		function init() {
-			$log.debug(format('[ActionListCT] actiongroup={}', group));
-			HttpSV.get('/actions',{
-				queryParams: {
-					group: group
-				}
-			}).then(function(data) {
+			httpSV.get('/actions').then(function(data) {
 				self.actions = data;
 			});
 		}
