@@ -6,6 +6,7 @@
 		<js minimize="true">/js/app.module.js</js>
 		<js minimize="true">/js/services/*.js</js>
 		<js minimize="true">/js/controllers/*.js</js>
+		<css minimize="true">/css/*.css</css>
 	</group>
 	
 	<group name="codemirror">

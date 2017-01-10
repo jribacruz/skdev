@@ -1,0 +1,11 @@
+* {
+	outline: none !important;
+}
+
+.actionEditor .webix_template{
+	padding:0;
+}
+
+.webix_tree_leaves {
+	-moz-user-select: none;
+}

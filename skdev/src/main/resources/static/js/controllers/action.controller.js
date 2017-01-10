@@ -3,28 +3,58 @@
 
 	angular.module('skdevMD').controller('ActionCT', ActionCT);
 
-	ActionCT.$inject = [ '$scope', '$log', '$http', '$mdDialog', '$mdToast' ];
+	ActionCT.$inject = [ '$scope', '$log'];
 
 	/**
 	 * 
 	 * @param $scope
 	 * @param $log
-	 * @param $http
+	 * @param ProjectSV
 	 * @param $mdDialog
-	 * @param actionDialog
-	 * @param actionId
-	 * @param $mdToast
+	 * @param $http
+	 * @param HttpSV
 	 * @returns
 	 */
-	function ActionCT($scope, $log, $http, $mdDialog, $mdToast) {
+	function ActionCT($scope, $log) {
 		$log.debug('[ActionCT] Inicializando...');
 		var self = this;
 
-		$scope.hide = hide;
+		var editors = {};
+		
+		$scope.value = "SkDev";
+		
+		$scope.templatesTreeData = [
+			{id: "root", value: "Templates"}
+		];
 
-		function hide() {
-			$mdDialog.hide();
+		init();
+
+		function init() {
+			$log.debug('[ActionCT] Inicializando editor execute.js')
+			webix.ready(function() {
+
+				/*
+				 * Inicializando o editor de action execute
+				 */
+				editors['executejs'] = CodeMirror(document.getElementById('executejsEditor'), {
+					mode : "javascript",
+					lineNumbers : true,
+					gutters : [ "CodeMirror-lint-markers" ],
+					lint : true,
+					autoCloseBrackets : true,
+					extraKeys : {
+						"Ctrl-Space" : "autocomplete"
+					},
+					matchBrackets : false,
+					theme : 'eclipse',
+					indentUnit : 4,
+					styleActiveLine : true
+				});
+				editors['executejs'].setSize('100%', '100%');
+				$$('templatesTree').attachEvent('onAfterSelect', function(id) {
+					console.log(id)
+				});
+			});
 		}
-
 	}
 })();
