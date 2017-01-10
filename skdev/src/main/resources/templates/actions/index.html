@@ -13,6 +13,9 @@
 			[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   				display: none !important;
 			}
+			[role="tabpanel"] {
+ 			   transition: none;
+			}
 			.CodeMirror-code {
 				font-family: 'Source Code Pro', monospace;
 				font-size: 13px;
@@ -28,8 +31,6 @@
 				<md-content layout="column" flex="" style="height: 100%">
 					 <section layout="row" flex="" style="height:100%">
 					 	 <!-- FRAGMENTO DO SIDENAV -->
-					 	 <!-- 
-					 	  -->
 						 <div th:replace="actions/fragments/sidenav :: #sidenav"></div>
 						 <!-- FRAGMENTO DO CONTENT -->
 						 <div th:replace="actions/fragments/content/index :: #content"></div>			

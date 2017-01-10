@@ -54,6 +54,7 @@
 					mode : "htmlmixed",
 					lineNumbers : true,
 					autoCloseTags : true,
+					gutters : [ "CodeMirror-lint-markers" ],
 					theme : 'eclipse',
 					styleActiveLine : true
 				});
