@@ -5,26 +5,19 @@
      <md-tab-content class="md-padding" flex="" layout-fill=""></md-tab-content>
      	<div ng-controller="ActionListCT as actionListCT">
 			<md-table-container>
-			  <table md-table="" ng-model="selected" md-progress="promise">
+			  <table md-row-select="" md-table="" ng-model="actionListCT.actionSelected" md-progress="promise">
 			    <thead md-head="">
 			      <tr md-row="">
 			        <th md-column=""><span>Name</span></th>
 			        <th md-column=""><span>Description</span></th>
-			        <th md-column=""><span></span></th>
+			        <th md-column=""><span>Groups</span></th>
 			      </tr>
 			    </thead>
 			    <tbody md-body="">
 			      <tr md-row="" md-select="action" md-select-id="name" md-auto-select="" ng-repeat="action in actionListCT.actions">
 			        <td md-cell="">{{action.name}}</td>
 			        <td md-cell="">{{action.description}}</td>
-			        <td md-cell="">
-			        	<md-button aria-label="Executar" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-		       				 <md-icon md-font-icon="material-icons">menu</md-icon>
-		      			</md-button>
-		      			<md-button aria-label="Executar" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-		       				 <md-icon md-font-icon="material-icons">menu</md-icon>
-		      			</md-button>
-			        </td>
+			        <td md-cell="">{{action.groups}}</td>
 			      </tr>
 			    </tbody>
 			  </table>

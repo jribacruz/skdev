@@ -23,6 +23,8 @@
 		 */
 		self.actions = [];
 		
+		self.actionSelected = [];
+		
 		self.hide = hide;
 
 		/**
