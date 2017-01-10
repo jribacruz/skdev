@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('ActionEditorCT', ActionEditorCT);
 
-	ActionEditorCT.$inject = [ '$scope', '$log', '$mdSidenav'];
+	ActionEditorCT.$inject = [ '$scope', '$log', '$mdSidenav', '$location'];
 
 	/**
 	 * 
@@ -15,7 +15,7 @@
 	 * @param HttpSV
 	 * @returns
 	 */
-	function ActionEditorCT($scope, $log, $mdSidenav) {
+	function ActionEditorCT($scope, $log, $mdSidenav, $location) {
 		$log.debug('[ActionEditorCT] Inicializando...');
 		var self = this;
 
@@ -28,6 +28,7 @@
 		init();
 
 		function init() {
+			console.log(URI($location.absUrl()).search(true).id);
 			$log.debug('[ActionEditorCT] Inicializando editor execute.js')
 			angular.element(document).ready(function() {
 				/*
