@@ -32,7 +32,7 @@ public class WorkspaceController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/")
 	public String index() {
-		return "views/workspace";
+		return "workspace";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/workspace")
