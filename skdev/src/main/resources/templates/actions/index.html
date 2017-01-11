@@ -94,6 +94,44 @@
 					</md-dialog>
 			    </div>
 		    </div>
+		    <!-- ACTION INFO DIALOG  -->
+			<div style="visibility: hidden">
+			    <div class="md-dialog-container" id="actionInfoDialog">
+					<md-dialog md-theme="default" aria-label="Template Info" style="width: 25%">
+						<form name="actionInfoForm" novalidate="">
+							<md-dialog-content class="md-dialog-content">
+								<h2 class="md-title">Informações da Ação</h2>
+								 <!-- NAME -->	
+								 <md-input-container class="md-block">
+							        <label>Name</label>
+							        <input name="name" ng-model="actionEditorCT.action.name" md-maxlength="32" required=""/>
+							        <div ng-messages="actionInfoForm.name.$error">
+						            	<div ng-message="required">O nome é obrigatório.</div>
+						            	<div ng-message="md-maxlength">O nome deve possuir até 32 caracteres.</div>
+						          	</div>
+							     </md-input-container>
+							     <!-- DESCIPTION -->
+								 <md-input-container class="md-block">
+							        <label>Description</label>
+							        <textarea name="description" ng-model="actionEditorCT.action.description" md-maxlength="64" rows="5" required=""></textarea>
+							        <div ng-messages="actionInfoForm.description.$error">
+						            	<div ng-message="required">A descrição é obrigatória.</div>
+						            	<div ng-message="md-maxlength">A descrição deve possuir até 64 caracteres.</div>
+						          	</div>
+							     </md-input-container>
+							</md-dialog-content>
+							<md-dialog-actions>
+								<md-button class="md-primary" ng-disabled="actionInfoForm.$invalid || !actionInfoForm.$dirty" ng-click="actionEditorCT.saveActionInfo()" >
+								  Salvar
+								</md-button>
+								<md-button  ng-click="actionEditorCT.hideTemplateInfo(templateInfoForm)" ng-disabled="actionInfoForm.$invalid">
+								  Fechar
+								</md-button>
+							</md-dialog-actions>
+						</form>
+					</md-dialog>
+			    </div>
+		    </div>
 		</div>
 		<script src="/skdev/js/global.js"></script>
 		<script src="/skdev/js/angular-material.js"></script>

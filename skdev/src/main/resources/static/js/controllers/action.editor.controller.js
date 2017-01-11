@@ -32,8 +32,12 @@
 		self.editTemplateInfo = editTemplateInfo;
 
 		self.saveTemplateInfo = saveTemplateInfo;
-		
+
 		self.editTemplateContent = editTemplateContent;
+		
+		self.saveActionInfo = saveActionInfo;
+		
+		self.hideActionInfo = hideActionInfo;
 
 		init();
 
@@ -109,6 +113,26 @@
 				return;
 			}
 			self.action = actionSV.newAction();
+			_showActionInfo();
+		}
+
+		function _showActionInfo() {
+			$mdDialog.show({
+				parent : angular.element(document.body),
+				contentElement : '#actionInfoDialog',
+				clickOutsideToClose : false
+			});
+		}
+		
+		function saveActionInfo() {
+			if(self.action.id == 0) {
+				$mdDialog.hide();
+				return;
+			}
+		}
+		
+		function hideActionInfo() {
+			$mdDialog.hide();
 		}
 
 		function createTemplate() {
