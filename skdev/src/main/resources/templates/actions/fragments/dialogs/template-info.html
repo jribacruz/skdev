@@ -2,22 +2,41 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <body>
 	<div id="template-info-dialog" style="visibility: hidden">
-	  <div class="md-dialog-container" id="templateEditorDialog">
-		<md-dialog md-theme="default" aria-label="Template" style="min-width: 80%">
-		<md-dialog-content class="md-dialog-content" >
-			<h2 class="md-title">Template Editor - </h2>
-			<div id="templateEditor" style="height: 550px; border:1px solid #ddd" layout="column" flex=""></div>
-			</md-dialog-content>
-			<md-dialog-actions>
-				<md-button class="md-primary" ng-click="actionEditorCT.saveTemplateContent()">
-				  Salvar
-				</md-button>
-				<md-button  ng-click="actionEditorCT.hideTemplateEditor()">
-				  Fechar
-				</md-button>
-			</md-dialog-actions>
+	   <div class="md-dialog-container" id="templateInfoDialog">
+		<md-dialog md-theme="default" aria-label="Template Info" style="width: 25%">
+			<form name="templateInfoForm" novalidate="">
+				<md-dialog-content class="md-dialog-content">
+					<h2 class="md-title">Informações do Template</h2>
+					 <!-- NAME -->	
+					 <md-input-container class="md-block">
+				        <label>Name</label>
+				        <input name="name" ng-model="templateEditorCT.template.name" md-maxlength="32" ng-maxlength="32"  ng-required="true"/>
+				        <div ng-messages="templateInfoForm.name.$error" ng-show="templateInfoForm.$invalid">
+			            	<div ng-message="required">O nome do template é obrigatório.</div>
+			            	<div ng-message="maxlength">O nome deve possuir até 32 caracteres.</div>
+			          	</div>
+				     </md-input-container>
+				     <!-- DESCIPTION -->
+					 <md-input-container class="md-block">
+				        <label>Description</label>
+				        <textarea name="description" ng-model="templateEditorCT.template.description" md-maxlength="64" ng-maxlength="64"  rows="5" ng-required="true"></textarea>
+				        <div ng-messages="templateInfoForm.description.$error" ng-show="templateInfoForm.$invalid">
+			            	<div ng-message="required">A descrição do template é obrigatória.</div>
+			            	<div ng-message="maxlength">A descrição deve possuir até 64 caracteres.</div>
+			          	</div>
+				     </md-input-container>
+				</md-dialog-content>
+				<md-dialog-actions>
+					<md-button class="md-primary" ng-disabled="templateInfoForm.$invalid || !templateInfoForm.$dirty" ng-click="templateEditorCT.saveTemplateInfo()" >
+					  Salvar
+					</md-button>
+					<md-button type="reset"  ng-click="templateEditorCT.hideTemplateInfo()">
+					  Fechar
+					</md-button>
+				</md-dialog-actions>
+			</form>
 		</md-dialog>
+	   </div>
 	  </div>
-	 </div>
 </body>
 </html>
