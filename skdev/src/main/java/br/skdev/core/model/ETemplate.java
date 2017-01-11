@@ -1,6 +1,7 @@
 package br.skdev.core.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -17,6 +18,8 @@ public class ETemplate implements Serializable {
 	private String name;
 
 	private String description;
+
+	private Date createdAt;
 
 	private String content;
 
@@ -61,6 +64,14 @@ public class ETemplate implements Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 }

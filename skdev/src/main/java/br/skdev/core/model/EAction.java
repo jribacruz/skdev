@@ -1,6 +1,7 @@
 package br.skdev.core.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -25,6 +26,8 @@ public class EAction implements Serializable {
 	private String dialogHTML;
 
 	private String executeJS;
+
+	private Date createdAt;
 
 	private Map<String, ETemplate> templates;
 
@@ -68,6 +71,14 @@ public class EAction implements Serializable {
 
 	public void setExecuteJS(String executeJS) {
 		this.executeJS = executeJS;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	public Map<String, ETemplate> getTemplates() {

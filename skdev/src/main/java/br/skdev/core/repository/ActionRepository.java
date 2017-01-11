@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.skdev.core.model.EAction;
 import br.skdev.core.model.EGroup;
@@ -53,6 +54,7 @@ public class ActionRepository implements Serializable {
 					eAction.setId(rs.getInt("ac.id"));
 					eAction.setDescription(rs.getString("ac.description"));
 					eAction.setName(rs.getString("ac.name"));
+					eAction.setCreatedAt(rs.getTimestamp("ac.created_at"));
 					eAction.setDialogHTML(rs.getString("ac.dialoghtml"));
 					eAction.setExecuteJS(rs.getString("ac.executejs"));
 					eActionsMap.put(eAction.getId(), eAction);
@@ -63,6 +65,7 @@ public class ActionRepository implements Serializable {
 					ETemplate eTemplate = new ETemplate();
 					eTemplate.setId(rs.getInt("tm.id"));
 					eTemplate.setName(rs.getString("tm.name"));
+					eTemplate.setCreatedAt(rs.getTimestamp("tm.created_at"));
 					eTemplate.setDescription(rs.getString("tm.description"));
 					eTemplate.setContent(rs.getString("tm.content"));
 					eAction.getTemplates().put(eTemplate.getName(), eTemplate);
@@ -102,6 +105,7 @@ public class ActionRepository implements Serializable {
 					eAction.setId(rs.getInt("ac.id"));
 					eAction.setDescription(rs.getString("ac.description"));
 					eAction.setName(rs.getString("ac.name"));
+					eAction.setCreatedAt(rs.getTimestamp("ac.created_at"));
 					eAction.setDialogHTML(rs.getString("ac.dialoghtml"));
 					eAction.setExecuteJS(rs.getString("ac.executejs"));
 					eActionsMap.put(eAction.getId(), eAction);
@@ -112,6 +116,7 @@ public class ActionRepository implements Serializable {
 					ETemplate eTemplate = new ETemplate();
 					eTemplate.setId(rs.getInt("tm.id"));
 					eTemplate.setName(rs.getString("tm.name"));
+					eTemplate.setCreatedAt(rs.getTimestamp("tm.created_at"));
 					eTemplate.setDescription(rs.getString("tm.description"));
 					eTemplate.setContent(rs.getString("tm.content"));
 					eAction.getTemplates().put(eTemplate.getName(), eTemplate);
@@ -129,6 +134,16 @@ public class ActionRepository implements Serializable {
 
 			return new ArrayList<>(eActionsMap.values()).get(0);
 		});
+	}
+	
+	/**
+	 * 
+	 * @param eAction
+	 */
+	@Transactional
+	public void insert(EAction eAction) {
+		final String insertActionSQL = " INSERT INTO SK_ACTION(NAME, DESCRIPTION, DIALOGHTML, EXECUTEJS) VALUES(?,?,?,?)";
+		
 	}
 
 }
