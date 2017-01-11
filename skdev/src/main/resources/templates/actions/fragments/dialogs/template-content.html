@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div id="template-content-dialog" style="visibility: hidden">
+	   <div class="md-dialog-container" id="templateInfoDialog">
+		<md-dialog md-theme="default" aria-label="Template Info" style="width: 25%">
+			<form name="templateInfoForm" novalidate="">
+				<md-dialog-content class="md-dialog-content">
+					<h2 class="md-title">Informações do Template</h2>
+					 <!-- NAME -->	
+					 <md-input-container class="md-block">
+				        <label>Name</label>
+				        <input name="name" ng-model="actionEditorCT.template.name" md-maxlength="32" required=""/>
+				        <div ng-messages="templateInfoForm.name.$error">
+			            	<div ng-message="required">O nome do template é obrigatório.</div>
+			            	<div ng-message="md-maxlength">O nome deve possuir até 32 caracteres.</div>
+			          	</div>
+				     </md-input-container>
+				     <!-- DESCIPTION -->
+					 <md-input-container class="md-block">
+				        <label>Description</label>
+				        <textarea name="description" ng-model="actionEditorCT.template.description" md-maxlength="64" rows="5" required=""></textarea>
+				        <div ng-messages="templateInfoForm.description.$error">
+			            	<div ng-message="required">A descrição do template é obrigatória.</div>
+			            	<div ng-message="md-maxlength">A descrição deve possuir até 64 caracteres.</div>
+			          	</div>
+				     </md-input-container>
+				</md-dialog-content>
+				<md-dialog-actions>
+					<md-button class="md-primary" ng-disabled="templateInfoForm.$invalid || !templateInfoForm.$dirty" ng-click="actionEditorCT.saveTemplateInfo()" >
+					  Salvar
+					</md-button>
+					<md-button  ng-click="actionEditorCT.hideTemplateInfo()">
+					  Fechar
+					</md-button>
+				</md-dialog-actions>
+			</form>
+		</md-dialog>
+	   </div>
+	  </div>
+</body>
+</html>

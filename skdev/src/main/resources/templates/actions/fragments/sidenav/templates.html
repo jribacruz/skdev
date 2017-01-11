@@ -51,6 +51,11 @@
           </div>
         </md-list-item>
 	</md-content>
+	<!-- TEMPLATE EDITOR DIALOG  -->
+	<div th:replace="actions/fragments/dialogs/template-info :: #template-info-dialog"></div>
+	<!-- TEMPLATE INFO DIALOG  -->
+	<div th:replace="actions/fragments/dialogs/template-content :: #template-content-dialog"></div>
+	
 </div>
 </body>
 </html>
