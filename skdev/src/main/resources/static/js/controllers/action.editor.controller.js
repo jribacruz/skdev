@@ -84,10 +84,14 @@
 		function _loadOrCreateAction() {
 			var id = URI($location.absUrl()).filename();
 			if (id) {
-				actionSV.load(id).then(function(data) {
-					self.action = data;	
+				actionSV.load(id).then(function(res) {
+					self.action = res.data;	
+					editors['dialogHTML'].setValue(res.data.dialogHTML);
+					editors['executeJS'].setValue(res.data.executeJS);
 				});
+				return;
 			}
+			self.action = actionSV.newAction();
 		}
 
 		function runDialog() {
