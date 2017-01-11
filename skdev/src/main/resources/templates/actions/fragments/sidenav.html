@@ -13,13 +13,38 @@
 		<!--  -->
 		<div layout="column" flex="" style="height: 100%">
 			<div flex="">
+				<!-- 
 				<md-subheader class="md-primary">Templates ({{actionEditorCT.action.templates.length}})</md-subheader>
+				 -->
+				<md-toolbar md-colors="{background: 'grey-100'}">
+					<div class="md-toolbar-tools">
+						<span class="md-subhead">Templates</span>
+						<span flex=""></span>
+						<md-button aria-label="Open phone interactions menu" class="md-icon-button md-primary" 
+							ng-click="actionEditorCT.createTemplate()">
+					        <md-icon md-font-icon="material-icons">add_circle</md-icon>
+					         <md-tooltip md-direction="left">Novo Template Handlebar</md-tooltip>
+					    </md-button>
+					</div>
+				</md-toolbar>
 				<md-content flex="">
 					
 				</md-content>
 			</div>
 			<div flex="">
+				<!-- 
 				<md-subheader class="md-primary">Resources ({{actionEditorCT.action.resources.length}})</md-subheader>
+				 -->
+				<md-toolbar md-colors="{background: 'grey-100'}">
+					<div class="md-toolbar-tools">
+						<span class="md-subhead">Resources</span>
+						<span flex=""></span>
+						<md-button aria-label="Open phone interactions menu" class="md-icon-button md-primary" ng-click="$mdOpenMenu($event)">
+					        <md-icon md-font-icon="material-icons">add_circle</md-icon>
+					         <md-tooltip md-direction="left">Novo Resource</md-tooltip>
+					    </md-button>
+					</div>
+				</md-toolbar>
 				<md-content flex="">
 					
 				</md-content>

@@ -9,7 +9,16 @@
 	    md-is-locked-open="true"
 	    style="height:100%"
 	  	flex="" >
-		<md-subheader class="md-primary">Projetos <span ng-show="workspaceCT.projects.length > 0">({{workspaceCT.projects.length}})</span></md-subheader>
+		<md-toolbar md-colors="{background: 'grey-100'}">
+			<div class="md-toolbar-tools">
+				<span class="md-subhead">Projetos</span>
+				<span flex=""></span>
+				<md-button aria-label="Novo Porjeto" class="md-icon-button md-primary">
+			        <md-icon md-font-icon="material-icons">add_circle</md-icon>
+			        <md-tooltip md-direction="left">Novo Projeto</md-tooltip>
+			    </md-button>
+			</div>
+		</md-toolbar>
 		<md-content flex="">
 			 <md-progress-linear class="md-warn" md-mode="indeterminate" ng-show="projectCT.findAllClassesLoader"></md-progress-linear>
 			 <md-list flex="" >
