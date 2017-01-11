@@ -27,7 +27,13 @@
 		
 		self.hideTemplateEditor = hideTemplateEditor;
 		
+		self.hideTemplateInfo = hideTemplateInfo;
+		
 		self.showTemplateEditor = showTemplateEditor;
+		
+		self.editTemplateContent = editTemplateContent;
+		
+		self.editTemplateInfo = editTemplateInfo;
 
 		init();
 
@@ -83,13 +89,13 @@
 
 		function _initTemplateEditor() {
 			$log.debug('[ActionEditorCT] Inicializando editor de templates...');
-			editors['templateEditor'] = CodeMirror(document.getElementById('templateEditor'), {
+			editors['template'] = CodeMirror(document.getElementById('templateEditor'), {
 				mode : "handlebars",
 				lineNumbers : true,
 				theme : 'eclipse',
 				styleActiveLine : true
 			});
-			editors['templateEditor'].setSize('100%', '100%');
+			editors['template'].setSize('100%', '100%');
 		}
 
 		function _loadOrCreateAction() {
@@ -108,6 +114,29 @@
 		function createTemplate() {
 			$log.debug('[ActionEditorCT] createTemplate')
 			self.template = actionSV.newTemplate();
+			showTemplateInfo();
+		}
+		
+		function editTemplateContent(template) {
+			showTemplateEditor(template);
+		}
+		
+		function editTemplateInfo(template) {
+			self.template = template;
+			showTemplateInfo();
+		}
+
+		function showTemplateEditor(template) {
+			$mdDialog.show({
+				parent : angular.element(document.body),
+				contentElement : '#templateEditorDialog',
+				clickOutsideToClose : false
+			});
+			editors['template'].setValue(template.content); 
+		}
+		
+		
+		function showTemplateInfo() {
 			$mdDialog.show({
 				parent : angular.element(document.body),
 				contentElement : '#templateInfoDialog',
@@ -115,13 +144,11 @@
 			});
 		}
 		
-		function showTemplateEditor() {
-			$mdDialog.show({
-				parent : angular.element(document.body),
-				contentElement : '#templateEditorDialog',
-				clickOutsideToClose : false
-			});
+		function hideTemplateInfo(templateInfoForm) {
+			templateInfoForm.$setPristine();
+			$mdDialog.hide();
 		}
+		
 		
 		function hideTemplateEditor() {
 			$mdDialog.hide();
