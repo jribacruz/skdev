@@ -108,7 +108,7 @@
 			self.template = actionSV.newTemplate();
 			$mdDialog.show({
 				parent : angular.element(document.body),
-				contentElement : '#templateDialog',
+				contentElement : '#templateEditorDialog',
 				clickOutsideToClose : false
 			});
 		}
