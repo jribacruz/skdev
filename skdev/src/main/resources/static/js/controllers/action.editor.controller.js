@@ -46,7 +46,7 @@
 		 * Inicializa o editor de action execute
 		 */
 		function _initExecuteJSEditor() {
-			$log.debug('[ActionEditorCT] Inicializando editor executeJS')
+			$log.debug('[ActionEditorCT] Inicializando editor executeJS...')
 			editors['executeJS'] = CodeMirror(document.getElementById('executeJSEditor'), {
 				mode : "javascript",
 				lineNumbers : true,
@@ -65,7 +65,7 @@
 		}
 
 		function _initDialogHTMLEditor() {
-			$log.debug('[ActionEditorCT] Inicializando editor dialogHTML');
+			$log.debug('[ActionEditorCT] Inicializando editor dialogHTML...');
 			editors['dialogHTML'] = CodeMirror(document.getElementById('dialogHTMLEditor'), {
 				mode : "htmlmixed",
 				lineNumbers : true,
@@ -91,7 +91,7 @@
 
 		function _loadOrCreateAction() {
 			var id = URI($location.absUrl()).filename();
-			if (id) {
+			if (!isNaN(id)) {
 				actionSV.load(id).then(function(res) {
 					self.action = res.data;
 					editors['dialogHTML'].setValue(res.data.dialogHTML);
