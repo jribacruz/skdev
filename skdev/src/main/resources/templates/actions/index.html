@@ -39,7 +39,7 @@
 			</div>
 			<!-- DIALOG DE TEMPLATE -->
 			<div style="visibility: hidden">
-			    <div class="md-dialog-container" id="templateDialog" ng-controller="TemplateEditorCT as templateEditorCT">
+			    <div class="md-dialog-container" id="templateDialog">
 					<md-dialog md-theme="default" aria-label="Template" style="min-width: 80%" layout-padding="">
 						<h2 class="md-title">Template Editor</h2>
 						<md-dialog-content>
@@ -49,7 +49,7 @@
 							<md-button class="md-primary" >
 							  Salvar
 							</md-button>
-							<md-button  ng-click="templateEditorCT.hide()">
+							<md-button  ng-click="actionEditorCT.hideTemplateEditor()">
 							  Fechar
 							</md-button>
 						</md-dialog-actions>

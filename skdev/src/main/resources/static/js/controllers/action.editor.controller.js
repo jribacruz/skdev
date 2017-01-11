@@ -24,6 +24,8 @@
 		self.template = {};
 
 		self.createTemplate = createTemplate;
+		
+		self.hideTemplateEditor = hideTemplateEditor;
 
 		init();
 
@@ -106,11 +108,12 @@
 			$mdDialog.show({
 				parent : angular.element(document.body),
 				contentElement : '#templateDialog',
-				clickOutsideToClose : false, 
-				locals: {
-					templateEditor: editors['templateEditor']
-				}
+				clickOutsideToClose : false
 			});
+		}
+		
+		function hideTemplateEditor() {
+			$mdDialog.hide();
 		}
 
 	}
