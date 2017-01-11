@@ -3,98 +3,91 @@
 
 	angular.module('skdevMD').controller('ActionEditorCT', ActionEditorCT);
 
-	ActionEditorCT.$inject = [ '$scope', '$log', '$mdSidenav', '$location'];
+	ActionEditorCT.$inject = [ '$scope', '$log', '$mdSidenav', '$location', 'actionSV' ];
 
 	/**
 	 * 
 	 * @param $scope
 	 * @param $log
-	 * @param ProjectSV
-	 * @param $mdDialog
-	 * @param $http
-	 * @param HttpSV
+	 * @param $mdSidenav
+	 * @param $location
 	 * @returns
 	 */
-	function ActionEditorCT($scope, $log, $mdSidenav, $location) {
+	function ActionEditorCT($scope, $log, $mdSidenav, $location, actionSV) {
 		$log.debug('[ActionEditorCT] Inicializando...');
 		var self = this;
 
 		var editors = {};
 
-		self.runDialog = runDialog;
+		self.action = {};
 
-		self.showTemplates = showTemplates;
+		self.runDialog = runDialog;
 
 		init();
 
 		function init() {
-			console.log(URI($location.absUrl()).search(true).id);
-			$log.debug('[ActionEditorCT] Inicializando editor execute.js')
-			angular.element(document).ready(function() {
-				/*
-				 * Inicializando o editor de configuração.
-				 */
-				/*
-				editors['configjson'] = CodeMirror(document.getElementById('configjsonEditor'), {
-					mode : "application/json",
-					lineNumbers : true,
-					autoCloseBrackets : true,
-					gutters : [ "CodeMirror-lint-markers" ],
-					lint : true,
-					indentUnit : 4,
-					theme : 'eclipse',
-					styleActiveLine : true
-				});
-				editors['configjson'].setSize('100%', '100%');
-				*/
-				/*
-				 * Inicializando o editor de dialog.
-				 */
-				
-				editors['dialoghtml'] = CodeMirror(document.getElementById('dialoghtmlEditor'), {
-					mode : "htmlmixed",
-					lineNumbers : true,
-					autoCloseTags : true,
-					gutters : [ "CodeMirror-lint-markers" ],
-					theme : 'eclipse',
-					styleActiveLine : true
-				});
-				editors['dialoghtml'].setSize('100%', '100%');
-				
 
-				/*
-				 * Inicializando o editor de action execute
-				 */
-				editors['executejs'] = CodeMirror(document.getElementById('executejsEditor'), {
-					mode : "javascript",
-					lineNumbers : true,
-					gutters : [ "CodeMirror-lint-markers" ],
-					lint : true,
-					autoCloseBrackets : true,
-					extraKeys : {
-						"Ctrl-Space" : "autocomplete"
-					},
-					matchBrackets : false,
-					theme : 'eclipse',
-					indentUnit : 4,
-					styleActiveLine : true
-				});
-				editors['executejs'].setSize('100%', '100%');
-				
+			angular.element(document).ready(function() {
+
+				_initExecuteJSEditor();
+				_initDialogHTMLEditor();
+				_loadOrCreateAction();
 				/*
 				 * Inicializando o editor de templates.
 				 */
 				/*
-				editors['templates'] = CodeMirror(document.getElementById('templatesEditor'), {
-					mode : "handlebars",
-					lineNumbers : true,
-					theme : 'eclipse',
-					styleActiveLine : true
-				});
-				editors['templates'].setSize('100%', '100%');
-				*/
+				 * editors['templates'] =
+				 * CodeMirror(document.getElementById('templatesEditor'), { mode :
+				 * "handlebars", lineNumbers : true, theme : 'eclipse',
+				 * styleActiveLine : true });
+				 * editors['templates'].setSize('100%', '100%');
+				 */
 
 			});
+		}
+
+		/*
+		 * Inicializa o editor de action execute
+		 */
+		function _initExecuteJSEditor() {
+			$log.debug('[ActionEditorCT] Inicializando editor executeJS')
+			editors['executeJS'] = CodeMirror(document.getElementById('executeJSEditor'), {
+				mode : "javascript",
+				lineNumbers : true,
+				gutters : [ "CodeMirror-lint-markers" ],
+				lint : true,
+				autoCloseBrackets : true,
+				extraKeys : {
+					"Ctrl-Space" : "autocomplete"
+				},
+				matchBrackets : false,
+				theme : 'eclipse',
+				indentUnit : 4,
+				styleActiveLine : true
+			});
+			editors['executeJS'].setSize('100%', '100%');
+		}
+
+		function _initDialogHTMLEditor() {
+			$log.debug('[ActionEditorCT] Inicializando editor dialogHTML')
+			editors['dialogHTML'] = CodeMirror(document.getElementById('dialogHTMLEditor'), {
+				mode : "htmlmixed",
+				lineNumbers : true,
+				autoCloseTags : true,
+				gutters : [ "CodeMirror-lint-markers" ],
+				theme : 'eclipse',
+				styleActiveLine : true
+			});
+			editors['dialogHTML'].setSize('100%', '100%');
+		}
+
+		function _loadOrCreateAction() {
+			var id = URI($location.absUrl()).filename();
+			if (id) {
+				actionSV.load(id).then(function(data) {
+					self.action = data;	
+				});
+			}
 		}
 
 		function runDialog() {
@@ -106,10 +99,6 @@
 				controller : 'ActionCT'
 			});
 		}
-		
 
-		function showTemplates() {
-			$mdSidenav('sidenav').toggle();
-		}
 	}
 })();

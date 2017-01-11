@@ -22,4 +22,8 @@ public class ActionService {
 		return actionRepository.findAll();
 	}
 
+	public EAction find(Integer id) {
+		return actionRepository.find(id);
+	}
+
 }

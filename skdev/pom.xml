@@ -109,10 +109,11 @@
 			<version>0.8.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.webjars/URI.js -->
+		<!-- https://mvnrepository.com/artifact/org.webjars.bower/uri.js -->
 		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>URI.js</artifactId>
-			<version>1.14.1</version>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>uri.js</artifactId>
+			<version>1.17.1</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.webjars/codemirror -->
 		<dependency>
@@ -180,7 +181,8 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
 					<execution>
-						<!-- Serves *only* to filter the wro.xml so it can get an absolute path for the project -->
+						<!-- Serves *only* to filter the wro.xml so it can get an absolute 
+							path for the project -->
 						<id>copy-resources</id>
 						<phase>validate</phase>
 						<goals>

@@ -20,6 +20,8 @@
 		self.projects = [];
 
 		self.showNotification = showNotification;
+		
+		self.selectedAction = [];
 
 		init();
 
