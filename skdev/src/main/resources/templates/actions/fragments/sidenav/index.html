@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+	<md-sidenav
+		id="sidenav" 
+		class="md-sidenav-left"
+	    md-component-id="sidenav"
+	    md-whiteframe="1"
+	    md-is-locked-open="true"
+	    md-disable-backdrop=""
+	    style="height:100%"
+	  	flex="" >
+		<!--  -->
+		<div layout="column" flex="" style="height: 100%">
+			<div th:replace="actions/fragments/sidenav/templates :: #templates"></div>
+			<div th:replace="actions/fragments/sidenav/resources :: #resources"></div>
+		</div>
+		
+	</md-sidenav>
+</body>
+</html>
