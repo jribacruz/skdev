@@ -11,7 +11,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet"/>
 		<style type="text/css">
 			[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  				display: none !important;
+  				visibility: none !important;
 			}
 			[role="tabpanel"] {
  			   transition: none;
@@ -24,7 +24,7 @@
 		</style>
     </head>
 	<body spellcheck="false">
-		<div style="height: 100%" flex="" layout="column" ng-controller="ActionEditorCT as actionEditorCT" > 
+		<div style="height: 100%" flex="" layout="column" ng-controller="ActionEditorCT as actionEditorCT"> 
 			<!-- FRAGMENTO DO TOOLBAR -->
 			<div th:replace="actions/fragments/toolbar :: #toolbar"></div>
 			<div layout="column" flex="" style="height: 100%">

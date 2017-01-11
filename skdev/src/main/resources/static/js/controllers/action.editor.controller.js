@@ -18,6 +18,8 @@
 		var self = this;
 
 		var editors = {};
+		
+		self.loading = true;
 
 		self.action = {};
 
@@ -111,11 +113,13 @@
 					self.action = res.data;
 					editors['dialogHTML'].setValue(res.data.dialogHTML);
 					editors['executeJS'].setValue(res.data.executeJS);
+					self.loading = false;
 				});
 				return;
 			}
 			self.action = actionSV.newAction();
 			_showActionInfo();
+			self.loading= false;
 		}
 
 		function _showActionInfo() {
