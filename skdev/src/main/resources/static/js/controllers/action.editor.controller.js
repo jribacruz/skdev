@@ -26,6 +26,8 @@
 		self.createTemplate = createTemplate;
 		
 		self.hideTemplateEditor = hideTemplateEditor;
+		
+		self.showTemplateEditor = showTemplateEditor;
 
 		init();
 
@@ -106,6 +108,14 @@
 		function createTemplate() {
 			$log.debug('[ActionEditorCT] createTemplate')
 			self.template = actionSV.newTemplate();
+			$mdDialog.show({
+				parent : angular.element(document.body),
+				contentElement : '#templateInfoDialog',
+				clickOutsideToClose : false
+			});
+		}
+		
+		function showTemplateEditor() {
 			$mdDialog.show({
 				parent : angular.element(document.body),
 				contentElement : '#templateEditorDialog',

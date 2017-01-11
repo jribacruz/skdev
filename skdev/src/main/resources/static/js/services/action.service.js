@@ -29,6 +29,7 @@
 			var self = this;
 			self.id = 0;
 			self.name = "",
+			self.description = "",
 			self.content = ""
 		}
 
