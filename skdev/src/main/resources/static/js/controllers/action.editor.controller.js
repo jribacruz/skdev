@@ -79,14 +79,13 @@
 
 		function _initTemplateEditor() {
 			$log.debug('[ActionEditorCT] Inicializando editor de templates...');
-			editors['templates'] = CodeMirror(document.getElementById('templateEditor'), {
+			editors['templateEditor'] = CodeMirror(document.getElementById('templateEditor'), {
 				mode : "handlebars",
 				lineNumbers : true,
 				theme : 'eclipse',
 				styleActiveLine : true
 			});
-			editors['templates'].setSize('100%', '100%');
-
+			editors['templateEditor'].setSize('100%', '100%');
 		}
 
 		function _loadOrCreateAction() {
@@ -107,20 +106,12 @@
 			$mdDialog.show({
 				parent : angular.element(document.body),
 				contentElement : '#templateDialog',
-				clickOutsideToClose : false,
-				controller : TemplateCT
+				clickOutsideToClose : false, 
+				locals: {
+					templateEditor: editors['templateEditor']
+				}
 			});
 		}
-		function TemplateCT($scope, $log, $mdDialog) {
-			$log.debug('[TemplateCT]')
-			
-			$scope.hide = hide;
-			
-			function hide() {
-				$mdDialog.hide();
-			}
-		}
-
 
 	}
 })();
