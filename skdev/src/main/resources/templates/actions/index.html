@@ -83,7 +83,7 @@
 							     </md-input-container>
 							</md-dialog-content>
 							<md-dialog-actions>
-								<md-button class="md-primary" ng-disabled="templateInfoForm.$invalid" ng-click="actionEditorCT.showTemplateEditor(actionEditorCT.template)" >
+								<md-button class="md-primary" ng-disabled="templateInfoForm.$invalid || !templateInfoForm.$dirty" ng-click="actionEditorCT.saveTemplateInfo()" >
 								  Salvar
 								</md-button>
 								<md-button  ng-click="actionEditorCT.hideTemplateInfo(templateInfoForm)">
