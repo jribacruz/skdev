@@ -46,7 +46,7 @@
 							<div id="templateEditor" style="height: 550px; border:1px solid #ddd" layout="column" flex=""></div>
 						</md-dialog-content>
 						<md-dialog-actions>
-							<md-button class="md-primary" >
+							<md-button class="md-primary" ng-click="actionEditorCT.saveTemplateContent()">
 							  Salvar
 							</md-button>
 							<md-button  ng-click="actionEditorCT.hideTemplateEditor()">
@@ -86,7 +86,7 @@
 								<md-button class="md-primary" ng-disabled="templateInfoForm.$invalid || !templateInfoForm.$dirty" ng-click="actionEditorCT.saveTemplateInfo()" >
 								  Salvar
 								</md-button>
-								<md-button  ng-click="actionEditorCT.hideTemplateInfo(templateInfoForm)">
+								<md-button  ng-click="actionEditorCT.hideTemplateInfo()">
 								  Fechar
 								</md-button>
 							</md-dialog-actions>

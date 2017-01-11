@@ -32,6 +32,8 @@
 		self.editTemplateInfo = editTemplateInfo;
 
 		self.saveTemplateInfo = saveTemplateInfo;
+		
+		self.saveTemplateContent = saveTemplateContent;
 
 		self.editTemplateContent = editTemplateContent;
 		
@@ -146,16 +148,26 @@
 		}
 
 		function editTemplateInfo(template) {
-			self.template = template;
+			self.template = angular.copy(template);
 			_showTemplateInfo();
 		}
 
 		function saveTemplateInfo() {
-			if (self.template.id == 0) {
+			if (self.template.id === 0) {
 				_showTemplateEditor(self.template);
 				return;
 			}
 			$log.debug('[ActionEditorCT] Salvando informações do template.');
+		}
+		
+		function saveTemplateContent() {
+			if (self.template.id === 0) {
+				var templateContent = editors['template'].getValue();
+				self.template.content = templateContent;
+				self.action.templates.push(angular.copy(self.template));
+				hideTemplateEditor();
+				return;
+			}
 		}
 
 		function _showTemplateEditor(template) {
@@ -175,7 +187,7 @@
 			});
 		}
 
-		function hideTemplateInfo(templateInfoForm) {
+		function hideTemplateInfo() {
 			templateInfoForm.$setPristine();
 			$mdDialog.hide();
 		}
