@@ -52,7 +52,7 @@
 		}
 		
 		function newTemplate() {
-			return new ETemplate;
+			return new ETemplate();
 		}
 	}
 

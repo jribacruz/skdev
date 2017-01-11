@@ -105,6 +105,7 @@
 
 		function createTemplate() {
 			$log.debug('[ActionEditorCT] createTemplate')
+			self.template = actionSV.newTemplate();
 			$mdDialog.show({
 				parent : angular.element(document.body),
 				contentElement : '#templateDialog',
