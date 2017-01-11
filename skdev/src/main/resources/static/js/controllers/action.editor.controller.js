@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('ActionEditorCT', ActionEditorCT);
 
-	ActionEditorCT.$inject = [ '$scope', '$log', '$mdSidenav', '$location', 'actionSV' ];
+	ActionEditorCT.$inject = [ '$scope', '$log', '$mdSidenav', '$location', 'actionSV', '$mdDialog' ];
 
 	/**
 	 * 
@@ -13,7 +13,7 @@
 	 * @param $location
 	 * @returns
 	 */
-	function ActionEditorCT($scope, $log, $mdSidenav, $location, actionSV) {
+	function ActionEditorCT($scope, $log, $mdSidenav, $location, actionSV, $mdDialog) {
 		$log.debug('[ActionEditorCT] Inicializando...');
 		var self = this;
 
@@ -21,7 +21,9 @@
 
 		self.action = {};
 
-		self.runDialog = runDialog;
+		self.template = {};
+
+		self.createTemplate = createTemplate;
 
 		init();
 
@@ -31,16 +33,10 @@
 
 				_initExecuteJSEditor();
 				_initDialogHTMLEditor();
+				_initTemplateEditor();
 				_loadOrCreateAction();
 				/*
 				 * Inicializando o editor de templates.
-				 */
-				/*
-				 * editors['templates'] =
-				 * CodeMirror(document.getElementById('templatesEditor'), { mode :
-				 * "handlebars", lineNumbers : true, theme : 'eclipse',
-				 * styleActiveLine : true });
-				 * editors['templates'].setSize('100%', '100%');
 				 */
 
 			});
@@ -69,7 +65,7 @@
 		}
 
 		function _initDialogHTMLEditor() {
-			$log.debug('[ActionEditorCT] Inicializando editor dialogHTML')
+			$log.debug('[ActionEditorCT] Inicializando editor dialogHTML');
 			editors['dialogHTML'] = CodeMirror(document.getElementById('dialogHTMLEditor'), {
 				mode : "htmlmixed",
 				lineNumbers : true,
@@ -81,11 +77,23 @@
 			editors['dialogHTML'].setSize('100%', '100%');
 		}
 
+		function _initTemplateEditor() {
+			$log.debug('[ActionEditorCT] Inicializando editor de templates...');
+			editors['templates'] = CodeMirror(document.getElementById('templateEditor'), {
+				mode : "handlebars",
+				lineNumbers : true,
+				theme : 'eclipse',
+				styleActiveLine : true
+			});
+			editors['templates'].setSize('100%', '100%');
+
+		}
+
 		function _loadOrCreateAction() {
 			var id = URI($location.absUrl()).filename();
 			if (id) {
 				actionSV.load(id).then(function(res) {
-					self.action = res.data;	
+					self.action = res.data;
 					editors['dialogHTML'].setValue(res.data.dialogHTML);
 					editors['executeJS'].setValue(res.data.executeJS);
 				});
@@ -94,15 +102,25 @@
 			self.action = actionSV.newAction();
 		}
 
-		function runDialog() {
-			console.log(editors['dialoghtml'].getValue());
+		function createTemplate() {
+			$log.debug('[ActionEditorCT] createTemplate')
 			$mdDialog.show({
 				parent : angular.element(document.body),
-				template : editors['dialog'].getValue(),
+				contentElement : '#templateDialog',
 				clickOutsideToClose : false,
-				controller : 'ActionCT'
+				controller : TemplateCT
 			});
 		}
+		function TemplateCT($scope, $log, $mdDialog) {
+			$log.debug('[TemplateCT]')
+			
+			$scope.hide = hide;
+			
+			function hide() {
+				$mdDialog.hide();
+			}
+		}
+
 
 	}
 })();

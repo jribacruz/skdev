@@ -38,6 +38,26 @@
 				</md-content>
 			</div>
 		</div>
+		<div style="visibility: hidden">
+		    <div class="md-dialog-container" id="templateDialog">
+				<md-dialog md-theme="default" aria-label="Template" style="min-width: 80%" layout-padding="">
+					<!--  -->
+					<h2 class="md-title">Template</h2>
+					<md-dialog-content>
+						<md-input-container>
+					        <label>Name</label>
+					        <input ng-model="template"/>
+					    </md-input-container>
+						<div id="templateEditor" style="height: 450px; border:1px solid #ddd" layout="column" flex=""></div>
+					</md-dialog-content>
+					<md-dialog-actions>
+						<md-button class="md-primary" ng-click="hide()">
+						  Fechar
+						</md-button>
+					</md-dialog-actions>
+				</md-dialog>
+		    </div>
+	    </div>
 		<script src="/skdev/js/global.js"></script>
 		<script src="/skdev/js/angular-material.js"></script>
 		<script src="/skdev/js/codemirror.js"></script>

@@ -14,8 +14,9 @@
 	function actionSV($log, $http, $location) {
 		$log.debug('[actionSV] Inicializando... ');
 
-		var action = function() {
+		var EAction = function() {
 			var self = this;
+			self.id = 0;
 			self.name = "";
 			self.description = "";
 			self.dialogHTML = "";
@@ -23,10 +24,18 @@
 			self.templates = [];
 			self.groups = [];
 		}
+		
+		var ETemplate = function() {
+			var self = this;
+			self.id = 0;
+			self.name = "",
+			self.content = ""
+		}
 
 		var service = {
 			load : load,
-			newAction : newAction
+			newAction : newAction,
+			newTemplate : newTemplate
 		};
 
 		return service;
@@ -39,7 +48,11 @@
 		}
 
 		function newAction() {
-			return new action();
+			return new EAction();
+		}
+		
+		function newTemplate() {
+			return new ETemplate;
 		}
 	}
 
