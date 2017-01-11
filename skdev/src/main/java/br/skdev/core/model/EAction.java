@@ -1,7 +1,9 @@
 package br.skdev.core.model;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -24,7 +26,7 @@ public class EAction implements Serializable {
 
 	private String executeJS;
 
-	private Set<ETemplate> templates;
+	private Map<String, ETemplate> templates;
 
 	private Set<EGroup> groups;
 
@@ -68,14 +70,14 @@ public class EAction implements Serializable {
 		this.executeJS = executeJS;
 	}
 
-	public Set<ETemplate> getTemplates() {
+	public Map<String, ETemplate> getTemplates() {
 		if (this.templates == null) {
-			this.templates = new HashSet<>();
+			this.templates = new HashMap<>();
 		}
 		return templates;
 	}
 
-	public void setTemplates(Set<ETemplate> templates) {
+	public void setTemplates(Map<String, ETemplate> templates) {
 		this.templates = templates;
 	}
 

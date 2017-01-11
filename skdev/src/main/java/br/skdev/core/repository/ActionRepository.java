@@ -65,7 +65,7 @@ public class ActionRepository implements Serializable {
 					eTemplate.setName(rs.getString("tm.name"));
 					eTemplate.setDescription(rs.getString("tm.description"));
 					eTemplate.setContent(rs.getString("tm.content"));
-					eAction.getTemplates().add(eTemplate);
+					eAction.getTemplates().put(eTemplate.getName(), eTemplate);
 				}
 
 				// Add os groups a action
@@ -114,7 +114,7 @@ public class ActionRepository implements Serializable {
 					eTemplate.setName(rs.getString("tm.name"));
 					eTemplate.setDescription(rs.getString("tm.description"));
 					eTemplate.setContent(rs.getString("tm.content"));
-					eAction.getTemplates().add(eTemplate);
+					eAction.getTemplates().put(eTemplate.getName(), eTemplate);
 				}
 
 				// Add os groups a action

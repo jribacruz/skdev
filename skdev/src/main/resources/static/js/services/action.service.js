@@ -21,7 +21,7 @@
 			self.description = "";
 			self.dialogHTML = "";
 			self.executeJS = "";
-			self.templates = [];
+			self.templates = {};
 			self.groups = [];
 		}
 		

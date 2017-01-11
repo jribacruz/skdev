@@ -154,6 +154,7 @@
 
 		function saveTemplateInfo() {
 			if (self.template.id === 0) {
+				self.action.templates[self.template.name] = self.template;
 				_showTemplateEditor(self.template);
 				return;
 			}
