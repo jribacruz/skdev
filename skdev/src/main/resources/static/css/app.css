@@ -9,3 +9,10 @@
 .webix_tree_leaves {
 	-moz-user-select: none;
 }
+
+.toolbar-vertical-divider {
+	border: 1px dotted #d1d1d1;
+    display: inline-block;
+    height: 20px;
+    margin-bottom: -5px;
+}
