@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('ActionEditorCT', ActionEditorCT);
 
-	ActionEditorCT.$inject = [ '$scope', '$log', '$mdSidenav', '$location', 'actionSV', '$mdDialog' ];
+	ActionEditorCT.$inject = [ '$scope', '$log', '$mdSidenav', '$location', 'actionSV', '$mdDialog', 'notificationSV' ];
 
 	/**
 	 * 
@@ -13,7 +13,7 @@
 	 * @param $location
 	 * @returns
 	 */
-	function ActionEditorCT($scope, $log, $mdSidenav, $location, actionSV, $mdDialog) {
+	function ActionEditorCT($scope, $log, $mdSidenav, $location, actionSV, $mdDialog, notificationSV) {
 		$log.debug('[ActionEditorCT] Inicializando...');
 		var self = this;
 
@@ -23,40 +23,20 @@
 
 		self.action = {};
 
-		self.template = {};
-
-		self.createTemplate = createTemplate;
-
-		self.hideTemplateEditor = hideTemplateEditor;
-
-		self.hideTemplateInfo = hideTemplateInfo;
-
-		self.editTemplateInfo = editTemplateInfo;
-
-		self.saveTemplateInfo = saveTemplateInfo;
-		
-		self.saveTemplateContent = saveTemplateContent;
-
-		self.editTemplateContent = editTemplateContent;
-		
-		self.saveActionInfo = saveActionInfo;
+		self.save = save;
 		
 		self.hideActionInfo = hideActionInfo;
+		
+		self.saveStatus = false;
 
 		init();
 
 		function init() {
-
 			angular.element(document).ready(function() {
-
 				_initExecuteJSEditor();
 				_initDialogHTMLEditor();
 				_initTemplateEditor();
 				_loadOrCreateAction();
-				/*
-				 * Inicializando o editor de templates.
-				 */
-
 			});
 		}
 
@@ -130,74 +110,29 @@
 			});
 		}
 		
-		function saveActionInfo() {
+		function save() {
+			self.saveStatus = true;
 			if(self.action.id == 0) {
-				$mdDialog.hide();
+				$log.debug('[ActionEditorCT] save/insert');
+				actionSV.insert(self.action).then(function(res) {
+					$mdDialog.hide();
+					self.saveStatus = false;
+					self.action = res.data;
+					notificationSV.show('Ação salva com sucesso.');
+				});
 				return;
 			}
+			$log.debug('[ActionEditorCT] save/update');
+			self.action.dialogHTML = editors['dialogHTML'].getValue();
+			self.action.executeJS = editors['executeJS'].getValue();
+			actionSV.update(self.action).then(function(res) {
+				notificationSV.show('Ação salva com sucesso.');
+				self.saveStatus = false;
+			});
 		}
-		
+			
 		function hideActionInfo() {
-			$mdDialog.hide();
-		}
-
-		function createTemplate() {
-			$log.debug('[ActionEditorCT] createTemplate')
-			self.template = actionSV.newTemplate();
-			_showTemplateInfo();
-		}
-
-		function editTemplateContent(template) {
-			_showTemplateEditor(template);
-		}
-
-		function editTemplateInfo(template) {
-			self.template = angular.copy(template);
-			_showTemplateInfo();
-		}
-
-		function saveTemplateInfo() {
-			if (self.template.id === 0) {
-				self.action.templates[self.template.name] = self.template;
-				_showTemplateEditor(self.template);
-				return;
-			}
-			$log.debug('[ActionEditorCT] Salvando informações do template.');
-		}
-		
-		function saveTemplateContent() {
-			if (self.template.id === 0) {
-				var templateContent = editors['template'].getValue();
-				self.template.content = templateContent;
-				self.action.templates.push(angular.copy(self.template));
-				hideTemplateEditor();
-				return;
-			}
-		}
-
-		function _showTemplateEditor(template) {
-			$mdDialog.show({
-				parent : angular.element(document.body),
-				contentElement : '#templateEditorDialog',
-				clickOutsideToClose : false
-			});
-			editors['template'].setValue(template.content);
-		}
-
-		function _showTemplateInfo() {
-			$mdDialog.show({
-				parent : angular.element(document.body),
-				contentElement : '#templateInfoDialog',
-				clickOutsideToClose : false
-			});
-		}
-
-		function hideTemplateInfo() {
-			templateInfoForm.$setPristine();
-			$mdDialog.hide();
-		}
-
-		function hideTemplateEditor() {
+			self.loading= false;
 			$mdDialog.hide();
 		}
 

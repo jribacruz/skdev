@@ -3,46 +3,16 @@
 <body>
 	<md-toolbar id="toolbar" class="md-primary" ng-cloak="">
 		<div class="md-toolbar-tools">
-			<h2>
-				<span>SKDev - Action Editor - {{actionEditorCT.action.name}}</span>
-			</h2>
+			<h2><span>SKDev - Action Editor - {{actionEditorCT.action.name}}</span></h2>
 			<span flex=""></span>
-			 <md-button aria-label="Salvar"  class="md-icon-button" ng-click="$mdOpenMenu($event)">
-		        <md-icon md-font-icon="material-icons">backup</md-icon>
-		        <md-tooltip md-direction="bottom">Salvar</md-tooltip>
-		      </md-button>
-		      <md-button aria-label="Informações da action"  class="md-icon-button" ng-click="$mdOpenMenu($event)">
-		        <md-icon md-font-icon="material-icons">info</md-icon>
-		        <md-tooltip md-direction="bottom">Informações da Ação</md-tooltip>
-		      </md-button>
-			<!-- 
-			<md-menu>
-		      <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-		        <md-icon md-font-icon="material-icons">menu</md-icon>
-		      </md-button>
-		      <md-menu-content width="4">
-		        <md-menu-item>
-		          <md-button ng-click="ctrl.redial($event)">
-		          	<md-icon md-font-icon="material-icons">create_new_folder</md-icon>
-		            Novo Template
-		          </md-button>
-		        </md-menu-item>
-		        <md-menu-divider></md-menu-divider>
-		        <md-menu-item>
-		          <md-button  ng-click="workspaceCT.showNotification('Notificação Online')">
-		          	<md-icon md-font-icon="material-icons">backup</md-icon>
-		            Upload
-		          </md-button>
-		        </md-menu-item>
-		        <md-menu-item>
-		          <md-button ng-click="ctrl.toggleNotifications()">
-		          	<md-icon md-svg-icon="android"></md-icon>
-		            Configurações
-		          </md-button>
-		        </md-menu-item>
-		      </md-menu-content>
-		    </md-menu> 	 
-			 -->
+			<md-button aria-label="Salvar" class="md-icon-button" ng-click="actionEditorCT.save()">
+			      <md-icon md-font-icon="material-icons">backup</md-icon>
+			      <md-tooltip md-direction="bottom">Salvar</md-tooltip>
+		    </md-button>
+		    <md-button aria-label="Informações da action"  class="md-icon-button" ng-click="$mdOpenMenu($event)">
+			      <md-icon md-font-icon="material-icons">info</md-icon>
+			      <md-tooltip md-direction="bottom">Informações da Ação</md-tooltip>
+		    </md-button>
 		</div>
 	</md-toolbar>
 </body>

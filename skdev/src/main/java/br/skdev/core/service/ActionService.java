@@ -26,4 +26,12 @@ public class ActionService {
 		return actionRepository.find(id);
 	}
 
+	public EAction insert(EAction eAction) {
+		return actionRepository.insert(eAction);
+	}
+
+	public void update(Integer id, EAction eAction) {
+		actionRepository.update(id, eAction);
+	}
+
 }

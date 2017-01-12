@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +33,20 @@ public class ActionRest {
 	public ResponseEntity<?> find(@PathVariable("id") Integer id) {
 		EAction action = actionService.find(id);
 		return ResponseEntity.ok(action);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, path = "/api/actions")
+	public ResponseEntity<?> insert(@RequestBody EAction eAction) {
+		log.info("Insert EAction {}", eAction);
+		eAction = actionService.insert(eAction);
+		return ResponseEntity.ok(eAction);
+	}
+
+	@RequestMapping(method = RequestMethod.PUT, path = "/api/actions/{id}")
+	public ResponseEntity<?> udpate(@PathVariable("id") Integer id, @RequestBody EAction eAction) {
+		log.info("Insert EAction {}", eAction);
+		actionService.update(id, eAction);
+		return ResponseEntity.ok().build();
 	}
 
 }

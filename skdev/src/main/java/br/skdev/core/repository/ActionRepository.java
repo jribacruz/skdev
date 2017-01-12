@@ -1,6 +1,10 @@
 package br.skdev.core.repository;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +14,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -135,15 +142,41 @@ public class ActionRepository implements Serializable {
 			return new ArrayList<>(eActionsMap.values()).get(0);
 		});
 	}
-	
+
 	/**
 	 * 
 	 * @param eAction
 	 */
 	@Transactional
-	public void insert(EAction eAction) {
-		final String insertActionSQL = " INSERT INTO SK_ACTION(NAME, DESCRIPTION, DIALOGHTML, EXECUTEJS) VALUES(?,?,?,?)";
-		
+	public EAction insert(EAction eAction) {
+		final String insertActionSQL = " INSERT INTO SK_ACTION(NAME, DESCRIPTION) VALUES(?,?)";
+		KeyHolder holder = new GeneratedKeyHolder();
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+				PreparedStatement ps = connection.prepareStatement(insertActionSQL, Statement.RETURN_GENERATED_KEYS);
+				ps.setString(1, eAction.getName());
+				ps.setString(2, eAction.getDescription());
+				return ps;
+			}
+		}, holder);
+		int newActionId = holder.getKey().intValue();
+		eAction.setId(newActionId);
+		return eAction;
+	}
+
+	@Transactional
+	public void update(Integer id, EAction eAction) {
+		// @formatter:off
+		final String updateActionSQL = " UPDATE SK_ACTION "
+				+ "							SET NAME=?, "
+				+ "								DESCRIPTION=?,"
+				+ "								DIALOGHTML=?,"
+				+ "								EXECUTEJS=?"
+				+ "						 WHERE ID = ? ";
+		//@formatter:on
+		jdbcTemplate.update(updateActionSQL,
+				new Object[] { eAction.getName(), eAction.getDescription(), eAction.getDialogHTML(), eAction.getExecuteJS(), id });
 	}
 
 }

@@ -13,7 +13,9 @@
 	 */
 	function actionSV($log, $http, $location) {
 		$log.debug('[actionSV] Inicializando... ');
-
+		
+		var origin = new URI($location.absUrl());
+		
 		var EAction = function() {
 			var self = this;
 			self.id = 0;
@@ -25,24 +27,16 @@
 			self.groups = [];
 		}
 		
-		var ETemplate = function() {
-			var self = this;
-			self.id = 0;
-			self.name = "",
-			self.description = "",
-			self.content = ""
-		}
-
 		var service = {
 			load : load,
 			newAction : newAction,
-			newTemplate : newTemplate
+			insert: insert,
+			update: update
 		};
 
 		return service;
 
 		function load(id) {
-			var origin = new URI($location.absUrl());
 			var loadActionURL = origin.segment(['skdev', 'api','actions', new String(id)]).href();
 			$log.debug(format('[actionSV] load={}', loadActionURL));
 			return $http.get(loadActionURL);
@@ -52,8 +46,14 @@
 			return new EAction();
 		}
 		
-		function newTemplate() {
-			return new ETemplate();
+		function insert(eAction) {
+			var insertActionURL = origin.segment(['skdev', 'api','actions']).href();
+			return $http.post(insertActionURL, eAction);
+		}
+		
+		function update(eAction) {
+			var updateActionURL = origin.segment(['skdev', 'api','actions', new String(eAction.id)]).href();
+			return $http.put(updateActionURL, eAction);
 		}
 	}
 

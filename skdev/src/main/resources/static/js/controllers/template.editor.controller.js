@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('TemplateEditorCT', TemplateEditorCT);
 
-	TemplateEditorCT.$inject = [ '$scope', '$log', '$mdSidenav', '$location', 'actionSV', '$mdDialog' ];
+	TemplateEditorCT.$inject = [ '$scope', '$log', '$mdSidenav', '$location', 'templateSV', '$mdDialog' ];
 
 	/**
 	 * 
@@ -13,7 +13,7 @@
 	 * @param $location
 	 * @returns
 	 */
-	function TemplateEditorCT($scope, $log, $mdSidenav, $location, actionSV, $mdDialog) {
+	function TemplateEditorCT($scope, $log, $mdSidenav, $location, templateSV, $mdDialog) {
 		$log.debug('[TemplateEditorCT] Inicializando...');
 		var self = this;
 
@@ -42,7 +42,7 @@
 
 		function createTemplate() {
 			$log.debug('[TemplateEditorCT] createTemplate')
-			self.template = actionSV.newTemplate();
+			self.template = templateSV.newTemplate();
 			_showTemplateInfo();
 		}
 
