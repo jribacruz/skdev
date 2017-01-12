@@ -28,7 +28,8 @@
 		var service = {
 			newTemplate : newTemplate,
 			insert: insert,
-			update: update
+			update: update,
+			deleteTemplate: deleteTemplate
 		}
 
 		return service;
@@ -38,13 +39,21 @@
 		}
 		
 		function insert(eTemplate) {
+			$log.debug('[templateSV] insert');
 			var insertTemplateURL = origin.segment(['skdev', 'api','templates']).href();
 			return $http.post(insertTemplateURL, eTemplate);
 		}
 		
 		function update(eTemplate) {
+			$log.debug('[templateSV] update');
 			var updateTemplateURL = origin.segment(['skdev', 'api','templates', new String(eTemplate.id)]).href();
 			return $http.put(updateTemplateURL, eTemplate);
+		}
+		
+		function deleteTemplate(id) {
+			$log.debug('[templateSV] delete');
+			var deleteTemplateURL = origin.segment(['skdev', 'api','templates', new String(id)]).href();
+			return $http.delete(deleteTemplateURL);
 		}
 	}
 

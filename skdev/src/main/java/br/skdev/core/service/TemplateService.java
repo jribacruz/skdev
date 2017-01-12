@@ -14,14 +14,18 @@ public class TemplateService {
 	private Logger log = LoggerFactory.getLogger(TemplateService.class);
 
 	@Autowired
-	private TemplateRepository actionRepository;
+	private TemplateRepository templateRepository;
 
 	public ETemplate insert(ETemplate eTemplate) {
-		return actionRepository.insert(eTemplate);
+		return templateRepository.insert(eTemplate);
 	}
 
 	public void update(Integer id, ETemplate eTemplate) {
-		actionRepository.update(id, eTemplate);
+		templateRepository.update(id, eTemplate);
+	}
+	
+	public void delete(Integer id) {
+		templateRepository.delete(id);
 	}
 
 }

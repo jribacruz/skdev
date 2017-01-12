@@ -23,15 +23,22 @@ public class TemplateRest {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/api/templates")
 	public ResponseEntity<?> insert(@RequestBody ETemplate eTemplate) {
-		log.info("Insert ETemplate {}", eTemplate);
+		log.info("INSERT ETemplate {}", eTemplate);
 		eTemplate = templateService.insert(eTemplate);
 		return ResponseEntity.ok(eTemplate);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, path = "/api/templates/{id}")
 	public ResponseEntity<?> udpate(@PathVariable("id") Integer id, @RequestBody ETemplate eTemplate) {
-		log.info("Insert ETemplate {}", eTemplate);
+		log.info("UPDATE ETemplate {}", eTemplate);
 		templateService.update(id, eTemplate);
+		return ResponseEntity.ok().build();
+	}
+
+	@RequestMapping(method = RequestMethod.DELETE, path = "/api/templates/{id}")
+	public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
+		log.info("DELETE ETemplate {}", id);
+		templateService.delete(id);
 		return ResponseEntity.ok().build();
 	}
 

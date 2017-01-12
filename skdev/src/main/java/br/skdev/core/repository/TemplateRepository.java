@@ -37,12 +37,12 @@ public class TemplateRepository implements Serializable {
 	 */
 	@Transactional
 	public ETemplate insert(ETemplate eTemplate) {
-		final String insertActionSQL = " INSERT INTO SK_TEMPLATE(NAME, DESCRIPTION, ACTION_ID) VALUES(?,?,?)";
+		final String insertTemplateSQL = " INSERT INTO SK_TEMPLATE(NAME, DESCRIPTION, ACTION_ID) VALUES(?,?,?)";
 		KeyHolder holder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-				PreparedStatement ps = connection.prepareStatement(insertActionSQL, Statement.RETURN_GENERATED_KEYS);
+				PreparedStatement ps = connection.prepareStatement(insertTemplateSQL, Statement.RETURN_GENERATED_KEYS);
 				ps.setString(1, eTemplate.getName());
 				ps.setString(2, eTemplate.getDescription());
 				ps.setInt(3, eTemplate.getActionId());
@@ -53,7 +53,7 @@ public class TemplateRepository implements Serializable {
 		eTemplate.setId(newTemplateId);
 		return eTemplate;
 	}
-	
+
 	/**
 	 * 
 	 * @param id
@@ -62,13 +62,24 @@ public class TemplateRepository implements Serializable {
 	@Transactional
 	public void update(Integer id, ETemplate eTemplate) {
 		// @formatter:off
-		final String updateActionSQL = " UPDATE SK_TEMPLATE "
+		final String updateTemplateSQL = " UPDATE SK_TEMPLATE "
 				+ "							SET NAME=?, "
 				+ "								DESCRIPTION=?, "
 				+ "								CONTENT=? "
 				+ "						 WHERE ID = ? ";
 		//@formatter:on
-		jdbcTemplate.update(updateActionSQL, new Object[] { eTemplate.getName(), eTemplate.getDescription(), eTemplate.getContent(), id });
+		jdbcTemplate.update(updateTemplateSQL,
+				new Object[] { eTemplate.getName(), eTemplate.getDescription(), eTemplate.getContent(), id });
+	}
+
+	/**
+	 * 
+	 * @param id
+	 */
+	@Transactional
+	public void delete(Integer id) {
+		final String deleteTemplateSQL = " DELETE FROM SK_TEMPLATE WHERE ID = ?";
+		jdbcTemplate.update(deleteTemplateSQL, id);
 	}
 
 }

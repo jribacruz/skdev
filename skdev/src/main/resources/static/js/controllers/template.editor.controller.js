@@ -35,6 +35,8 @@
 		
 		self.editTemplateContent = editTemplateContent;
 		
+		self.deleteTemplate = deleteTemplate;
+		
 		init();
 
 		function init() {
@@ -89,6 +91,17 @@
 				$scope.actionEditorCT.action.templates[self.template.name] = self.template;
 				notificationSV.show('Template atualizado com sucesso.');
 				$mdDialog.hide();
+			});
+		}
+				
+		function deleteTemplate(template) {
+			notificationSV.confirm(format('Deseja excluir o template: {} ?', template.name)).then(function() {
+				
+				templateSV.deleteTemplate(template.id).then(function(res) {
+					delete $scope.actionEditorCT.action.templates[self.template.name];
+					notificationSV.show('Template excluído com sucesso.');
+				});
+				
 			});
 		}
 		
