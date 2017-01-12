@@ -27,6 +27,8 @@
 		
 		self.hideActionInfo = hideActionInfo;
 		
+		self.sidenavRight = sidenavRight;
+		
 		self.saveStatus = false;
 
 		init();
@@ -123,6 +125,10 @@
 		function hideActionInfo() {
 			self.loading= false;
 			$mdDialog.hide();
+		}
+		
+		function sidenavRight() {
+			$mdSidenav('sidenav-right').toggle();
 		}
 
 	}
