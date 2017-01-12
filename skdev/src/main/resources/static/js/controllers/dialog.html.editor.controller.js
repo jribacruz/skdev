@@ -16,6 +16,8 @@
 	function DialogHTMLEditorCT($scope, $log, $mdSidenav, $mdDialog, notificationSV, dialogHTMLEditorSV) {
 		$log.debug('[DialogHTMLEditorCT] Inicializando...');
 		var self = this;
+		
+		self.getCursorPos = getCursorPos;
 
 		init();
 
@@ -29,6 +31,12 @@
 			});
 			*/
 		});
+		
+		function getCursorPos() {
+			var cursor = dialogHTMLEditorSV.getEditor().getCursor();
+			console.log(cursor);
+			dialogHTMLEditorSV.getEditor().replaceRange('<input>Deane amor da minha vida!!</input>', cursor);
+		}
 
 	}
 })();
