@@ -30,7 +30,9 @@
 		self.sidenavRight = sidenavRight;
 		
 		self.saveStatus = false;
-
+		
+		self.runAction = runAction;
+		
 		init();
 
 		function init() {
@@ -130,6 +132,12 @@
 		function sidenavRight() {
 			$mdSidenav('sidenav-right').toggle();
 		}
-
+		
+		function runAction(eAction) {
+			self.action.dialogHTML = editors['dialogHTML'].getValue();
+			self.action.executeJS = editors['executeJS'].getValue();
+			actionSV.run(eAction);
+		}
+		
 	}
 })();

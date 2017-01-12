@@ -3,7 +3,7 @@
 
 	angular.module("skdevMD").factory('actionSV', actionSV);
 
-	actionSV.$inject = [ '$log', '$http', '$location' ];
+	actionSV.$inject = [ '$log', '$http', '$location', '$mdDialog' ];
 
 	/**
 	 * 
@@ -11,7 +11,7 @@
 	 * @param $mdToast
 	 * @returns
 	 */
-	function actionSV($log, $http, $location) {
+	function actionSV($log, $http, $location, $mdDialog ) {
 		$log.debug('[actionSV] Inicializando... ');
 		
 		var origin = new URI($location.absUrl());
@@ -30,8 +30,9 @@
 		var service = {
 			load : load,
 			newAction : newAction,
-			insert: insert,
-			update: update
+			insert: insert, 
+			update: update,
+			run: run
 		};
 
 		return service;
@@ -54,6 +55,21 @@
 		function update(eAction) {
 			var updateActionURL = origin.segment(['skdev', 'api','actions', new String(eAction.id)]).href();
 			return $http.put(updateActionURL, eAction);
+		}
+		
+		function run(eAction) {
+			$log.debug(format('[actionSV] run: {}', eAction.name));
+			var parentEl = angular.element(document.body);
+			$mdDialog.show({
+				parent: parentEl,
+				template: eAction.dialogHTML,
+				controller: 'ActionCT',
+				controllerAs: 'actionCT',
+				clickOutsideToClose: true,
+				locals: {
+					eAction: eAction
+				}
+			});
 		}
 	}
 
