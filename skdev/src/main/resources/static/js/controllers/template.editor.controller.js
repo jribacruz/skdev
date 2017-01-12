@@ -86,6 +86,7 @@
 			self.template.content = templateEditor.getValue();
 			templateSV.update(self.template).then(function(res) {
 				self.saveStatus = false;
+				$scope.actionEditorCT.action.templates[self.template.name] = self.template;
 				notificationSV.show('Template atualizado com sucesso.');
 				$mdDialog.hide();
 			});
