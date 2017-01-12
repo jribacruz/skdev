@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('ActionEditorCT', ActionEditorCT);
 
-	ActionEditorCT.$inject = [ '$scope', '$log','$location', '$mdSidenav', 'actionSV', '$mdDialog', 'notificationSV', 'dialogHTMLEditorSV', 'executeJSEditorSV' ];
+	ActionEditorCT.$inject = [ '$scope', '$log','$location', '$mdSidenav', 'actionSV', '$mdDialog', 'notificationSV', 'dialogHTMLEditorSV', 'executeJSEditorSV', 'templateEditorSV' ];
 
 	/**
 	 * 
@@ -13,11 +13,9 @@
 	 * @param $location
 	 * @returns
 	 */
-	function ActionEditorCT($scope, $log, $location ,$mdSidenav, actionSV, $mdDialog, notificationSV, dialogHTMLEditorSV, executeJSEditorSV) {
+	function ActionEditorCT($scope, $log, $location ,$mdSidenav, actionSV, $mdDialog, notificationSV, dialogHTMLEditorSV, executeJSEditorSV, templateEditorSV) {
 		$log.debug('[ActionEditorCT] Inicializando...');
 		var self = this;
-
-		var editors = {};
 
 		self.loading = true;
 
@@ -39,6 +37,7 @@
 			angular.element(document).ready(function() {
 				executeJSEditorSV.init();
 				dialogHTMLEditorSV.init();
+				templateEditorSV.init();
 				_loadOrCreateAction();
 			});
 		}

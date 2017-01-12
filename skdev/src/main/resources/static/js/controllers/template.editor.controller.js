@@ -40,9 +40,6 @@
 		init();
 
 		function init() {
-			angular.element(document).ready(function() {
-				templateEditorSV.init();
-			});
 		}
 
 		function createTemplate(actionId) {
