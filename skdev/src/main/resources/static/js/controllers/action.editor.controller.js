@@ -115,7 +115,7 @@
 			self.action.dialogHTML = editors['dialogHTML'].getValue();
 			self.action.executeJS = editors['executeJS'].getValue();
 			actionSV.update(self.action).then(function(res) {
-				notificationSV.show('Ação salva com sucesso.');
+				notificationSV.show('Ação atualizado com sucesso.');
 				self.saveStatus = false;
 			});
 		}

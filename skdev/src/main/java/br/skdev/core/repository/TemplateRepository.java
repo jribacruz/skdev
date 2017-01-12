@@ -53,14 +53,19 @@ public class TemplateRepository implements Serializable {
 		eTemplate.setId(newTemplateId);
 		return eTemplate;
 	}
-
+	
+	/**
+	 * 
+	 * @param id
+	 * @param eTemplate
+	 */
 	@Transactional
 	public void update(Integer id, ETemplate eTemplate) {
 		// @formatter:off
 		final String updateActionSQL = " UPDATE SK_TEMPLATE "
 				+ "							SET NAME=?, "
-				+ "								DESCRIPTION=?,"
-				+ "								CONTENT=?,"
+				+ "								DESCRIPTION=?, "
+				+ "								CONTENT=? "
 				+ "						 WHERE ID = ? ";
 		//@formatter:on
 		jdbcTemplate.update(updateActionSQL, new Object[] { eTemplate.getName(), eTemplate.getDescription(), eTemplate.getContent(), id });

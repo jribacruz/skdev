@@ -3,7 +3,7 @@
 
 	angular.module("skdevMD").factory('templateSV', templateSV);
 
-	templateSV.$inject = [ '$log', '$mdToast', '$location' ];
+	templateSV.$inject = [ '$log', '$mdToast', '$location', '$http' ];
 
 	/**
 	 * 
@@ -11,7 +11,7 @@
 	 * @param $mdToast
 	 * @returns
 	 */
-	function templateSV($log, $mdToast, $location) {
+	function templateSV($log, $mdToast, $location, $http) {
 		$log.debug('[templateSV] Inicializando... ');
 		
 		var origin = new URI($location.absUrl());

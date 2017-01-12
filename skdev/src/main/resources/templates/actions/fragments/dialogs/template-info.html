@@ -6,6 +6,7 @@
 		<md-dialog md-theme="default" aria-label="Template Info" style="width: 25%">
 			<form name="templateInfoForm" novalidate="">
 				<md-dialog-content class="md-dialog-content">
+					<md-progress-linear ng-show="templateEditorCT.saveInfoStatus" md-mode="indeterminate" class="md-warn"></md-progress-linear>
 					<h2 class="md-title">Informações do Template</h2>
 					 <!-- NAME -->	
 					 <md-input-container class="md-block">
@@ -27,8 +28,8 @@
 				     </md-input-container>
 				</md-dialog-content>
 				<md-dialog-actions>
-					<md-button class="md-primary" ng-disabled="templateInfoForm.$invalid || !templateInfoForm.$dirty" 
-							   ng-click="templateEditorCT.saveTemplateInfo()" >
+					<md-button class="md-primary" ng-disabled="templateInfoForm.$invalid || !templateInfoForm.$dirty || templateInfoForm.saveStatus" 
+							   ng-click="templateEditorCT.save()" >
 					  Salvar
 					</md-button>
 					<md-button type="reset"  ng-click="templateEditorCT.hideTemplateInfo()">

@@ -2,53 +2,41 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <body>
 <div id="templates" flex="">
-	<md-toolbar md-colors="{background: 'grey-100'}" ng-cloak="">
-		<div class="md-toolbar-tools">
-			<span class="md-subhead">Templates</span>
-			<span flex=""></span>
-			<!-- NOVO TEMPLATE -->
-			<md-button aria-label="Open phone interactions menu" class="md-icon-button md-primary" 
-				ng-click="templateEditorCT.createTemplate(actionEditorCT.action.id)">
-		        <md-icon md-font-icon="material-icons">add_circle</md-icon>
-		         <md-tooltip md-direction="left">Novo Template Handlebar</md-tooltip>
-		    </md-button>
-		</div>
-	</md-toolbar>
-	<md-content flex="" ng-cloak="">
-		 <md-list-item class="md-2-line" ng-repeat="(name,template) in actionEditorCT.action.templates">
-         <div class="md-list-item-text">
-            <h4>{{ template.name }}</h4>
-            <p>{{ template.description }}</p>
-            <!-- MENU DO ITEM DE TEMPLATE -->
-            <md-menu class="md-secondary">
-		      <md-button class="md-icon-button">
-		         <md-icon md-font-icon="material-icons">more_vert</md-icon> 
-		      </md-button>
-		      <md-menu-content width="4">
-		        <md-menu-item>
-		          <md-button ng-click="templateEditorCT.editTemplateInfo(template)">
-		          	<md-icon md-font-icon="material-icons">edit</md-icon> 
-		            Editar informações
-		          </md-button>
-		        </md-menu-item>
-		        <md-menu-item>
-		          <md-button ng-click="templateEditorCT.editTemplateContent(template)">
-		          	<md-icon md-font-icon="material-icons">settings_ethernet</md-icon>
-		            Editar conteúdo
-		          </md-button>
-		        </md-menu-item>
-		        <md-divider></md-divider>
-		        <md-menu-item>
-		          <md-button>
-		          	<md-icon md-font-icon="material-icons">clear</md-icon>
-		          	Excluir
-		          </md-button>
-		        </md-menu-item>
-		      </md-menu-content>
-		    </md-menu>
-          </div>
-        </md-list-item>
-	</md-content>
+	<md-subheader class="md-primary">Templates</md-subheader>
+	<md-list-item class="md-2-line" ng-repeat="(name,template) in actionEditorCT.action.templates">
+	      <div class="md-list-item-text">
+	         <h4>{{ template.name }}</h4>
+	         <p>{{ template.description }}</p>
+	         <!-- MENU DO ITEM DE TEMPLATE -->
+			  <md-menu class="md-secondary">
+			  <md-button class="md-icon-button">
+			     <md-icon md-font-icon="material-icons">more_vert</md-icon> 
+			  </md-button>
+			  <md-menu-content width="4">
+			    <md-menu-item>
+			      <md-button ng-click="templateEditorCT.editTemplateInfo(template)">
+			      	<md-icon md-font-icon="material-icons">edit</md-icon> 
+			        Editar informações
+			      </md-button>
+			    </md-menu-item>
+			    <md-menu-item>
+			      <md-button ng-click="templateEditorCT.editTemplateContent(template)">
+			      	<md-icon md-font-icon="material-icons">settings_ethernet</md-icon>
+			        Editar conteúdo
+			      </md-button>
+			    </md-menu-item>
+			    <md-divider></md-divider>
+			    <md-menu-item>
+			      <md-button>
+			      	<md-icon md-font-icon="material-icons">clear</md-icon>
+			      	Excluir
+			      </md-button>
+			    </md-menu-item>
+			  </md-menu-content>
+			</md-menu>
+	    </div>
+  		<md-divider></md-divider>
+  </md-list-item>
 	<!-- TEMPLATE EDITOR DIALOG  -->
 	<div th:replace="actions/fragments/dialogs/template-info :: #template-info-dialog"></div>
 	<!-- TEMPLATE INFO DIALOG  -->
