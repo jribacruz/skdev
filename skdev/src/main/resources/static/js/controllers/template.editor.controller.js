@@ -58,6 +58,8 @@
 		}
 
 		function editTemplateContent(template) {
+			self.template = angular.copy(template);
+			templateEditor.setValue(self.template.content);
 			_showTemplateEditor(template);
 		}
 
