@@ -26,13 +26,25 @@
 		}
 
 		var service = {
-			newTemplate : newTemplate
+			newTemplate : newTemplate,
+			insert: insert,
+			update: update
 		}
 
 		return service;
 
 		function newTemplate() {
 			return new ETemplate();
+		}
+		
+		function insert(eTemplate) {
+			var insertTemplateURL = origin.segment(['skdev', 'api','templates']).href();
+			return $http.post(insertTemplateURL, eTemplate);
+		}
+		
+		function update(eTemplate) {
+			var updateTemplateURL = origin.segment(['skdev', 'api','templates', new String(eTemplate.id)]).href();
+			return $http.put(updateTemplateURL, eTemplate);
 		}
 	}
 

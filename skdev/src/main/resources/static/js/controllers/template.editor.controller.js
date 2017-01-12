@@ -39,24 +39,21 @@
 
 		function init() {
 			angular.element(document).ready(function() {
-				_initTemplateEditor()
+				$log.debug('[TemplateEditorCT] Inicializando editor de templates...');
+				templateEditor = CodeMirror(document.getElementById('templateEditor'), {
+					mode : "handlebars",
+					lineNumbers : true,
+					theme : 'eclipse',
+					styleActiveLine : true
+				});
+				templateEditor.setSize('100%', '100%');
 			});
 		}
 
-		function _initTemplateEditor() {
-			$log.debug('[TemplateEditorCT] Inicializando editor de templates...');
-			templateEditor = CodeMirror(document.getElementById('templateEditor'), {
-				mode : "handlebars",
-				lineNumbers : true,
-				theme : 'eclipse',
-				styleActiveLine : true
-			});
-			templateEditor.setSize('100%', '100%');
-		}
-
-		function createTemplate() {
-			$log.debug('[TemplateEditorCT] createTemplate')
+		function createTemplate(actionId) {
+			$log.debug('[TemplateEditorCT] createTemplate');
 			self.template = templateSV.newTemplate();
+			self.template.actionId = actionId;
 			_showTemplateInfo();
 		}
 
@@ -71,7 +68,7 @@
 
 		function saveTemplateInfo() {
 			if (self.template.id === 0) {
-				self.action.templates[self.template.name] = self.template;
+				//self.action.templates[self.template.name] = self.template;
 				_showTemplateEditor(self.template);
 				return;
 			}
@@ -109,7 +106,7 @@
 			$log.debug('[TemplateEditorCT] hideTemplateInfo.');
 			self.template = null;
 			$scope.templateInfoForm.$setPristine();
-			$scope.templateInfoForm.$setUntouched()
+			$scope.templateInfoForm.$setUntouched();
 			$mdDialog.hide();
 		}
 

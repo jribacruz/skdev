@@ -75,6 +75,7 @@ public class ActionRepository implements Serializable {
 					eTemplate.setCreatedAt(rs.getTimestamp("tm.created_at"));
 					eTemplate.setDescription(rs.getString("tm.description"));
 					eTemplate.setContent(rs.getString("tm.content"));
+					eTemplate.setActionId(rs.getInt(rs.getInt("tm.action_id")));
 					eAction.getTemplates().put(eTemplate.getName(), eTemplate);
 				}
 
@@ -126,6 +127,7 @@ public class ActionRepository implements Serializable {
 					eTemplate.setCreatedAt(rs.getTimestamp("tm.created_at"));
 					eTemplate.setDescription(rs.getString("tm.description"));
 					eTemplate.setContent(rs.getString("tm.content"));
+					eTemplate.setActionId(rs.getInt(rs.getInt("tm.action_id")));
 					eAction.getTemplates().put(eTemplate.getName(), eTemplate);
 				}
 
