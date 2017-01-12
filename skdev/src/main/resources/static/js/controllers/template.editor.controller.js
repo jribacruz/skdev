@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('TemplateEditorCT', TemplateEditorCT);
 
-	TemplateEditorCT.$inject = [ '$scope', '$log', '$mdSidenav', '$location', 'templateSV', '$mdDialog', 'notificationSV' ];
+	TemplateEditorCT.$inject = [ '$scope', '$log', '$mdSidenav', '$location', 'templateSV', '$mdDialog', 'notificationSV', 'templateEditorSV' ];
 
 	/**
 	 * 
@@ -13,7 +13,7 @@
 	 * @param $location
 	 * @returns
 	 */
-	function TemplateEditorCT($scope, $log, $mdSidenav, $location, templateSV, $mdDialog, notificationSV) {
+	function TemplateEditorCT($scope, $log, $mdSidenav, $location, templateSV, $mdDialog, notificationSV, templateEditorSV ) {
 		$log.debug('[TemplateEditorCT] Inicializando...');
 		var self = this;
 
@@ -41,14 +41,7 @@
 
 		function init() {
 			angular.element(document).ready(function() {
-				$log.debug('[TemplateEditorCT] Inicializando editor de templates...');
-				templateEditor = CodeMirror(document.getElementById('templateEditor'), {
-					mode : "handlebars",
-					lineNumbers : true,
-					theme : 'eclipse',
-					styleActiveLine : true
-				});
-				templateEditor.setSize('100%', '100%');
+				templateEditorSV.init();
 			});
 		}
 
@@ -61,7 +54,7 @@
 
 		function editTemplateContent(template) {
 			self.template = angular.copy(template);
-			templateEditor.setValue(self.template.content);
+			templateEditorSV.setValue(self.template.content);
 			_showTemplateEditor(template);
 		}
 
