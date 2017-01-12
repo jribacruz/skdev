@@ -4,7 +4,8 @@
     <md-tab id="dialog" label="Dialog.html" style="height: 100%" layout-fill="">
     	
      <md-tab-content flex="" layout-fill="">
-  	  		<div layout="column" style="height: 100%">
+  	  		<div layout="column" style="height: 100%" ng-controller="DialogHTMLEditorCT as dialogHTMLEditorCT">
+  	  			<!-- TOOLBAR -->
   	  			<div style="border-bottom: 1px solid #ddd">
   	  				<md-button class="md-icon-button">
   	  					<md-icon md-svg-icon="undo"></md-icon>
@@ -20,7 +21,7 @@
   	  					<md-tooltip md-direction="bottom">Redo</md-tooltip>
   	  				</md-button>
   	  			</div>
-	  	  		<div flex="" ng-controller="DialogHTMLEditorCT as dialogHTMLEditorCT">
+	  	  		<div flex="" >
 		      		<md-content flex="" style="height: 100%">
 			   	  		<div id="dialogHTMLEditor" style="height: 100%;" layout="column" flex=""></div>
 		      		</md-content>
