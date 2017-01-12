@@ -69,6 +69,7 @@
 				autoCloseTags : true,
 				gutters : [ "CodeMirror-lint-markers" ],
 				theme : 'eclipse',
+				indentUnit : 4,
 				styleActiveLine : true
 			});
 			editors['dialogHTML'].setSize('100%', '100%');
