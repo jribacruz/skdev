@@ -19,7 +19,8 @@
 		var service = {
 			init : init,
 			setValue : setValue,
-			getValue : getValue
+			getValue : getValue,
+			getEditor: getEditor
 		};
 
 		function init() {
@@ -47,6 +48,10 @@
 
 		function getValue() {
 			return editor.getValue();
+		}
+		
+		function getEditor() {
+			return editor;
 		}
 
 		return service;

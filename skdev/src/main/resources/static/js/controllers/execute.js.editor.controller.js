@@ -21,6 +21,14 @@
 
 		function init() {
 		}
+		
+		$scope.$on('action.editor.ready', function() {
+			/*
+			dialogHTMLEditorSV.getEditor().on('focus', function() {
+				console.log('Editor DialogHTML em foco.')
+			});
+			*/
+		});
 
 	}
 })();

@@ -39,6 +39,8 @@
 				dialogHTMLEditorSV.init();
 				templateEditorSV.init();
 				_loadOrCreateAction();
+				$scope.$broadcast('action.editor.ready');
+				$log.debug('[ActionEditorCT] event broadcast: action.editor.ready');
 			});
 		}
 
