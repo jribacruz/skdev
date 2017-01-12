@@ -35,7 +35,6 @@
 			angular.element(document).ready(function() {
 				_initExecuteJSEditor();
 				_initDialogHTMLEditor();
-				_initTemplateEditor();
 				_loadOrCreateAction();
 			});
 		}
@@ -73,17 +72,6 @@
 				styleActiveLine : true
 			});
 			editors['dialogHTML'].setSize('100%', '100%');
-		}
-
-		function _initTemplateEditor() {
-			$log.debug('[ActionEditorCT] Inicializando editor de templates...');
-			editors['template'] = CodeMirror(document.getElementById('templateEditor'), {
-				mode : "handlebars",
-				lineNumbers : true,
-				theme : 'eclipse',
-				styleActiveLine : true
-			});
-			editors['template'].setSize('100%', '100%');
 		}
 
 		function _loadOrCreateAction() {

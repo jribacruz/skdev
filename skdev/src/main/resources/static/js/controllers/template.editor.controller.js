@@ -17,6 +17,7 @@
 		$log.debug('[TemplateEditorCT] Inicializando...');
 		var self = this;
 
+		var templateEditor = {};
 
 		self.template = {};
 
@@ -37,7 +38,20 @@
 		init();
 
 		function init() {
+			angular.element(document).ready(function() {
+				_initTemplateEditor()
+			});
+		}
 
+		function _initTemplateEditor() {
+			$log.debug('[TemplateEditorCT] Inicializando editor de templates...');
+			templateEditor = CodeMirror(document.getElementById('templateEditor'), {
+				mode : "handlebars",
+				lineNumbers : true,
+				theme : 'eclipse',
+				styleActiveLine : true
+			});
+			templateEditor.setSize('100%', '100%');
 		}
 
 		function createTemplate() {
@@ -80,7 +94,7 @@
 				contentElement : '#templateEditorDialog',
 				clickOutsideToClose : false
 			});
-			editors['template'].setValue(template.content);
+			templateEditor.setValue(template.content);
 		}
 
 		function _showTemplateInfo() {
