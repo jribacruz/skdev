@@ -3,7 +3,8 @@
 
 	angular.module('skdevMD').controller('ActionEditorCT', ActionEditorCT);
 
-	ActionEditorCT.$inject = [ '$scope', '$log','$location', '$mdSidenav', 'actionSV', '$mdDialog', 'notificationSV', 'dialogHTMLEditorSV', 'executeJSEditorSV', 'templateEditorSV' ];
+	ActionEditorCT.$inject = [ '$scope', '$log', '$location', '$mdSidenav', 'actionSV', '$mdDialog', 'notificationSV',
+			'dialogHTMLEditorSV', 'executeJSEditorSV', 'templateEditorSV', 'projectSV' ];
 
 	/**
 	 * 
@@ -13,7 +14,8 @@
 	 * @param $location
 	 * @returns
 	 */
-	function ActionEditorCT($scope, $log, $location ,$mdSidenav, actionSV, $mdDialog, notificationSV, dialogHTMLEditorSV, executeJSEditorSV, templateEditorSV) {
+	function ActionEditorCT($scope, $log, $location, $mdSidenav, actionSV, $mdDialog, notificationSV, dialogHTMLEditorSV,
+			executeJSEditorSV, templateEditorSV, projectSV) {
 		$log.debug('[ActionEditorCT] Inicializando...');
 		var self = this;
 
@@ -30,6 +32,10 @@
 		self.saveStatus = false;
 
 		self.runAction = runAction;
+		
+		self.projects = [];
+		
+		self.selectedProject = {};
 
 		init();
 
@@ -43,7 +49,6 @@
 				$log.debug('[ActionEditorCT] event broadcast: action.editor.ready');
 			});
 		}
-
 
 		function _loadOrCreateAction() {
 			var id = URI($location.absUrl()).filename();
@@ -103,6 +108,14 @@
 			self.action.dialogHTML = dialogHTMLEditorSV.getValue();
 			self.action.executeJS = executeJSEditorSV.getValue();
 			actionSV.run(eAction);
+		}
+		
+		function _selectProject() {
+			$mdDialog.show({
+				parent : angular.element(document.body),
+				contentElement : '#actionInfoDialog',
+				clickOutsideToClose : false
+			});
 		}
 
 	}

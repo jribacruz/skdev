@@ -1,0 +1,29 @@
+<md-dialog md-theme="default" aria-label="Template Info" style="width: 25%">
+    <form name="actionInfoForm" novalidate="">
+        <md-dialog-content class="md-dialog-content">
+            <h2 class="md-title">Projetos</h2>
+            <!-- NAME -->	
+            <md-input-container class="md-block">
+                <label>Selecione o projeto</label>
+                <md-select ng-model="actionEditorCT.selectedProject">
+            		<md-option><em>None</em></md-option>
+            		<md-option ng-repeat="project in actionEditorCT.projects" ng-value="project.id" ng-disabled="$index === 1" ng-required="">
+              		{{project.name}}
+            		</md-option>
+          		</md-select>
+                <div ng-messages="actionInfoForm.project.$error">
+                    <div ng-message="required">O nome é obrigatório.</div>
+                </div>
+            </md-input-container>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <md-button class="md-primary" ng-disabled="actionInfoForm.$invalid || !actionInfoForm.$dirty || actionCT.saveStatus" 
+                       ng-click="actionEditorCT.save()" >
+                Salvar
+            </md-button>
+            <md-button  ng-click="actionEditorCT.hide()">
+                Fechar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
