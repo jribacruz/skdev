@@ -19,7 +19,6 @@ import br.skdev.core.model.EDirectory;
 import br.skdev.core.model.EFile;
 import br.skdev.core.model.EMavenProject;
 import br.skdev.core.model.EWorkspace;
-import br.skdev.core.model.response.EClassesResponse;
 import br.skdev.core.model.response.EDirectoriesResponse;
 import br.skdev.core.service.ProjectService;
 import br.skdev.core.service.WorkspaceService;
@@ -47,7 +46,7 @@ public class ProjectRest {
 		EWorkspace eWorkspace = workspaceService.load();
 		EMavenProject eMavenProject = projectService.findByName(eWorkspace, projectName);
 		SortedSet<EClass> entities = projectService.findMainEClasses(eMavenProject);
-		return ResponseEntity.ok(new EClassesResponse(entities));
+		return ResponseEntity.ok(entities);
 	}
 
 	/**

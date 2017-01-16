@@ -117,7 +117,7 @@
 				clickOutsideToClose : false,
 				scope: $scope,
 				preserveScope: true,
-				controller: function SelectProjectCT($scope, $mdDialog, projectSV) {
+				controller: function ProjectSelectorCT($scope, $mdDialog, projectSV) {
 					console.log('[SelectProjectCT] Inicializando...');
 					
 					$scope.projects = [];

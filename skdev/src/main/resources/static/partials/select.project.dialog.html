@@ -6,12 +6,11 @@
             <md-input-container class="md-block">
                 <label>Selecione o projeto</label>
                 <md-select ng-model="selectedProject">
-            		<md-option><em>None</em></md-option>
-            		<md-option ng-repeat="project in projects" ng-value="project.name" ng-required="">
+            		<md-option ng-repeat="project in projects" ng-value="project" ng-required="">
               		{{project.name}}
             		</md-option>
           		</md-select>
-                <div ng-messages="projectSelectorForm.project.$error">
+                <div ng-messages="projectSelectorForm.selectedProject.$error">
                     <div ng-message="required">O nome é obrigatório.</div>
                 </div>
             </md-input-container>
