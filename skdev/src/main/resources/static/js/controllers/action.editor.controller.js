@@ -107,14 +107,41 @@
 		function runAction(eAction) {
 			self.action.dialogHTML = dialogHTMLEditorSV.getValue();
 			self.action.executeJS = executeJSEditorSV.getValue();
-			actionSV.run(eAction);
+			_selectProject().then(function() {
+				console.log(self.selectedProject);
+				actionSV.run(eAction);
+			}, function() {
+				console.log('Cancel');
+			})
 		}
 		
 		function _selectProject() {
-			$mdDialog.show({
+			return $mdDialog.show({
 				parent : angular.element(document.body),
-				contentElement : '#actionInfoDialog',
-				clickOutsideToClose : false
+				templateUrl : '/skdev/partials/select.project.dialog.html',
+				clickOutsideToClose : false,
+				scope: $scope,
+				preserveScope: true,
+				controller: function SelectProjectCT($scope, $mdDialog, projectSV) {
+					console.log('[SelectProjectCT] Inicializando...');
+					
+					$scope.projects = [];
+					
+					$scope.selectedProject = {};
+					
+					projectSV.findAll().then(function(res){
+						$scope.projects = res.data;
+					});
+					
+					$scope.select = function() {
+						$scope.actionEditorCT.selectedProject = $scope.selectedProject;
+						$mdDialog.hide();
+					}
+					
+					$scope.cancel = function() {
+						$mdDialog.cancel();
+					}
+				}
 			});
 		}
 
