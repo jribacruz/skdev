@@ -1,9 +1,9 @@
 (function() {
 	'use strict';
 
-	angular.module("skdevMD").factory('ProjectSV', ProjectSV);
+	angular.module("skdevMD").factory('projectSV', projectSV);
 
-	ProjectSV.$inject = [ '$log', '$resource' ];
+	projectSV.$inject = [ '$log', '$resource' ];
 
 	/**
 	 * 
@@ -11,14 +11,12 @@
 	 * @param $resource
 	 * @returns
 	 */
-	function ProjectSV($log, $resource) {
-		$log.debug('[ProjectSV] Inicializando... ');
+	function projectSV($log, $resource) {
+		$log.debug('[projectSV] Inicializando... ');
 
 		var selectedProject = {}
 
 		var api = {
-			setSelectedProject : setSelectedProject,
-			getSelectedProject : getSelectedProject
 		}
 
 		var resource = $resource('http://localhost:8080/skdev/api/projects/:id', {
