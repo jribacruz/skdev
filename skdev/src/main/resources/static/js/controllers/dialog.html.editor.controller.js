@@ -35,7 +35,6 @@
 		function getCursorPos() {
 			var cursor = dialogHTMLEditorSV.getEditor().getCursor();
 			console.log(cursor);
-			dialogHTMLEditorSV.getEditor().replaceRange('<input>Deane amor da minha vida!!</input>', cursor);
 		}
 
 	}
