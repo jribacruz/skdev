@@ -33,10 +33,6 @@
 
 		self.runAction = runAction;
 		
-		self.projects = [];
-		
-		self.selectedProject = {};
-
 		init();
 
 		function init() {
@@ -108,7 +104,6 @@
 			self.action.dialogHTML = dialogHTMLEditorSV.getValue();
 			self.action.executeJS = executeJSEditorSV.getValue();
 			_selectProject().then(function() {
-				console.log(self.selectedProject);
 				actionSV.run(eAction);
 			}, function() {
 				console.log('Cancel');
@@ -134,7 +129,7 @@
 					});
 					
 					$scope.select = function() {
-						$scope.actionEditorCT.selectedProject = $scope.selectedProject;
+						projectSV.setSelectedProject($scope.selectedProject);
 						$mdDialog.hide();
 					}
 					
