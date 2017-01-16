@@ -8,11 +8,14 @@
 	/**
 	 * 
 	 * @param $log
-	 * @param $resource
+	 * @param $http
+	 * @param projectSV
 	 * @returns
 	 */
 	function ExecuteJSProjectSV($log, $http, projectSV) {
 		$log.debug('[ExecuteJSProjectSV] Inicializando... ');
+		
+		var origin = new URI($location.absUrl());
 		
 		var service = {};
 		

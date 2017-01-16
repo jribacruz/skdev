@@ -75,7 +75,7 @@
 				return;
 			}
 			$log.debug('[TemplateEditorCT] save/update');
-			self.template.content = templateEditor.getValue();
+			self.template.content = templateEditorSV.getValue();
 			templateSV.update(self.template).then(function(res) {
 				self.saveStatus = false;
 				$scope.actionEditorCT.action.templates[self.template.name] = self.template;
