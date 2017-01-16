@@ -35,6 +35,7 @@
 		function getCursorPos() {
 			var cursor = dialogHTMLEditorSV.getEditor().getCursor();
 			console.log(cursor);
+			dialogHTMLEditorSV.getEditor().replaceRange('<input>Teste</input>', cursor);
 		}
 
 	}
