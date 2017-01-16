@@ -1,7 +1,5 @@
 package br.skdev.core.rest;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.skdev.core.model.EFragment;
+import br.skdev.core.domain.Fragment;
 import br.skdev.core.service.FragmentService;
 
 @RestController
@@ -23,9 +21,8 @@ public class FragmentRest {
 
 	@RequestMapping(method = RequestMethod.GET, path = "/api/fragments")
 	public ResponseEntity<?> findAll() {
-		List<EFragment> fragments = fragmentService.findAll();
+		Iterable<Fragment> fragments = fragmentService.findAll();
 		return ResponseEntity.ok(fragments);
 	}
-
 
 }
