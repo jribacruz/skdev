@@ -3,6 +3,7 @@ package br.skdev.core.domain;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -51,11 +52,11 @@ public class Action implements Serializable {
 
 	@OneToMany
 	@JoinColumn(name = "ACTION_ID")
-	private Set<Template> templates;
+	private List<Template> templates;
 
 	@ManyToMany
 	@JoinTable(name = "SK_ACTION_GROUP", joinColumns = @JoinColumn(name = "ACTION_ID"), inverseJoinColumns = @JoinColumn(name = "GROUP_ID"))
-	private Set<Group> groups;
+	private List<Group> groups;
 
 	public Integer getId() {
 		return id;
@@ -105,25 +106,19 @@ public class Action implements Serializable {
 		this.createdAt = createdAt;
 	}
 
-	public Set<Template> getTemplates() {
-		if (this.templates == null) {
-			this.templates = new HashSet<>();
-		}
+	public List<Template> getTemplates() {
 		return templates;
 	}
 
-	public void setTemplates(Set<Template> templates) {
+	public void setTemplates(List<Template> templates) {
 		this.templates = templates;
 	}
 
-	public Set<Group> getGroups() {
-		if (this.groups == null) {
-			this.groups = new HashSet<>();
-		}
+	public List<Group> getGroups() {
 		return groups;
 	}
 
-	public void setGroups(Set<Group> groups) {
+	public void setGroups(List<Group> groups) {
 		this.groups = groups;
 	}
 
