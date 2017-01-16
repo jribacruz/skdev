@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.skdev.core.model.ETemplate;
+import br.skdev.core.domain.Template;
 import br.skdev.core.service.TemplateService;
 
 @RestController
@@ -22,14 +22,14 @@ public class TemplateRest {
 	private TemplateService templateService;
 
 	@RequestMapping(method = RequestMethod.POST, path = "/api/templates")
-	public ResponseEntity<?> insert(@RequestBody ETemplate eTemplate) {
+	public ResponseEntity<?> insert(@RequestBody Template eTemplate) {
 		log.info("INSERT ETemplate {}", eTemplate);
 		eTemplate = templateService.insert(eTemplate);
 		return ResponseEntity.ok(eTemplate);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, path = "/api/templates/{id}")
-	public ResponseEntity<?> udpate(@PathVariable("id") Integer id, @RequestBody ETemplate eTemplate) {
+	public ResponseEntity<?> udpate(@PathVariable("id") Integer id, @RequestBody Template eTemplate) {
 		log.info("UPDATE ETemplate {}", eTemplate);
 		templateService.update(id, eTemplate);
 		return ResponseEntity.ok().build();

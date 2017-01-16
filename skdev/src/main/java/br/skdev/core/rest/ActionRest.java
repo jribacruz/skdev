@@ -1,7 +1,5 @@
 package br.skdev.core.rest;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.skdev.core.model.EAction;
+import br.skdev.core.domain.Action;
 import br.skdev.core.service.ActionService;
 
 @RestController
@@ -25,25 +23,25 @@ public class ActionRest {
 
 	@RequestMapping(method = RequestMethod.GET, path = "/api/actions")
 	public ResponseEntity<?> findAll() {
-		List<EAction> actions = actionService.findAll();
+		Iterable<Action> actions = actionService.findAll();
 		return ResponseEntity.ok(actions);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, path = "/api/actions/{id}")
 	public ResponseEntity<?> find(@PathVariable("id") Integer id) {
-		EAction action = actionService.find(id);
+		Action action = actionService.find(id);
 		return ResponseEntity.ok(action);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/api/actions")
-	public ResponseEntity<?> insert(@RequestBody EAction eAction) {
+	public ResponseEntity<?> insert(@RequestBody Action eAction) {
 		log.info("Insert EAction {}", eAction);
 		eAction = actionService.insert(eAction);
 		return ResponseEntity.ok(eAction);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, path = "/api/actions/{id}")
-	public ResponseEntity<?> udpate(@PathVariable("id") Integer id, @RequestBody EAction eAction) {
+	public ResponseEntity<?> udpate(@PathVariable("id") Integer id, @RequestBody Action eAction) {
 		log.info("Insert EAction {}", eAction);
 		actionService.update(id, eAction);
 		return ResponseEntity.ok().build();

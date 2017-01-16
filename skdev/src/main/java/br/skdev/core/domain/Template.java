@@ -1,35 +1,50 @@
-package br.skdev.core.model;
+package br.skdev.core.domain;
 
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ETemplate implements Serializable {
+@Entity
+@Table(name = "SK_TEMPLATE")
+public class Template implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column
 	private String name;
 
+	@Column
 	private String description;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 
+	@Column
 	private String content;
 
-	private Integer actionId;
-
-	public ETemplate() {
+	public Template() {
 		super();
 	}
 
-	public ETemplate(Integer id, String name, String content) {
+	public Template(Integer id, String name, String content) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -76,14 +91,6 @@ public class ETemplate implements Serializable {
 		this.createdAt = createdAt;
 	}
 
-	public Integer getActionId() {
-		return actionId;
-	}
-
-	public void setActionId(Integer actionId) {
-		this.actionId = actionId;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -101,7 +108,7 @@ public class ETemplate implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ETemplate other = (ETemplate) obj;
+		Template other = (Template) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

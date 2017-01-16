@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.skdev.core.model.ETemplate;
+import br.skdev.core.domain.Template;
 import br.skdev.core.repository.TemplateRepository;
 
 @Service
@@ -16,11 +16,11 @@ public class TemplateService {
 	@Autowired
 	private TemplateRepository templateRepository;
 
-	public ETemplate insert(ETemplate eTemplate) {
+	public Template insert(Template eTemplate) {
 		return templateRepository.insert(eTemplate);
 	}
 
-	public void update(Integer id, ETemplate eTemplate) {
+	public void update(Integer id, Template eTemplate) {
 		templateRepository.update(id, eTemplate);
 	}
 	

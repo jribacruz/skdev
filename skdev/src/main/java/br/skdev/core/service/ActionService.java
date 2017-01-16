@@ -1,13 +1,11 @@
 package br.skdev.core.service;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.skdev.core.model.EAction;
+import br.skdev.core.domain.Action;
 import br.skdev.core.repository.ActionRepository;
 
 @Service
@@ -18,20 +16,20 @@ public class ActionService {
 	@Autowired
 	private ActionRepository actionRepository;
 
-	public List<EAction> findAll() {
+	public Iterable<Action> findAll() {
 		return actionRepository.findAll();
 	}
 
-	public EAction find(Integer id) {
-		return actionRepository.find(id);
+	public Action find(Integer id) {
+		return actionRepository.findOne(id);
 	}
 
-	public EAction insert(EAction eAction) {
-		return actionRepository.insert(eAction);
+	public Action insert(Action eAction) {
+		return actionRepository.save(eAction);
 	}
 
-	public void update(Integer id, EAction eAction) {
-		actionRepository.update(id, eAction);
+	public Action update(Integer id, Action eAction) {
+		return actionRepository.save(eAction);
 	}
 
 }

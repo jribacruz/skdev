@@ -16,7 +16,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.skdev.core.model.ETemplate;
+import br.skdev.core.domain.Template;
 
 @Repository
 public class TemplateRepository implements Serializable {
@@ -36,22 +36,8 @@ public class TemplateRepository implements Serializable {
 	 * @param eTemplate
 	 */
 	@Transactional
-	public ETemplate insert(ETemplate eTemplate) {
-		final String insertTemplateSQL = " INSERT INTO SK_TEMPLATE(NAME, DESCRIPTION, ACTION_ID) VALUES(?,?,?)";
-		KeyHolder holder = new GeneratedKeyHolder();
-		jdbcTemplate.update(new PreparedStatementCreator() {
-			@Override
-			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-				PreparedStatement ps = connection.prepareStatement(insertTemplateSQL, Statement.RETURN_GENERATED_KEYS);
-				ps.setString(1, eTemplate.getName());
-				ps.setString(2, eTemplate.getDescription());
-				ps.setInt(3, eTemplate.getActionId());
-				return ps;
-			}
-		}, holder);
-		int newTemplateId = holder.getKey().intValue();
-		eTemplate.setId(newTemplateId);
-		return eTemplate;
+	public Template insert(Template eTemplate) {
+		return null;
 	}
 
 	/**
@@ -60,7 +46,7 @@ public class TemplateRepository implements Serializable {
 	 * @param eTemplate
 	 */
 	@Transactional
-	public void update(Integer id, ETemplate eTemplate) {
+	public void update(Integer id, Template eTemplate) {
 		// @formatter:off
 		final String updateTemplateSQL = " UPDATE SK_TEMPLATE "
 				+ "							SET NAME=?, "

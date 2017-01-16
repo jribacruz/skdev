@@ -1,19 +1,31 @@
-package br.skdev.core.model;
+package br.skdev.core.domain;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EGroup implements Serializable {
+@Entity
+@Table(name = "SK_GROUP")
+public class Group implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column
 	private String name;
 
 	public Integer getId() {
@@ -49,7 +61,7 @@ public class EGroup implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EGroup other = (EGroup) obj;
+		Group other = (Group) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
