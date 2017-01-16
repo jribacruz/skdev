@@ -1,9 +1,9 @@
 (function() {
 	'use strict';
 
-	angular.module("skdevMD").factory('ExecuteJSProjectSV', ExecuteJSProjectSV);
+	angular.module("skdevMD").factory('executeJSProjectSV', executeJSProjectSV);
 
-	ExecuteJSProjectSV.$inject = [ '$log', '$http', 'projectSV' ];
+	executeJSProjectSV.$inject = [ '$log', '$http', 'projectSV', '$location' ];
 
 	/**
 	 * 
@@ -12,20 +12,22 @@
 	 * @param projectSV
 	 * @returns
 	 */
-	function ExecuteJSProjectSV($log, $http, projectSV) {
-		$log.debug('[ExecuteJSProjectSV] Inicializando... ');
-		
+	function executeJSProjectSV($log, $http, projectSV, $location) {
+		$log.debug('[executeJSProjectSV] Inicializando... ');
+
 		var origin = new URI($location.absUrl());
-		
-		var service = {};
-		
+
+		var service = {
+			createFile : createFile
+		};
+
 		function createFile(eFile) {
-			var createFileURL = format('/skdev/api/{}/files', projectSV.getSelectedProject().name);
+			var createFileURL = origin.segment([ 'skdev', 'api', 'projects', projectSV.getSelectedProject().name , 'files' ]).href();
 			return $http.post(createFileURL, eFile);
 		}
-		
+
 		function createDir(eDir) {
-			
+
 		}
 
 		return service;
