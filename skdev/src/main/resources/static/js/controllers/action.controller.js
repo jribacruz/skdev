@@ -19,13 +19,15 @@
 
 		var editors = {};
 
-		self.hide = hide;
+		self.cancel = cancel;
 
 		self.load = load;
 
 		self.options = {};
 
 		self.values = {};
+		
+		self.execute = execute;
 
 		init();
 
@@ -33,8 +35,8 @@
 
 		}
 
-		function hide() {
-			$mdDialog.hide();
+		function cancel() {
+			$mdDialog.cancel();
 		}
 
 		function load(id, endpoint) {
@@ -44,6 +46,13 @@
 			$http.get(loadURL).then(function(res) {
 				self.options[id] = res.data;
 			});
+		}
+		
+		function execute() {
+			$log.debug('[ActionCT] execute');
+			var $values = self.values;
+			var executeFn = new Function('$values', eAction.executeJS);
+			angular.bind(this, executeFn, $values)();
 		}
 	}
 })();
