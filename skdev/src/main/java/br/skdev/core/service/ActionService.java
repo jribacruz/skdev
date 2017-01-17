@@ -18,6 +18,9 @@ public class ActionService {
 	@Autowired
 	private ActionRepository actionRepository;
 
+	@Autowired
+	private FragmentService fragmentService;
+
 	public Iterable<Action> findAll() {
 		return actionRepository.findAll();
 	}
@@ -30,8 +33,9 @@ public class ActionService {
 		return actionRepository.findById(id);
 	}
 
-	public Action insert(Action eAction) {
-		return actionRepository.save(eAction);
+	public Action insert(Action action) {
+		fragmentService.findByName("new.dialog.html").ifPresent(fragment -> action.setDialogHTML(fragment.getFragment()));
+		return actionRepository.save(action);
 	}
 
 	public Action update(Optional<Action> opAction, Action rAction) {
