@@ -113,30 +113,11 @@
 		function _selectProject() {
 			return $mdDialog.show({
 				parent : angular.element(document.body),
-				templateUrl : '/skdev/partials/select.project.dialog.html',
+				templateUrl : '/skdev/partials/project.selector.dialog.html',
 				clickOutsideToClose : false,
 				scope: $scope,
 				preserveScope: true,
-				controller: function ProjectSelectorCT($scope, $mdDialog, projectSV) {
-					console.log('[SelectProjectCT] Inicializando...');
-					
-					$scope.projects = [];
-					
-					$scope.selectedProject = {};
-					
-					projectSV.findAll().then(function(res){
-						$scope.projects = res.data;
-					});
-					
-					$scope.select = function() {
-						projectSV.setSelectedProject($scope.selectedProject);
-						$mdDialog.hide();
-					}
-					
-					$scope.cancel = function() {
-						$mdDialog.cancel();
-					}
-				}
+				controller: 'ProjectSelectorCT'
 			});
 		}
 
