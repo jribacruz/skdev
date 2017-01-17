@@ -20,15 +20,14 @@
 		self.projects = [];
 
 		self.showNotification = showNotification;
-		
+
 		self.selectedAction = [];
-		
+
 		self.newAction = newAction;
-		
+
 		self.init = init;
 
-		//init();
-		
+		// init();
 
 		function init() {
 			httpSV.get('/projects').then(function(projects) {
@@ -42,12 +41,11 @@
 		
 		function newAction() {
 			var action = actionSV.newAction();
-			actionSV.showActionInfo(action).then(function(action){
-				console.log('[WorkspaceCT] ');
-				console.log(action);
-			}, function() {
-				
-			});
+			actionSV.showActionInfo(action).then(function(action) {
+				actionSV.insert(action).then(function(res) {
+					actionSV.goTo(res.data.id);
+				});
+			}, angular.noop);
 		}
 
 	}
