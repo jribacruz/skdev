@@ -1,5 +1,7 @@
 package br.skdev.core.rest;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.skdev.core.domain.Action;
 import br.skdev.core.domain.Template;
 import br.skdev.core.service.ActionService;
 import br.skdev.core.service.TemplateService;
@@ -28,7 +31,11 @@ public class TemplateRest {
 	@RequestMapping(method = RequestMethod.POST, path = "/api/actions/{id}/templates")
 	public ResponseEntity<?> insert(@PathVariable("id") Integer id, @RequestBody Template eTemplate) {
 		log.info("INSERT ETemplate {}", eTemplate);
-		eTemplate = templateService.insert(eTemplate);
+		Optional<Action> action = actionService.findById(id);
+		if (action.isPresent()) {
+			eTemplate.setAction(action.get());
+			eTemplate = templateService.insert(eTemplate);
+		}
 		return ResponseEntity.ok(eTemplate);
 	}
 
