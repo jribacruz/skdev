@@ -32,7 +32,7 @@
 		</style>
     </head>
 	<body spellcheck="false">
-		<div style="height: 100%" flex="" layout="column" ng-controller="ActionEditorCT as actionEditorCT"> 
+		<div style="height: 100%" flex="" layout="column" ng-controller="ActionEditorCT as actionEditorCT" ng-init="actionEditorCT.init()"> 
 			<!-- FRAGMENTO DO TOOLBAR -->
 			<div th:replace="actions/fragments/toolbar :: #toolbar"></div>
 			<div layout="column" flex="" style="height: 100%">

@@ -33,7 +33,9 @@
 
 		self.runAction = runAction;
 		
-		init();
+		self.init = init;
+		
+		//init();
 
 		function init() {
 			angular.element(document).ready(function() {

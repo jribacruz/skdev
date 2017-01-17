@@ -25,7 +25,10 @@
 		
 		self.showActionInfo = showActionInfo;
 		
-		init();
+		self.init = init;
+
+		//init();
+		
 
 		function init() {
 			httpSV.get('/projects').then(function(projects) {
