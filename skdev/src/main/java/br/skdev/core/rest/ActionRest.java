@@ -46,10 +46,14 @@ public class ActionRest {
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, path = "/api/actions/{id}")
-	public ResponseEntity<?> udpate(@PathVariable("id") Integer id, @RequestBody Action eAction) {
-		log.info("Insert EAction {}", eAction);
-		actionService.update(id, eAction);
-		return ResponseEntity.ok().build();
+	public ResponseEntity<?> udpate(@PathVariable("id") Integer id, @RequestBody Action rAction) {
+		log.info("Insert EAction {}", rAction);
+		Optional<Action> opAction = actionService.findById(id);
+		if (opAction.isPresent()) {
+			Action updatedAction = actionService.update(opAction, rAction);
+			return ResponseEntity.ok(updatedAction);
+		}
+		return ResponseEntity.notFound().build();
 	}
 
 }

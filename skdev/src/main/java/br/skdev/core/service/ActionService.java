@@ -34,8 +34,13 @@ public class ActionService {
 		return actionRepository.save(eAction);
 	}
 
-	public Action update(Integer id, Action eAction) {
-		return actionRepository.save(eAction);
+	public Action update(Optional<Action> opAction, Action rAction) {
+		Action action = opAction.get();
+		action.setDescription(rAction.getDescription());
+		action.setDialogHTML(rAction.getDialogHTML());
+		action.setExecuteJS(rAction.getExecuteJS());
+		action.setName(rAction.getName());
+		return actionRepository.save(action);
 	}
 
 }
