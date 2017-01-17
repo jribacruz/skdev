@@ -23,7 +23,7 @@
 		
 		self.selectedAction = [];
 		
-		self.showActionInfo = showActionInfo;
+		self.newAction = newAction;
 		
 		self.init = init;
 
@@ -40,8 +40,14 @@
 			notificationSV.show(message);
 		}
 		
-		function showActionInfo() {
-			
+		function newAction() {
+			var action = actionSV.newAction();
+			actionSV.showActionInfo(action).then(function(action){
+				console.log('[WorkspaceCT] ');
+				console.log(action);
+			}, function() {
+				
+			});
 		}
 
 	}

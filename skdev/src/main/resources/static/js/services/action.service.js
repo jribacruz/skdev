@@ -16,7 +16,7 @@
 		
 		var origin = new URI($location.absUrl());
 		
-		var EAction = function() {
+		var Action = function() {
 			var self = this;
 			self.id = 0;
 			self.name = "";
@@ -32,7 +32,8 @@
 			newAction : newAction,
 			insert: insert, 
 			update: update,
-			run: run
+			run: run,
+			showActionInfo: showActionInfo
 		};
 
 		return service;
@@ -44,7 +45,7 @@
 		}
 
 		function newAction() {
-			return new EAction();
+			return new Action();
 		}
 		
 		function insert(eAction) {
@@ -68,6 +69,21 @@
 				clickOutsideToClose: true,
 				locals: {
 					eAction: eAction
+				}
+			});
+		}
+		
+		function showActionInfo(action) {
+			$log.debug(format('[actionSV] showActionInfo: {}', action.name));
+			var parentEl = angular.element(document.body);
+			return $mdDialog.show({
+				parent: parentEl,
+				templateUrl: '/skdev/partials/action.info.dialog.html',
+				controller: 'ActionInfoCT',
+				controllerAs: 'actionInfoCT',
+				clickOutsideToClose: true,
+				locals: {
+					action: action
 				}
 			});
 		}
