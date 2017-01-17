@@ -1,5 +1,8 @@
 package br.skdev.core.rest;
 
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +24,13 @@ public class FragmentRest {
 
 	@RequestMapping(method = RequestMethod.GET, path = "/api/fragments")
 	public ResponseEntity<?> findAll() {
-		Iterable<Fragment> fragments = fragmentService.findAll();
+		//// @formatter:off
+		Map<String,Fragment> fragments = fragmentService.findAll()
+												.stream()
+												.collect(Collectors
+															.toMap(fragment -> fragment.getName() , 
+																   fragment -> fragment));
+		// @formatter:on
 		return ResponseEntity.ok(fragments);
 	}
 

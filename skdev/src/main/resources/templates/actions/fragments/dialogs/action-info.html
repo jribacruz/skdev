@@ -12,10 +12,10 @@
 					 <!-- NAME -->	
 					 <md-input-container class="md-block">
 				        <label>Name</label>
-				        <input name="name" ng-model="actionEditorCT.action.name" md-maxlength="32" required="" />
+				        <input name="name" ng-model="actionEditorCT.action.name" md-maxlength="64" required="" />
 				        <div ng-messages="actionInfoForm.name.$error">
 			            	<div ng-message="required">O nome é obrigatório.</div>
-			            	<div ng-message="md-maxlength">O nome deve possuir até 32 caracteres.</div>
+			            	<div ng-message="md-maxlength">O nome deve possuir até 64 caracteres.</div>
 			          	</div>
 				     </md-input-container>
 				     <!-- DESCIPTION -->

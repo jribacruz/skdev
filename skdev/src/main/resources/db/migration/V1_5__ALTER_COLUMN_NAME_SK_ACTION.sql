@@ -1,0 +1,1 @@
+alter table sk_action modify name varchar(64);
