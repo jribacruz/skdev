@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name = "SK_ACTION")
+@Table(name = "sk_action")
 public class Action implements Serializable {
 
 	/**

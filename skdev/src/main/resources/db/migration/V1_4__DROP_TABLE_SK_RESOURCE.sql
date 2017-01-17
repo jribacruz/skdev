@@ -1,1 +1,1 @@
-DROP TABLE SK_RESOURCE;
+DROP TABLE sk_resource;

@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name = "SK_GROUP")
+@Table(name = "sk_group")
 public class Group implements Serializable {
 
 	/**

@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name = "SK_FRAGMENT", schema = "SKDEV")
+@Table(name = "sk_fragment", schema = "skdev")
 public class Fragment implements Serializable {
 
 	/**

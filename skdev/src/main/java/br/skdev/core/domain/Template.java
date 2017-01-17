@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name = "SK_TEMPLATE")
+@Table(name = "sk_template")
 public class Template implements Serializable {
 
 	/**
