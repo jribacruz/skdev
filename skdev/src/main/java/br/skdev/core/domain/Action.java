@@ -9,9 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -50,10 +47,6 @@ public class Action implements Serializable {
 
 	@OneToMany(mappedBy = "action")
 	private List<Template> templates;
-
-	@ManyToMany
-	@JoinTable(name = "SK_ACTION_GROUP", joinColumns = @JoinColumn(name = "ACTION_ID"), inverseJoinColumns = @JoinColumn(name = "GROUP_ID"))
-	private List<Group> groups;
 
 	public Integer getId() {
 		return id;
@@ -109,14 +102,6 @@ public class Action implements Serializable {
 
 	public void setTemplates(List<Template> templates) {
 		this.templates = templates;
-	}
-
-	public List<Group> getGroups() {
-		return groups;
-	}
-
-	public void setGroups(List<Group> groups) {
-		this.groups = groups;
 	}
 
 	@Override

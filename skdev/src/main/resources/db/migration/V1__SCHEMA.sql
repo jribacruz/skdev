@@ -19,7 +19,8 @@ CREATE TABLE sk_template(
 CREATE TABLE sk_fragment (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(24),
-	fragment VARCHAR(4098)
+	fragment VARCHAR(4098),
+	category VARCHAR(32)
 );
 
 

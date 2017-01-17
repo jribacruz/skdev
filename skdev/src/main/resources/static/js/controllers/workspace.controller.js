@@ -3,7 +3,7 @@
 
 	angular.module('skdevMD').controller('WorkspaceCT', WorkspaceCT);
 
-	WorkspaceCT.$inject = [ '$scope', '$log', '$mdDialog', 'httpSV', '$location', '$mdSidenav', 'notificationSV', 'actionSV' ];
+	WorkspaceCT.$inject = [ '$scope', '$log', '$mdDialog', 'httpSV', '$location', '$mdSidenav', 'notificationSV', 'actionSV', 'fragmentSV' ];
 
 	/**
 	 * 
@@ -13,7 +13,7 @@
 	 * @param httpSV
 	 * @returns
 	 */
-	function WorkspaceCT($scope, $log, $mdDialog, httpSV, $location, $mdSidenav, notificationSV, actionSV) {
+	function WorkspaceCT($scope, $log, $mdDialog, httpSV, $location, $mdSidenav, notificationSV, actionSV, fragmentSV) {
 		$log.debug('[WorkspaceCT] Inicializando...');
 		var self = this;
 
@@ -46,9 +46,13 @@
 		function newAction() {
 			var action = actionSV.newAction();
 			actionSV.showActionInfo(action).then(function(action) {
-				actionSV.insert(action).then(function(res) {
-					actionSV.goTo(res.data.id);
-				});
+				fragmentSV.findByName('new.dialog.html').then(function(res) {
+					var newDialogHTMLTemplate = Handlebars.compile(res.data.fragment);
+					action.dialogHTML = newDialogHTMLTemplate(action);
+					actionSV.insert(action).then(function(res) {
+						actionSV.goTo(res.data.id);
+					});
+				})
 			}, angular.noop);
 		}
 
@@ -58,11 +62,8 @@
 
 		function deleteAction(action) {
 			// Appending dialog to document.body to cover sidenav in docs app
-			var confirm = $mdDialog.confirm()
-								   .title('Confirmação')
-								   .textContent(format('Deseja excluir a ação {} ?', action.name))
-								   .ok('Sim')
-								   .cancel('Não');
+			var confirm = $mdDialog.confirm().title('Confirmação').textContent(format('Deseja excluir a ação {} ?', action.name)).ok('Sim')
+					.cancel('Não');
 			$mdDialog.show(confirm).then(function() {
 				actionSV.deleteAction(action.id).then(function() {
 					$scope.$broadcast('action.delete.success', action);

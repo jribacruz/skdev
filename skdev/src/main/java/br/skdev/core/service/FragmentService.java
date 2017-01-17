@@ -23,7 +23,7 @@ public class FragmentService {
 		return fragmentRepository.findAll();
 	}
 	
-	Optional<Fragment> findByName(String name){
+	public Optional<Fragment> findByName(String name){
 		return fragmentRepository.findByName(name);
 	}
 

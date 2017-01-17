@@ -1,1 +1,0 @@
-DROP TABLE sk_resource;

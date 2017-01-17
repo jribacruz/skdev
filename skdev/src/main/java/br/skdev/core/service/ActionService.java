@@ -34,7 +34,6 @@ public class ActionService {
 	}
 
 	public Action insert(Action action) {
-		fragmentService.findByName("new.dialog.html").ifPresent(fragment -> action.setDialogHTML(fragment.getFragment()));
 		return actionRepository.save(action);
 	}
 

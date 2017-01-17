@@ -1,7 +1,7 @@
-insert into sk_fragment(name, fragment) values('new.dialog.html', '<md-dialog aria-label="{{action.name}}">
+insert into sk_fragment(name, fragment) values('new.dialog.html', '<md-dialog aria-label="{{name}}">
     <form name="actionForm" ng-cloak>
         <md-dialog-content class="md-dialog-content">
-            <h2 class="md-title">{{action.name}}</h2>
+            <h2 class="md-title">{{name}}</h2>
             <!-- ACTION COMPONENTS !-->
             
         </md-dialog-content>

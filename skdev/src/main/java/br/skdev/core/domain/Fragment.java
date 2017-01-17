@@ -36,6 +36,9 @@ public class Fragment implements Serializable {
 	@Column
 	private String fragment;
 
+	@Column
+	private String category;
+
 	public Integer getId() {
 		return id;
 	}
@@ -58,6 +61,14 @@ public class Fragment implements Serializable {
 
 	public void setFragment(String fragment) {
 		this.fragment = fragment;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	@Override
