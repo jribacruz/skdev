@@ -2,9 +2,7 @@ package br.skdev.core.domain;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -50,8 +48,7 @@ public class Action implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 
-	@OneToMany
-	@JoinColumn(name = "ACTION_ID")
+	@OneToMany(mappedBy = "action")
 	private List<Template> templates;
 
 	@ManyToMany

@@ -1,5 +1,7 @@
 package br.skdev.core.rest;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +31,11 @@ public class ActionRest {
 
 	@RequestMapping(method = RequestMethod.GET, path = "/api/actions/{id}")
 	public ResponseEntity<?> find(@PathVariable("id") Integer id) {
-		Action action = actionService.find(id);
-		return ResponseEntity.ok(action);
+		Optional<Action> action = actionService.findById(id);
+		if (action.isPresent()) {
+			return ResponseEntity.ok(action.get());
+		}
+		return ResponseEntity.noContent().build();
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/api/actions")

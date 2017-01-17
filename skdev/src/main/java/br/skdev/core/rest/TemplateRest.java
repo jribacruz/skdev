@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.skdev.core.domain.Template;
+import br.skdev.core.service.ActionService;
 import br.skdev.core.service.TemplateService;
 
 @RestController
@@ -21,8 +22,11 @@ public class TemplateRest {
 	@Autowired
 	private TemplateService templateService;
 
-	@RequestMapping(method = RequestMethod.POST, path = "/api/templates")
-	public ResponseEntity<?> insert(@RequestBody Template eTemplate) {
+	@Autowired
+	private ActionService actionService;
+
+	@RequestMapping(method = RequestMethod.POST, path = "/api/actions/{id}/templates")
+	public ResponseEntity<?> insert(@PathVariable("id") Integer id, @RequestBody Template eTemplate) {
 		log.info("INSERT ETemplate {}", eTemplate);
 		eTemplate = templateService.insert(eTemplate);
 		return ResponseEntity.ok(eTemplate);

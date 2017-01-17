@@ -1,5 +1,7 @@
 package br.skdev.core.service;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,12 @@ public class ActionService {
 		return actionRepository.findAll();
 	}
 
-	public Action find(Integer id) {
+	public Action findOne(Integer id) {
 		return actionRepository.findOne(id);
+	}
+
+	public Optional<Action> findById(Integer id) {
+		return actionRepository.findById(id);
 	}
 
 	public Action insert(Action eAction) {

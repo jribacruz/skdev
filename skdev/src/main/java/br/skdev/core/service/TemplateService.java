@@ -17,13 +17,13 @@ public class TemplateService {
 	private TemplateRepository templateRepository;
 
 	public Template insert(Template eTemplate) {
-		return templateRepository.insert(eTemplate);
+		return templateRepository.save(eTemplate);
 	}
 
-	public void update(Integer id, Template eTemplate) {
-		templateRepository.update(id, eTemplate);
+	public Template update(Integer id, Template eTemplate) {
+		return templateRepository.save(eTemplate);
 	}
-	
+
 	public void delete(Integer id) {
 		templateRepository.delete(id);
 	}
