@@ -29,21 +29,25 @@ public class TemplateRest {
 	private ActionService actionService;
 
 	@RequestMapping(method = RequestMethod.POST, path = "/api/actions/{id}/templates")
-	public ResponseEntity<?> insert(@PathVariable("id") Integer id, @RequestBody Template eTemplate) {
-		log.info("INSERT ETemplate {}", eTemplate);
+	public ResponseEntity<?> insert(@PathVariable("id") Integer id, @RequestBody Template template) {
+		log.info("INSERT ETemplate {}", template);
 		Optional<Action> action = actionService.findById(id);
 		if (action.isPresent()) {
-			eTemplate.setAction(action.get());
-			eTemplate = templateService.insert(eTemplate);
+			Template newTemplate = templateService.insert(action.get(), template);
+			return ResponseEntity.ok(newTemplate);
 		}
-		return ResponseEntity.ok(eTemplate);
+		return ResponseEntity.badRequest().build();
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, path = "/api/templates/{id}")
-	public ResponseEntity<?> udpate(@PathVariable("id") Integer id, @RequestBody Template eTemplate) {
-		log.info("UPDATE ETemplate {}", eTemplate);
-		templateService.update(id, eTemplate);
-		return ResponseEntity.ok().build();
+	public ResponseEntity<?> udpate(@PathVariable("id") Integer id, @RequestBody Template rTemplate) {
+		log.info("UPDATE ETemplate {}", rTemplate);
+		Optional<Template> opTemplate = templateService.findById(id);
+		if (opTemplate.isPresent()) {
+			Template updatedTemplate = templateService.update(opTemplate, rTemplate);
+			return ResponseEntity.ok(updatedTemplate);
+		}
+		return ResponseEntity.notFound().build();
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, path = "/api/templates/{id}")
