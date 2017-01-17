@@ -35,7 +35,17 @@ public class ActionRest {
 		if (action.isPresent()) {
 			return ResponseEntity.ok(action.get());
 		}
-		return ResponseEntity.noContent().build();
+		return ResponseEntity.notFound().build();
+	}
+
+	@RequestMapping(method = RequestMethod.DELETE, path = "/api/actions/{id}")
+	public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
+		Optional<Action> action = actionService.findById(id);
+		if (action.isPresent()) {
+			actionService.delete(action.get().getId());
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.notFound().build();
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/api/actions")

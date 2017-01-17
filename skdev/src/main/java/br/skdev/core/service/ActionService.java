@@ -38,6 +38,10 @@ public class ActionService {
 		return actionRepository.save(action);
 	}
 
+	public void delete(Integer id) {
+		actionRepository.delete(id);
+	}
+
 	public Action update(Optional<Action> opAction, Action rAction) {
 		Action action = opAction.get();
 		action.setDescription(rAction.getDescription());

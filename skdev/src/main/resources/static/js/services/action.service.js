@@ -34,7 +34,8 @@
 			update : update,
 			run : run,
 			showActionInfo : showActionInfo,
-			goTo : goTo
+			goTo : goTo,
+			deleteAction: deleteAction
 		};
 
 		return service;
@@ -43,6 +44,12 @@
 			var loadActionURL = origin.segment([ 'skdev', 'api', 'actions', new String(id) ]).href();
 			$log.debug(format('[actionSV] load={}', loadActionURL));
 			return $http.get(loadActionURL);
+		}
+		
+		function deleteAction(id) {
+			var deleteActionURL = origin.segment([ 'skdev', 'api', 'actions', new String(id) ]).href();
+			$log.debug(format('[actionSV] delete={}', deleteActionURL));
+			return $http.delete(deleteActionURL);
 		}
 
 		function newAction() {
@@ -58,6 +65,8 @@
 			var updateActionURL = origin.segment([ 'skdev', 'api', 'actions', new String(eAction.id) ]).href();
 			return $http.put(updateActionURL, eAction);
 		}
+		
+		
 
 		function run(eAction) {
 			$log.debug(format('[actionSV] run: {}', eAction.name));

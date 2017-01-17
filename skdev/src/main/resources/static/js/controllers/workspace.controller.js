@@ -24,8 +24,10 @@
 		self.selectedAction = [];
 
 		self.newAction = newAction;
-		
+
 		self.editAction = editAction;
+
+		self.deleteAction = deleteAction;
 
 		self.init = init;
 
@@ -40,7 +42,7 @@
 		function showNotification(message) {
 			notificationSV.show(message);
 		}
-		
+
 		function newAction() {
 			var action = actionSV.newAction();
 			actionSV.showActionInfo(action).then(function(action) {
@@ -49,9 +51,24 @@
 				});
 			}, angular.noop);
 		}
-		
+
 		function editAction(id) {
 			actionSV.goTo(id);
+		}
+
+		function deleteAction(action) {
+			// Appending dialog to document.body to cover sidenav in docs app
+			var confirm = $mdDialog.confirm()
+								   .title('Confirmação')
+								   .textContent(format('Deseja excluir a ação {} ?', action.name))
+								   .ok('Sim')
+								   .cancel('Não');
+			$mdDialog.show(confirm).then(function() {
+				actionSV.deleteAction(action.id).then(function() {
+					$scope.$broadcast('action.delete.success', action);
+					notificationSV.show('Ação excluida com sucesso!');
+				});
+			}, angular.noop);
 		}
 
 	}

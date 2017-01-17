@@ -33,6 +33,12 @@
 		self.selectAction = selectAction;
 		
 		init();
+		
+		$scope.$on('action.delete.success', function(evt, action) {
+			$log.debug('[ActionListCT] ((action.delete.success))');
+			var index = self.actions.indexOf(action);
+			self.actions.splice(index, 1);
+		});
 
 		function init() {
 			httpSV.get('/actions').then(function(data) {
