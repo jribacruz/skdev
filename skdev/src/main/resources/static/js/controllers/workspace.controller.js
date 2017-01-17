@@ -24,6 +24,8 @@
 		self.selectedAction = [];
 
 		self.newAction = newAction;
+		
+		self.editAction = editAction;
 
 		self.init = init;
 
@@ -46,6 +48,10 @@
 					actionSV.goTo(res.data.id);
 				});
 			}, angular.noop);
+		}
+		
+		function editAction(id) {
+			actionSV.goTo(id);
 		}
 
 	}

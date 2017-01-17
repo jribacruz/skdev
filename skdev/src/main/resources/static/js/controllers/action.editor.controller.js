@@ -34,7 +34,7 @@
 		self.runAction = runAction;
 		
 		self.init = init;
-		
+				
 		//init();
 
 		function init() {
@@ -42,13 +42,13 @@
 				executeJSEditorSV.init();
 				dialogHTMLEditorSV.init();
 				templateEditorSV.init();
-				_loadOrCreateAction();
+				_loadAction();
 				$scope.$broadcast('action.editor.ready');
 				$log.debug('[ActionEditorCT] event broadcast: action.editor.ready');
 			});
 		}
 
-		function _loadOrCreateAction() {
+		function _loadAction() {
 			var id = URI($location.absUrl()).filename();
 			if (!isNaN(id)) {
 				actionSV.load(id).then(function(res) {
@@ -59,9 +59,6 @@
 				});
 				return;
 			}
-			self.action = actionSV.newAction();
-			_showActionInfo();
-			self.loading = false;
 		}
 
 		function _showActionInfo() {
