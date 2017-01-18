@@ -48,6 +48,14 @@ public class ProjectRest {
 		SortedSet<EClass> entities = projectService.findMainEClasses(eMavenProject);
 		return ResponseEntity.ok(entities);
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "/api/projects/{projectName}/main/domain/classes", produces = "application/json")
+	public ResponseEntity<?> findMainDomainEClasses(@PathVariable("projectName") String projectName) {
+		EWorkspace eWorkspace = workspaceService.load();
+		EMavenProject eMavenProject = projectService.findByName(eWorkspace, projectName);
+		SortedSet<EClass> entities = projectService.findMainDomainEClasses(eMavenProject);
+		return ResponseEntity.ok(entities);
+	}
 
 	/**
 	 * 

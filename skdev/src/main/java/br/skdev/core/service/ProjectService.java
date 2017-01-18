@@ -55,6 +55,16 @@ public class ProjectService {
 					.collect(Collectors.toCollection(TreeSet::new));
 		// @formatter:on
 	}
+	
+	public SortedSet<EClass> findMainDomainEClasses(EMavenProject eMavenProject) {
+		//// @formatter:off
+		return projectRepository.findAllEClasses(eMavenProject)
+					.stream()
+					.filter(eClass -> eClass.getSourceFolder().equals(ESourceFolder.SRC_MAIN_JAVA))
+					.filter(eClass -> eClass.getAnnotations().stream().anyMatch(ann -> ann.getName().endsWith("Entity")))
+					.collect(Collectors.toCollection(TreeSet::new));
+		// @formatter:on
+	}
 
 	
 	public Set<EDirectory> findDirectories(EMavenProject eMavenProject) {

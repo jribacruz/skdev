@@ -51,7 +51,6 @@
 		}
 
 		function execute() {
-			//_showActionConsole();
 			var parentEl = angular.element(document.body);
 			$mdDialog.show({
 				parent : parentEl,
@@ -61,6 +60,10 @@
 				clickOutsideToClose : false,
 				onComplete: function(scope, element) {
 					$log.debug('[ActionCT] execute');
+					
+					/*
+					 * Inicializa as variáveis do executeJS
+					 */
 					var $values = self.values;
 					var $templates = eAction.templates;
 					var $template = executeJSTemplateSV;
@@ -71,10 +74,6 @@
 					angular.bind(this, executeFn, $values, $templates, $template, $project, $console)();
 				}
 			});
-		}
-		
-		function _showActionConsole() {
-		
 		}
 	}
 })();
