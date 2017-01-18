@@ -33,12 +33,9 @@
 						.catch(createFileFailed);
 			
 			function createFileComplete(res) {
-				executeJSConsoleSV.info('Arquivo criado com sucesso.',{
+				executeJSConsoleSV.info(format('Arquivo {} criado com sucesso.', eFile.path),{
 					invoker: '$project.createFile',
 					details: [{
-						header: 'path',
-						content: eFile.path
-					},{
 						header: 'content',
 						content: eFile.content
 					}]

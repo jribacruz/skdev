@@ -46,7 +46,7 @@
 			$log.debug('[executeJSTemplateSV] merge/object')
 			var hbTemplate = Handlebars.compile(template.content);
 			var result = hbTemplate(model);
-			executeJSConsoleSV.info(format('Merge do template {}', template.name), {
+			executeJSConsoleSV.info(format('Merge do template {} realizado com sucesso.', template.name), {
 				invoker : '$template.merge',
 				details : [ {
 					header : 'input',
