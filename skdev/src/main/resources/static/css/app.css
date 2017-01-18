@@ -29,3 +29,12 @@
 	margin-right: 5px;
 	color: rgb(63,81,181);
 }
+
+.action-console-log .invoker {
+	color: rgb(0, 150, 136);
+}
+
+.action-console-log .invoker-fn {
+	min-width: 200px;
+	display: inline-block;
+}

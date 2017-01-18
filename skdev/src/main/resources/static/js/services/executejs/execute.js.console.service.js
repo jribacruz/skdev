@@ -15,6 +15,10 @@
 		$log.debug('[executeJSConsoleSV] Inicializando... ');
 
 		var subscribers = [];
+		
+		var defaultOptions = {
+			invoker: 'executeJS'	
+		}
 
 		var service = {
 			info : info,
@@ -23,11 +27,13 @@
 
 		return service;
 
-		function info(text, data) {
+		function info(text, options) {
+			options = angular.merge({}, defaultOptions, options);
 			angular.forEach(subscribers, function(cb) {
 				cb({
 					level : 'info',
-					message : text
+					message : text,
+					options: options
 				});
 			});
 		}

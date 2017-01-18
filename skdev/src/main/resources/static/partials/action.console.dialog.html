@@ -1,9 +1,19 @@
-<md-dialog md-theme="default" aria-label="Action Console" style="width: 25%">
+<md-dialog md-theme="default" aria-label="Action Console" >
 	<form name="actionConsoleForm" novalidate="">
 		<h2 class="md-title" style="padding-left:24px">Action Console</h2>
 		<md-dialog-content class="md-dialog-content">
 			<div ng-repeat="log in actionConsoleCT.logs">
-				<div class="action-console-log"><span class="{{log.level}}">{{log.level}}</span>{{log.message}}</div>
+				<div class="action-console-log">- 
+					<span class="{{log.level}}">{{log.level}}</span> 
+					<span class="invoker">
+						[
+						<span class="invoker-fn">
+							{{log.options.invoker}}
+						</span>
+						]
+					</span> 
+					{{log.message}}
+				</div>
 			</div>
 		</md-dialog-content>
 		<md-dialog-actions>
