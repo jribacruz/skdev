@@ -23,8 +23,6 @@
 
 		$scope.cancel = cancel;
 
-		self.load = load;
-
 		self.options = {};
 
 		$scope.$values = {
@@ -41,21 +39,10 @@
 			$mdDialog.cancel();
 		}
 
-		function load(id, endpoint) {
-			$log.debug('[ActionCT] ProjectName: ' + projectSV.getSelectedProject().name);
-			var loadURL = origin.segment([ "skdev", "api", "projects", projectSV.getSelectedProject().name, endpoint ]).href();
-			$log.debug('[ActionCT] load: ' + loadURL);
-			$http.get(loadURL).then(function(res) {
-				self.options[id] = res.data;
-			});
-		}
-		
 		function getProjects() {
 			if(angular.isUndefined(getProjectsCache)) {
 				getProjectsCache = [];
-				var getProjectsURL = origin.segment([ 'skdev', 'api', 'projects' ]).href();
-				$log.debug('[ActionCT] getProjects() : ' + getProjectsURL);
-				$http.get(getProjectsURL).then(function(res) {
+				projectSV.findAll().then(function(res) {
 					getProjectsCache = res.data;
 				});
 			}

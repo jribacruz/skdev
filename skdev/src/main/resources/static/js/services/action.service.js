@@ -71,15 +71,19 @@
 		function run(eAction) {
 			$log.debug(format('[actionSV] run: {}', eAction.name));
 			var parentEl = angular.element(document.body);
-			$mdDialog.show({
-				parent : parentEl,
-				template : eAction.dialogHTML,
-				controller : 'ActionCT',
-				clickOutsideToClose : true,
-				locals : {
-					eAction : eAction
-				}
-			});
+			try{
+				$mdDialog.show({
+					parent : parentEl,
+					template : eAction.dialogHTML,
+					controller : 'ActionCT',
+					clickOutsideToClose : true,
+					locals : {
+						eAction : eAction
+					}
+				});
+			} catch(err) {
+				console.log(err);
+			}
 		}
 
 		function showActionInfo(action) {

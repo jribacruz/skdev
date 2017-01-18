@@ -44,6 +44,7 @@
 		
 		function findAll() {
 			var findAllProjectsURL = origin.segment(['skdev', 'api','projects']).href();
+			$log.debug('[projectSV] findAll : ' + findAllProjectsURL);
 			return $http.get(findAllProjectsURL);
 		}
 	}

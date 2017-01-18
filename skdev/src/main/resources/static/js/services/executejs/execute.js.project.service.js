@@ -3,7 +3,7 @@
 
 	angular.module("skdevMD").factory('executeJSProjectSV', executeJSProjectSV);
 
-	executeJSProjectSV.$inject = [ '$log', '$http', 'projectSV', '$location', 'executeJSConsoleSV' ];
+	executeJSProjectSV.$inject = [ '$log', '$http', '$location', 'executeJSConsoleSV' ];
 
 	/**
 	 * 
@@ -12,7 +12,7 @@
 	 * @param projectSV
 	 * @returns
 	 */
-	function executeJSProjectSV($log, $http, projectSV, $location, executeJSConsoleSV) {
+	function executeJSProjectSV($log, $http, $location, executeJSConsoleSV) {
 		$log.debug('[executeJSProjectSV] Inicializando... ');
 
 		var origin = new URI($location.absUrl());
@@ -27,8 +27,8 @@
 		 * Cria um arquivo.
 		 * 
 		 */
-		function createFile(eFile) {
-			var createFileURL = origin.segment([ 'skdev', 'api', 'projects', projectSV.getSelectedProject().name , 'files' ]).href();
+		function createFile(project, eFile) {
+			var createFileURL = origin.segment([ 'skdev', 'api', 'projects', project.name , 'files' ]).href();
 			return $http.post(createFileURL, eFile)
 						.then(createFileComplete)
 						.catch(createFileFailed);
@@ -53,8 +53,8 @@
 		 * Cria um diretório
 		 * 
 		 */
-		function createDir(eDir) {
-			var createDirURL = origin.segment([ 'skdev', 'api', 'projects', projectSV.getSelectedProject().name , 'directories' ]).href();
+		function createDir(project, eDir) {
+			var createDirURL = origin.segment([ 'skdev', 'api', 'projects', project.name , 'directories' ]).href();
 			return $http.post(createDirURL, eDir)
 						.then(createDirComplete)
 						.catch(createDirFailed);
