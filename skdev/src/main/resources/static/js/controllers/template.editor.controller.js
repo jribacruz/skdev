@@ -59,7 +59,7 @@
 		function editTemplateContent(template) {
 			self.template = angular.copy(template);
 			templateEditorSV.setValue(self.template.content);
-			templateEditorSV.showTemplateEditor(template);
+			templateEditorSV.showTemplateEditor();
 		}
 
 		function editTemplateInfo(template) {
@@ -85,7 +85,7 @@
 			self.template.content = templateEditorSV.getValue();
 			templateSV.update(self.template).then(function(res) {
 				self.saveStatus = false;
-				//$scope.actionEditorCT.action.templates[self.template.name] = self.template;
+				_updateTemplateList(res.data, self.template); 
 				notificationSV.show('Template atualizado com sucesso.');
 				$mdDialog.hide();
 			});
@@ -94,8 +94,7 @@
 		function deleteTemplate(template) {
 			notificationSV.confirm(format('Deseja excluir o template: {} ?', template.name)).then(function() {
 				templateSV.deleteTemplate(template.id).then(function(res) {
-					var index = self.templates.indexOf(template);
-					self.templates.splice(index, 1);
+					_removeTemplate(template);
 					notificationSV.show('Template excluído com sucesso.');
 				});
 			}, angular.noop);
@@ -111,6 +110,19 @@
 
 		function hideTemplateEditor() {
 			$mdDialog.hide();
+		}
+		
+		function _removeTemplate(template) {
+			var index = self.templates.indexOf(template);
+			self.templates.splice(index, 1);
+		}
+		
+		function _updateTemplateList(newTemplate, oldTemplate) {
+			angular.forEach(self.templates, function(template, index) {
+				if(template.id === oldTemplate.id) {
+					self.templates[index] = newTemplate;
+				}
+			});
 		}
 
 	}

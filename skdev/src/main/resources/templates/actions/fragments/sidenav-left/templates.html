@@ -3,7 +3,7 @@
 <body>
 <div id="templates" flex="">
 	<md-subheader class="md-primary">Templates</md-subheader>
-	<md-list-item class="md-2-line" ng-repeat="template in templateEditorCT.templates" ng-cloak="">
+	<md-list-item class="md-2-line" ng-repeat="template in templateEditorCT.templates|orderBy:'name'" ng-cloak="">
 	      <div class="md-list-item-text">
 	         <h4>{{ template.name }}</h4>
 	         <p>{{ template.description }}</p>
