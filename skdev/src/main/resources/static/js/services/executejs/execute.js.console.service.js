@@ -23,9 +23,12 @@
 
 		return service;
 
-		function info(text) {
+		function info(text, data) {
 			angular.forEach(subscribers, function(cb) {
-				cb(text);
+				cb({
+					level : 'info',
+					message : text
+				});
 			});
 		}
 

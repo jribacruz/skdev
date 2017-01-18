@@ -22,8 +22,8 @@
 		
 		self.hide = hide;
 
-		executeJSConsoleSV.subscribe(function(text) {
-			self.logs.push('> ' + text);
+		executeJSConsoleSV.subscribe(function(log) {
+			self.logs.push(log);
 		})
 		
 		function hide() {

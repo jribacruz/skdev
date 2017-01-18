@@ -3,7 +3,7 @@
 		<h2 class="md-title" style="padding-left:24px">Action Console</h2>
 		<md-dialog-content class="md-dialog-content">
 			<div ng-repeat="log in actionConsoleCT.logs">
-				<p>{{log}}</p>
+				<div class="action-console-log"><span class="{{log.level}}">{{log.level}}</span>{{log.message}}</div>
 			</div>
 		</md-dialog-content>
 		<md-dialog-actions>

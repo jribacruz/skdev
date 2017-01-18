@@ -16,3 +16,16 @@
     height: 20px;
     margin-bottom: -5px;
 }
+
+.action-console-log {
+	display: block;
+	margin-bottom: 2px;
+	font-family: 'Source Code Pro', monospace;
+	font-size: 13px;
+}
+
+.action-console-log .info {
+	text-transform: uppercase;
+	margin-right: 5px;
+	color: rgb(63,81,181);
+}
