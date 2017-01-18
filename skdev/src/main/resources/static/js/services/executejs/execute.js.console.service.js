@@ -24,15 +24,13 @@
 		return service;
 
 		function info(text) {
-			console.log('info');
 			angular.forEach(subscribers, function(cb) {
-				console.log("--------------------");
 				cb(text);
 			});
 		}
 
 		function subscribe(cb) {
-			console.log("subscribe");
+			$log.debug('[executeJSConsoleSV] subscribe');
 			subscribers.push(cb);
 		}
 

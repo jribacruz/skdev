@@ -11,7 +11,7 @@
 					 <!-- NAME -->	
 					 <md-input-container class="md-block">
 				        <label>Name</label>
-				        <input name="name" ng-model="templateEditorCT.template.name" md-maxlength="32" ng-maxlength="32"  ng-required="true"/>
+				        <input name="name" ng-model="templateEditorCT.template.name" md-maxlength="32" ng-maxlength="32"  ng-required="true" autocomplete="off"/>
 				        <div ng-messages="templateInfoForm.name.$error" ng-show="templateInfoForm.$invalid">
 			            	<div ng-message="required">O nome do template é obrigatório.</div>
 			            	<div ng-message="maxlength">O nome deve possuir até 32 caracteres.</div>
