@@ -38,3 +38,20 @@
 	min-width: 200px;
 	display: inline-block;
 }
+
+.action-console-log .log-detail {
+	display: block;
+}
+
+.action-console-log .log-detail-header {
+	display: block;
+	margin-left: 40px;
+	color: rgb(156, 39, 176);
+	margin-top: 5px;
+}
+
+.action-console-log .log-detail-content {
+	display: block;
+	color: #555;
+	margin-left: 55px;
+}

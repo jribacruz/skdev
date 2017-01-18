@@ -34,7 +34,14 @@
 			
 			function createFileComplete(res) {
 				executeJSConsoleSV.info('Arquivo criado com sucesso.',{
-					invoker: '$project.createFile'
+					invoker: '$project.createFile',
+					details: [{
+						header: 'path',
+						content: eFile.path
+					},{
+						header: 'content',
+						content: eFile.content
+					}]
 				});
 				return res;
 			}

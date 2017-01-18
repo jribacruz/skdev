@@ -12,7 +12,11 @@
 						</span>
 						]
 					</span> 
-					{{log.message}}
+					: {{log.message}}
+					<div class="log-detail" ng-repeat="detail in log.options.details">
+						<div class="log-detail-header">{{detail.header}}:</div>
+						<div class="log-detail-content">{{detail.content}}</div>
+					</div>
 				</div>
 			</div>
 		</md-dialog-content>
