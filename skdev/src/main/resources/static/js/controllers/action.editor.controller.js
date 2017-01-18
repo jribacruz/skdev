@@ -103,11 +103,13 @@
 		function runAction(eAction) {
 			self.action.dialogHTML = dialogHTMLEditorSV.getValue();
 			self.action.executeJS = executeJSEditorSV.getValue();
+			actionSV.run(eAction);
+			/*
 			_selectProject().then(function() {
-				actionSV.run(eAction);
 			}, function() {
 				console.log('Cancel');
 			})
+			*/
 		}
 		
 		function _selectProject() {

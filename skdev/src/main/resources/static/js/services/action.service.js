@@ -75,7 +75,6 @@
 				parent : parentEl,
 				template : eAction.dialogHTML,
 				controller : 'ActionCT',
-				controllerAs : 'actionCT',
 				clickOutsideToClose : true,
 				locals : {
 					eAction : eAction

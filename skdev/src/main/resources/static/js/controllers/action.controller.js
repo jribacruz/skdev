@@ -21,21 +21,21 @@
 
 		var editors = {};
 
-		self.cancel = cancel;
+		$scope.cancel = cancel;
 
 		self.load = load;
 
 		self.options = {};
 
-		self.values = {};
+		$scope.$values = {
+			project : {}
+		};
 
-		self.execute = execute;
-
-		init();
-
-		function init() {
-
-		}
+		$scope.execute = execute;
+		
+		$scope.getProjects = getProjects;
+		
+		var getProjectsCache;
 
 		function cancel() {
 			$mdDialog.cancel();
@@ -48,6 +48,18 @@
 			$http.get(loadURL).then(function(res) {
 				self.options[id] = res.data;
 			});
+		}
+		
+		function getProjects() {
+			if(angular.isUndefined(getProjectsCache)) {
+				getProjectsCache = [];
+				var getProjectsURL = origin.segment([ 'skdev', 'api', 'projects' ]).href();
+				$log.debug('[ActionCT] getProjects() : ' + getProjectsURL);
+				$http.get(getProjectsURL).then(function(res) {
+					getProjectsCache = res.data;
+				});
+			}
+			return getProjectsCache;
 		}
 
 		function execute() {
@@ -65,13 +77,18 @@
 					 * Inicializa as variáveis do executeJS
 					 */
 					executeJSTemplateSV.setTemplates(eAction.templates);
-					var $values = self.values;
+					var $values = $scope.$values;
 					var $template = executeJSTemplateSV;
 					var $project = executeJSProjectSV;
 					var $console = executeJSConsoleSV;
 
 					var executeFn = new Function('$values', '$template', '$project', '$console', eAction.executeJS);
-					angular.bind(this, executeFn, $values, $template, $project, $console)();
+					try {
+						angular.bind(this, executeFn, $values, $template, $project, $console)();
+					} catch(err) {
+						console.log(err);
+						executeJSConsoleSV.error(err.message);
+					}
 				}
 			});
 		}

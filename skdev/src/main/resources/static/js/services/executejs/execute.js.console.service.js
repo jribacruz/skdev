@@ -22,6 +22,7 @@
 
 		var service = {
 			info : info,
+			error: error,
 			subscribe : subscribe
 		};
 
