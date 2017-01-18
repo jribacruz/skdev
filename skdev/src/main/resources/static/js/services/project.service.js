@@ -3,7 +3,7 @@
 
 	angular.module("skdevMD").factory('projectSV', projectSV);
 
-	projectSV.$inject = [ '$log', '$resource', '$location', '$http' ];
+	projectSV.$inject = [ '$log', '$location', '$http' ];
 
 	/**
 	 * 
@@ -11,39 +11,19 @@
 	 * @param $resource
 	 * @returns
 	 */
-	function projectSV($log, $resource, $location, $http) {
+	function projectSV($log, $location, $http) {
 		$log.debug('[projectSV] Inicializando... ');
-		
+
 		var origin = new URI($location.absUrl());
 
-		var selectedProject = {}
-
-		var api = {
-		}
-
-		var resource = $resource('http://localhost:8080/skdev/api/projects/:id', {
-			id : '@id'
-		}, api);
-
 		var service = {
-			resource : resource,
-			setSelectedProject : setSelectedProject,
-			getSelectedProject : getSelectedProject,
-			findAll: findAll
+			findAll : findAll
 		}
 
 		return service;
 
-		function setSelectedProject(project) {
-			selectedProject = project;
-		}
-
-		function getSelectedProject() {
-			return selectedProject;
-		}
-		
 		function findAll() {
-			var findAllProjectsURL = origin.segment(['skdev', 'api','projects']).href();
+			var findAllProjectsURL = origin.segment([ 'skdev', 'api', 'projects' ]).href();
 			$log.debug('[projectSV] findAll : ' + findAllProjectsURL);
 			return $http.get(findAllProjectsURL);
 		}
