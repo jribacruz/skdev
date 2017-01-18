@@ -55,6 +55,7 @@
 					self.action = res.data;
 					dialogHTMLEditorSV.setValue(res.data.dialogHTML);
 					executeJSEditorSV.setValue(res.data.executeJS);
+					$scope.$broadcast('action.loaded', self.action);
 					self.loading = false;
 				});
 				return;

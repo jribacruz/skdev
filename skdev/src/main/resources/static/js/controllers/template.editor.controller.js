@@ -19,6 +19,8 @@
 
 		var templateEditor = {};
 
+		self.templates = [];
+		
 		self.template = {};
 		
 		self.saveStatus = false;
@@ -41,6 +43,11 @@
 
 		function init() {
 		}
+		
+		$scope.$on('action.loaded', function(evt, data){
+			$log.debug('[TemplateEditorCT] ((action.loaded))');
+			self.templates = data.templates;
+		}); 
 
 		function createTemplate(actionId) {
 			$log.debug('[TemplateEditorCT] createTemplate');
