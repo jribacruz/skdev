@@ -19,13 +19,15 @@
 		var self = this;
 
 		self.logs = [];
-		
+
 		self.hide = hide;
+
+		self.showDetail = {};
 
 		executeJSConsoleSV.subscribe(function(log) {
 			self.logs.push(log);
 		})
-		
+
 		function hide() {
 			$mdDialog.hide();
 		}

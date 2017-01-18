@@ -37,6 +37,17 @@
 				});
 			});
 		}
+		
+		function error(text, options) {
+			options = angular.merge({}, defaultOptions, options);
+			angular.forEach(subscribers, function(cb) {
+				cb({
+					level : 'error',
+					message : text,
+					options: options
+				});
+			});
+		}
 
 		function subscribe(cb) {
 			$log.debug('[executeJSConsoleSV] subscribe');

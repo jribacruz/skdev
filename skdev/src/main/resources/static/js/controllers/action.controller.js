@@ -30,7 +30,7 @@
 		self.values = {};
 
 		self.execute = execute;
-		
+
 		init();
 
 		function init() {
@@ -58,20 +58,20 @@
 				controller : 'ActionConsoleCT',
 				controllerAs : 'actionConsoleCT',
 				clickOutsideToClose : false,
-				onComplete: function(scope, element) {
+				onComplete : function(scope, element) {
 					$log.debug('[ActionCT] execute');
-					
+
 					/*
 					 * Inicializa as variáveis do executeJS
 					 */
+					executeJSTemplateSV.setTemplates(eAction.templates);
 					var $values = self.values;
-					var $templates = eAction.templates;
 					var $template = executeJSTemplateSV;
 					var $project = executeJSProjectSV;
 					var $console = executeJSConsoleSV;
-					
-					var executeFn = new Function('$values', '$templates', '$template', '$project', '$console', eAction.executeJS);
-					angular.bind(this, executeFn, $values, $templates, $template, $project, $console)();
+
+					var executeFn = new Function('$values', '$template', '$project', '$console', eAction.executeJS);
+					angular.bind(this, executeFn, $values, $template, $project, $console)();
 				}
 			});
 		}
