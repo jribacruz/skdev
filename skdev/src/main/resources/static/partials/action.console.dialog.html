@@ -1,0 +1,15 @@
+<md-dialog md-theme="default" aria-label="Action Console" style="width: 25%">
+	<form name="actionConsoleForm" novalidate="">
+		<md-dialog-content class="md-dialog-content">
+			<h2 class="md-title">Action Console</h2>
+			<div ng-repeat="log in actionConsoleCT.logs">
+				<p>{{log}}</p>
+			</div>
+		</md-dialog-content>
+		<md-dialog-actions>
+			<md-button ng-click="actionConsoleCT.cancel()">
+			  Fechar
+			</md-button>
+		</md-dialog-actions>
+	</form>
+</md-dialog>

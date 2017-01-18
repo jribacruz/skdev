@@ -27,7 +27,8 @@
 		}
 
 		function createDir(eDir) {
-
+			var createDirURL = origin.segment([ 'skdev', 'api', 'projects', projectSV.getSelectedProject().name , 'directories' ]).href();
+			return $http.post(createDirURL, eFile);
 		}
 
 		return service;

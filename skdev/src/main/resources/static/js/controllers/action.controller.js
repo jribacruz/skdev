@@ -4,7 +4,7 @@
 	angular.module('skdevMD').controller('ActionCT', ActionCT);
 
 	ActionCT.$inject = [ '$scope', '$log', '$mdDialog', 'eAction', '$http', 'projectSV', '$location', 'executeJSTemplateSV',
-			'executeJSProjectSV' ];
+			'executeJSProjectSV', 'executeJSConsoleSV' ];
 
 	/**
 	 * 
@@ -12,7 +12,8 @@
 	 * @param $log
 	 * @returns
 	 */
-	function ActionCT($scope, $log, $mdDialog, eAction, $http, projectSV, $location, executeJSTemplateSV, executeJSProjectSV) {
+	function ActionCT($scope, $log, $mdDialog, eAction, $http, projectSV, $location, executeJSTemplateSV, executeJSProjectSV,
+			executeJSConsoleSV) {
 		$log.debug('[ActionCT] Inicializando...');
 		var self = this;
 
@@ -29,7 +30,7 @@
 		self.values = {};
 
 		self.execute = execute;
-
+		
 		init();
 
 		function init() {
@@ -50,14 +51,30 @@
 		}
 
 		function execute() {
-			$log.debug('[ActionCT] execute');
-			var $values = self.values;
-			var $templates = eAction.templates;
-			var $template = executeJSTemplateSV;
-			var $project = executeJSProjectSV;
-
-			var executeFn = new Function('$values', '$templates', '$template', '$project', eAction.executeJS);
-			angular.bind(this, executeFn, $values, $templates, $template, $project)();
+			//_showActionConsole();
+			var parentEl = angular.element(document.body);
+			$mdDialog.show({
+				parent : parentEl,
+				templateUrl : '/skdev/partials/action.console.dialog.html',
+				controller : 'ActionConsoleCT',
+				controllerAs : 'actionConsoleCT',
+				clickOutsideToClose : false,
+				onComplete: function(scope, element) {
+					$log.debug('[ActionCT] execute');
+					var $values = self.values;
+					var $templates = eAction.templates;
+					var $template = executeJSTemplateSV;
+					var $project = executeJSProjectSV;
+					var $console = executeJSConsoleSV;
+					
+					var executeFn = new Function('$values', '$templates', '$template', '$project', '$console', eAction.executeJS);
+					angular.bind(this, executeFn, $values, $templates, $template, $project, $console)();
+				}
+			});
+		}
+		
+		function _showActionConsole() {
+		
 		}
 	}
 })();
