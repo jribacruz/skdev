@@ -26,12 +26,13 @@
 		function init() {
 			$log.debug('[dialogHTMLEditorSV] Inicializando editor dialogHTML...');
 			editor = CodeMirror(document.getElementById('dialogHTMLEditor'), {
-				mode : "htmlmixed",
+				mode: "text/html",
 				lineNumbers : true,
 				autoCloseTags : true,
 				gutters : [ "CodeMirror-lint-markers" ],
 				theme : 'eclipse',
 				indentUnit : 4,
+				matchTags: {bothTags: true},
 				styleActiveLine : true
 			});
 			editor.setSize('100%', '100%');

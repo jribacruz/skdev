@@ -33,6 +33,8 @@
 		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/edit/matchbrackets.js</js>
 		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/edit/closebrackets.js</js>
 		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/edit/closetag.js</js>
+		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/fold/xml-fold.js</js>
+		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/edit/matchtags.js</js>
 		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/comment/comment.js</js>
 		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/comment/continuecomment.js</js>
 		<js minimize="false">classpath:META-INF/resources/webjars/codemirror/5.13.2/addon/selection/active-line.js</js>
