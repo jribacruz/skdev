@@ -18,7 +18,8 @@
 		var origin = new URI($location.absUrl());
 
 		var service = {
-			createFile : createFile
+			createFile : createFile,
+			createDir: createDir
 		};
 		
 		/**
@@ -42,7 +43,6 @@
 				});
 				return res;
 			}
-			
 			function createFileFailed(error) {
 				
 			}
@@ -55,7 +55,20 @@
 		 */
 		function createDir(eDir) {
 			var createDirURL = origin.segment([ 'skdev', 'api', 'projects', projectSV.getSelectedProject().name , 'directories' ]).href();
-			return $http.post(createDirURL, eFile);
+			return $http.post(createDirURL, eDir)
+						.then(createDirComplete)
+						.catch(createDirFailed);
+			
+			function createDirComplete(res) {
+				executeJSConsoleSV.info(format('Diretório {} criado com sucesso.', eDir.path),{
+					invoker: '$project.createDir'
+				});
+				return res;
+			}
+			
+			function createDirFailed(error) {
+				
+			};
 		}
 
 		return service;
