@@ -13,14 +13,18 @@
 						]
 					</span> 
 					: {{log.message}}
-					<div class="log-detail" ng-repeat="detail in log.options.details">
-						<div class="log-detail-header">{{detail.header}}:</div>
-						<pre class="log-detail-content">{{detail.content}}</pre>
+					<span class="toggle-detail" ng-click="actionConsoleCT.toggleDetail($index)" ng-show="log.options.details.length > 0">
+						<span ng-show="!actionConsoleCT.visibleDetail[$index]">Ver</span> <span ng-show="actionConsoleCT.visibleDetail[$index]">Esconder</span> detalhes</span>
+					<div ng-show="actionConsoleCT.visibleDetail[$index]">
+						<div class="log-detail" ng-repeat="detail in log.options.details" >
+							<div class="log-detail-header">{{detail.header}}:</div>
+							<pre class="log-detail-content">{{detail.content}}</pre>
+						</div>
 					</div>
 				</div>
 			</div>	
 		</md-dialog-content>
-		<md-dialog-actions>
+		<md-dialog-actions>	
 			<md-button ng-click="actionConsoleCT.hide()">
 			  Fechar
 			</md-button>

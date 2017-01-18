@@ -56,3 +56,9 @@
 	margin-left: 55px;
 	font-family: 'Source Code Pro', monospace;
 }
+
+.action-console-log .toggle-detail {
+	font-size: 11px;
+	color: rgb(0, 188, 212);
+	cursor: pointer;
+}

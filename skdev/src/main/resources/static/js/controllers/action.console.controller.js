@@ -22,7 +22,9 @@
 
 		self.hide = hide;
 
-		self.showDetail = {};
+		self.visibleDetail = {};
+		
+		self.toggleDetail = toggleDetail;
 
 		executeJSConsoleSV.subscribe(function(log) {
 			self.logs.push(log);
@@ -30,6 +32,10 @@
 
 		function hide() {
 			$mdDialog.hide();
+		}
+		
+		function toggleDetail(index) {
+			self.visibleDetail[index] = !self.visibleDetail[index];
 		}
 
 	}
