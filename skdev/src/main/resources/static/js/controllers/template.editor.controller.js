@@ -93,13 +93,12 @@
 				
 		function deleteTemplate(template) {
 			notificationSV.confirm(format('Deseja excluir o template: {} ?', template.name)).then(function() {
-				
 				templateSV.deleteTemplate(template.id).then(function(res) {
-					delete $scope.actionEditorCT.action.templates[self.template.name];
+					var index = self.templates.indexOf(template);
+					self.templates.splice(index, 1);
 					notificationSV.show('Template excluído com sucesso.');
 				});
-				
-			});
+			}, angular.noop);
 		}
 		
 		function _showTemplateEditor() {
