@@ -22,7 +22,6 @@
 			self.name = "";
 			self.description = "";
 			self.content = "";
-			self.actionId = 0;
 		}
 
 		var service = {
@@ -38,9 +37,9 @@
 			return new ETemplate();
 		}
 		
-		function insert(eTemplate) {
+		function insert(actionId, eTemplate) {
 			$log.debug('[templateSV] insert');
-			var insertTemplateURL = origin.segment(['skdev', 'api','templates']).href();
+			var insertTemplateURL = origin.segment(['skdev', 'api','actions',new String(actionId) ,'templates']).href();
 			return $http.post(insertTemplateURL, eTemplate);
 		}
 		

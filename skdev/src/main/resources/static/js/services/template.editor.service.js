@@ -3,7 +3,7 @@
 
 	angular.module("skdevMD").factory('templateEditorSV', templateEditorSV);
 
-	templateEditorSV.$inject = [ '$log', '$mdToast' ];
+	templateEditorSV.$inject = [ '$log', '$mdToast', '$mdDialog' ];
 
 	/**
 	 * 
@@ -11,7 +11,7 @@
 	 * @param $mdToast
 	 * @returns
 	 */
-	function templateEditorSV($log, $mdToast) {
+	function templateEditorSV($log, $mdToast, $mdDialog) {
 		$log.debug('[templateEditorSV] Inicializando... ');
 
 		var editor = {};
@@ -20,7 +20,9 @@
 			init : init,
 			setValue : setValue,
 			getValue : getValue,
-			getEditor : getEditor
+			getEditor : getEditor,
+			showTemplateInfo: showTemplateInfo,
+			showTemplateEditor: showTemplateEditor
 		};
 
 		function init() {
@@ -44,6 +46,22 @@
 
 		function getEditor() {
 			return editor;
+		}
+		
+		function showTemplateInfo() {
+			return $mdDialog.show({
+				parent : angular.element(document.body),
+				contentElement : '#templateInfoDialog',
+				clickOutsideToClose : false
+			});
+		}
+		
+		function showTemplateEditor() {
+			return $mdDialog.show({
+				parent : angular.element(document.body),
+				contentElement : '#templateEditorDialog',
+				clickOutsideToClose : false
+			});
 		}
 
 		return service;

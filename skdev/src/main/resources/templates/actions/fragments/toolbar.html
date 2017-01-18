@@ -17,6 +17,10 @@
 			</md-menu>
 			<h2><span>SKDev - Action Editor - {{actionEditorCT.action.name}}</span></h2>
 			<span flex=""></span>
+			<md-button aria-label="Novo template" class="md-icon-button" ng-click="templateEditorCT.newTemplate(actionEditorCT.action.id)">
+			   <md-icon md-font-icon="material-icons">title</md-icon>
+			   <md-tooltip md-direction="bottom">Novo template</md-tooltip>
+			</md-button>
 			<md-button aria-label="Salvar" class="md-icon-button" ng-click="actionEditorCT.save()">
 			   <md-icon md-font-icon="material-icons">backup</md-icon>
 			   <md-tooltip md-direction="bottom">Salvar</md-tooltip>

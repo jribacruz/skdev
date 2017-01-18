@@ -25,7 +25,7 @@
 		
 		self.saveStatus = false;
 
-		self.createTemplate = createTemplate;
+		self.newTemplate = newTemplate;
 
 		self.hideTemplateEditor = hideTemplateEditor;
 
@@ -49,35 +49,35 @@
 			self.templates = data.templates;
 		}); 
 
-		function createTemplate(actionId) {
+		function newTemplate(actionId) {
 			$log.debug('[TemplateEditorCT] createTemplate');
 			self.template = templateSV.newTemplate();
 			self.template.actionId = actionId;
-			_showTemplateInfo();
+			templateEditorSV.showTemplateInfo();
 		}
 
 		function editTemplateContent(template) {
 			self.template = angular.copy(template);
 			templateEditorSV.setValue(self.template.content);
-			_showTemplateEditor(template);
+			templateEditorSV.showTemplateEditor(template);
 		}
 
 		function editTemplateInfo(template) {
 			self.template = angular.copy(template);
-			_showTemplateInfo();
+			templateEditorSV.showTemplateInfo();
 		}
 
-		function save() {
+		function save(actionId) {
 			self.saveStatus = true;
 			if (self.template.id === 0) {
 				$log.debug('[TemplateEditorCT] save/insert');
-				templateSV.insert(self.template).then(function(res){
+				templateSV.insert(actionId, self.template).then(function(res){
 					$mdDialog.hide();
 					self.saveStatus = false;
 					self.template = res.data;
-					$scope.actionEditorCT.action.templates[self.template.name] = self.template;
+					self.templates.push(self.template);
 					notificationSV.show('Template salvo com sucesso.');
-					_showTemplateEditor();
+					templateEditorSV.showTemplateEditor();
 				});
 				return;
 			}
@@ -85,7 +85,7 @@
 			self.template.content = templateEditorSV.getValue();
 			templateSV.update(self.template).then(function(res) {
 				self.saveStatus = false;
-				$scope.actionEditorCT.action.templates[self.template.name] = self.template;
+				//$scope.actionEditorCT.action.templates[self.template.name] = self.template;
 				notificationSV.show('Template atualizado com sucesso.');
 				$mdDialog.hide();
 			});
@@ -101,22 +101,6 @@
 			}, angular.noop);
 		}
 		
-		function _showTemplateEditor() {
-			$mdDialog.show({
-				parent : angular.element(document.body),
-				contentElement : '#templateEditorDialog',
-				clickOutsideToClose : false
-			});
-		}
-
-		function _showTemplateInfo() {
-			$mdDialog.show({
-				parent : angular.element(document.body),
-				contentElement : '#templateInfoDialog',
-				clickOutsideToClose : false
-			});
-		}
-
 		function hideTemplateInfo() {
 			$log.debug('[TemplateEditorCT] hideTemplateInfo.');
 			self.template = null;
