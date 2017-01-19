@@ -42,7 +42,7 @@ public class ProjectRest {
 	 * @return Lista de EClasses
 	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/api/projects/{projectName}/main/classes", produces = "application/json")
-	public ResponseEntity<?> findMainEClasses(@PathVariable("projectName") String projectName) {
+	public ResponseEntity<?> getMainEClasses(@PathVariable("projectName") String projectName) {
 		EWorkspace eWorkspace = workspaceService.load();
 		EMavenProject eMavenProject = projectService.findByName(eWorkspace, projectName);
 		SortedSet<EClass> entities = projectService.findMainEClasses(eMavenProject);
@@ -50,7 +50,7 @@ public class ProjectRest {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/api/projects/{projectName}/main/domain/classes", produces = "application/json")
-	public ResponseEntity<?> findMainDomainEClasses(@PathVariable("projectName") String projectName) {
+	public ResponseEntity<?> getMainDomainEClasses(@PathVariable("projectName") String projectName) {
 		EWorkspace eWorkspace = workspaceService.load();
 		EMavenProject eMavenProject = projectService.findByName(eWorkspace, projectName);
 		SortedSet<EClass> entities = projectService.findMainDomainEClasses(eMavenProject);
@@ -67,7 +67,7 @@ public class ProjectRest {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/api/projects/{projectName}/directories", produces = "application/json")
-	public ResponseEntity<?> findDirectories(@PathVariable("projectName") String projectName) {
+	public ResponseEntity<?> getDirectories(@PathVariable("projectName") String projectName) {
 		EWorkspace eWorkspace = workspaceService.load();
 		EMavenProject eMavenProject = projectService.findByName(eWorkspace, projectName);
 		Set<EDirectory> directories = projectService.findDirectories(eMavenProject);

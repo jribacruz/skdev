@@ -30,23 +30,39 @@
 		};
 
 		$scope.execute = execute;
-		
+
 		$scope.getProjects = getProjects;
-		
+
+		$scope.getMainDomainEClasses = getMainDomainEClasses;
+
 		var getProjectsCache;
+
+		var getMainDomainEClasses;
 
 		function cancel() {
 			$mdDialog.cancel();
 		}
 
 		function getProjects() {
-			if(angular.isUndefined(getProjectsCache)) {
+			if (angular.isUndefined(getProjectsCache)) {
 				getProjectsCache = [];
 				workspaceSV.getProjects().then(function(res) {
 					getProjectsCache = res.data;
 				});
 			}
 			return getProjectsCache;
+		}
+
+		function getMainDomainEClasses(project) {
+			if (project && project.name) {
+				if (angular.isUndefined(getMainDomainEClasses)) {
+					getMainDomainEClasses = [];
+					projectSV.getMainDomainEClasses(project).then(function(res) {
+						getMainDomainEClasses = res.data;
+					});
+				}
+			}
+			return getMainDomainEClasses;
 		}
 
 		function execute() {
@@ -73,7 +89,7 @@
 					var executeFn = new Function('$values', '$template', '$project', '$console', '$workspace', eAction.executeJS);
 					try {
 						angular.bind(this, executeFn, $values, $template, $project, $console, $workspace)();
-					} catch(err) {
+					} catch (err) {
 						console.log(err);
 						executeJSConsoleSV.error(err.message);
 					}

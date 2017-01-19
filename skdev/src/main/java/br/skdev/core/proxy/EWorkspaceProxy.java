@@ -1,6 +1,9 @@
 package br.skdev.core.proxy;
 
+import static org.mockito.Matchers.contains;
+
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -33,6 +36,7 @@ public class EWorkspaceProxy extends EWorkspace {
 				//// @formatter:off
 				this.mavenProjects = directories.get()
 						.map(path -> new EMavenProjectProxy(path))
+						.filter(path -> !Arrays.asList(".metadata", ".recommenders", "RemoteSystemsTempFiles").contains(path.getName()))
 						.collect(Collectors.toCollection(TreeSet::new));
 				// @formatter:on
 			}
