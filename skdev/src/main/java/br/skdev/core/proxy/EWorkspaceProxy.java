@@ -32,7 +32,6 @@ public class EWorkspaceProxy extends EWorkspace {
 			if (directories.isPresent()) {
 				//// @formatter:off
 				this.mavenProjects = directories.get()
-						.filter(path -> fs.hasFile(path, "pom.xml"))
 						.map(path -> new EMavenProjectProxy(path))
 						.collect(Collectors.toCollection(TreeSet::new));
 				// @formatter:on

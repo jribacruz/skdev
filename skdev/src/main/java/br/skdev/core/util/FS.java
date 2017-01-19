@@ -24,7 +24,7 @@ public class FS implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Logger log = LoggerFactory.getLogger(FS.class);
-
+	
 	public Optional<Stream<Path>> listDirectories(String path) {
 		try {
 			return Optional.of(Files.list(Paths.get(path)).filter(Files::isDirectory));

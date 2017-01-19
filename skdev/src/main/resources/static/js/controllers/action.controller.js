@@ -4,7 +4,7 @@
 	angular.module('skdevMD').controller('ActionCT', ActionCT);
 
 	ActionCT.$inject = [ '$scope', '$log', '$mdDialog', 'eAction', '$http', 'projectSV', '$location', 'executeJSTemplateSV',
-			'executeJSProjectSV', 'executeJSConsoleSV', 'workspaceSV' ];
+			'executeJSProjectSV', 'executeJSConsoleSV', 'workspaceSV', 'executeJSWorkspaceSV' ];
 
 	/**
 	 * 
@@ -13,7 +13,7 @@
 	 * @returns
 	 */
 	function ActionCT($scope, $log, $mdDialog, eAction, $http, projectSV, $location, executeJSTemplateSV, executeJSProjectSV,
-			executeJSConsoleSV, workspaceSV) {
+			executeJSConsoleSV, workspaceSV, executeJSWorkspaceSV) {
 		$log.debug('[ActionCT] Inicializando...');
 		var self = this;
 
@@ -68,10 +68,11 @@
 					var $template = executeJSTemplateSV;
 					var $project = executeJSProjectSV;
 					var $console = executeJSConsoleSV;
+					var $workspace = executeJSWorkspaceSV;
 
-					var executeFn = new Function('$values', '$template', '$project', '$console', eAction.executeJS);
+					var executeFn = new Function('$values', '$template', '$project', '$console', '$workspace', eAction.executeJS);
 					try {
-						angular.bind(this, executeFn, $values, $template, $project, $console)();
+						angular.bind(this, executeFn, $values, $template, $project, $console, $workspace)();
 					} catch(err) {
 						console.log(err);
 						executeJSConsoleSV.error(err.message);

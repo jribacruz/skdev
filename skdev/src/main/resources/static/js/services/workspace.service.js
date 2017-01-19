@@ -30,6 +30,7 @@
 			$log.debug('[workspaceSV] getProjects : ' + getProjectsURL);
 			return $http.get(getProjectsURL);
 		}
+	
 	}
 
 })();

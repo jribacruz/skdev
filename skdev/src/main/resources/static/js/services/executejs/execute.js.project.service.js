@@ -28,24 +28,29 @@
 		 * 
 		 */
 		function createFile(project, eFile) {
-			var createFileURL = origin.segment([ 'skdev', 'api', 'projects', project.name , 'files' ]).href();
-			return $http.post(createFileURL, eFile)
-						.then(createFileComplete)
-						.catch(createFileFailed);
-			
-			function createFileComplete(res) {
-				executeJSConsoleSV.info(format('Arquivo {} criado com sucesso.', eFile.path),{
-					invoker: '$project.createFile',
-					details: [{
-						header: 'content',
-						content: eFile.content
-					}]
-				});
-				return res;
-			}
-			function createFileFailed(error) {
+			if(project && project.name) {
+				var createFileURL = origin.segment([ 'skdev', 'api', 'projects', project.name , 'files' ]).href();
+				return $http.post(createFileURL, eFile)
+							.then(createFileComplete)
+							.catch(createFileFailed);
 				
+				function createFileComplete(res) {
+					executeJSConsoleSV.info(format('Arquivo {} criado com sucesso.', eFile.path),{
+						invoker: '$project.createFile',
+						details: [{
+							header: 'content',
+							content: eFile.content
+						}]
+					});
+					return res;
+				}
+				function createFileFailed(error) {
+					
+				}
 			}
+			executeJSConsoleSV.error(format('Projeto não definido para criação do arquivo {}',eFile.path),{
+				invoker: '$project.createFile'
+			})
 		}
 		
 		/**
@@ -54,21 +59,26 @@
 		 * 
 		 */
 		function createDir(project, eDir) {
-			var createDirURL = origin.segment([ 'skdev', 'api', 'projects', project.name , 'directories' ]).href();
-			return $http.post(createDirURL, eDir)
-						.then(createDirComplete)
-						.catch(createDirFailed);
-			
-			function createDirComplete(res) {
-				executeJSConsoleSV.info(format('Diretório {} criado com sucesso.', eDir.path),{
-					invoker: '$project.createDir'
-				});
-				return res;
-			}
-			
-			function createDirFailed(error) {
+			if(project && project.name) {
+				var createDirURL = origin.segment([ 'skdev', 'api', 'projects', project.name , 'directories' ]).href();
+				return $http.post(createDirURL, eDir)
+							.then(createDirComplete)
+							.catch(createDirFailed);
 				
-			};
+				function createDirComplete(res) {
+					executeJSConsoleSV.info(format('Diretório {} criado com sucesso.', eDir.path),{
+						invoker: '$project.createDir'
+					});
+					return res;
+				}
+				
+				function createDirFailed(error) {
+					
+				};
+			}
+			executeJSConsoleSV.error(format('Projeto não definido para criação do diretório {}',eDir.path),{
+				invoker: '$project.createFile'
+			});
 		}
 
 		return service;

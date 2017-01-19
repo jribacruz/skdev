@@ -11,8 +11,10 @@ import org.springframework.stereotype.Repository;
 import br.skdev.core.cache.EWorkspaceCache;
 import br.skdev.core.configuration.SKDevConfig;
 import br.skdev.core.exception.WorkspaceNotFoundException;
+import br.skdev.core.model.EMavenProject;
 import br.skdev.core.model.EWorkspace;
 import br.skdev.core.proxy.EWorkspaceProxy;
+import br.skdev.core.util.FS;
 
 @Repository
 public class WorkspaceRepository {
@@ -24,6 +26,8 @@ public class WorkspaceRepository {
 	
 	@Autowired
 	private SKDevConfig skDevConfig;
+	
+	private FS fs = new FS();
 
 	public EWorkspace load() {
 		if (Files.notExists(Paths.get(skDevConfig.getWorkspace()))) {
@@ -36,5 +40,12 @@ public class WorkspaceRepository {
 		cache.setWorkspace(new EWorkspaceProxy(skDevConfig.getWorkspace()));
 		return cache.getWorkspace();
 	}
-
+	
+	public EMavenProject createProject(EMavenProject project) {
+		project.setAbsolutePath(skDevConfig.getWorkspace().concat("/").concat(project.getName()));
+		fs.mkdir(project.getAbsolutePath());
+		cache.setWorkspace(null);
+		return project;
+	}
+	
 }

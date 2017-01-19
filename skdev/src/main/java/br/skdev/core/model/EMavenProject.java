@@ -35,6 +35,11 @@ public class EMavenProject implements Serializable, Comparable<EMavenProject> {
 		super();
 	}
 
+	public EMavenProject(String name) {
+		super();
+		this.name = name;
+	}
+
 	public String getName() {
 		return name;
 	}
