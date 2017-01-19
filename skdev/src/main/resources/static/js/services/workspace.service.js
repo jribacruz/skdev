@@ -22,6 +22,9 @@
 
 		return service;
 
+		/**
+		 * Retorna todos os projetos do workspace.
+		 */
 		function getProjects() {
 			var getProjectsURL = origin.segment([ 'skdev', 'api', 'projects' ]).href();
 			$log.debug('[workspaceSV] getProjects : ' + getProjectsURL);

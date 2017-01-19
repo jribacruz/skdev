@@ -17,16 +17,10 @@
 		var origin = new URI($location.absUrl());
 
 		var service = {
-			findAll : findAll
 		}
 
 		return service;
 
-		function findAll() {
-			var findAllProjectsURL = origin.segment([ 'skdev', 'api', 'projects' ]).href();
-			$log.debug('[projectSV] findAll : ' + findAllProjectsURL);
-			return $http.get(findAllProjectsURL);
-		}
 	}
 
 })();
