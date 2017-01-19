@@ -28,6 +28,8 @@
 		self.editAction = editAction;
 
 		self.deleteAction = deleteAction;
+		
+		self.runAction = runAction;
 
 		self.init = init;
 
@@ -70,6 +72,10 @@
 					notificationSV.show('Ação excluida com sucesso!');
 				});
 			}, angular.noop);
+		}
+		
+		function runAction(eAction) {
+			actionSV.run(eAction);
 		}
 
 	}
