@@ -5,7 +5,7 @@
 
 	<groupId>br.skdev</groupId>
 	<artifactId>skdev</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-ALHPA1</version>
 	<packaging>jar</packaging>
 
 	<name>skdev</name>
