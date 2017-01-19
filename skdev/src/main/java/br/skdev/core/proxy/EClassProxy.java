@@ -61,6 +61,8 @@ public class EClassProxy extends EClass {
 		}
 		return this.path;
 	}
+	
+	
 
 	@Override
 	public String getName() {

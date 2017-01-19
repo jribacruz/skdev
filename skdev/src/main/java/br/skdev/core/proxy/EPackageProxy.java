@@ -34,4 +34,20 @@ public class EPackageProxy extends EPackage {
 		return this.directory;
 	}
 
+	@Override
+	public String getParentName() {
+		if (this.parentName == null) {
+			this.parentName = getName().substring(0, getName().lastIndexOf("."));
+		}
+		return this.parentName;
+	}
+
+	@Override
+	public String getParentDirectory() {
+		if (this.parentDirectory == null) {
+			this.parentDirectory = getParentName().replaceAll("\\.", "/");
+		}
+		return this.parentDirectory;
+	}
+
 }
