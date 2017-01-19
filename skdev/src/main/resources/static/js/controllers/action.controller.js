@@ -4,7 +4,7 @@
 	angular.module('skdevMD').controller('ActionCT', ActionCT);
 
 	ActionCT.$inject = [ '$scope', '$log', '$mdDialog', 'eAction', '$http', 'projectSV', '$location', 'executeJSTemplateSV',
-			'executeJSProjectSV', 'executeJSConsoleSV' ];
+			'executeJSProjectSV', 'executeJSConsoleSV', 'workspaceSV' ];
 
 	/**
 	 * 
@@ -13,7 +13,7 @@
 	 * @returns
 	 */
 	function ActionCT($scope, $log, $mdDialog, eAction, $http, projectSV, $location, executeJSTemplateSV, executeJSProjectSV,
-			executeJSConsoleSV) {
+			executeJSConsoleSV, workspaceSV) {
 		$log.debug('[ActionCT] Inicializando...');
 		var self = this;
 
@@ -42,7 +42,7 @@
 		function getProjects() {
 			if(angular.isUndefined(getProjectsCache)) {
 				getProjectsCache = [];
-				projectSV.findAll().then(function(res) {
+				workspaceSV.getProjects().then(function(res) {
 					getProjectsCache = res.data;
 				});
 			}
