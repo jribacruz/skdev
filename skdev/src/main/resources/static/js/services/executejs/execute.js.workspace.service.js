@@ -26,7 +26,18 @@
 		function createProject(project) {
 			var createProject = origin.segment([ 'skdev', 'api', 'projects' ]).href();
 			$log.debug('[workspaceSV] createProject : ' + createProject);
-			return $http.post(createProject, project);
+			return $http.post(createProject, project)
+						.then(createProjectComplete)
+						.catch(createProjectFailed);
+			function createProjectComplete(res) {
+				executeJSConsoleSV.info(format('projeto {} criado com sucesso.', res.data.name),{
+					invoker: '$workspace.createProject'
+				});
+				return res.data;
+			}
+			function createProjectFailed(error) {
+				
+			}
 		}
 
 	}
