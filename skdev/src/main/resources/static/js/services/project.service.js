@@ -17,8 +17,9 @@
 		var origin = new URI($location.absUrl());
 
 		var service = {
+			getMainDomainEClasses : getMainDomainEClasses
 		}
-		
+
 		function getMainDomainEClasses(project) {
 			var getMainDomainEClassesURL = origin.segment([ 'skdev', 'api', 'projects', project.name, 'main', 'domain', 'classes' ]).href();
 			$log.debug('[workspaceSV] getMainDomainEClasses : ' + getMainDomainEClassesURL);

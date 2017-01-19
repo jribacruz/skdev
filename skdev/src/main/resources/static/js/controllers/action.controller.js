@@ -23,7 +23,7 @@
 
 		$scope.cancel = cancel;
 
-		self.options = {};
+		$scope.$options = {};
 
 		$scope.$values = {
 			project : {}
@@ -37,7 +37,7 @@
 
 		var getProjectsCache;
 
-		var getMainDomainEClasses;
+		var getMainDomainEClassesCache;
 
 		function cancel() {
 			$mdDialog.cancel();
@@ -55,14 +55,15 @@
 
 		function getMainDomainEClasses(project) {
 			if (project && project.name) {
-				if (angular.isUndefined(getMainDomainEClasses)) {
-					getMainDomainEClasses = [];
+				if (angular.isUndefined(getMainDomainEClassesCache)) {
+					console.log(project)
+					getMainDomainEClassesCache = [];
 					projectSV.getMainDomainEClasses(project).then(function(res) {
-						getMainDomainEClasses = res.data;
+						getMainDomainEClassesCache = res.data;
 					});
 				}
 			}
-			return getMainDomainEClasses;
+			return getMainDomainEClassesCache;
 		}
 
 		function execute() {
