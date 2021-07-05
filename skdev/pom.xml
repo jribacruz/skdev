@@ -15,7 +15,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.4.2.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
@@ -109,7 +109,7 @@
 		<dependency>
 			<groupId>com.atlassian.commonmark</groupId>
 			<artifactId>commonmark</artifactId>
-			<version>0.8.0</version>
+			<version>0.17.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.webjars/URI.js -->
 		<!-- https://mvnrepository.com/artifact/org.webjars.bower/uri.js -->
